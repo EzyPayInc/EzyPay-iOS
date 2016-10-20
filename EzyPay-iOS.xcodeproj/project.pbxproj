@@ -1,0 +1,521 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		80EFEB951DB8552900D874E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EFEB941DB8552900D874E2 /* main.m */; };
+		80EFEB981DB8552900D874E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EFEB971DB8552900D874E2 /* AppDelegate.m */; };
+		80EFEB9B1DB8552900D874E2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EFEB9A1DB8552900D874E2 /* ViewController.m */; };
+		80EFEB9E1DB8552900D874E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80EFEB9C1DB8552900D874E2 /* Main.storyboard */; };
+		80EFEBA01DB8552900D874E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80EFEB9F1DB8552900D874E2 /* Assets.xcassets */; };
+		80EFEBA31DB8552900D874E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80EFEBA11DB8552900D874E2 /* LaunchScreen.storyboard */; };
+		80EFEBAE1DB8552900D874E2 /* EzyPay_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EFEBAD1DB8552900D874E2 /* EzyPay_iOSTests.m */; };
+		80EFEBB91DB8552900D874E2 /* EzyPay_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EFEBB81DB8552900D874E2 /* EzyPay_iOSUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		80EFEBAA1DB8552900D874E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80EFEB881DB8552900D874E2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 80EFEB8F1DB8552900D874E2;
+			remoteInfo = "EzyPay-iOS";
+		};
+		80EFEBB51DB8552900D874E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80EFEB881DB8552900D874E2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 80EFEB8F1DB8552900D874E2;
+			remoteInfo = "EzyPay-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		80EFEB901DB8552900D874E2 /* EzyPay-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EzyPay-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		80EFEB941DB8552900D874E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		80EFEB961DB8552900D874E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		80EFEB971DB8552900D874E2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		80EFEB991DB8552900D874E2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		80EFEB9A1DB8552900D874E2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		80EFEB9D1DB8552900D874E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		80EFEB9F1DB8552900D874E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		80EFEBA21DB8552900D874E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		80EFEBA41DB8552900D874E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80EFEBA91DB8552900D874E2 /* EzyPay-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EzyPay-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		80EFEBAD1DB8552900D874E2 /* EzyPay_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EzyPay_iOSTests.m; sourceTree = "<group>"; };
+		80EFEBAF1DB8552900D874E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80EFEBB41DB8552900D874E2 /* EzyPay-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EzyPay-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		80EFEBB81DB8552900D874E2 /* EzyPay_iOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EzyPay_iOSUITests.m; sourceTree = "<group>"; };
+		80EFEBBA1DB8552900D874E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		80EFEB8D1DB8552900D874E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80EFEBA61DB8552900D874E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80EFEBB11DB8552900D874E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		80EFEB871DB8552900D874E2 = {
+			isa = PBXGroup;
+			children = (
+				80EFEB921DB8552900D874E2 /* EzyPay-iOS */,
+				80EFEBAC1DB8552900D874E2 /* EzyPay-iOSTests */,
+				80EFEBB71DB8552900D874E2 /* EzyPay-iOSUITests */,
+				80EFEB911DB8552900D874E2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		80EFEB911DB8552900D874E2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				80EFEB901DB8552900D874E2 /* EzyPay-iOS.app */,
+				80EFEBA91DB8552900D874E2 /* EzyPay-iOSTests.xctest */,
+				80EFEBB41DB8552900D874E2 /* EzyPay-iOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		80EFEB921DB8552900D874E2 /* EzyPay-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				80EFEB961DB8552900D874E2 /* AppDelegate.h */,
+				80EFEB971DB8552900D874E2 /* AppDelegate.m */,
+				80EFEB991DB8552900D874E2 /* ViewController.h */,
+				80EFEB9A1DB8552900D874E2 /* ViewController.m */,
+				80EFEB9C1DB8552900D874E2 /* Main.storyboard */,
+				80EFEB9F1DB8552900D874E2 /* Assets.xcassets */,
+				80EFEBA11DB8552900D874E2 /* LaunchScreen.storyboard */,
+				80EFEBA41DB8552900D874E2 /* Info.plist */,
+				80EFEB931DB8552900D874E2 /* Supporting Files */,
+			);
+			path = "EzyPay-iOS";
+			sourceTree = "<group>";
+		};
+		80EFEB931DB8552900D874E2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				80EFEB941DB8552900D874E2 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		80EFEBAC1DB8552900D874E2 /* EzyPay-iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				80EFEBAD1DB8552900D874E2 /* EzyPay_iOSTests.m */,
+				80EFEBAF1DB8552900D874E2 /* Info.plist */,
+			);
+			path = "EzyPay-iOSTests";
+			sourceTree = "<group>";
+		};
+		80EFEBB71DB8552900D874E2 /* EzyPay-iOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				80EFEBB81DB8552900D874E2 /* EzyPay_iOSUITests.m */,
+				80EFEBBA1DB8552900D874E2 /* Info.plist */,
+			);
+			path = "EzyPay-iOSUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		80EFEB8F1DB8552900D874E2 /* EzyPay-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80EFEBBD1DB8552900D874E2 /* Build configuration list for PBXNativeTarget "EzyPay-iOS" */;
+			buildPhases = (
+				80EFEB8C1DB8552900D874E2 /* Sources */,
+				80EFEB8D1DB8552900D874E2 /* Frameworks */,
+				80EFEB8E1DB8552900D874E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "EzyPay-iOS";
+			productName = "EzyPay-iOS";
+			productReference = 80EFEB901DB8552900D874E2 /* EzyPay-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		80EFEBA81DB8552900D874E2 /* EzyPay-iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80EFEBC01DB8552900D874E2 /* Build configuration list for PBXNativeTarget "EzyPay-iOSTests" */;
+			buildPhases = (
+				80EFEBA51DB8552900D874E2 /* Sources */,
+				80EFEBA61DB8552900D874E2 /* Frameworks */,
+				80EFEBA71DB8552900D874E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				80EFEBAB1DB8552900D874E2 /* PBXTargetDependency */,
+			);
+			name = "EzyPay-iOSTests";
+			productName = "EzyPay-iOSTests";
+			productReference = 80EFEBA91DB8552900D874E2 /* EzyPay-iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		80EFEBB31DB8552900D874E2 /* EzyPay-iOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80EFEBC31DB8552900D874E2 /* Build configuration list for PBXNativeTarget "EzyPay-iOSUITests" */;
+			buildPhases = (
+				80EFEBB01DB8552900D874E2 /* Sources */,
+				80EFEBB11DB8552900D874E2 /* Frameworks */,
+				80EFEBB21DB8552900D874E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				80EFEBB61DB8552900D874E2 /* PBXTargetDependency */,
+			);
+			name = "EzyPay-iOSUITests";
+			productName = "EzyPay-iOSUITests";
+			productReference = 80EFEBB41DB8552900D874E2 /* EzyPay-iOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		80EFEB881DB8552900D874E2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "EzyPay Inc";
+				TargetAttributes = {
+					80EFEB8F1DB8552900D874E2 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					80EFEBA81DB8552900D874E2 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 80EFEB8F1DB8552900D874E2;
+					};
+					80EFEBB31DB8552900D874E2 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 80EFEB8F1DB8552900D874E2;
+					};
+				};
+			};
+			buildConfigurationList = 80EFEB8B1DB8552900D874E2 /* Build configuration list for PBXProject "EzyPay-iOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 80EFEB871DB8552900D874E2;
+			productRefGroup = 80EFEB911DB8552900D874E2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				80EFEB8F1DB8552900D874E2 /* EzyPay-iOS */,
+				80EFEBA81DB8552900D874E2 /* EzyPay-iOSTests */,
+				80EFEBB31DB8552900D874E2 /* EzyPay-iOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		80EFEB8E1DB8552900D874E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80EFEBA31DB8552900D874E2 /* LaunchScreen.storyboard in Resources */,
+				80EFEBA01DB8552900D874E2 /* Assets.xcassets in Resources */,
+				80EFEB9E1DB8552900D874E2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80EFEBA71DB8552900D874E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80EFEBB21DB8552900D874E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		80EFEB8C1DB8552900D874E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80EFEB9B1DB8552900D874E2 /* ViewController.m in Sources */,
+				80EFEB981DB8552900D874E2 /* AppDelegate.m in Sources */,
+				80EFEB951DB8552900D874E2 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80EFEBA51DB8552900D874E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80EFEBAE1DB8552900D874E2 /* EzyPay_iOSTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80EFEBB01DB8552900D874E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80EFEBB91DB8552900D874E2 /* EzyPay_iOSUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		80EFEBAB1DB8552900D874E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 80EFEB8F1DB8552900D874E2 /* EzyPay-iOS */;
+			targetProxy = 80EFEBAA1DB8552900D874E2 /* PBXContainerItemProxy */;
+		};
+		80EFEBB61DB8552900D874E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 80EFEB8F1DB8552900D874E2 /* EzyPay-iOS */;
+			targetProxy = 80EFEBB51DB8552900D874E2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		80EFEB9C1DB8552900D874E2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80EFEB9D1DB8552900D874E2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		80EFEBA11DB8552900D874E2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80EFEBA21DB8552900D874E2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		80EFEBBB1DB8552900D874E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		80EFEBBC1DB8552900D874E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		80EFEBBE1DB8552900D874E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "EzyPay-iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.ezypay.EzyPay-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		80EFEBBF1DB8552900D874E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "EzyPay-iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.ezypay.EzyPay-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		80EFEBC11DB8552900D874E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "EzyPay-iOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.ezypay.EzyPay-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EzyPay-iOS.app/EzyPay-iOS";
+			};
+			name = Debug;
+		};
+		80EFEBC21DB8552900D874E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "EzyPay-iOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.ezypay.EzyPay-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EzyPay-iOS.app/EzyPay-iOS";
+			};
+			name = Release;
+		};
+		80EFEBC41DB8552900D874E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "EzyPay-iOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.ezypay.EzyPay-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "EzyPay-iOS";
+			};
+			name = Debug;
+		};
+		80EFEBC51DB8552900D874E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "EzyPay-iOSUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.ezypay.EzyPay-iOSUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "EzyPay-iOS";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		80EFEB8B1DB8552900D874E2 /* Build configuration list for PBXProject "EzyPay-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80EFEBBB1DB8552900D874E2 /* Debug */,
+				80EFEBBC1DB8552900D874E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		80EFEBBD1DB8552900D874E2 /* Build configuration list for PBXNativeTarget "EzyPay-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80EFEBBE1DB8552900D874E2 /* Debug */,
+				80EFEBBF1DB8552900D874E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		80EFEBC01DB8552900D874E2 /* Build configuration list for PBXNativeTarget "EzyPay-iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80EFEBC11DB8552900D874E2 /* Debug */,
+				80EFEBC21DB8552900D874E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		80EFEBC31DB8552900D874E2 /* Build configuration list for PBXNativeTarget "EzyPay-iOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80EFEBC41DB8552900D874E2 /* Debug */,
+				80EFEBC51DB8552900D874E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 80EFEB881DB8552900D874E2 /* Project object */;
+}
