@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		801058B21DC50DD50079A08B /* SignInUserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801058B11DC50DD50079A08B /* SignInUserTableViewController.m */; };
+		802AE9431DC8194F006008B3 /* SessionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 802AE9421DC8194F006008B3 /* SessionHandler.m */; };
 		8030CB041DC1892D006C0070 /* PrincipalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8030CB031DC1892D006C0070 /* PrincipalViewController.m */; };
 		8030CB071DC1A54A006C0070 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8030CB061DC1A54A006C0070 /* LoginViewController.m */; };
+		806BF0661DC8519300AD97CB /* SignInUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 806BF0651DC8519300AD97CB /* SignInUserViewController.m */; };
+		806BF0691DC85C8100AD97CB /* UserServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 806BF0681DC85C8100AD97CB /* UserServiceClient.m */; };
 		80EFEB951DB8552900D874E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EFEB941DB8552900D874E2 /* main.m */; };
 		80EFEB981DB8552900D874E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EFEB971DB8552900D874E2 /* AppDelegate.m */; };
 		80EFEB9E1DB8552900D874E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80EFEB9C1DB8552900D874E2 /* Main.storyboard */; };
@@ -37,12 +39,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		801058B01DC50DD50079A08B /* SignInUserTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInUserTableViewController.h; sourceTree = "<group>"; };
-		801058B11DC50DD50079A08B /* SignInUserTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInUserTableViewController.m; sourceTree = "<group>"; };
+		802AE9411DC8194F006008B3 /* SessionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionHandler.h; sourceTree = "<group>"; };
+		802AE9421DC8194F006008B3 /* SessionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionHandler.m; sourceTree = "<group>"; };
 		8030CB021DC1892D006C0070 /* PrincipalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrincipalViewController.h; sourceTree = "<group>"; };
 		8030CB031DC1892D006C0070 /* PrincipalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrincipalViewController.m; sourceTree = "<group>"; };
 		8030CB051DC1A54A006C0070 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		8030CB061DC1A54A006C0070 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		806BF0641DC8519300AD97CB /* SignInUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInUserViewController.h; sourceTree = "<group>"; };
+		806BF0651DC8519300AD97CB /* SignInUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInUserViewController.m; sourceTree = "<group>"; };
+		806BF0671DC85C8100AD97CB /* UserServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserServiceClient.h; sourceTree = "<group>"; };
+		806BF0681DC85C8100AD97CB /* UserServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserServiceClient.m; sourceTree = "<group>"; };
 		80EFEB901DB8552900D874E2 /* EzyPay-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EzyPay-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80EFEB941DB8552900D874E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		80EFEB961DB8552900D874E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -91,10 +97,21 @@
 				8030CB031DC1892D006C0070 /* PrincipalViewController.m */,
 				8030CB051DC1A54A006C0070 /* LoginViewController.h */,
 				8030CB061DC1A54A006C0070 /* LoginViewController.m */,
-				801058B01DC50DD50079A08B /* SignInUserTableViewController.h */,
-				801058B11DC50DD50079A08B /* SignInUserTableViewController.m */,
+				806BF0641DC8519300AD97CB /* SignInUserViewController.h */,
+				806BF0651DC8519300AD97CB /* SignInUserViewController.m */,
 			);
 			path = "Login Controllers";
+			sourceTree = "<group>";
+		};
+		802AE9401DC818F4006008B3 /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				802AE9411DC8194F006008B3 /* SessionHandler.h */,
+				802AE9421DC8194F006008B3 /* SessionHandler.m */,
+				806BF0671DC85C8100AD97CB /* UserServiceClient.h */,
+				806BF0681DC85C8100AD97CB /* UserServiceClient.m */,
+			);
+			path = Connection;
 			sourceTree = "<group>";
 		};
 		8030CB011DC1889E006C0070 /* Controllers */ = {
@@ -128,6 +145,7 @@
 		80EFEB921DB8552900D874E2 /* EzyPay-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				802AE9401DC818F4006008B3 /* Connection */,
 				8030CB011DC1889E006C0070 /* Controllers */,
 				80EFEB961DB8552900D874E2 /* AppDelegate.h */,
 				80EFEB971DB8552900D874E2 /* AppDelegate.m */,
@@ -228,7 +246,7 @@
 		80EFEB881DB8552900D874E2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "EzyPay Inc";
 				TargetAttributes = {
 					80EFEB8F1DB8552900D874E2 = {
@@ -297,8 +315,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8030CB071DC1A54A006C0070 /* LoginViewController.m in Sources */,
-				801058B21DC50DD50079A08B /* SignInUserTableViewController.m in Sources */,
+				806BF0691DC85C8100AD97CB /* UserServiceClient.m in Sources */,
 				80EFEB981DB8552900D874E2 /* AppDelegate.m in Sources */,
+				802AE9431DC8194F006008B3 /* SessionHandler.m in Sources */,
+				806BF0661DC8519300AD97CB /* SignInUserViewController.m in Sources */,
 				8030CB041DC1892D006C0070 /* PrincipalViewController.m in Sources */,
 				80EFEB951DB8552900D874E2 /* main.m in Sources */,
 			);
@@ -369,8 +389,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -392,7 +414,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -414,8 +436,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -431,7 +455,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
