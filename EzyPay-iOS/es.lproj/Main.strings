@@ -1,0 +1,69 @@
+
+/* Class = "UITextField"; placeholder = "Phone number"; ObjectID = "5zn-Ub-OBG"; */
+"5zn-Ub-OBG.placeholder" = "Número telefónico";
+
+/* Class = "UIButton"; normalTitle = "SIGN IN"; ObjectID = "7co-is-8xZ"; */
+"7co-is-8xZ.normalTitle" = "REGISTRATE";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "8F7-lC-udI"; */
+"8F7-lC-udI.placeholder" = "Contraseña";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "Adc-Sv-XAg"; */
+"Adc-Sv-XAg.normalTitle" = "Guardar";
+
+/* Class = "UILabel"; text = "Personal Information"; ObjectID = "GhG-p8-abR"; */
+"GhG-p8-abR.text" = "Información Personal";
+
+/* Class = "UILabel"; text = "OR"; ObjectID = "HzQ-Ja-N2S"; */
+"HzQ-Ja-N2S.text" = "Ó";
+
+/* Class = "UIButton"; normalTitle = "LOG IN"; ObjectID = "I5o-WF-B0w"; */
+"I5o-WF-B0w.normalTitle" = "INICIAR SESIÓN";
+
+/* Class = "UIButton"; normalTitle = "LOG IN "; ObjectID = "J5x-T4-uzT"; */
+"J5x-T4-uzT.normalTitle" = "INICIAR SESIÓN";
+
+/* Class = "UILabel"; text = "EZY PAY"; ObjectID = "JWx-kd-DJN"; */
+"JWx-kd-DJN.text" = "EZY PAY";
+
+/* Class = "UITextField"; placeholder = "Year"; ObjectID = "Jvi-Q8-6ZH"; */
+"Jvi-Q8-6ZH.placeholder" = "Año";
+
+/* Class = "UITextField"; placeholder = "Name"; ObjectID = "QEX-FP-eGA"; */
+"QEX-FP-eGA.placeholder" = "Nombre";
+
+/* Class = "UITextField"; placeholder = "Lastname"; ObjectID = "RnZ-Jl-XxW"; */
+"RnZ-Jl-XxW.placeholder" = "Apellidos";
+
+/* Class = "UIButton"; normalTitle = "FACEBOOK"; ObjectID = "UGG-q5-X9d"; */
+"UGG-q5-X9d.normalTitle" = "FACEBOOK";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "W1t-qb-lTV"; */
+"W1t-qb-lTV.placeholder" = "Contraseña";
+
+/* Class = "UITextField"; placeholder = "cvv"; ObjectID = "Xyi-4p-v1i"; */
+"Xyi-4p-v1i.placeholder" = "cvv";
+
+/* Class = "UILabel"; text = "EZY PAY"; ObjectID = "cum-In-IT4"; */
+"cum-In-IT4.text" = "EZY PAY";
+
+/* Class = "UITextField"; placeholder = "Card number"; ObjectID = "j0R-MG-yFs"; */
+"j0R-MG-yFs.placeholder" = "Tarjeta de crédito";
+
+/* Class = "UINavigationItem"; title = "Back"; ObjectID = "nZj-6c-TAB"; */
+"nZj-6c-TAB.title" = "Atras";
+
+/* Class = "UIButton"; normalTitle = "LOG IN AS RESTAURANT"; ObjectID = "pYj-ih-12p"; */
+"pYj-ih-12p.normalTitle" = "INICIAR SESIÓN COMO RESTAURANTE";
+
+/* Class = "UITextField"; placeholder = "Month"; ObjectID = "pyW-uv-CsT"; */
+"pyW-uv-CsT.placeholder" = "Mes";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "qVu-Zm-fT6"; */
+"qVu-Zm-fT6.placeholder" = "Email";
+
+/* Class = "UILabel"; text = "OR"; ObjectID = "yir-Tj-Kd1"; */
+"yir-Tj-Kd1.text" = "Ó";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "yrG-m5-cEL"; */
+"yrG-m5-cEL.placeholder" = "Email";

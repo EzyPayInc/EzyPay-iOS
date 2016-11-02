@@ -39,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		802186D11DC9ACE2001F3F5F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		802186D21DC9ACE3001F3F5F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		802AE9411DC8194F006008B3 /* SessionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionHandler.h; sourceTree = "<group>"; };
 		802AE9421DC8194F006008B3 /* SessionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionHandler.m; sourceTree = "<group>"; };
 		8030CB021DC1892D006C0070 /* PrincipalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrincipalViewController.h; sourceTree = "<group>"; };
@@ -152,7 +154,6 @@
 				80EFEB9C1DB8552900D874E2 /* Main.storyboard */,
 				80EFEB9F1DB8552900D874E2 /* Assets.xcassets */,
 				80EFEBA11DB8552900D874E2 /* LaunchScreen.storyboard */,
-				80EFEBA41DB8552900D874E2 /* Info.plist */,
 				80EFEB931DB8552900D874E2 /* Supporting Files */,
 			);
 			path = "EzyPay-iOS";
@@ -161,6 +162,7 @@
 		80EFEB931DB8552900D874E2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				80EFEBA41DB8552900D874E2 /* Info.plist */,
 				80EFEB941DB8552900D874E2 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -269,6 +271,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 80EFEB871DB8552900D874E2;
 			productRefGroup = 80EFEB911DB8552900D874E2 /* Products */;
@@ -360,6 +363,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				80EFEB9D1DB8552900D874E2 /* Base */,
+				802186D11DC9ACE2001F3F5F /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -368,6 +372,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				80EFEBA21DB8552900D874E2 /* Base */,
+				802186D21DC9ACE3001F3F5F /* es */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -379,6 +384,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -426,6 +432,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

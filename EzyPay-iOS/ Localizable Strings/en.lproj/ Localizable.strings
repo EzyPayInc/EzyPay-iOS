@@ -1,0 +1,17 @@
+/* 
+   Localizable.strings
+  EzyPay-iOS
+
+  Created by Gustavo Quesada Sanchez on 11/1/16.
+  Copyright © 2016 EzyPay Inc. All rights reserved.
+*/
+/*Labels*/
+"or" = "OR";
+"personalInformation" = "Personal Information";
+
+/*Buttons*/
+"logIn" = "LOG IN";
+"logInAsRestaurant" = "LOG IN AS RESTAURANT";
+"signUp" = "SIGN UP";
+"save" = "SAVE";
+
