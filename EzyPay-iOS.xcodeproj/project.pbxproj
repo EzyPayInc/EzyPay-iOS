@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		801FE3131DD40778004318CC /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 801FE3121DD40778004318CC /* CoreDataManager.m */; };
 		802AE9431DC8194F006008B3 /* SessionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 802AE9421DC8194F006008B3 /* SessionHandler.m */; };
+		802D5FFA1DD573CF000478F0 /* DropDownTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 802D5FF91DD573CF000478F0 /* DropDownTableViewController.m */; };
 		8030CB041DC1892D006C0070 /* PrincipalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8030CB031DC1892D006C0070 /* PrincipalViewController.m */; };
 		8030CB071DC1A54A006C0070 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8030CB061DC1A54A006C0070 /* LoginViewController.m */; };
 		806BF0661DC8519300AD97CB /* SignInUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 806BF0651DC8519300AD97CB /* SignInUserViewController.m */; };
 		806BF0691DC85C8100AD97CB /* UserServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 806BF0681DC85C8100AD97CB /* UserServiceClient.m */; };
+		8071B3FD1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8071B3FC1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.m */; };
+		8071B4001DD2DF6F001D8761 /* CardServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8071B3FF1DD2DF6F001D8761 /* CardServiceClient.m */; };
 		80EFEB951DB8552900D874E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EFEB941DB8552900D874E2 /* main.m */; };
 		80EFEB981DB8552900D874E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EFEB971DB8552900D874E2 /* AppDelegate.m */; };
 		80EFEB9E1DB8552900D874E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80EFEB9C1DB8552900D874E2 /* Main.storyboard */; };
@@ -39,10 +43,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		801FE3111DD40778004318CC /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
+		801FE3121DD40778004318CC /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
 		802186D11DC9ACE2001F3F5F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		802186D21DC9ACE3001F3F5F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		802AE9411DC8194F006008B3 /* SessionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionHandler.h; sourceTree = "<group>"; };
 		802AE9421DC8194F006008B3 /* SessionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionHandler.m; sourceTree = "<group>"; };
+		802D5FF81DD573CF000478F0 /* DropDownTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDownTableViewController.h; sourceTree = "<group>"; };
+		802D5FF91DD573CF000478F0 /* DropDownTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropDownTableViewController.m; sourceTree = "<group>"; };
 		8030CB021DC1892D006C0070 /* PrincipalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrincipalViewController.h; sourceTree = "<group>"; };
 		8030CB031DC1892D006C0070 /* PrincipalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrincipalViewController.m; sourceTree = "<group>"; };
 		8030CB051DC1A54A006C0070 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -51,6 +59,10 @@
 		806BF0651DC8519300AD97CB /* SignInUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInUserViewController.m; sourceTree = "<group>"; };
 		806BF0671DC85C8100AD97CB /* UserServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserServiceClient.h; sourceTree = "<group>"; };
 		806BF0681DC85C8100AD97CB /* UserServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserServiceClient.m; sourceTree = "<group>"; };
+		8071B3FB1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInPaymentInformationControllerViewController.h; sourceTree = "<group>"; };
+		8071B3FC1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInPaymentInformationControllerViewController.m; sourceTree = "<group>"; };
+		8071B3FE1DD2DF6F001D8761 /* CardServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardServiceClient.h; sourceTree = "<group>"; };
+		8071B3FF1DD2DF6F001D8761 /* CardServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardServiceClient.m; sourceTree = "<group>"; };
 		80EFEB901DB8552900D874E2 /* EzyPay-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EzyPay-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80EFEB941DB8552900D874E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		80EFEB961DB8552900D874E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -101,8 +113,19 @@
 				8030CB061DC1A54A006C0070 /* LoginViewController.m */,
 				806BF0641DC8519300AD97CB /* SignInUserViewController.h */,
 				806BF0651DC8519300AD97CB /* SignInUserViewController.m */,
+				8071B3FB1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.h */,
+				8071B3FC1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.m */,
 			);
 			path = "Login Controllers";
+			sourceTree = "<group>";
+		};
+		801FE3101DD406E2004318CC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				801FE3111DD40778004318CC /* CoreDataManager.h */,
+				801FE3121DD40778004318CC /* CoreDataManager.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		802AE9401DC818F4006008B3 /* Connection */ = {
@@ -112,13 +135,25 @@
 				802AE9421DC8194F006008B3 /* SessionHandler.m */,
 				806BF0671DC85C8100AD97CB /* UserServiceClient.h */,
 				806BF0681DC85C8100AD97CB /* UserServiceClient.m */,
+				8071B3FE1DD2DF6F001D8761 /* CardServiceClient.h */,
+				8071B3FF1DD2DF6F001D8761 /* CardServiceClient.m */,
 			);
 			path = Connection;
+			sourceTree = "<group>";
+		};
+		802D5FF71DD57309000478F0 /* Drop Down Controller */ = {
+			isa = PBXGroup;
+			children = (
+				802D5FF81DD573CF000478F0 /* DropDownTableViewController.h */,
+				802D5FF91DD573CF000478F0 /* DropDownTableViewController.m */,
+			);
+			path = "Drop Down Controller";
 			sourceTree = "<group>";
 		};
 		8030CB011DC1889E006C0070 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				802D5FF71DD57309000478F0 /* Drop Down Controller */,
 				801058B31DC527CE0079A08B /* Login Controllers */,
 			);
 			path = Controllers;
@@ -147,6 +182,7 @@
 		80EFEB921DB8552900D874E2 /* EzyPay-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				801FE3101DD406E2004318CC /* Model */,
 				802AE9401DC818F4006008B3 /* Connection */,
 				8030CB011DC1889E006C0070 /* Controllers */,
 				80EFEB961DB8552900D874E2 /* AppDelegate.h */,
@@ -319,11 +355,15 @@
 			files = (
 				8030CB071DC1A54A006C0070 /* LoginViewController.m in Sources */,
 				806BF0691DC85C8100AD97CB /* UserServiceClient.m in Sources */,
+				801FE3131DD40778004318CC /* CoreDataManager.m in Sources */,
 				80EFEB981DB8552900D874E2 /* AppDelegate.m in Sources */,
 				802AE9431DC8194F006008B3 /* SessionHandler.m in Sources */,
+				8071B3FD1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.m in Sources */,
 				806BF0661DC8519300AD97CB /* SignInUserViewController.m in Sources */,
+				802D5FFA1DD573CF000478F0 /* DropDownTableViewController.m in Sources */,
 				8030CB041DC1892D006C0070 /* PrincipalViewController.m in Sources */,
 				80EFEB951DB8552900D874E2 /* main.m in Sources */,
+				8071B4001DD2DF6F001D8761 /* CardServiceClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

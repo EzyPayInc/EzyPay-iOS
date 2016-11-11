@@ -8,18 +8,18 @@
 
 #import "SignInUserViewController.h"
 #import "UserServiceClient.h"
+#import "SignInPaymentInformationControllerViewController.h"
 
 @interface SignInUserViewController ()
 
+/*UI fields*/
 @property (weak, nonatomic) IBOutlet UITextField *txtUserName;
 @property (strong, nonatomic) IBOutlet UITextField *txtLastname;
 @property (weak, nonatomic) IBOutlet UITextField *txtPhoneNumber;
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
-@property (weak, nonatomic) IBOutlet UITextField *txtCardnumber;
-@property (strong, nonatomic) IBOutlet UITextField *txtCvv;
-@property (weak, nonatomic) IBOutlet UITextField *txtMonth;
-@property (strong, nonatomic) IBOutlet UITextField *txtYear;
+
+@property (nonatomic, strong) NSMutableDictionary *userDictionary;
 
 @end
 
@@ -28,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Sign In";
+    self.userDictionary = [NSMutableDictionary dictionary];
     // Do any additional setup after loading the view.
 }
 
@@ -37,21 +38,19 @@
 }
 
 - (IBAction)registerUserAction:(id)sender {
-    NSMutableDictionary *userDictionary = [NSMutableDictionary dictionary];
-    [userDictionary setValue:self.txtUserName.text forKey:@"name"];
-    [userDictionary setValue:self.txtLastname.text forKey:@"lastname"];
-    [userDictionary setValue:self.txtPhoneNumber.text forKey:@"phoneNumber"];
-    [userDictionary setValue:self.txtEmail.text forKey:@"email"];
-    [userDictionary setValue:self.txtPassword.text forKey:@"password"];
-    [userDictionary setValue:self.txtCardnumber.text forKey:@"cardNumber"];
-    [userDictionary setValue:self.txtCvv.text forKey:@"cvv"];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"d.M.yyyy";
-    NSString *date = [formatter stringFromDate:[NSDate date]];
-    [userDictionary setValue:date forKey:@"expirationDate"];
+    [self.userDictionary setValue:self.txtUserName.text forKey:@"name"];
+    [self.userDictionary setValue:self.txtLastname.text forKey:@"lastname"];
+    [self.userDictionary setValue:self.txtPhoneNumber.text forKey:@"phoneNumber"];
+    [self.userDictionary setValue:self.txtEmail.text forKey:@"email"];
     
-    UserServiceClient *service = [[UserServiceClient alloc] init];
-    [service registerUser:userDictionary withSuccessHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    SignInPaymentInformationControllerViewController *viewController = (SignInPaymentInformationControllerViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInPaymentInformationControllerViewController"];
+    //NSString *idUser = [response valueForKey:@"response"];
+    //[self.userDictionary setValue:idUser forKey:idUser];
+    viewController.idUser = @"1";
+    [self.navigationController pushViewController:viewController animated:true];
+    
+    //UserServiceClient *service = [[UserServiceClient alloc] init];
+    /*[service registerUser:self.userDictionary withSuccessHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if(error) {
             NSLog(@"Error message: %@", error);
         } else {
@@ -59,10 +58,10 @@
             if([response valueForKey:@"message"]) {
                 [self showServerMessage:[response valueForKey:@"mesage"]];
             } else {
-                [self showServerMessage:@"Success"];
+     
             }
         }
-    }];
+    }];*/
 
 }
 
