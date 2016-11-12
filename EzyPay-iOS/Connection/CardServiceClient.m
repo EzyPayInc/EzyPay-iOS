@@ -26,8 +26,7 @@
     return self;
 }
 
-- (void) registerCard:(NSDictionary *) card withSuccessHandler:(void(^)(NSData *data, NSURLResponse *response, NSError *error)) successHandler {
-    
+- (void)registerCard:(NSDictionary *)card successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
     NSURL *url = [NSURL URLWithString:@"http://localhost:3000/card"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -35,7 +34,7 @@
     
     request.HTTPBody = [self getBodyFromDictionary:card];
     request.HTTPMethod = @"POST";
-    [self.sessionHandler sendRequestWithRequest:request successHandler:successHandler];
+    [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
 }
 
 - (NSData *) getBodyFromDictionary:(NSDictionary *)dictionary {

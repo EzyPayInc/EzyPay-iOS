@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Connection.h"
 
 @interface UserServiceClient : NSObject
 
-- (void) registerUser:(NSDictionary *) user withSuccessHandler:(void(^)(NSData *data, NSURLResponse *response, NSError *error)) successHandler;
+- (void) registerUser:(NSDictionary *) user successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler;
 
 @end

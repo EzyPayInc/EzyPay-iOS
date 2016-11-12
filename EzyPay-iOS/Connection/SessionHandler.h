@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
 @interface SessionHandler : NSObject
 
-- (void )sendRequestWithRequest:(NSURLRequest *)request successHandler:(void(^)(NSData *data, NSURLResponse *response, NSError *error)) successHandler;
+- (void)sendRequestWithRequest:(NSURLRequest *)request successHandeler:(id)successHandler failureHandler:(id)failureHandler;
 
 @end

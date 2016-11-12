@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Connection.h"
 
 @interface CardServiceClient : NSObject
 
-- (void) registerCard:(NSDictionary *) card withSuccessHandler:(void(^)(NSData *data, NSURLResponse *response, NSError *error)) successHandler;
+- (void)registerCard:(NSDictionary *)card successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler;
 
 @end

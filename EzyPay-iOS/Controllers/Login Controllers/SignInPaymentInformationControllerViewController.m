@@ -7,8 +7,8 @@
 //
 
 #import "SignInPaymentInformationControllerViewController.h"
-#import "CardServiceClient.h"
 #import "DropDownTableViewController.h"
+#import "CardServiceClient.h"
 
 @interface SignInPaymentInformationControllerViewController ()<UITextFieldDelegate, UIPopoverPresentationControllerDelegate, DropDownActionsDelegate>
 
@@ -101,21 +101,12 @@
     [cardictionary setValue:self.txtCvv.text forKey:@"cvv"];
     [cardictionary setValue:self.txtMonth.text forKey:@"month"];
     [cardictionary setValue:self.txtYear.text forKey:@"year"];
-    
     CardServiceClient *service = [[CardServiceClient alloc] init];
-    [service registerCard:cardictionary withSuccessHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if(error) {
-            NSLog(@"Error message: %@", error);
-        } else {
-            NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            if([response valueForKey:@"message"]) {
-                [self showServerMessage:[response valueForKey:@"data"]];
-            } else {
-                [self showServerMessage:@"Success"];
-            }
-        }
+    [service registerCard:cardictionary successHandler:^(id response) {
+        NSLog(@"%@", response);
+    } failureHandler:^(id response) {
+        NSLog(@"%@", response);
     }];
-    
 }
 
 - (void)showServerMessage:(NSString *)message {

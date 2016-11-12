@@ -37,7 +37,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)registerUserAction:(id)sender {
+/*- (IBAction)registerUserAction:(id)sender {
     [self.userDictionary setValue:self.txtUserName.text forKey:@"name"];
     [self.userDictionary setValue:self.txtLastname.text forKey:@"lastname"];
     [self.userDictionary setValue:self.txtPhoneNumber.text forKey:@"phoneNumber"];
@@ -50,7 +50,7 @@
     [self.navigationController pushViewController:viewController animated:true];
     
     //UserServiceClient *service = [[UserServiceClient alloc] init];
-    /*[service registerUser:self.userDictionary withSuccessHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+    [service registerUser:self.userDictionary withSuccessHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if(error) {
             NSLog(@"Error message: %@", error);
         } else {
@@ -61,8 +61,24 @@
      
             }
         }
-    }];*/
+    }];
 
+}*/
+
+- (IBAction)registerUserAction:(id)sender {
+    [self.userDictionary setValue:self.txtUserName.text forKey:@"name"];
+    [self.userDictionary setValue:self.txtLastname.text forKey:@"lastname"];
+    [self.userDictionary setValue:self.txtPhoneNumber.text forKey:@"phoneNumber"];
+    [self.userDictionary setValue:self.txtEmail.text forKey:@"email"];
+    
+    UserServiceClient *service = [[UserServiceClient alloc] init];
+    [service registerUser:self.userDictionary successHandler:^(id response) {
+        NSLog(@"%@", response);
+    } failureHandler:^(id response) {
+        NSLog(@"%@", response);
+    }];
+    
+    
 }
 
 - (void)showServerMessage:(NSString *)message {

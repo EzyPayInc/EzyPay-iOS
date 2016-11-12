@@ -26,16 +26,16 @@
     return self;
 }
 
-- (void) registerUser:(NSDictionary *) user withSuccessHandler:(void(^)(NSData *data, NSURLResponse *response, NSError *error)) successHandler {
+- (void) registerUser:(NSDictionary *) user successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
     
     NSURL *url = [NSURL URLWithString:@"http://localhost:3000/user/create"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
-
+    
     request.HTTPBody = [self getBodyFromDictionary:user];
     request.HTTPMethod = @"POST";
-    [self.sessionHandler sendRequestWithRequest:request successHandler:successHandler];
+    [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
 }
 
 - (NSData *) getBodyFromDictionary:(NSDictionary *)dictionary {

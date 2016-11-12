@@ -82,7 +82,7 @@
 }
 
 - (IBAction)loginAction:(id)sender {
-    NSString *userEmail = self.txtEmail.text;
+    /*NSString *userEmail = self.txtEmail.text;
     NSString *userPassword = self.txtPassword.text;
     NSString *body= [NSString stringWithFormat:@"email=%@&password=%@", userEmail, userPassword];
     if(self.loginType == UserType) {
@@ -93,7 +93,7 @@
                                                            timeoutInterval:60.0];
         request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
         request.HTTPMethod = @"POST";
-        [sessionHandler sendRequestWithRequest:request successHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+       [sessionHandler sendRequestWithRequest:request successHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             if(error) {
                 NSLog(@"Error message: %@", error);
             } else {
@@ -105,7 +105,7 @@
                 }
             }
         }];
-    }
+    }*/
     
 }
 

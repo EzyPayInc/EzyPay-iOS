@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		801B252D1DD79B620039FB90 /* CompletionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 801B252C1DD79B620039FB90 /* CompletionHandler.m */; };
 		801FE3131DD40778004318CC /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 801FE3121DD40778004318CC /* CoreDataManager.m */; };
+		802891671DD66C3800A088EE /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 802891661DD66C3800A088EE /* Connection.m */; };
 		802AE9431DC8194F006008B3 /* SessionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 802AE9421DC8194F006008B3 /* SessionHandler.m */; };
 		802D5FFA1DD573CF000478F0 /* DropDownTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 802D5FF91DD573CF000478F0 /* DropDownTableViewController.m */; };
 		8030CB041DC1892D006C0070 /* PrincipalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8030CB031DC1892D006C0070 /* PrincipalViewController.m */; };
@@ -43,10 +45,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		801B252B1DD79B620039FB90 /* CompletionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionHandler.h; sourceTree = "<group>"; };
+		801B252C1DD79B620039FB90 /* CompletionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionHandler.m; sourceTree = "<group>"; };
 		801FE3111DD40778004318CC /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
 		801FE3121DD40778004318CC /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
 		802186D11DC9ACE2001F3F5F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		802186D21DC9ACE3001F3F5F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		802891651DD66C3800A088EE /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
+		802891661DD66C3800A088EE /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
 		802AE9411DC8194F006008B3 /* SessionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionHandler.h; sourceTree = "<group>"; };
 		802AE9421DC8194F006008B3 /* SessionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionHandler.m; sourceTree = "<group>"; };
 		802D5FF81DD573CF000478F0 /* DropDownTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDownTableViewController.h; sourceTree = "<group>"; };
@@ -137,6 +143,10 @@
 				806BF0681DC85C8100AD97CB /* UserServiceClient.m */,
 				8071B3FE1DD2DF6F001D8761 /* CardServiceClient.h */,
 				8071B3FF1DD2DF6F001D8761 /* CardServiceClient.m */,
+				802891651DD66C3800A088EE /* Connection.h */,
+				802891661DD66C3800A088EE /* Connection.m */,
+				801B252B1DD79B620039FB90 /* CompletionHandler.h */,
+				801B252C1DD79B620039FB90 /* CompletionHandler.m */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
@@ -364,6 +374,8 @@
 				8030CB041DC1892D006C0070 /* PrincipalViewController.m in Sources */,
 				80EFEB951DB8552900D874E2 /* main.m in Sources */,
 				8071B4001DD2DF6F001D8761 /* CardServiceClient.m in Sources */,
+				802891671DD66C3800A088EE /* Connection.m in Sources */,
+				801B252D1DD79B620039FB90 /* CompletionHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
