@@ -17,6 +17,12 @@
 
 @implementation UserServiceClient
 
+//constans
+static NSString *const BASE_URL = @"http:localhost:3000/";
+static NSString *const USER_URL = @"user/";
+static NSString *const CLIENT_ID  = @"ceWZ_4G8CjQZy7,8";
+static NSString *const SECRET_KEY = @"9F=_wPs^;W]=Hqf!3e^)ZpdR;MUym+";
+
 - (instancetype)init
 {
     self = [super init];
@@ -26,29 +32,79 @@
     return self;
 }
 
-- (void) registerUser:(NSDictionary *) user successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
+- (void)registerUser:(User *) user successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
     
-    NSURL *url = [NSURL URLWithString:@"http://localhost:3000/user/create"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BASE_URL, USER_URL]];
+    NSString *basicAuth = [NSString stringWithFormat:@"%@:%@",CLIENT_ID,SECRET_KEY];
+    NSString *encodedString = [self stringByBase64EncodingWithString:basicAuth];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
-    
-    request.HTTPBody = [self getBodyFromDictionary:user];
+    NSString *body = [NSString stringWithFormat:@"name=%@&lastName=%@&phoneNumber=%@&email=%@&password=%@", user.name, user.lastName, user.phoneNumber, user.email, user.password];
+    request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
     request.HTTPMethod = @"POST";
+    [request addValue:[NSString stringWithFormat:@"Basic %@",encodedString] forHTTPHeaderField:@"Authorization"];
     [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
 }
 
-- (NSData *) getBodyFromDictionary:(NSDictionary *)dictionary {
-    NSArray *keys = [dictionary allKeys];
+- (void)getUserFromServer:(int64_t)userId token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler:(ConnectionErrorHandler) failureHandler {
+    NSString *parameters = [NSString stringWithFormat:@"%@%lld",USER_URL, userId];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BASE_URL, parameters]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    request.HTTPMethod = @"GET";
+    [request addValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"Authorization"];
+    [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
+}
+
+
+- (NSString *)stringByBase64EncodingWithString:(NSString *)inString
+{
+    NSData *data = [NSData dataWithBytes:[inString UTF8String]
+                                  length:[inString lengthOfBytesUsingEncoding:NSUTF8StringEncoding]];
+    NSUInteger length = [data length];
+    NSMutableData *mutableData = [NSMutableData dataWithLength:((length + 2) / 3) * 4];
+    
+    uint8_t *input = (uint8_t *)[data bytes];
+    uint8_t *output = (uint8_t *)[mutableData mutableBytes];
+    
+    for (NSUInteger i = 0; i < length; i += 3)
+    {
+        NSUInteger value = 0;
+        for (NSUInteger j = i; j < (i + 3); j++)
+        {
+            value <<= 8;
+            if (j < length)
+            {
+                value |= (0xFF & input[j]);
+            }
+        }
+        
+        static uint8_t const base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+        
+        NSUInteger idx = (i / 3) * 4;
+        output[idx + 0] = base64EncodingTable[(value >> 18) & 0x3F];
+        output[idx + 1] = base64EncodingTable[(value >> 12) & 0x3F];
+        output[idx + 2] = (i + 1) < length ? base64EncodingTable[(value >> 6)  & 0x3F] : '=';
+        output[idx + 3] = (i + 2) < length ? base64EncodingTable[(value >> 0)  & 0x3F] : '=';
+    }
+    return [[NSString alloc] initWithData:mutableData encoding:NSASCIIStringEncoding];
+}
+
+- (NSData *) getBodyFromDictionary:(User *)user {
+    NSArray *keys = [[[user entity] attributesByName] allKeys];
     NSMutableString *body = [[NSMutableString alloc] init];
     NSInteger *count = 0;
     for (NSString *key in keys) {
-        if(count == 0){
-            [body appendFormat:@"%@=%@",key, [dictionary valueForKey:key]];
-        } else{
-            [body appendFormat:@"&%@=%@",key, [dictionary valueForKey:key]];
+        if([user valueForKey:key]){
+            if(count == 0){
+                [body appendFormat:@"%@=%@",key, [user valueForKey:key]];
+            } else{
+                [body appendFormat:@"&%@=%@",key, [user valueForKey:key]];
+            }
+            count++;
         }
-        count++;
     }
     return [body dataUsingEncoding:NSUTF8StringEncoding];
 }

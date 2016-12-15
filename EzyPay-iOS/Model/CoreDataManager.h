@@ -16,6 +16,7 @@
 @property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 + (CoreDataManager *) sharedInstance;
++ (__kindof NSManagedObject *) createEntityWithName:(NSString *)name;
 + (void)saveContext;
 + (void)saveContextParent;
 @end

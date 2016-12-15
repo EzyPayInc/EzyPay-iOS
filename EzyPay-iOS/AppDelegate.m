@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "UserManager.h"
+#import "NavigationController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +19,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    User *user= [UserManager getUser];
+    if(user && user.token) {
+        NavigationController *navigationController = [NavigationController sharedInstance];
+        navigationController.navigationType = UserNavigation;
+        self.window.rootViewController = [navigationController setupTabBarController];
+        [self.window makeKeyAndVisible];
+    }
     return YES;
 }
 

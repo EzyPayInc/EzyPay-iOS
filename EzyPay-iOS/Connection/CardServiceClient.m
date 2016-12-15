@@ -8,7 +8,7 @@
 
 #import "CardServiceClient.h"
 #import "SessionHandler.h"
-
+#import "User+CoreDataClass.h"
 @interface CardServiceClient()
 
 @property(nonatomic,strong) SessionHandler *sessionHandler;
@@ -16,6 +16,9 @@
 @end
 
 @implementation CardServiceClient
+
+static NSString *const BASE_URL = @"http:localhost:3000/";
+static NSString *const CARD_URL = @"card/";
 
 - (instancetype)init
 {
@@ -26,30 +29,17 @@
     return self;
 }
 
-- (void)registerCard:(NSDictionary *)card successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
-    NSURL *url = [NSURL URLWithString:@"http://localhost:3000/card"];
+- (void)registerCard:(Card *)card token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BASE_URL, CARD_URL]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
-    
-    request.HTTPBody = [self getBodyFromDictionary:card];
+    NSString *body = [NSString stringWithFormat:@"number=%@&cvv=%hd&month%hd&year%hd&userId=%lld",card.number, card.cvv, card.month,card.year, card.user.id];
+    request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
     request.HTTPMethod = @"POST";
+    [request addValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"Authorization"];
     [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
 }
 
-- (NSData *) getBodyFromDictionary:(NSDictionary *)dictionary {
-    NSArray *keys = [dictionary allKeys];
-    NSMutableString *body = [[NSMutableString alloc] init];
-    NSInteger *count = 0;
-    for (NSString *key in keys) {
-        if(count == 0){
-            [body appendFormat:@"%@=%@",key, [dictionary valueForKey:key]];
-        } else{
-            [body appendFormat:@"&%@=%@",key, [dictionary valueForKey:key]];
-        }
-        count++;
-    }
-    return [body dataUsingEncoding:NSUTF8StringEncoding];
-}
 
 @end

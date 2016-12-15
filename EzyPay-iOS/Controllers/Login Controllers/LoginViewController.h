@@ -8,13 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum {
-    RestaurantType,
-    UserType
-}LoginUserType;
-
 @interface LoginViewController : UIViewController
-
-@property (nonatomic, assign) LoginUserType loginType;
 
 @end

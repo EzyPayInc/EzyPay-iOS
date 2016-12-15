@@ -9,6 +9,11 @@
 #import "SignInPaymentInformationControllerViewController.h"
 #import "DropDownTableViewController.h"
 #import "CardServiceClient.h"
+#import "UserManager.h"
+#import "CardManager.h"
+#import "Card+CoreDataClass.h"
+#import "CoreDataManager.h"
+#import "NavigationController.h"
 
 @interface SignInPaymentInformationControllerViewController ()<UITextFieldDelegate, UIPopoverPresentationControllerDelegate, DropDownActionsDelegate>
 
@@ -25,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = NSLocalizedString(@"signInTitle", nil);
     [self setupDropDowns];
 }
 
@@ -32,14 +38,26 @@
     [super didReceiveMemoryWarning];
 }
 
-- (NSArray *) arrayMonths {
+- (NSArray *)arrayMonths {
     if(_arrayMonths) return _arrayMonths;
     
-    _arrayMonths = [NSArray arrayWithObjects: @"January", @"February", @"March", @"April", @"May", @"June", @"July", @"August", @"September", @"Octuber", @"November", @"December", nil];
+    _arrayMonths = [NSArray arrayWithObjects:
+                    NSLocalizedString(@"januaryMonth", nil), NSLocalizedString(@"februaryMonth", nil), NSLocalizedString(@"marchMonth", nil), NSLocalizedString(@"aprilMonth", nil), NSLocalizedString(@"mayMonth", nil), NSLocalizedString(@"juneMonth", nil), NSLocalizedString(@"julyMonth", nil), NSLocalizedString(@"augustMonth", nil), NSLocalizedString(@"septemberMonth", nil), NSLocalizedString(@"octoberMonth", nil), NSLocalizedString(@"novemberMonth", nil), NSLocalizedString(@"decemberMonth", nil), nil];
     return _arrayMonths;
 }
 
-- (NSArray *) arrayYears {
+- (int16_t )getMonth:(NSString *)value {
+    int16_t month = 0;
+    for (NSString *monthName in self.arrayMonths) {
+        month = month + 1;
+        if([monthName isEqualToString:value]) {
+            return month;
+        }
+    }
+    return month;
+}
+
+- (NSArray *)arrayYears {
     if(_arrayYears) return _arrayYears;
     
     NSDate *currentDate = [NSDate date];
@@ -93,19 +111,49 @@
     return NO;
 }
 
-- (IBAction)saveCard:(id)sender {
-    
-    NSMutableDictionary *cardictionary = [NSMutableDictionary dictionary];
-    [cardictionary setValue:self.idUser forKey:@"idUser"];
-    [cardictionary setValue:self.txtCardnumber.text forKey:@"cardNumber"];
-    [cardictionary setValue:self.txtCvv.text forKey:@"cvv"];
-    [cardictionary setValue:self.txtMonth.text forKey:@"month"];
-    [cardictionary setValue:self.txtYear.text forKey:@"year"];
-    CardServiceClient *service = [[CardServiceClient alloc] init];
-    [service registerCard:cardictionary successHandler:^(id response) {
-        NSLog(@"%@", response);
+- (IBAction)registerUser:(id)sender {
+    [self saveUser];
+}
+
+- (void)saveUser {
+    UserManager *manager = [[UserManager alloc] init];
+    [manager registerUser:self.user successHandler:^(id response) {
+        int64_t userId = (long)[[response valueForKey:@"userId"] integerValue];
+        self.user.id = userId;
+        [self login];
     } failureHandler:^(id response) {
-        NSLog(@"%@", response);
+        NSLog(@"Error: %@", response);
+    }];
+}
+
+- (void)login {
+    UserManager *manager = [[UserManager alloc] init];
+    [manager login:self.user.email password:self.user.password successHandler:^(id response) {
+        NSDictionary *accessToken = [response valueForKey:@"access_token"];
+        NSString *token = [accessToken valueForKey:@"value"];
+        self.user.token = token;
+        [self saveCard];
+    } failureHandler:^(id response) {
+        NSLog(@"Error: %@", response);
+    }];
+}
+
+- (void)saveCard {
+    Card *card = [CoreDataManager createEntityWithName:@"Card"];
+    card.number = self.txtCardnumber.text;
+    card.cvv = [self.txtCvv.text integerValue];
+    card.month = [self getMonth:self.txtMonth.text];
+    card.year = [self.txtYear.text integerValue];
+    card.user = self.user;
+    CardManager *manager = [[CardManager alloc] init];
+    [manager registerCard:card token:self.user.token successHandler:^(id response) {
+        [self.user addCardsObject:card];
+        [CoreDataManager saveContext];
+        NavigationController *navigationController = [NavigationController sharedInstance];
+        navigationController.navigationType = UserNavigation;
+        [navigationController presentTabBarController:self];
+    } failureHandler:^(id response) {
+        NSLog(@"Error: %@", response);
     }];
 }
 
@@ -124,6 +172,7 @@
 
 
 - (void) didOptionSelected:(NSDictionary *)option inTextField:(UITextField *)textfield{
+    [self dismissViewControllerAnimated:YES completion:nil];
     textfield.text = [option valueForKey:@"value"];
 }
 

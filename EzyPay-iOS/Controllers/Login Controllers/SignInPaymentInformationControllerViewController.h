@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User+CoreDataClass.h"
 
 @interface SignInPaymentInformationControllerViewController : UIViewController
 
-@property (nonatomic, assign)NSString *idUser;
+@property (nonatomic, assign)User *user;
 
 @end

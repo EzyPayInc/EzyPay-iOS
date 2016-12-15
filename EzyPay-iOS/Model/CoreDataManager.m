@@ -66,18 +66,18 @@ static CoreDataManager *sharedInstance;
         return persistentStoreCoordinator;
     }
     NSError *error = nil;
-    NSURL *persintentURL = [[NSURL alloc] initWithString:@"EzyPay"];
+    NSURL *persintentURL = [[self applicationDirectory] URLByAppendingPathComponent:@"EzyPay"];
     NSDictionary *persintentOptions = @{NSMigratePersistentStoresAutomaticallyOption : @YES, NSInferMappingModelAutomaticallyOption : @YES};
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
     
-    if([persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:persintentURL options:persintentOptions error:&error]) {
+    if(![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:persintentURL options:persintentOptions error:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
     return persistentStoreCoordinator;
 }
 
-- (NSManagedObject *) createEntityWithName:(NSString *)name {
++ (__kindof NSManagedObject *)createEntityWithName:(NSString *)name {
     NSManagedObjectContext *context = [[CoreDataManager sharedInstance] managedObjectContext];
     NSManagedObject *entity = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:context];
     return entity;
@@ -121,6 +121,10 @@ static CoreDataManager *sharedInstance;
     NSPersistentStoreCoordinator *persintentStrore = [[CoreDataManager sharedInstance] persistentStoreCoordinator];
     NSManagedObjectContext *context = [[CoreDataManager sharedInstance] managedObjectContext];
     [persintentStrore executeRequest:delete withContext:context error:&deleteError];
+}
+
+- (NSURL *)applicationDirectory {
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 

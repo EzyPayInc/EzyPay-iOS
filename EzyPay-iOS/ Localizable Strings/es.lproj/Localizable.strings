@@ -1,0 +1,37 @@
+/* 
+  Localizable.strings
+  EzyPay-iOS
+
+  Created by Gustavo Quesada Sanchez on 12/1/16.
+  Copyright © 2016 EzyPay Inc. All rights reserved.
+*/
+
+/*Controllers Titles*/
+scannerTitle = "Scanner";
+historyTitle = "Historial";
+cardsTitle = "Tarjetas";
+settingsTitle = "Configuración";
+logInTitle = "Log In";
+signInTitle = "Registrarse";
+
+/*Months*/
+januaryMonth = "Enero";
+februaryMonth = "Febrero";
+marchMonth = "Marzo";
+aprilMonth = "Abril";
+mayMonth = "Mayo";
+juneMonth = "Junio";
+julyMonth = "Julio";
+augustMonth = "Agosto";
+septemberMonth = "Setiembre";
+octoberMonth = "Octubre";
+novemberMonth = "Noviembre";
+decemberMonth = "Diciembre";
+
+/*actions*/
+signInNextAction = "Siguiente";
+
+/*label errors*/
+errorFieldRequired = "Este campo es obligatorio";
+errorEmailInvalid = "Email invalido";
+errorPasswordInvalid = "Contraseña demasiado corta";

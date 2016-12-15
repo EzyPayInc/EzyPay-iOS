@@ -9,11 +9,18 @@
 #import "LoginViewController.h"
 #import "SessionHandler.h"
 #import "SignInUserViewController.h"
+#import "GeneralServiceClient.h"
+#import "UserServiceClient.h"
+#import "UserManager.h"
+#import "User+CoreDataClass.h"
+#import "NavigationController.h"
+#import "CoreDataManager.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
 @property (nonatomic, assign) BOOL keyboardisActive;
+
 
 @end
 
@@ -21,17 +28,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Log In";
+    self.navigationItem.title = NSLocalizedString(@"logInTitle", nil);
     self.txtPassword.delegate = self;
     self.txtEmail.delegate = self;
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStylePlain target:self action:@selector(backButtonAction)];
-    self.navigationItem.leftBarButtonItem = backButton;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,51 +77,42 @@
                      completion:nil];
 }
 
-- (void)backButtonAction
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (IBAction)showSignInView:(id)sender {
     SignInUserViewController *signInUserViewController = (SignInUserViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInUserViewController"];
     [self.navigationController pushViewController:signInUserViewController animated:true];
 }
 
 - (IBAction)loginAction:(id)sender {
-    /*NSString *userEmail = self.txtEmail.text;
-    NSString *userPassword = self.txtPassword.text;
-    NSString *body= [NSString stringWithFormat:@"email=%@&password=%@", userEmail, userPassword];
-    if(self.loginType == UserType) {
-        SessionHandler *sessionHandler = [[SessionHandler alloc] init];
-        NSURL *url = [NSURL URLWithString:@"http://localhost:3000/login"];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
-                                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                           timeoutInterval:60.0];
-        request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
-        request.HTTPMethod = @"POST";
-       [sessionHandler sendRequestWithRequest:request successHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            if(error) {
-                NSLog(@"Error message: %@", error);
-            } else {
-                NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                if([response valueForKey:@"message"]) {
-                    [self showServerMessage:[response valueForKey:@"message"]];
-                } else {
-                    [self showServerMessage:@"Success"];
-                }
-            }
-        }];
-    }*/
+    NSString *email = self.txtEmail.text;
+    NSString *password = self.txtPassword.text;
+    
+    UserManager *manager = [[UserManager alloc] init];
+    [manager login:email password:password successHandler:^(id response) {
+        NSDictionary *accessToken = [response valueForKey:@"access_token"];
+        int64_t id = (long)[[accessToken valueForKey:@"userId"] integerValue];
+        NSString *token = [accessToken valueForKey:@"value"];
+        [self getUserFromServer:id token:token];
+    } failureHandler:^(id response) {
+        NSLog(@"%@", response);
+    }];
     
 }
 
-- (void)showServerMessage:(NSString *)message {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:message preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [alert dismissViewControllerAnimated:YES completion:nil];
-    }]];
-    [self presentViewController:alert animated:YES completion:nil];
+- (void) getUserFromServer:(int64_t ) userId token:(NSString *)token {
+    UserManager *manager = [[UserManager alloc] init];
+    [manager getUserFromServer:userId token:token successHandler:^(id response) {
+        User *user = [UserManager userFromDictionary:response];
+        user.id = userId;
+        user.token = token;
+        [CoreDataManager saveContext];
+        NavigationController *navigationController = [NavigationController sharedInstance];
+        navigationController.navigationType = UserNavigation;
+        [navigationController presentTabBarController:self];
+    } failureHandler:^(id response) {
+        NSLog(@"%@", response);
+    }];
 }
+
 
 
 @end
