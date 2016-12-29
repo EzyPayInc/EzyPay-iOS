@@ -42,15 +42,6 @@
     [controller setObject:navController forKey:@"controller"];
     [controllers addObject:controller];
     
-    /*Card Controller*/
-    navController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"NavCardsController"];
-    navController.tabBarItem.title = NSLocalizedString(@"cardsTitle", nil);;
-    navController.tabBarItem.image =  [UIImage imageNamed:@"PaymentIcon"];;
-    
-    controller = [NSMutableDictionary dictionary];
-    [controller setObject:navController forKey:@"controller"];
-    [controllers addObject:controller];
-    
     /*Settings Controller*/
     navController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"NavSettingsController"];
     navController.tabBarItem.title = NSLocalizedString(@"settingsTitle", nil);;

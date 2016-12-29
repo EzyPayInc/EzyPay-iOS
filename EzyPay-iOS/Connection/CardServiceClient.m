@@ -41,5 +41,18 @@ static NSString *const CARD_URL = @"card/";
     [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
 }
 
+- (void)getCardsByUserFromServer:(int64_t) userId token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", BASE_URL, CARD_URL,@"getAll"]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    NSString *body = [NSString stringWithFormat:@"userId=%ld",(long)userId];
+    request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
+    request.HTTPMethod = @"POST";
+    [request addValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"Authorization"];
+    [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
+    
+}
+
 
 @end

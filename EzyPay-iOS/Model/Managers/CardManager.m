@@ -17,4 +17,9 @@
     [serviceClient registerCard:card token:token successHandler:successHandler failureHandler:failureHandler];
 }
 
+- (void)getCardsByUserFromServer:(int64_t) userId token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
+    CardServiceClient *serviceClient = [[CardServiceClient alloc] init];
+    [serviceClient getCardsByUserFromServer:userId token:token successHandler:successHandler failureHandler:failureHandler];
+}
+
 @end
