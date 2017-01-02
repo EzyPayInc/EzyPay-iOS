@@ -16,6 +16,7 @@
 //core data methods
 + (User *)userFromDictionary:(NSDictionary *)userDictionary {
     User *user = [CoreDataManager createEntityWithName:@"User"];
+    user.name = [userDictionary objectForKey:@"name"];
     user.email = [userDictionary objectForKey:@"email"];
     user.lastName = [userDictionary objectForKey:@"lastName"];
     user.phoneNumber = [userDictionary objectForKey:@"phoneNumber"];

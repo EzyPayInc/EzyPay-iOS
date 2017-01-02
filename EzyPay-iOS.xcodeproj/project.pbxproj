@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		800829751E15875500D2C5F2 /* CardDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 800829741E15875500D2C5F2 /* CardDetailViewController.m */; };
 		801B252D1DD79B620039FB90 /* CompletionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 801B252C1DD79B620039FB90 /* CompletionHandler.m */; };
 		801D0C2E1DF13ED50079F9AB /* HistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801D0C2D1DF13ED50079F9AB /* HistoryTableViewController.m */; };
 		801D0C341DF140890079F9AB /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801D0C331DF140890079F9AB /* SettingsViewController.m */; };
@@ -55,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		800829731E15875500D2C5F2 /* CardDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardDetailViewController.h; sourceTree = "<group>"; };
+		800829741E15875500D2C5F2 /* CardDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardDetailViewController.m; sourceTree = "<group>"; };
 		801B252B1DD79B620039FB90 /* CompletionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionHandler.h; sourceTree = "<group>"; };
 		801B252C1DD79B620039FB90 /* CompletionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionHandler.m; sourceTree = "<group>"; };
 		801D0C2C1DF13ED50079F9AB /* HistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewController.h; sourceTree = "<group>"; };
@@ -166,6 +169,8 @@
 			children = (
 				80F602AB1E14B63B0030F7C5 /* CardListTableViewController.h */,
 				80F602AC1E14B63B0030F7C5 /* CardListTableViewController.m */,
+				800829731E15875500D2C5F2 /* CardDetailViewController.h */,
+				800829741E15875500D2C5F2 /* CardDetailViewController.m */,
 			);
 			path = "Card Controllers";
 			sourceTree = "<group>";
@@ -491,6 +496,7 @@
 				802D5FFA1DD573CF000478F0 /* DropDownTableViewController.m in Sources */,
 				804CEE811DED242C0078BB54 /* EzyPay.xcdatamodeld in Sources */,
 				801D0C2E1DF13ED50079F9AB /* HistoryTableViewController.m in Sources */,
+				800829751E15875500D2C5F2 /* CardDetailViewController.m in Sources */,
 				80EFEB951DB8552900D874E2 /* main.m in Sources */,
 				802C03AF1DF47C14001370E2 /* NSString+String.m in Sources */,
 				8071B4001DD2DF6F001D8761 /* CardServiceClient.m in Sources */,

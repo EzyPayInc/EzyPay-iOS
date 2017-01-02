@@ -9,6 +9,7 @@
 #import "CardServiceClient.h"
 #import "SessionHandler.h"
 #import "User+CoreDataClass.h"
+
 @interface CardServiceClient()
 
 @property(nonatomic,strong) SessionHandler *sessionHandler;
@@ -34,7 +35,7 @@ static NSString *const CARD_URL = @"card/";
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
-    NSString *body = [NSString stringWithFormat:@"number=%@&cvv=%hd&month%hd&year%hd&userId=%lld",card.number, card.cvv, card.month,card.year, card.user.id];
+    NSString *body = [NSString stringWithFormat:@"number=%@&cvv=%hd&month=%hd&year=%hd&userId=%lld",card.number, card.cvv, card.month,card.year, card.user.id];
     request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
     request.HTTPMethod = @"POST";
     [request addValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"Authorization"];
@@ -52,6 +53,21 @@ static NSString *const CARD_URL = @"card/";
     [request addValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"Authorization"];
     [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
     
+}
+
+- (void)updateCard:(Card *)card token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%lld", BASE_URL, CARD_URL, card.id]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    NSString *body = [NSString stringWithFormat:@"number=%@&cvv=%hd&month=%hd&year=%hd&userId=%lld",card.number, card.cvv, card.month,card.year, card.user.id];
+    request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
+    request.HTTPMethod = @"PUT";
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"Authorization"];
+    NSString *str = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
+    NSLog(@"Body: %@ ",str);
+    [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
 }
 
 

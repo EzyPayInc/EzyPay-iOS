@@ -19,4 +19,5 @@
 + (__kindof NSManagedObject *) createEntityWithName:(NSString *)name;
 + (void)saveContext;
 + (void)saveContextParent;
++ (void) deleteDataFromEntity:(NSString *)entityName;
 @end

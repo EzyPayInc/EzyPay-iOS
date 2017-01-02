@@ -65,8 +65,8 @@
 }
 
 - (IBAction)showCardList:(id)sender {
-    CardListTableViewController *cardListViewController = (CardListTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"cardNavigationViewController"];
-    [self presentViewController:cardListViewController animated:YES completion:nil];
+    CardListTableViewController *cardListViewController = (CardListTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CardListTableViewController"];
+    [self.navigationController pushViewController:cardListViewController animated:YES];
 }
 
 

@@ -11,7 +11,11 @@
 #import "Connection.h"
 
 @interface CardManager : NSObject
+/*Core Data methods*/
++ (NSArray *)getCardsFromArray:(NSArray *)arrayCards;
 
+/*Web services methods*/
 - (void)registerCard:(Card *)card token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler;
 - (void)getCardsByUserFromServer:(int64_t) userId token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler;
+- (void)updateCardInServer:(Card *)card token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler;
 @end

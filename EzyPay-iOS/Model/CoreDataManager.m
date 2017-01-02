@@ -113,8 +113,8 @@ static CoreDataManager *sharedInstance;
     }
 }
 
-+ (void) deleteDataFromCoredata {
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Car"];
++ (void) deleteDataFromEntity:(NSString *)entityName {
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
     NSBatchDeleteRequest *delete = [[NSBatchDeleteRequest alloc] initWithFetchRequest:request];
     
     NSError *deleteError = nil;
