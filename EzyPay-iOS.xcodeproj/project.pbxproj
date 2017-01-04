@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80016E4E1E1C943100D4658D /* BarcodeScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80016E4D1E1C943100D4658D /* BarcodeScannerViewController.m */; };
+		80016E541E1CBEDD00D4658D /* TicketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80016E531E1CBEDD00D4658D /* TicketManager.m */; };
+		80016E571E1CC30B00D4658D /* TicketServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80016E561E1CC30B00D4658D /* TicketServiceClient.m */; };
 		800829751E15875500D2C5F2 /* CardDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 800829741E15875500D2C5F2 /* CardDetailViewController.m */; };
 		801B252D1DD79B620039FB90 /* CompletionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 801B252C1DD79B620039FB90 /* CompletionHandler.m */; };
 		801D0C2E1DF13ED50079F9AB /* HistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801D0C2D1DF13ED50079F9AB /* HistoryTableViewController.m */; };
@@ -36,6 +39,8 @@
 		80EFEBAE1DB8552900D874E2 /* EzyPay_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EFEBAD1DB8552900D874E2 /* EzyPay_iOSTests.m */; };
 		80EFEBB91DB8552900D874E2 /* EzyPay_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EFEBB81DB8552900D874E2 /* EzyPay_iOSUITests.m */; };
 		80F602AD1E14B63B0030F7C5 /* CardListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F602AC1E14B63B0030F7C5 /* CardListTableViewController.m */; };
+		80F700641E1B540600946CFD /* RestaurantDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F700631E1B540600946CFD /* RestaurantDetailViewController.m */; };
+		80F700671E1B645E00946CFD /* ContactListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F700661E1B645E00946CFD /* ContactListTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +61,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		80016E4C1E1C943100D4658D /* BarcodeScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarcodeScannerViewController.h; sourceTree = "<group>"; };
+		80016E4D1E1C943100D4658D /* BarcodeScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarcodeScannerViewController.m; sourceTree = "<group>"; };
+		80016E521E1CBEDD00D4658D /* TicketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketManager.h; sourceTree = "<group>"; };
+		80016E531E1CBEDD00D4658D /* TicketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketManager.m; sourceTree = "<group>"; };
+		80016E551E1CC30B00D4658D /* TicketServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketServiceClient.h; sourceTree = "<group>"; };
+		80016E561E1CC30B00D4658D /* TicketServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketServiceClient.m; sourceTree = "<group>"; };
 		800829731E15875500D2C5F2 /* CardDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardDetailViewController.h; sourceTree = "<group>"; };
 		800829741E15875500D2C5F2 /* CardDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardDetailViewController.m; sourceTree = "<group>"; };
 		801B252B1DD79B620039FB90 /* CompletionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionHandler.h; sourceTree = "<group>"; };
@@ -115,6 +126,10 @@
 		80EFEBBA1DB8552900D874E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80F602AB1E14B63B0030F7C5 /* CardListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardListTableViewController.h; sourceTree = "<group>"; };
 		80F602AC1E14B63B0030F7C5 /* CardListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardListTableViewController.m; sourceTree = "<group>"; };
+		80F700621E1B540600946CFD /* RestaurantDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDetailViewController.h; sourceTree = "<group>"; };
+		80F700631E1B540600946CFD /* RestaurantDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantDetailViewController.m; sourceTree = "<group>"; };
+		80F700651E1B645E00946CFD /* ContactListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListTableViewController.h; sourceTree = "<group>"; };
+		80F700661E1B645E00946CFD /* ContactListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactListTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +157,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		80016E4B1E1C93C800D4658D /* Scanner Controller */ = {
+			isa = PBXGroup;
+			children = (
+				80016E4C1E1C943100D4658D /* BarcodeScannerViewController.h */,
+				80016E4D1E1C943100D4658D /* BarcodeScannerViewController.m */,
+			);
+			path = "Scanner Controller";
+			sourceTree = "<group>";
+		};
 		801058B31DC527CE0079A08B /* Login Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +224,10 @@
 			children = (
 				801D3C7A1DEE636700C8845D /* ScannerViewController.h */,
 				801D3C7B1DEE636700C8845D /* ScannerViewController.m */,
+				80F700621E1B540600946CFD /* RestaurantDetailViewController.h */,
+				80F700631E1B540600946CFD /* RestaurantDetailViewController.m */,
+				80F700651E1B645E00946CFD /* ContactListTableViewController.h */,
+				80F700661E1B645E00946CFD /* ContactListTableViewController.m */,
 			);
 			path = "Payment Controllers";
 			sourceTree = "<group>";
@@ -229,6 +257,8 @@
 				801B252C1DD79B620039FB90 /* CompletionHandler.m */,
 				804CEEA91DED3C9E0078BB54 /* GeneralServiceClient.h */,
 				804CEEAA1DED3C9E0078BB54 /* GeneralServiceClient.m */,
+				80016E551E1CC30B00D4658D /* TicketServiceClient.h */,
+				80016E561E1CC30B00D4658D /* TicketServiceClient.m */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
@@ -254,6 +284,7 @@
 		8030CB011DC1889E006C0070 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				80016E4B1E1C93C800D4658D /* Scanner Controller */,
 				801D3C781DEE62DB00C8845D /* User Navigation */,
 				804CEEDC1DED54870078BB54 /* Navigation Controller */,
 				802D5FF71DD57309000478F0 /* Drop Down Controller */,
@@ -269,6 +300,8 @@
 				804CEEE11DED5A630078BB54 /* UserManager.m */,
 				80217A711DEFCFC60096DEF4 /* CardManager.h */,
 				80217A721DEFCFC60096DEF4 /* CardManager.m */,
+				80016E521E1CBEDD00D4658D /* TicketManager.h */,
+				80016E531E1CBEDD00D4658D /* TicketManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -415,6 +448,7 @@
 				TargetAttributes = {
 					80EFEB8F1DB8552900D874E2 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = S85ZPM9T23;
 					};
 					80EFEBA81DB8552900D874E2 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -484,7 +518,11 @@
 				8030CB071DC1A54A006C0070 /* LoginViewController.m in Sources */,
 				804CEEAB1DED3C9E0078BB54 /* GeneralServiceClient.m in Sources */,
 				806BF0691DC85C8100AD97CB /* UserServiceClient.m in Sources */,
+				80F700641E1B540600946CFD /* RestaurantDetailViewController.m in Sources */,
+				80F700671E1B645E00946CFD /* ContactListTableViewController.m in Sources */,
 				801FE3131DD40778004318CC /* CoreDataManager.m in Sources */,
+				80016E4E1E1C943100D4658D /* BarcodeScannerViewController.m in Sources */,
+				80016E571E1CC30B00D4658D /* TicketServiceClient.m in Sources */,
 				801D0C341DF140890079F9AB /* SettingsViewController.m in Sources */,
 				80EFEB981DB8552900D874E2 /* AppDelegate.m in Sources */,
 				804CEEDF1DED54DB0078BB54 /* NavigationController.m in Sources */,
@@ -502,6 +540,7 @@
 				8071B4001DD2DF6F001D8761 /* CardServiceClient.m in Sources */,
 				80F602AD1E14B63B0030F7C5 /* CardListTableViewController.m in Sources */,
 				802891671DD66C3800A088EE /* Connection.m in Sources */,
+				80016E541E1CBEDD00D4658D /* TicketManager.m in Sources */,
 				801B252D1DD79B620039FB90 /* CompletionHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -663,6 +702,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = S85ZPM9T23;
 				INFOPLIST_FILE = "EzyPay-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -675,6 +715,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = S85ZPM9T23;
 				INFOPLIST_FILE = "EzyPay-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
