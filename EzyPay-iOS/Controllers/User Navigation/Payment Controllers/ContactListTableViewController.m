@@ -8,6 +8,7 @@
 
 #import "ContactListTableViewController.h"
 #import <Contacts/Contacts.h>
+#import "SplitTableViewController.h"
 
 @interface ContactListTableViewController () <UISearchBarDelegate>
 
@@ -24,6 +25,7 @@
     self.contactsArray = [NSArray array];
     self.contactsChecked = [NSMutableArray array];
     [self getContactsFromPhone];
+    [self addNextButton];
 }
 
 
@@ -46,7 +48,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"contactsCell" forIndexPath:indexPath];
     NSDictionary *contact = [self.contactsArray objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", [contact valueForKey:@"firstName"], [contact valueForKey:@"lastName"]];
-    cell.imageView.image = [contact valueForKey:@"image"];
+    cell.imageView.image = [UIImage imageNamed:@"profileImage"];
     if([self validatePhoneNumber:[contact valueForKey:@"phoneNumber"]]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
@@ -70,8 +72,21 @@
 }
 
 #pragma mark - Search bar delegate
+- (void)addNextButton {
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone target:self action:@selector(nextAction)];
+    self.navigationItem.rightBarButtonItem = rightBarButton;
+}
+
+- (void)nextAction {
+    SplitTableViewController *tableViewController = (SplitTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SplitTableViewController"];
+    tableViewController.splitContacts = self.contactsChecked;
+    [self.navigationController pushViewController:tableViewController animated:true];
+}
+
+
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     if ([searchText isEqualToString:@""]) {
+        [searchBar resignFirstResponder];
         self.contactsArray = self.inmutableContactsArray;
         [self.tableView reloadData];
     } else {
