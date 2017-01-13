@@ -49,5 +49,15 @@
     [service getUserFromServer:userId token:token successHandler:successHandler failureHandler:failureHandler];
 }
 
+- (void)updateUser:(User *) user successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
+    UserServiceClient *service = [[UserServiceClient alloc] init];
+    [service updateUser:user successHandler:successHandler failureHandler:failureHandler];
+}
+
+- (void)validatePhoneNumbers:(NSArray *)phoneNumbers token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
+     UserServiceClient *service = [[UserServiceClient alloc] init];
+    [service validatePhoneNumbers:phoneNumbers token:token successHandler:successHandler failureHandler:failureHandler];
+}
+
 
 @end

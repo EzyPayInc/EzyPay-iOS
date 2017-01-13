@@ -11,6 +11,7 @@
 		80016E541E1CBEDD00D4658D /* TicketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80016E531E1CBEDD00D4658D /* TicketManager.m */; };
 		80016E571E1CC30B00D4658D /* TicketServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80016E561E1CC30B00D4658D /* TicketServiceClient.m */; };
 		800829751E15875500D2C5F2 /* CardDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 800829741E15875500D2C5F2 /* CardDetailViewController.m */; };
+		800859911E23312200E3451F /* SettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 800859901E23312200E3451F /* SettingsTableViewCell.m */; };
 		801B252D1DD79B620039FB90 /* CompletionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 801B252C1DD79B620039FB90 /* CompletionHandler.m */; };
 		801D0C2E1DF13ED50079F9AB /* HistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801D0C2D1DF13ED50079F9AB /* HistoryTableViewController.m */; };
 		801D3C7C1DEE636700C8845D /* ScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801D3C7B1DEE636700C8845D /* ScannerViewController.m */; };
@@ -72,6 +73,8 @@
 		80016E561E1CC30B00D4658D /* TicketServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketServiceClient.m; sourceTree = "<group>"; };
 		800829731E15875500D2C5F2 /* CardDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardDetailViewController.h; sourceTree = "<group>"; };
 		800829741E15875500D2C5F2 /* CardDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardDetailViewController.m; sourceTree = "<group>"; };
+		8008598F1E23312200E3451F /* SettingsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewCell.h; sourceTree = "<group>"; };
+		800859901E23312200E3451F /* SettingsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewCell.m; sourceTree = "<group>"; };
 		801B252B1DD79B620039FB90 /* CompletionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionHandler.h; sourceTree = "<group>"; };
 		801B252C1DD79B620039FB90 /* CompletionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionHandler.m; sourceTree = "<group>"; };
 		801D0C2C1DF13ED50079F9AB /* HistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewController.h; sourceTree = "<group>"; };
@@ -399,6 +402,8 @@
 			children = (
 				80F88F521E21775D00941E11 /* ProfileImageTableViewCell.h */,
 				80F88F531E21775D00941E11 /* ProfileImageTableViewCell.m */,
+				8008598F1E23312200E3451F /* SettingsTableViewCell.h */,
+				800859901E23312200E3451F /* SettingsTableViewCell.m */,
 			);
 			path = "Prototype Cells";
 			sourceTree = "<group>";
@@ -551,6 +556,7 @@
 				80F88F541E21775D00941E11 /* ProfileImageTableViewCell.m in Sources */,
 				806BF0691DC85C8100AD97CB /* UserServiceClient.m in Sources */,
 				80F700641E1B540600946CFD /* RestaurantDetailViewController.m in Sources */,
+				800859911E23312200E3451F /* SettingsTableViewCell.m in Sources */,
 				80F700671E1B645E00946CFD /* ContactListTableViewController.m in Sources */,
 				801FE3131DD40778004318CC /* CoreDataManager.m in Sources */,
 				80016E4E1E1C943100D4658D /* BarcodeScannerViewController.m in Sources */,

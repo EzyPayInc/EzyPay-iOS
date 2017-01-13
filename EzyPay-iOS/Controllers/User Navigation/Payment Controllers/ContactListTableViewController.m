@@ -9,12 +9,14 @@
 #import "ContactListTableViewController.h"
 #import <Contacts/Contacts.h>
 #import "SplitTableViewController.h"
+#import "UserManager.h"
 
 @interface ContactListTableViewController () <UISearchBarDelegate>
 
 @property (nonatomic, strong) NSArray *contactsArray;
 @property (nonatomic, strong) NSArray *inmutableContactsArray;
 @property (nonatomic, strong) NSMutableArray *contactsChecked;
+@property (nonatomic, strong) User *user;
 
 @end
 
@@ -24,6 +26,7 @@
     [super viewDidLoad];
     self.contactsArray = [NSArray array];
     self.contactsChecked = [NSMutableArray array];
+    self.user = [UserManager getUser];
     [self getContactsFromPhone];
     [self addNextButton];
 }
@@ -119,6 +122,7 @@
 - (void)getContactsFromPhone {
     CNContactStore *store = [[CNContactStore alloc] init];
     NSMutableArray *mutableContacts = [NSMutableArray array];
+    NSMutableArray *sendArray =  [NSMutableArray array];
     [store requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
         if (granted == YES) {
             //keys with fetching properties
@@ -139,12 +143,14 @@
                     for (CNLabeledValue *label in contact.phoneNumbers) {
                         NSString *phone = [label.value stringValue];
                         if ([phone length] > 0) {
+                            phone = [phone stringByReplacingOccurrencesOfString:@"-" withString:@""];
                             [newContact setValue:phone forKey:@"phoneNumber"];
-                            //[contact.phones addObject:phone];
+                            [sendArray addObject:phone];
                         }
                     }
                     [mutableContacts addObject:newContact];
                 }
+                [self validatePhoneNumbers:sendArray];
                 self.contactsArray = mutableContacts;
                 self.inmutableContactsArray = self.contactsArray;
                 [self.tableView reloadData];
@@ -158,5 +164,15 @@
     NSArray *array = [self.contactsChecked filteredArrayUsingPredicate:predicate];
     return [array count] > 0;
 }
+
+- (void)validatePhoneNumbers:(NSArray *)phoneNumbers {
+    UserManager *manager = [[UserManager alloc] init];
+    [manager validatePhoneNumbers:phoneNumbers token:self.user.token successHandler:^(id response) {
+        NSLog(@"%@", response);
+    } failureHandler:^(id response) {
+        NSLog(@"%@", response);
+    }];
+}
+
 
 @end
