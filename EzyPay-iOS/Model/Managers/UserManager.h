@@ -12,11 +12,12 @@
 
 @interface UserManager : NSObject
 
-//coredata methods
+#pragma mark - Core Data
 + (User *)userFromDictionary:(NSDictionary *)userDictionary;
 + (User *)getUser;
++ (NSArray *)usersFromArray:(NSArray *)usersArray;
 
-//service methods
+#pragma mark - Web Services
 - (void)login:(NSString *) email password:(NSString *)password successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler;
 - (void)registerUser:(User *) user successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler;
 - (void)getUserFromServer:(int64_t)userId token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler:(ConnectionErrorHandler) failureHandler;

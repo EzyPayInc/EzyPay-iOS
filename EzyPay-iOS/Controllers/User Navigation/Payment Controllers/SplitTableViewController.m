@@ -8,8 +8,11 @@
 
 #import "SplitTableViewController.h"
 #import "SplitTableViewCell.h"
+#import "UserManager.h"
 
 @interface SplitTableViewController ()
+
+@property (nonatomic, strong) User *user;
 
 @end
 
@@ -17,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.user = [UserManager getUser];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,27 +31,61 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return section == 0? [self.splitContacts count] : 2;
+    switch (section) {
+        case 0:
+            return 1;
+            break;
+        case 1:
+            return [self.splitContacts count];
+            break;
+        case 2:
+            return 2;
+            break;
+        default:
+            break;
+    }
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return indexPath.section == 0 ? 80.f : 44.f;
+    return indexPath.section == 2 ? 44.f : 80.f;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return section == 0? @"Contacts" : @"Payment";
+    switch (section) {
+        case 0:
+            return @"Me";
+            break;
+        case 1:
+            return @"Contacts";
+            break;
+        case 2:
+            return @"Payment";
+;
+            break;
+        default:
+            break;
+    }
+    return @"";
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0) {
         SplitTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"splitCell" forIndexPath:indexPath];
-        NSDictionary *contact = [self.splitContacts objectAtIndex:indexPath.row];
-        cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", [contact objectForKey:@"firstName"], [contact objectForKey:@"lastName"]];
+        cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", self.user.name, self.user.lastName];
+        cell.profileImageView.image = [UIImage imageNamed:@"profileImage"];
+        cell.quantityLabel.text = @"$1000";
+        return cell;
+
+    } else if (indexPath.section == 1) {
+        SplitTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"splitCell" forIndexPath:indexPath];
+        User *user = [self.splitContacts objectAtIndex:indexPath.row];
+        cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", user.name, user.lastName];
         cell.profileImageView.image = [UIImage imageNamed:@"profileImage"];
         cell.quantityLabel.text = @"$1000";
         return cell;

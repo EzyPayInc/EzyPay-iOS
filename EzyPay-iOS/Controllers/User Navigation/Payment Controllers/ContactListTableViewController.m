@@ -49,10 +49,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"contactsCell" forIndexPath:indexPath];
-    NSDictionary *contact = [self.contactsArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", [contact valueForKey:@"firstName"], [contact valueForKey:@"lastName"]];
+    User *user = [self.contactsArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", user.name, user.lastName];
     cell.imageView.image = [UIImage imageNamed:@"profileImage"];
-    if([self validatePhoneNumber:[contact valueForKey:@"phoneNumber"]]) {
+    if([self validatePhoneNumber:user.phoneNumber]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -62,15 +62,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *contact = [self.contactsArray objectAtIndex:indexPath.row];
+    User *user = [self.contactsArray objectAtIndex:indexPath.row];
     NSUInteger index = [[tableView indexPathsForVisibleRows] indexOfObject:indexPath];
     UITableViewCell *cell = [[tableView visibleCells] objectAtIndex:index];
     if ([cell accessoryType] == UITableViewCellAccessoryNone) {
         [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
-        [self.contactsChecked addObject:contact];
+        [self.contactsChecked addObject:user];
     } else {
         [cell setAccessoryType:UITableViewCellAccessoryNone];
-        [self.contactsChecked removeObject:contact];
+        [self.contactsChecked removeObject:user];
     }
 }
 
@@ -110,9 +110,9 @@
     if ([array count] > 1) {
         firstName = array[0];
         lastName = array[1];
-        predicate = [NSPredicate predicateWithFormat:@"(firstName CONTAINS[cd] %@ AND lastName CONTAINS[cd] %@) OR (firstName CONTAINS[cd] %@ AND lastName CONTAINS[cd] %@)", firstName, lastName, lastName, firstName];
+        predicate = [NSPredicate predicateWithFormat:@"(name CONTAINS[cd] %@ AND lastName CONTAINS[cd] %@) OR (name CONTAINS[cd] %@ AND lastName CONTAINS[cd] %@)", firstName, lastName, lastName, firstName];
     } else {
-        predicate = [NSPredicate predicateWithFormat:@"firstName CONTAINS[cd] %@ OR lastName CONTAINS[cd] %@", firstName, lastName];
+        predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@ OR lastName CONTAINS[cd] %@", firstName, lastName];
     }
     
     self.contactsArray = [self.inmutableContactsArray filteredArrayUsingPredicate:predicate];
@@ -121,12 +121,10 @@
 
 - (void)getContactsFromPhone {
     CNContactStore *store = [[CNContactStore alloc] init];
-    NSMutableArray *mutableContacts = [NSMutableArray array];
-    NSMutableArray *sendArray =  [NSMutableArray array];
+    NSMutableArray *phoneNumbers =  [NSMutableArray array];
     [store requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
         if (granted == YES) {
-            //keys with fetching properties
-            NSArray *keys = @[CNContactFamilyNameKey, CNContactGivenNameKey, CNContactPhoneNumbersKey, CNContactImageDataKey];
+            NSArray *keys = @[CNContactPhoneNumbersKey];
             NSString *containerId = store.defaultContainerIdentifier;
             NSPredicate *predicate = [CNContact predicateForContactsInContainerWithIdentifier:containerId];
             NSError *error;
@@ -135,25 +133,15 @@
                 NSLog(@"error fetching contacts %@", error);
             } else {
                 for (CNContact *contact in cnContacts) {
-                    NSMutableDictionary *newContact = [NSMutableDictionary dictionary];
-                    [newContact setValue:contact.givenName forKey:@"firstName"];
-                    [newContact setValue:contact.familyName forKey:@"lastName"];
-                    UIImage *image = [UIImage imageWithData:contact.imageData];
-                    [newContact setValue:image forKey:@"image"];
                     for (CNLabeledValue *label in contact.phoneNumbers) {
                         NSString *phone = [label.value stringValue];
                         if ([phone length] > 0) {
                             phone = [phone stringByReplacingOccurrencesOfString:@"-" withString:@""];
-                            [newContact setValue:phone forKey:@"phoneNumber"];
-                            [sendArray addObject:phone];
+                            [phoneNumbers addObject:phone];
                         }
                     }
-                    [mutableContacts addObject:newContact];
                 }
-                [self validatePhoneNumbers:sendArray];
-                self.contactsArray = mutableContacts;
-                self.inmutableContactsArray = self.contactsArray;
-                [self.tableView reloadData];
+                [self validatePhoneNumbers:phoneNumbers];
             }
         }        
     }];
@@ -168,7 +156,9 @@
 - (void)validatePhoneNumbers:(NSArray *)phoneNumbers {
     UserManager *manager = [[UserManager alloc] init];
     [manager validatePhoneNumbers:phoneNumbers token:self.user.token successHandler:^(id response) {
-        NSLog(@"%@", response);
+        self.contactsArray = [UserManager usersFromArray:response];
+        self.inmutableContactsArray = self.contactsArray;
+        [self.tableView reloadData];
     } failureHandler:^(id response) {
         NSLog(@"%@", response);
     }];

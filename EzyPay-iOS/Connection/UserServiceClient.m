@@ -83,7 +83,7 @@ static NSString *const SECRET_KEY = @"9F=_wPs^;W]=Hqf!3e^)ZpdR;MUym+";
     NSLog(@"Body: %@ ",str);
     request.HTTPMethod = @"POST";
     [request addValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"Authorization"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
 }
 

@@ -13,7 +13,7 @@
 
 @implementation UserManager
 
-//core data methods
+#pragma mark - Core Data
 + (User *)userFromDictionary:(NSDictionary *)userDictionary {
     User *user = [CoreDataManager createEntityWithName:@"User"];
     user.name = [userDictionary objectForKey:@"name"];
@@ -33,7 +33,16 @@
     return nil;
 }
 
-//web services methods
++ (NSArray *)usersFromArray:(NSArray *)usersArray {
+    NSMutableArray *users = [NSMutableArray array];
+    for (NSDictionary *userDictionary in usersArray) {
+        User *user = [UserManager userFromDictionary:userDictionary];
+        [users addObject:user];
+    }
+    return users;
+}
+
+#pragma mark - Web Services
 - (void)login:(NSString *) email password:(NSString *)password successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
     GeneralServiceClient *service = [[GeneralServiceClient alloc] init];
     [service login:email password:password successHandler:successHandler failureHandler:failureHandler];
