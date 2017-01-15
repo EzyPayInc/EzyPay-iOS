@@ -20,8 +20,6 @@
 
 @property (nonatomic, assign) BOOL isEditableMode;
 
-@property (nonatomic, strong)User *userToUpdate;
-
 @end
 
 @implementation SettingsTableViewController
@@ -31,7 +29,7 @@
     self.isEditableMode = NO;
     self.navigationItem.title = NSLocalizedString(@"settingsTitle", nil);
     self.user = [UserManager getUser];
-    self.userToUpdate = self.user;
+    [self addNavigationBarButtons];
     
 }
 
@@ -103,6 +101,16 @@
 
 
 #pragma mark - actions
+- (void)addNavigationBarButtons {
+    UIImage *cardListImage = [UIImage imageNamed:@"ic_add_card"];
+    UIBarButtonItem *cardButton = [[UIBarButtonItem alloc] initWithImage:cardListImage style:UIBarButtonItemStyleDone target:self action:@selector(showCardList:)];
+    UIBarButtonItem *optionsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showOptions:)];
+    self.navigationItem.rightBarButtonItem = nil;
+    self.navigationItem.rightBarButtonItems = @[optionsButton, cardButton];
+    self.navigationItem.leftBarButtonItem = nil;
+    
+}
+
 - (IBAction)showCardList:(id)sender {
     CardListTableViewController *cardListViewController = (CardListTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CardListTableViewController"];
      [self.navigationController pushViewController:cardListViewController animated:YES];
@@ -138,31 +146,37 @@
 - (void)updateUserAction {
     [self.view endEditing:YES];
     UserManager *manager = [[UserManager alloc] init];
-    [manager updateUser:self.userToUpdate successHandler:^(id response) {
-        NSLog(@"Response: %@", response);
+    [manager updateUser:self.user successHandler:^(id response) {
+        self.isEditableMode = NO;
+        [CoreDataManager saveContext];
+        [self.tableView reloadData];
+        [self addNavigationBarButtons];
     } failureHandler:^(id response) {
         NSLog(@"Error: %@", response);
     }];
 }
 
 - (void)cancelUpdateAction {
-    NSLog(@"cancel Update user");
+    self.isEditableMode = NO;
+    [self.user.managedObjectContext rollback];
+    [self.tableView reloadData];
+    [self addNavigationBarButtons];
 }
 
 #pragma mark - SettigsCellDelegate
 - (void)cellTableDidChange:(UITextField *)textField inCell:(SettingsCellTypes)cellType {
     switch (cellType) {
         case NameCell:
-            self.userToUpdate.name = textField.text;
+            self.user.name = textField.text;
             break;
         case LastNameCell:
-            self.userToUpdate.lastName = textField.text;
+            self.user.lastName = textField.text;
             break;
         case PhoneNumberCell:
-            self.userToUpdate.phoneNumber = textField.text;
+            self.user.phoneNumber = textField.text;
             break;
         case EmailCell:
-            self.userToUpdate.email = textField.text;
+            self.user.email = textField.text;
             break;
         default:
             break;

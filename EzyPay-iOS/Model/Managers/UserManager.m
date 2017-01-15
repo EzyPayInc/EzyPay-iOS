@@ -36,7 +36,13 @@
 + (NSArray *)usersFromArray:(NSArray *)usersArray {
     NSMutableArray *users = [NSMutableArray array];
     for (NSDictionary *userDictionary in usersArray) {
-        User *user = [UserManager userFromDictionary:userDictionary];
+        CoreDataManager *manager = [[CoreDataManager alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:manager.managedObjectContext];
+        User *user = (User *)[[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:nil];
+        user.name = [userDictionary objectForKey:@"name"];
+        user.email = [userDictionary objectForKey:@"email"];
+        user.lastName = [userDictionary objectForKey:@"lastName"];
+        user.phoneNumber = [userDictionary objectForKey:@"phoneNumber"];
         [users addObject:user];
     }
     return users;
