@@ -19,6 +19,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self setupNavigationBar];
+    [self setupTabBar];
     User *user= [UserManager getUser];
     if(user && user.token) {
         NavigationController *navigationController = [NavigationController sharedInstance];
@@ -26,6 +28,7 @@
         self.window.rootViewController = [navigationController setupTabBarController];
         [self.window makeKeyAndVisible];
     }
+    
     return YES;
 }
 
@@ -49,6 +52,27 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - setup controls appearence
+- (void)setupNavigationBar {
+    [[UINavigationBar appearance] setBarTintColor:[UIColor grayColor]];
+    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    //[[UIBarButtonItem appearance] setTintColor:[UIColor blackColor]];
+}
+
+- (void)setupTabBar {
+    [[UITabBar appearance] setBarTintColor:[UIColor grayColor]];
+    [[UITabBar appearance] setBackgroundColor:[UIColor blackColor]];
+    NSDictionary *attributesForNormalState = @{
+                                               NSForegroundColorAttributeName: [UIColor blackColor],
+                                               };
+    NSDictionary *attributesForSelectedState = @{
+                                                 NSForegroundColorAttributeName: [UIColor whiteColor],
+                                                 };
+    [[UITabBarItem appearance] setTitleTextAttributes:attributesForNormalState forState: UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:attributesForSelectedState forState: UIControlStateSelected];
 }
 
 @end

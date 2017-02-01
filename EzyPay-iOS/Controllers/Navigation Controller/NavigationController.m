@@ -28,7 +28,7 @@
     /*Payment Controller*/
     navController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"NavPaymentController"];
     navController.tabBarItem.title = NSLocalizedString(@"scannerTitle", nil);
-    navController.tabBarItem.image =  [UIImage imageNamed:@"ic_scanner"];;
+    navController.tabBarItem.image =  [[UIImage imageNamed:@"ic_scanner"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     [controller setObject:navController forKey:@"controller"];
     [controllers addObject:controller];
@@ -36,7 +36,7 @@
     /*History Controller*/
     navController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"NavHistoryController"];
     navController.tabBarItem.title = NSLocalizedString(@"historyTitle", nil);;
-    navController.tabBarItem.image =  [UIImage imageNamed:@"ic_payment_history"];;
+    navController.tabBarItem.image =  [[UIImage imageNamed:@"ic_payment_history"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     controller = [NSMutableDictionary dictionary];
     [controller setObject:navController forKey:@"controller"];
@@ -45,7 +45,7 @@
     /*Settings Controller*/
     navController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"NavSettingsController"];
     navController.tabBarItem.title = NSLocalizedString(@"settingsTitle", nil);;
-    navController.tabBarItem.image =  [UIImage imageNamed:@"ic_settings"];;
+    navController.tabBarItem.image =  [[UIImage imageNamed:@"ic_settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     controller = [NSMutableDictionary dictionary];
     [controller setObject:navController forKey:@"controller"];

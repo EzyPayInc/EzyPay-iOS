@@ -14,7 +14,7 @@
 #import "Connection.h"
 #import "CoreDataManager.h"
 
-@interface SettingsTableViewController ()<SettingsCellDelegate>
+@interface SettingsTableViewController ()<SettingsCellDelegate, ProfileImageViewDelegate>
 
 @property (nonatomic, strong)User *user;
 
@@ -56,6 +56,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.row == 0){
         ProfileImageTableViewCell *cell = (ProfileImageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"profileImageCell"];
+        cell.delegate = self;
         cell.profileImageView.image = [UIImage imageNamed:@"profileImage"];
         cell.userInteractionEnabled = self.isEditableMode;
         return cell;
@@ -69,7 +70,7 @@
                 cell.cellType = NameCell;
                 break;
             case LastNameCell:
-                cell.detailLabel.text = @"Lastname";
+                cell.detailLabel.text = @"Last Name";
                 cell.txtValue.text = self.user.lastName;
                 cell.cellType = LastNameCell;
                 break;
@@ -102,7 +103,7 @@
 
 #pragma mark - actions
 - (void)addNavigationBarButtons {
-    UIImage *cardListImage = [UIImage imageNamed:@"ic_add_card"];
+    UIImage *cardListImage = [[UIImage imageNamed:@"ic_credit_card"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIBarButtonItem *cardButton = [[UIBarButtonItem alloc] initWithImage:cardListImage style:UIBarButtonItemStyleDone target:self action:@selector(showCardList:)];
     UIBarButtonItem *optionsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showOptions:)];
     self.navigationItem.rightBarButtonItem = nil;
@@ -124,7 +125,7 @@
     UIAlertAction *logOutAction = [UIAlertAction actionWithTitle:@"Log Out" style:UIAlertActionStyleDefault handler:nil];
     [alertController addAction:editAction];
     [alertController addAction:logOutAction];
-    
+    alertController.disablesAutomaticKeyboardDismissal = NO;
     [self.navigationController presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -180,6 +181,13 @@
             break;
         default:
             break;
+    }
+}
+
+#pragma mark - ProfileImageViewDelegate
+- (void)imageViewDidTap:(UIImageView *)imageView {
+    if(self.isEditableMode) {
+        
     }
 }
 

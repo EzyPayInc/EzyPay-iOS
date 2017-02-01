@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"Restaurant";
     self.btnBill.layer.cornerRadius = 25;
     self.btnBill.layer.borderWidth = 1;
     self.btnBill.layer.borderColor = [[UIColor colorWithRed:(0/255.0) green:(120/255.0) blue:(255/255.0) alpha:1] CGColor];

@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "blackberry-qr-code-variant-2.png",
+      "filename" : "Icono_Scanner_28_IOS.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "blackberry-qr-code-variant-3.png",
+      "filename" : "Icono_Scanner_46_IOS.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "blackberry-qr-code-variant-4.png",
+      "filename" : "Icono_scanner_84_IOS.png",
       "scale" : "3x"
     }
   ],

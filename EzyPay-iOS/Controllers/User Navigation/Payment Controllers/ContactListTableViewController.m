@@ -24,6 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"Friends";
     self.contactsArray = [NSArray array];
     self.contactsChecked = [NSMutableArray array];
     self.user = [UserManager getUser];

@@ -18,7 +18,7 @@
 @implementation UserServiceClient
 
 //constans
-static NSString *const BASE_URL = @"http:192.168.1.103:3000/";
+static NSString *const BASE_URL = @"http:192.168.1.105:3000/";
 static NSString *const USER_URL = @"user/";
 static NSString *const CLIENT_ID  = @"ceWZ_4G8CjQZy7,8";
 static NSString *const SECRET_KEY = @"9F=_wPs^;W]=Hqf!3e^)ZpdR;MUym+";
@@ -79,8 +79,6 @@ static NSString *const SECRET_KEY = @"9F=_wPs^;W]=Hqf!3e^)ZpdR;MUym+";
     NSDictionary *postArray = @{@"phoneNumbers": phoneNumbers};
     NSData *body = [NSJSONSerialization dataWithJSONObject:postArray options:0 error:nil];
     request.HTTPBody = body;
-    NSString *str = [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding];
-    NSLog(@"Body: %@ ",str);
     request.HTTPMethod = @"POST";
     [request addValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"Authorization"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];

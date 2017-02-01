@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"Split";
     self.user = [UserManager getUser];
 }
 
@@ -61,7 +62,7 @@
             return @"Me";
             break;
         case 1:
-            return @"Contacts";
+            return @"Friends";
             break;
         case 2:
             return @"Payment";

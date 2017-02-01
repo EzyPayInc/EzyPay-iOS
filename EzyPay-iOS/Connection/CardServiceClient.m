@@ -18,7 +18,7 @@
 
 @implementation CardServiceClient
 
-static NSString *const BASE_URL = @"http:192.168.1.103:3000/";
+static NSString *const BASE_URL = @"http:192.168.1.105:3000/";
 static NSString *const CARD_URL = @"card/";
 
 - (instancetype)init
