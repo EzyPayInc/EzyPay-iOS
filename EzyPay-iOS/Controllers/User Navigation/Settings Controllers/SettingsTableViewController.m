@@ -48,8 +48,8 @@
     return 5;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return indexPath.row == 0? 200.f:44.f;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {    
+    return indexPath.row == 0 ? 250.f : 44.f;
 }
 
 

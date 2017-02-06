@@ -20,7 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [self setupNavigationBar];
-    [self setupTabBar];
+    //[self setupTabBar];
     User *user= [UserManager getUser];
     if(user && user.token) {
         NavigationController *navigationController = [NavigationController sharedInstance];
@@ -56,10 +56,12 @@
 
 #pragma mark - setup controls appearence
 - (void)setupNavigationBar {
-    [[UINavigationBar appearance] setBarTintColor:[UIColor grayColor]];
-    [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    //[[UIBarButtonItem appearance] setTintColor:[UIColor blackColor]];
+    UIColor *color = [UIColor colorWithRed:105.0f/255.0f
+                                     green:105.0f/255.0f
+                                      blue:105.0f/255.0f
+                                     alpha:1.0f];
+    [[UINavigationBar appearance] setTintColor:color];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:color}];
 }
 
 - (void)setupTabBar {

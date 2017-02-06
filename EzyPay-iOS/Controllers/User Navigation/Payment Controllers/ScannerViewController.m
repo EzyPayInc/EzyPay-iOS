@@ -16,6 +16,9 @@
 @interface ScannerViewController ()<BarcodeScannerDelegate>
 
 @property (nonatomic, strong) User *user;
+@property (weak, nonatomic) IBOutlet UIButton *scannerButton;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
+
 
 @end
 
@@ -23,7 +26,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = NSLocalizedString(@"scannerTitle", nil);
+    self.scannerButton.layer.cornerRadius = self.scannerButton.frame.size.width / 2;
+    self.containerView.layer.cornerRadius = self.containerView.frame.size.width / 2;
+    self.navigationItem.title = @"EzyPay";
     self.user = [UserManager getUser];
 }
 
