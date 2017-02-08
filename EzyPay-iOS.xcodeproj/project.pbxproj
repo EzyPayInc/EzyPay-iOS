@@ -45,6 +45,7 @@
 		80F88F541E21775D00941E11 /* ProfileImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F88F531E21775D00941E11 /* ProfileImageTableViewCell.m */; };
 		80F88F581E21F15600941E11 /* SplitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F88F571E21F15600941E11 /* SplitTableViewCell.m */; };
 		80F88F5B1E21F2E600941E11 /* SplitTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F88F5A1E21F2E600941E11 /* SplitTableViewController.m */; };
+		80FD06571E4AEAA600D3FA38 /* UIColor+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FD06561E4AEAA600D3FA38 /* UIColor+UIColor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +143,8 @@
 		80F88F571E21F15600941E11 /* SplitTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitTableViewCell.m; sourceTree = "<group>"; };
 		80F88F591E21F2E600941E11 /* SplitTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitTableViewController.h; sourceTree = "<group>"; };
 		80F88F5A1E21F2E600941E11 /* SplitTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitTableViewController.m; sourceTree = "<group>"; };
+		80FD06551E4AEAA600D3FA38 /* UIColor+UIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+UIColor.h"; sourceTree = "<group>"; };
+		80FD06561E4AEAA600D3FA38 /* UIColor+UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+UIColor.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,6 +287,8 @@
 			children = (
 				802C03AD1DF47C14001370E2 /* NSString+String.h */,
 				802C03AE1DF47C14001370E2 /* NSString+String.m */,
+				80FD06551E4AEAA600D3FA38 /* UIColor+UIColor.h */,
+				80FD06561E4AEAA600D3FA38 /* UIColor+UIColor.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -551,6 +556,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				804CEEE21DED5A630078BB54 /* UserManager.m in Sources */,
+				80FD06571E4AEAA600D3FA38 /* UIColor+UIColor.m in Sources */,
 				8030CB071DC1A54A006C0070 /* LoginViewController.m in Sources */,
 				804CEEAB1DED3C9E0078BB54 /* GeneralServiceClient.m in Sources */,
 				80F88F541E21775D00941E11 /* ProfileImageTableViewCell.m in Sources */,

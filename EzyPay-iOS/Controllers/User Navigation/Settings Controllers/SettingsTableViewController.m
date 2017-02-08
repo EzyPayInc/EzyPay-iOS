@@ -13,6 +13,7 @@
 #import "SettingsTableViewCell.h"
 #import "Connection.h"
 #import "CoreDataManager.h"
+#import "UIColor+UIColor.h"
 
 @interface SettingsTableViewController ()<SettingsCellDelegate, ProfileImageViewDelegate>
 
@@ -28,6 +29,7 @@
     [super viewDidLoad];
     self.isEditableMode = NO;
     self.navigationItem.title = NSLocalizedString(@"settingsTitle", nil);
+    self.tableView.backgroundColor = [UIColor grayBackgroundViewColor];
     self.user = [UserManager getUser];
     [self addNavigationBarButtons];
     
@@ -123,8 +125,10 @@
         [self editAction];
     }];
     UIAlertAction *logOutAction = [UIAlertAction actionWithTitle:@"Log Out" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
     [alertController addAction:editAction];
     [alertController addAction:logOutAction];
+    [alertController addAction:cancelAction];
     alertController.disablesAutomaticKeyboardDismissal = NO;
     [self.navigationController presentViewController:alertController animated:YES completion:nil];
 }

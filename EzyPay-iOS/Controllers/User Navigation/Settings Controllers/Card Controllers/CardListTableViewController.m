@@ -10,6 +10,7 @@
 #import "CardManager.h"
 #import "UserManager.h"
 #import "CardDetailViewController.h"
+#import "UIColor+UIColor.h"
 
 @interface CardListTableViewController ()
 
@@ -24,6 +25,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"Payment";
     self.user = [UserManager getUser];
+    self.tableView.backgroundColor = [UIColor grayBackgroundViewColor];
     [self displayRightBarButton];
 
 }
@@ -55,6 +57,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.cards.count;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    [header.textLabel setTextColor:[UIColor whiteColor]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

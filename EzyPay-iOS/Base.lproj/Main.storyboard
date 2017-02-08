@@ -178,7 +178,7 @@
                                 </state>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.32156862745098036" green="0.32156862745098036" blue="0.32156862745098036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="yrG-m5-cEL" firstAttribute="leading" secondItem="ZJt-d9-3aP" secondAttribute="leadingMargin" constant="177" id="3mD-fH-abi"/>
                             <constraint firstItem="WbJ-u0-uve" firstAttribute="leading" secondItem="ZJt-d9-3aP" secondAttribute="leadingMargin" id="7SM-XJ-5Z0"/>
@@ -765,7 +765,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.32156862745098036" green="0.32156862745098036" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cardCell" id="dAX-VG-xlK">
                                 <rect key="frame" x="0.0" y="56" width="320" height="44"/>

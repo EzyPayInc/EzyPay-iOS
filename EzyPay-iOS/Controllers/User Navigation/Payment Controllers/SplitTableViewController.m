@@ -9,6 +9,7 @@
 #import "SplitTableViewController.h"
 #import "SplitTableViewCell.h"
 #import "UserManager.h"
+#import "UIColor+UIColor.h"
 
 @interface SplitTableViewController ()
 
@@ -21,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Split";
+    self.tableView.backgroundColor = [UIColor grayBackgroundViewColor];
     self.user = [UserManager getUser];
 }
 
@@ -74,6 +76,11 @@
     return @"";
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    [header.textLabel setTextColor:[UIColor whiteColor]];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0) {
