@@ -68,8 +68,8 @@
 }
 
 - (void)moveView:(CGRect) newFrame {
-    [UIView animateWithDuration:0.5
-                          delay:0.1
+    [UIView animateWithDuration:0.1
+                          delay:0
                         options: UIViewAnimationOptionCurveEaseIn
                      animations:^{
                          self.view.frame = newFrame;
@@ -83,6 +83,7 @@
 }
 
 - (IBAction)loginAction:(id)sender {
+    [self.view endEditing:YES];
     NSString *email = self.txtEmail.text;
     NSString *password = self.txtPassword.text;
     
