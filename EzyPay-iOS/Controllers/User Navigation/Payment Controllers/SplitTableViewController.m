@@ -10,6 +10,7 @@
 #import "SplitTableViewCell.h"
 #import "UserManager.h"
 #import "UIColor+UIColor.h"
+#import "PaymentViewController.h"
 
 @interface SplitTableViewController ()
 
@@ -108,6 +109,12 @@
         }
         return cell;
     }
+}
+
+#pragma mark - events
+- (IBAction)navigateToPayment:(id)sender {
+    PaymentViewController *viewController = (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewController"];
+    [self.navigationController pushViewController:viewController animated:true];
 }
 
 @end

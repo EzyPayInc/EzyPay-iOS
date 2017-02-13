@@ -41,6 +41,8 @@
 		80EFEBA31DB8552900D874E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80EFEBA11DB8552900D874E2 /* LaunchScreen.storyboard */; };
 		80EFEBAE1DB8552900D874E2 /* EzyPay_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EFEBAD1DB8552900D874E2 /* EzyPay_iOSTests.m */; };
 		80EFEBB91DB8552900D874E2 /* EzyPay_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EFEBB81DB8552900D874E2 /* EzyPay_iOSUITests.m */; };
+		80F36E6F1E5157F5009A8CE7 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F36E6E1E5157F5009A8CE7 /* PaymentViewController.m */; };
+		80F36E721E516A7A009A8CE7 /* PaymentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F36E711E516A7A009A8CE7 /* PaymentTableViewCell.m */; };
 		80F602AD1E14B63B0030F7C5 /* CardListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F602AC1E14B63B0030F7C5 /* CardListTableViewController.m */; };
 		80F700641E1B540600946CFD /* RestaurantDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F700631E1B540600946CFD /* RestaurantDetailViewController.m */; };
 		80F700671E1B645E00946CFD /* ContactListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F700661E1B645E00946CFD /* ContactListTableViewController.m */; };
@@ -137,6 +139,10 @@
 		80EFEBB41DB8552900D874E2 /* EzyPay-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EzyPay-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80EFEBB81DB8552900D874E2 /* EzyPay_iOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EzyPay_iOSUITests.m; sourceTree = "<group>"; };
 		80EFEBBA1DB8552900D874E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80F36E6D1E5157F5009A8CE7 /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
+		80F36E6E1E5157F5009A8CE7 /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
+		80F36E701E516A7A009A8CE7 /* PaymentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentTableViewCell.h; sourceTree = "<group>"; };
+		80F36E711E516A7A009A8CE7 /* PaymentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentTableViewCell.m; sourceTree = "<group>"; };
 		80F602AB1E14B63B0030F7C5 /* CardListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardListTableViewController.h; sourceTree = "<group>"; };
 		80F602AC1E14B63B0030F7C5 /* CardListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardListTableViewController.m; sourceTree = "<group>"; };
 		80F700621E1B540600946CFD /* RestaurantDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantDetailViewController.h; sourceTree = "<group>"; };
@@ -256,6 +262,8 @@
 				80F700661E1B645E00946CFD /* ContactListTableViewController.m */,
 				80F88F591E21F2E600941E11 /* SplitTableViewController.h */,
 				80F88F5A1E21F2E600941E11 /* SplitTableViewController.m */,
+				80F36E6D1E5157F5009A8CE7 /* PaymentViewController.h */,
+				80F36E6E1E5157F5009A8CE7 /* PaymentViewController.m */,
 			);
 			path = "Payment Controllers";
 			sourceTree = "<group>";
@@ -436,6 +444,8 @@
 			children = (
 				80F88F561E21F15600941E11 /* SplitTableViewCell.h */,
 				80F88F571E21F15600941E11 /* SplitTableViewCell.m */,
+				80F36E701E516A7A009A8CE7 /* PaymentTableViewCell.h */,
+				80F36E711E516A7A009A8CE7 /* PaymentTableViewCell.m */,
 			);
 			path = "Prototype Cells";
 			sourceTree = "<group>";
@@ -600,7 +610,9 @@
 				801D0C2E1DF13ED50079F9AB /* HistoryTableViewController.m in Sources */,
 				800829751E15875500D2C5F2 /* CardDetailViewController.m in Sources */,
 				80EFEB951DB8552900D874E2 /* main.m in Sources */,
+				80F36E6F1E5157F5009A8CE7 /* PaymentViewController.m in Sources */,
 				802C03AF1DF47C14001370E2 /* NSString+String.m in Sources */,
+				80F36E721E516A7A009A8CE7 /* PaymentTableViewCell.m in Sources */,
 				8071B4001DD2DF6F001D8761 /* CardServiceClient.m in Sources */,
 				80F602AD1E14B63B0030F7C5 /* CardListTableViewController.m in Sources */,
 				80F88F581E21F15600941E11 /* SplitTableViewCell.m in Sources */,
