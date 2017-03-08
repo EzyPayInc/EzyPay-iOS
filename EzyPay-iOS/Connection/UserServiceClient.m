@@ -17,11 +17,8 @@
 
 @implementation UserServiceClient
 
-//constans
-static NSString *const BASE_URL = @"http:192.168.1.105:3000/";
+//constants
 static NSString *const USER_URL = @"user/";
-static NSString *const CLIENT_ID  = @"ceWZ_4G8CjQZy7,8";
-static NSString *const SECRET_KEY = @"9F=_wPs^;W]=Hqf!3e^)ZpdR;MUym+";
 
 - (instancetype)init
 {
@@ -40,7 +37,7 @@ static NSString *const SECRET_KEY = @"9F=_wPs^;W]=Hqf!3e^)ZpdR;MUym+";
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
-    NSString *body = [NSString stringWithFormat:@"name=%@&lastName=%@&phoneNumber=%@&email=%@&password=%@", user.name, user.lastName, user.phoneNumber, user.email, user.password];
+    NSString *body = [NSString stringWithFormat:@"name=%@&lastName=%@&phoneNumber=%@&email=%@&password=%@&userType=%hd", user.name, user.lastName, user.phoneNumber, user.email, user.password, user.userType];
     request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
     request.HTTPMethod = @"POST";
     [request addValue:[NSString stringWithFormat:@"Basic %@",encodedString] forHTTPHeaderField:@"Authorization"];

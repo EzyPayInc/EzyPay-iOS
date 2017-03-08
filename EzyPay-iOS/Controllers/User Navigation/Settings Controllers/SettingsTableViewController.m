@@ -14,6 +14,7 @@
 #import "Connection.h"
 #import "CoreDataManager.h"
 #import "UIColor+UIColor.h"
+#import "InitialViewController.h"
 
 @interface SettingsTableViewController ()<SettingsCellDelegate, ProfileImageViewDelegate>
 
@@ -124,7 +125,9 @@
     UIAlertAction *editAction = [UIAlertAction actionWithTitle:@"Edit" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self editAction];
     }];
-    UIAlertAction *logOutAction = [UIAlertAction actionWithTitle:@"Log Out" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *logOutAction = [UIAlertAction actionWithTitle:@"Log Out" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self logOutAction];
+    }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
     [alertController addAction:editAction];
     [alertController addAction:logOutAction];
@@ -137,6 +140,12 @@
     self.isEditableMode = YES;
     [self addEditButtons];
     [self.tableView reloadData];
+}
+
+- (void)logOutAction {
+    [UserManager deleteUser];
+    InitialViewController *viewController = (InitialViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"InitialViewController"];
+    [self presentViewController:viewController animated:YES completion:nil];
 }
 
 - (void)addEditButtons {

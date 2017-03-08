@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 @interface SessionHandler : NSObject
 
+FOUNDATION_EXPORT NSString *const BASE_URL;
+FOUNDATION_EXPORT NSString *const CLIENT_ID;
+FOUNDATION_EXPORT NSString *const SECRET_KEY;
+
 - (void)sendRequestWithRequest:(NSURLRequest *)request successHandeler:(id)successHandler failureHandler:(id)failureHandler;
 
 @end

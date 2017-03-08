@@ -9,15 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 typedef enum {
-    RestaurantNavigation,
-    UserNavigation
+    UserNavigation = 1,
+    CommerceNavigation = 2
 }NavigationTypes;
 @interface NavigationController : NSObject
 
 @property (nonatomic, assign) NavigationTypes navigationType;
 
 + (NavigationController *)sharedInstance;
-- (void)presentTabBarController:(UIViewController *) controller;
-- (UITabBarController *)setupTabBarController;
+- (void)presentTabBarController:(UIViewController *) controller
+             withNavigationType:(NavigationTypes) navigationType;
+- (UITabBarController *)setupTabBarController:(NavigationTypes) navigationType;
 
 @end

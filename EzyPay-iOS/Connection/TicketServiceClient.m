@@ -18,11 +18,8 @@
 
 @implementation TicketServiceClient
 
-//constans
-static NSString *const BASE_URL = @"http:192.168.1.105:3000/";
+//constants
 static NSString *const TICKET_URL = @"ticket/";
-static NSString *const CLIENT_ID  = @"ceWZ_4G8CjQZy7,8";
-static NSString *const SECRET_KEY = @"9F=_wPs^;W]=Hqf!3e^)ZpdR;MUym+";
 
 - (instancetype)init
 {

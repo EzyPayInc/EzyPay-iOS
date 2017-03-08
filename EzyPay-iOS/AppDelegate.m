@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "UserManager.h"
 #import "NavigationController.h"
+#import "UIColor+UIColor.h"
 
 @interface AppDelegate ()
 
@@ -21,12 +22,12 @@
     // Override point for customization after application launch.
     [NSThread sleepForTimeInterval:2.0];
     [self setupNavigationBar];
-    //[self setupTabBar];
+    [self setupTabBar];
     User *user= [UserManager getUser];
     if(user && user.token) {
         NavigationController *navigationController = [NavigationController sharedInstance];
-        navigationController.navigationType = UserNavigation;
-        self.window.rootViewController = [navigationController setupTabBarController];
+        navigationController.navigationType = user.userType;
+        self.window.rootViewController = [navigationController setupTabBarController:user.userType];
         [self.window makeKeyAndVisible];
     }
     
@@ -66,15 +67,9 @@
 }
 
 - (void)setupTabBar {
-    [[UITabBar appearance] setBarTintColor:[UIColor grayColor]];
-    [[UITabBar appearance] setBackgroundColor:[UIColor blackColor]];
-    NSDictionary *attributesForNormalState = @{
-                                               NSForegroundColorAttributeName: [UIColor blackColor],
-                                               };
     NSDictionary *attributesForSelectedState = @{
-                                                 NSForegroundColorAttributeName: [UIColor whiteColor],
+                                                 NSForegroundColorAttributeName: [UIColor grayBackgroundViewColor]
                                                  };
-    [[UITabBarItem appearance] setTitleTextAttributes:attributesForNormalState forState: UIControlStateNormal];
     [[UITabBarItem appearance] setTitleTextAttributes:attributesForSelectedState forState: UIControlStateSelected];
 }
 

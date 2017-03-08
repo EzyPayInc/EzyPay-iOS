@@ -12,8 +12,9 @@
 #import "User+CoreDataClass.h"
 #import "CoreDataManager.h"
 #import "NSString+String.h"
+#import "NavigationController.h"
 
-@interface SignInUserViewController ()
+@interface SignInUserViewController ()<UITextFieldDelegate>
 
 /*UI fields*/
 @property (weak, nonatomic) IBOutlet UITextField *txtUserName;
@@ -21,11 +22,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtPhoneNumber;
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
-@property (weak, nonatomic) IBOutlet UILabel *labelNameError;
-@property (weak, nonatomic) IBOutlet UILabel *labelLastNameError;
-@property (weak, nonatomic) IBOutlet UILabel *labelPhoneNumberError;
-@property (weak, nonatomic) IBOutlet UILabel *labelEmailError;
-@property (weak, nonatomic) IBOutlet UILabel *labelPasswordError;
 
 @end
 
@@ -34,8 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = NSLocalizedString(@"signInTitle", nil);
-    UIBarButtonItem *refreshItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"signInNextAction", nil) style:UIBarButtonItemStylePlain target:self action:@selector(saveUser)];
-    self.navigationItem.rightBarButtonItem = refreshItem;
+    [self setTextFieldDelegate];
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,22 +39,39 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)saveUser {
-    if([self validateFields]) {
-        User *user = [CoreDataManager createEntityWithName:@"User"];
-        user.name = self.txtUserName.text;
-        user.lastName = self.txtLastname.text;
-        user.phoneNumber = self.txtPhoneNumber.text;
-        user.email = self.txtEmail.text;
-        user.password = self.txtPassword.text;
-        
-        SignInPaymentInformationControllerViewController *viewController = (SignInPaymentInformationControllerViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInPaymentInformationControllerViewController"];
-        viewController.user = user;
-        [self.navigationController pushViewController:viewController animated:true];
-    }
+- (void)setTextFieldDelegate {
+    self.txtUserName.delegate = self;
+    self.txtLastname.delegate = self;
+    self.txtPhoneNumber.delegate = self;
+    self.txtEmail.delegate = self;
+    self.txtPassword.delegate = self;
 }
 
-- (BOOL)validateFields {
+- (void)saveUser {
+    User *user = [CoreDataManager createEntityWithName:@"User"];
+    user.name = self.txtUserName.text;
+    user.lastName = self.txtLastname.text;
+    user.phoneNumber = self.txtPhoneNumber.text;
+    user.email = self.txtEmail.text;
+    user.userType = UserNavigation;
+    user.password = self.txtPassword.text;
+    
+    SignInPaymentInformationControllerViewController *viewController = (SignInPaymentInformationControllerViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInPaymentInformationControllerViewController"];
+    viewController.user = user;
+    [self.navigationController pushViewController:viewController animated:true];
+}
+
+#pragma mark - Textfield delegate
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (IBAction)saveAction:(id)sender {
+    [self saveUser];
+}
+
+/*- (BOOL)validateFields {
     if([self validateEmptyFields:self.txtUserName withLabel:self.labelNameError] &&
        [self validateEmptyFields:self.txtLastname withLabel:self.labelLastNameError] &&
        [self validateEmptyFields:self.txtPhoneNumber withLabel:self.labelPhoneNumberError] &&
@@ -100,6 +113,6 @@
         self.labelPasswordError.text = @"";
         return true;
     }
-}
+}*/
 
 @end

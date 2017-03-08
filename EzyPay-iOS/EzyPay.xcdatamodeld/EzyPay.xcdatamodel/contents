@@ -21,11 +21,12 @@
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Card" inverseName="user" inverseEntity="Card" syncable="YES"/>
     </entity>
     <elements>
         <element name="Card" positionX="-54" positionY="45" width="128" height="135"/>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="165"/>
         <element name="Ticket" positionX="-63" positionY="63" width="128" height="90"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="180"/>
     </elements>
 </model>

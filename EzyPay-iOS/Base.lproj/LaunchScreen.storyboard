@@ -20,11 +20,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchImage" translatesAutoresizingMaskIntoConstraints="NO" id="zf3-hU-0if">
-                                <rect key="frame" x="37.5" y="183.5" width="300" height="300"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_ezypay_logo" translatesAutoresizingMaskIntoConstraints="NO" id="zf3-hU-0if">
+                                <rect key="frame" x="137.5" y="283.5" width="100" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="Yt5-iQ-vHe"/>
-                                    <constraint firstAttribute="height" constant="300" id="kJQ-Pn-rpK"/>
+                                    <constraint firstAttribute="width" constant="100" id="diL-DJ-X6r"/>
+                                    <constraint firstAttribute="height" constant="100" id="fG6-Sg-4Hb"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -41,6 +41,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launchImage" width="564" height="494"/>
+        <image name="ic_ezypay_logo" width="250" height="250"/>
     </resources>
 </document>

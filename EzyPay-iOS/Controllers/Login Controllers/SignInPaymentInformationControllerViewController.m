@@ -15,15 +15,12 @@
 #import "CoreDataManager.h"
 #import "NavigationController.h"
 
-@interface SignInPaymentInformationControllerViewController ()<UITextFieldDelegate, UIPopoverPresentationControllerDelegate, DropDownActionsDelegate>
+@interface SignInPaymentInformationControllerViewController ()<UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *txtCardnumber;
+@property (weak, nonatomic) IBOutlet UITextField *txtCardNumber;
 @property (strong, nonatomic) IBOutlet UITextField *txtCvv;
-@property (weak, nonatomic) IBOutlet UITextField *txtMonth;
-@property (strong, nonatomic) IBOutlet UITextField *txtYear;
+@property (weak, nonatomic) IBOutlet UITextField *txtExpirationDate;
 
-@property (nonatomic, strong) NSArray *arrayMonths;
-@property (nonatomic, strong) NSArray *arrayYears;
 @end
 
 @implementation SignInPaymentInformationControllerViewController
@@ -31,85 +28,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = NSLocalizedString(@"signInTitle", nil);
-    [self setupDropDowns];
+    self.txtExpirationDate.delegate = self;
+    self.txtCardNumber.delegate = self;
+    self.txtCvv.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-- (NSArray *)arrayMonths {
-    if(_arrayMonths) return _arrayMonths;
-    
-    _arrayMonths = [NSArray arrayWithObjects:
-                    NSLocalizedString(@"januaryMonth", nil), NSLocalizedString(@"februaryMonth", nil), NSLocalizedString(@"marchMonth", nil), NSLocalizedString(@"aprilMonth", nil), NSLocalizedString(@"mayMonth", nil), NSLocalizedString(@"juneMonth", nil), NSLocalizedString(@"julyMonth", nil), NSLocalizedString(@"augustMonth", nil), NSLocalizedString(@"septemberMonth", nil), NSLocalizedString(@"octoberMonth", nil), NSLocalizedString(@"novemberMonth", nil), NSLocalizedString(@"decemberMonth", nil), nil];
-    return _arrayMonths;
-}
-
-- (int16_t )getMonth:(NSString *)value {
-    int16_t month = 0;
-    for (NSString *monthName in self.arrayMonths) {
-        month = month + 1;
-        if([monthName isEqualToString:value]) {
-            return month;
-        }
-    }
-    return month;
-}
-
-- (NSArray *)arrayYears {
-    if(_arrayYears) return _arrayYears;
-    
-    NSDate *currentDate = [NSDate date];
-    NSCalendar* calendar = [NSCalendar currentCalendar];
-    NSDateComponents* components = [calendar components:NSCalendarUnitYear fromDate:currentDate]; // Get necessary date components
-    
-    NSInteger year = [components year];
-    NSInteger index;
-    NSMutableArray *temporalYears = [NSMutableArray array];
-    for (index = year; index <= year + 10; index++) {
-        [temporalYears addObject: [NSString stringWithFormat: @"%ld", (long)index]];
-    }
-    
-    _arrayYears = temporalYears;
-    return _arrayYears;
-    
-}
-
-
-- (void)setupDropDowns {
-    self.txtMonth.delegate = self;
-    self.txtYear.delegate = self;
-    self.txtMonth.rightViewMode = UITextFieldViewModeAlways;
-    self.txtYear.rightViewMode = UITextFieldViewModeAlways;
-    self.txtMonth.rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"dropDownIcon"]];
-    self.txtYear.rightView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"dropDownIcon"]];
-}
-
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    DropDownTableViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"DropDownTableViewController"];
-    controller.textfield = textField;
-    controller.delegate = self;
-    if([textField isEqual:self.txtMonth]){
-        controller.sourceData = self.arrayMonths;
-    } else {
-        controller.sourceData = self.arrayYears;
-    }
-    
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
-    navigationController.modalPresentationStyle =UIModalPresentationPopover;
-    navigationController.preferredContentSize = CGSizeMake(320, 280);
-    navigationController.popoverPresentationController.delegate = self;
-    navigationController.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
-    
-    navigationController.popoverPresentationController.sourceView = textField;
-    navigationController.popoverPresentationController.sourceRect = textField.bounds;
-    
-    [self presentViewController:navigationController animated:YES completion:nil];
-    return NO;
-}
 
 - (IBAction)registerUser:(id)sender {
     [self saveUser];
@@ -132,6 +59,7 @@
         NSDictionary *accessToken = [response valueForKey:@"access_token"];
         NSString *token = [accessToken valueForKey:@"value"];
         self.user.token = token;
+        self.user.id = [[accessToken valueForKey:@"userId"] integerValue];
         [self saveCard];
     } failureHandler:^(id response) {
         NSLog(@"Error: %@", response);
@@ -140,22 +68,81 @@
 
 - (void)saveCard {
     Card *card = [CoreDataManager createEntityWithName:@"Card"];
-    card.number = self.txtCardnumber.text;
+    card.number = [self.txtCardNumber.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     card.cvv = [self.txtCvv.text integerValue];
-    card.month = [self getMonth:self.txtMonth.text];
-    card.year = [self.txtYear.text integerValue];
+    NSString *expirationDate = self.txtExpirationDate.text;
+    card.month = [[[expirationDate componentsSeparatedByString:@"/"] objectAtIndex:0] integerValue];
+    card.year = [[[expirationDate componentsSeparatedByString:@"/"] objectAtIndex:1] integerValue];
     card.user = self.user;
     CardManager *manager = [[CardManager alloc] init];
     [manager registerCard:card token:self.user.token successHandler:^(id response) {
         [self.user addCardsObject:card];
         [CoreDataManager saveContext];
         NavigationController *navigationController = [NavigationController sharedInstance];
-        navigationController.navigationType = UserNavigation;
-        [navigationController presentTabBarController:self];
+        navigationController.navigationType = self.user.userType;
+        [navigationController presentTabBarController:self withNavigationType:self.user.userType];
     } failureHandler:^(id response) {
         NSLog(@"Error: %@", response);
     }];
 }
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if([textField isEqual:self.txtExpirationDate]){
+        return [self validateExpirationDate:textField string:string];
+    } else if ([textField isEqual:self.txtCvv]) {
+        return [self validateCvvValue:textField string:string];
+    } else if ([textField isEqual:self.txtCardNumber]){
+        return [self validateCardNumberValue:textField string:string];
+    }
+    return YES;
+}
+
+- (BOOL)validateExpirationDate:(UITextField *)textField string:(NSString *)string {
+    NSString *expirationDate = [textField.text stringByAppendingString:string];
+    if(expirationDate.length == 2 && string.length > 0) {
+        textField.text = [expirationDate stringByAppendingString:@"/"];
+        return NO;
+    }
+    
+    if(expirationDate.length > 5) {
+        return NO;
+    }
+    if(expirationDate.length == 1) {
+        NSInteger dateToNumber = [expirationDate integerValue];
+        if(dateToNumber > 1) {
+            self.txtExpirationDate.text = [NSString stringWithFormat:@"0%@/",expirationDate];
+            return NO;
+        }
+    }
+    return YES;
+}
+
+- (BOOL)validateCvvValue:(UITextField *)textField string:(NSString *)string {
+    NSString *cvvString = [textField.text stringByAppendingString:string];
+    return cvvString.length > 3? NO : YES;
+}
+
+- (BOOL)validateCardNumberValue:(UITextField *)textField string:(NSString *)string {
+    NSString *cardNumber = [textField.text stringByAppendingString:string];
+    if (cardNumber.length < 20){
+        if([cardNumber stringByReplacingOccurrencesOfString:@" " withString:@""].length % 4 == 0 && string.length > 0){
+            textField.text = [cardNumber stringByAppendingString:@" "];
+            return NO;
+        }
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)isNumeric:(NSString *)string {
+    NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+    NSNumber* number = [numberFormatter numberFromString:string];
+    if (number != nil) {
+        return YES;
+    }
+    return NO;
+}
+
 
 - (void)showServerMessage:(NSString *)message {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:message preferredStyle:UIAlertControllerStyleAlert];
@@ -163,17 +150,6 @@
         [alert dismissViewControllerAnimated:YES completion:nil];
     }]];
     [self presentViewController:alert animated:YES completion:nil];
-}
-
-- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller {
-    
-    return UIModalPresentationNone;
-}
-
-
-- (void) didOptionSelected:(NSDictionary *)option inTextField:(UITextField *)textfield{
-    [self dismissViewControllerAnimated:YES completion:nil];
-    textfield.text = [option valueForKey:@"value"];
 }
 
 @end

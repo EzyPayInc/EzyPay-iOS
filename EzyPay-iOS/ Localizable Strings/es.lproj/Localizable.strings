@@ -11,6 +11,7 @@ scannerTitle = "Scanner";
 historyTitle = "Historial";
 cardsTitle = "Tarjetas";
 settingsTitle = "Configuración";
+tableTitle = "Mesas";
 logInTitle = "Log In";
 signInTitle = "Registrarse";
 

@@ -10,6 +10,7 @@
 #import "NavigationController.h"
 #import "LoginViewController.h"
 #import "UIColor+UIColor.h"
+#import "ChooseViewController.h"
 
 @interface InitialViewController ()
 
@@ -46,14 +47,20 @@
 }
 
 - (IBAction)signInAsRestaurant:(id)sender {
-    [self navigateToLogIn:RestaurantNavigation];
+    [self navigateToChooseView];
 }
 
 
 - (void)navigateToLogIn:(NavigationTypes) navigationType
 {
-    UINavigationController *viewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
-    [self presentViewController:viewController animated:YES completion:NULL];
+    UINavigationController *navigationController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
+    [self presentViewController:navigationController animated:YES completion:NULL];
+}
+
+-( void)navigateToChooseView
+{
+    UINavigationController *navigationController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInNavigationViewController"];
+    [self presentViewController:navigationController animated:YES completion:NULL];
 }
 
 @end

@@ -20,6 +20,7 @@
     user.email = [userDictionary objectForKey:@"email"];
     user.lastName = [userDictionary objectForKey:@"lastName"];
     user.phoneNumber = [userDictionary objectForKey:@"phoneNumber"];
+    user.userType = [[userDictionary objectForKey:@"userType"] integerValue];
     return user;
 }
 
@@ -43,9 +44,15 @@
         user.email = [userDictionary objectForKey:@"email"];
         user.lastName = [userDictionary objectForKey:@"lastName"];
         user.phoneNumber = [userDictionary objectForKey:@"phoneNumber"];
+        user.userType = [[userDictionary objectForKey:@"userType"] integerValue];
         [users addObject:user];
     }
     return users;
+}
+
++ (void)deleteUser
+{
+    [CoreDataManager deleteDataFromEntity:@"User"];
 }
 
 #pragma mark - Web Services

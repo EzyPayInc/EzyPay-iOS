@@ -32,6 +32,8 @@
 		806BF0691DC85C8100AD97CB /* UserServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 806BF0681DC85C8100AD97CB /* UserServiceClient.m */; };
 		8071B3FD1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8071B3FC1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.m */; };
 		8071B4001DD2DF6F001D8761 /* CardServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8071B3FF1DD2DF6F001D8761 /* CardServiceClient.m */; };
+		809788641E613D80001F30F9 /* TableCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 809788631E613D80001F30F9 /* TableCollectionViewController.m */; };
+		809788681E61526C001F30F9 /* TableCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 809788671E61526C001F30F9 /* TableCollectionViewCell.m */; };
 		80CFE8AB1E1F65D000DE276C /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CFE8AA1E1F65D000DE276C /* SettingsTableViewController.m */; };
 		80E171741E4C1CE400C099F5 /* HistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E171731E4C1CE400C099F5 /* HistoryTableViewCell.m */; };
 		80EFEB951DB8552900D874E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EFEB941DB8552900D874E2 /* main.m */; };
@@ -46,10 +48,16 @@
 		80F602AD1E14B63B0030F7C5 /* CardListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F602AC1E14B63B0030F7C5 /* CardListTableViewController.m */; };
 		80F700641E1B540600946CFD /* RestaurantDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F700631E1B540600946CFD /* RestaurantDetailViewController.m */; };
 		80F700671E1B645E00946CFD /* ContactListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F700661E1B645E00946CFD /* ContactListTableViewController.m */; };
+		80F760CB1E6FCB1500178608 /* SignInCommerceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F760CA1E6FCB1500178608 /* SignInCommerceViewController.m */; };
 		80F88F541E21775D00941E11 /* ProfileImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F88F531E21775D00941E11 /* ProfileImageTableViewCell.m */; };
 		80F88F581E21F15600941E11 /* SplitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F88F571E21F15600941E11 /* SplitTableViewCell.m */; };
 		80F88F5B1E21F2E600941E11 /* SplitTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F88F5A1E21F2E600941E11 /* SplitTableViewController.m */; };
 		80FD06571E4AEAA600D3FA38 /* UIColor+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FD06561E4AEAA600D3FA38 /* UIColor+UIColor.m */; };
+		80FD2DD81E6E9AEE003E1A80 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80FD2DD71E6E9AEE003E1A80 /* FBSDKLoginKit.framework */; };
+		80FD2DD91E6E9AEE003E1A80 /* FBSDKLoginKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 80FD2DD71E6E9AEE003E1A80 /* FBSDKLoginKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		80FD2DDC1E6E9BC7003E1A80 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80FD2DDB1E6E9BC7003E1A80 /* FBSDKCoreKit.framework */; };
+		80FD2DDD1E6E9BC7003E1A80 /* FBSDKCoreKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 80FD2DDB1E6E9BC7003E1A80 /* FBSDKCoreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		80FDEB361E6D23E500DD4F06 /* ChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FDEB351E6D23E500DD4F06 /* ChooseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +76,21 @@
 			remoteInfo = "EzyPay-iOS";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		80FD2DDA1E6E9AEE003E1A80 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				80FD2DD91E6E9AEE003E1A80 /* FBSDKLoginKit.framework in Embed Frameworks */,
+				80FD2DDD1E6E9BC7003E1A80 /* FBSDKCoreKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		80016E4C1E1C943100D4658D /* BarcodeScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarcodeScannerViewController.h; sourceTree = "<group>"; };
@@ -121,6 +144,10 @@
 		8071B3FC1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInPaymentInformationControllerViewController.m; sourceTree = "<group>"; };
 		8071B3FE1DD2DF6F001D8761 /* CardServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardServiceClient.h; sourceTree = "<group>"; };
 		8071B3FF1DD2DF6F001D8761 /* CardServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardServiceClient.m; sourceTree = "<group>"; };
+		809788621E613D80001F30F9 /* TableCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCollectionViewController.h; sourceTree = "<group>"; };
+		809788631E613D80001F30F9 /* TableCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCollectionViewController.m; sourceTree = "<group>"; };
+		809788661E61526C001F30F9 /* TableCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCollectionViewCell.h; sourceTree = "<group>"; };
+		809788671E61526C001F30F9 /* TableCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCollectionViewCell.m; sourceTree = "<group>"; };
 		80CFE8A91E1F65D000DE276C /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		80CFE8AA1E1F65D000DE276C /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		80E171721E4C1CE400C099F5 /* HistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewCell.h; sourceTree = "<group>"; };
@@ -149,6 +176,8 @@
 		80F700631E1B540600946CFD /* RestaurantDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantDetailViewController.m; sourceTree = "<group>"; };
 		80F700651E1B645E00946CFD /* ContactListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListTableViewController.h; sourceTree = "<group>"; };
 		80F700661E1B645E00946CFD /* ContactListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactListTableViewController.m; sourceTree = "<group>"; };
+		80F760C91E6FCB1500178608 /* SignInCommerceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInCommerceViewController.h; sourceTree = "<group>"; };
+		80F760CA1E6FCB1500178608 /* SignInCommerceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInCommerceViewController.m; sourceTree = "<group>"; };
 		80F88F521E21775D00941E11 /* ProfileImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileImageTableViewCell.h; sourceTree = "<group>"; };
 		80F88F531E21775D00941E11 /* ProfileImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileImageTableViewCell.m; sourceTree = "<group>"; };
 		80F88F561E21F15600941E11 /* SplitTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitTableViewCell.h; sourceTree = "<group>"; };
@@ -157,6 +186,10 @@
 		80F88F5A1E21F2E600941E11 /* SplitTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitTableViewController.m; sourceTree = "<group>"; };
 		80FD06551E4AEAA600D3FA38 /* UIColor+UIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+UIColor.h"; sourceTree = "<group>"; };
 		80FD06561E4AEAA600D3FA38 /* UIColor+UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+UIColor.m"; sourceTree = "<group>"; };
+		80FD2DD71E6E9AEE003E1A80 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		80FD2DDB1E6E9BC7003E1A80 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		80FDEB341E6D23E500DD4F06 /* ChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseViewController.h; sourceTree = "<group>"; };
+		80FDEB351E6D23E500DD4F06 /* ChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +197,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80FD2DD81E6E9AEE003E1A80 /* FBSDKLoginKit.framework in Frameworks */,
+				80FD2DDC1E6E9BC7003E1A80 /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +239,10 @@
 				8071B3FC1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.m */,
 				8015518F1E4FA8ED0013F3E6 /* InitialViewController.h */,
 				801551901E4FA8ED0013F3E6 /* InitialViewController.m */,
+				80FDEB341E6D23E500DD4F06 /* ChooseViewController.h */,
+				80FDEB351E6D23E500DD4F06 /* ChooseViewController.m */,
+				80F760C91E6FCB1500178608 /* SignInCommerceViewController.h */,
+				80F760CA1E6FCB1500178608 /* SignInCommerceViewController.m */,
 			);
 			path = "Login Controllers";
 			sourceTree = "<group>";
@@ -322,6 +361,7 @@
 		8030CB011DC1889E006C0070 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				809788611E613D14001F30F9 /* Restaurant Navigation */,
 				80016E4B1E1C93C800D4658D /* Scanner Controller */,
 				801D3C781DEE62DB00C8845D /* User Navigation */,
 				804CEEDC1DED54870078BB54 /* Navigation Controller */,
@@ -353,6 +393,26 @@
 			path = "Navigation Controller";
 			sourceTree = "<group>";
 		};
+		809788611E613D14001F30F9 /* Restaurant Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				809788651E615209001F30F9 /* Prototype Cells */,
+				809788621E613D80001F30F9 /* TableCollectionViewController.h */,
+				809788631E613D80001F30F9 /* TableCollectionViewController.m */,
+			);
+			name = "Restaurant Navigation";
+			path = "Restaurant Controller";
+			sourceTree = "<group>";
+		};
+		809788651E615209001F30F9 /* Prototype Cells */ = {
+			isa = PBXGroup;
+			children = (
+				809788661E61526C001F30F9 /* TableCollectionViewCell.h */,
+				809788671E61526C001F30F9 /* TableCollectionViewCell.m */,
+			);
+			path = "Prototype Cells";
+			sourceTree = "<group>";
+		};
 		80E171711E4C1C2B00C099F5 /* Prototype Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,6 +425,8 @@
 		80EFEB871DB8552900D874E2 = {
 			isa = PBXGroup;
 			children = (
+				80FD2DDB1E6E9BC7003E1A80 /* FBSDKCoreKit.framework */,
+				80FD2DD71E6E9AEE003E1A80 /* FBSDKLoginKit.framework */,
 				80EFEB921DB8552900D874E2 /* EzyPay-iOS */,
 				80EFEBAC1DB8552900D874E2 /* EzyPay-iOSTests */,
 				80EFEBB71DB8552900D874E2 /* EzyPay-iOSUITests */,
@@ -460,6 +522,7 @@
 				80EFEB8C1DB8552900D874E2 /* Sources */,
 				80EFEB8D1DB8552900D874E2 /* Frameworks */,
 				80EFEB8E1DB8552900D874E2 /* Resources */,
+				80FD2DDA1E6E9AEE003E1A80 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -608,10 +671,14 @@
 				802D5FFA1DD573CF000478F0 /* DropDownTableViewController.m in Sources */,
 				804CEE811DED242C0078BB54 /* EzyPay.xcdatamodeld in Sources */,
 				801D0C2E1DF13ED50079F9AB /* HistoryTableViewController.m in Sources */,
+				80FDEB361E6D23E500DD4F06 /* ChooseViewController.m in Sources */,
+				809788641E613D80001F30F9 /* TableCollectionViewController.m in Sources */,
+				80F760CB1E6FCB1500178608 /* SignInCommerceViewController.m in Sources */,
 				800829751E15875500D2C5F2 /* CardDetailViewController.m in Sources */,
 				80EFEB951DB8552900D874E2 /* main.m in Sources */,
 				80F36E6F1E5157F5009A8CE7 /* PaymentViewController.m in Sources */,
 				802C03AF1DF47C14001370E2 /* NSString+String.m in Sources */,
+				809788681E61526C001F30F9 /* TableCollectionViewCell.m in Sources */,
 				80F36E721E516A7A009A8CE7 /* PaymentTableViewCell.m in Sources */,
 				8071B4001DD2DF6F001D8761 /* CardServiceClient.m in Sources */,
 				80F602AD1E14B63B0030F7C5 /* CardListTableViewController.m in Sources */,
@@ -781,6 +848,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = S85ZPM9T23;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "EzyPay-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -794,6 +865,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = S85ZPM9T23;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "EzyPay-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

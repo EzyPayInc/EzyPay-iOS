@@ -54,15 +54,56 @@
     return controllers;
 }
 
-- (void)presentTabBarController:(UIViewController *) controller {
-     UITabBarController *tabBarController = [self setupTabBarController];
+- (NSArray *)controllersForRestaurantNavigation {
+    NSMutableArray *controllers = [NSMutableArray array];
+    NSMutableDictionary *controller = [NSMutableDictionary dictionary];
+    UINavigationController *navController;
+    
+    /*Tables Controller*/
+    navController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"TablesNavigationController"];
+    navController.tabBarItem.title = NSLocalizedString(@"tableTitle", nil);
+    navController.tabBarItem.image =  [[UIImage imageNamed:@"ic_scanner"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    [controller setObject:navController forKey:@"controller"];
+    [controllers addObject:controller];
+    
+    /*History Controller*/
+    navController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"NavHistoryController"];
+    navController.tabBarItem.title = NSLocalizedString(@"historyTitle", nil);;
+    navController.tabBarItem.image =  [[UIImage imageNamed:@"ic_payment_history"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    controller = [NSMutableDictionary dictionary];
+    [controller setObject:navController forKey:@"controller"];
+    [controllers addObject:controller];
+    
+    /*Settings Controller*/
+    navController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"NavSettingsController"];
+    navController.tabBarItem.title = NSLocalizedString(@"settingsTitle", nil);;
+    navController.tabBarItem.image =  [[UIImage imageNamed:@"ic_settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    controller = [NSMutableDictionary dictionary];
+    [controller setObject:navController forKey:@"controller"];
+    [controllers addObject:controller];
+    
+    return controllers;
+}
+
+
+- (void)presentTabBarController:(UIViewController *) controller
+             withNavigationType:(NavigationTypes) navigationType {
+    UITabBarController *tabBarController = [self setupTabBarController:navigationType];
     [controller presentViewController:tabBarController animated:YES completion:NULL];
 }
 
-- (UITabBarController *)setupTabBarController {
+- (UITabBarController *)setupTabBarController:(NavigationTypes) navigationType {
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    NSArray *controllers = [[self controllersForUserNavigation] valueForKey:@"controller"];
-    [tabBarController setViewControllers:controllers animated:NO];
+    if(navigationType == UserNavigation) {
+        NSArray *controllers = [[self controllersForUserNavigation] valueForKey:@"controller"];
+        [tabBarController setViewControllers:controllers animated:NO];
+    } else {
+        NSArray *controllers = [[self controllersForRestaurantNavigation] valueForKey:@"controller"];
+        [tabBarController setViewControllers:controllers animated:NO];
+    }
     return tabBarController;
 
 }

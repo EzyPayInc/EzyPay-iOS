@@ -13,8 +13,8 @@
 #import "UserServiceClient.h"
 #import "UserManager.h"
 #import "User+CoreDataClass.h"
-#import "NavigationController.h"
 #import "CoreDataManager.h"
+#import "NavigationController.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
@@ -31,6 +31,7 @@
     self.navigationItem.title = NSLocalizedString(@"logInTitle", nil);
     self.txtPassword.delegate = self;
     self.txtEmail.delegate = self;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -77,11 +78,6 @@
                      completion:nil];
 }
 
-- (IBAction)showSignInView:(id)sender {
-    SignInUserViewController *signInUserViewController = (SignInUserViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInUserViewController"];
-    [self.navigationController pushViewController:signInUserViewController animated:true];
-}
-
 - (IBAction)loginAction:(id)sender {
     [self.view endEditing:YES];
     NSString *email = self.txtEmail.text;
@@ -107,8 +103,7 @@
         user.token = token;
         [CoreDataManager saveContext];
         NavigationController *navigationController = [NavigationController sharedInstance];
-        navigationController.navigationType = UserNavigation;
-        [navigationController presentTabBarController:self];
+        [navigationController presentTabBarController:self withNavigationType:user.userType];
     } failureHandler:^(id response) {
         NSLog(@"%@", response);
     }];

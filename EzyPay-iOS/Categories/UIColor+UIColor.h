@@ -12,5 +12,6 @@
 
 
 + (UIColor *)grayBackgroundViewColor;
++ (UIColor *)ezypayGreenColor;
 
 @end

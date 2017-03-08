@@ -9,6 +9,7 @@ scannerTitle = "Scanner";
 historyTitle = "History";
 cardsTitle = "Cards";
 settingsTitle = "Settings";
+tableTitle = "Tables";
 logInTitle = "Log In";
 signInTitle = "Sign In";
 

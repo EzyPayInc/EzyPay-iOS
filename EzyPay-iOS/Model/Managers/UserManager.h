@@ -15,6 +15,7 @@
 #pragma mark - Core Data
 + (User *)userFromDictionary:(NSDictionary *)userDictionary;
 + (User *)getUser;
++ (void)deleteUser;
 + (NSArray *)usersFromArray:(NSArray *)usersArray;
 
 #pragma mark - Web Services
