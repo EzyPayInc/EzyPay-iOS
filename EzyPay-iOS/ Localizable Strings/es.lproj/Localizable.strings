@@ -36,3 +36,6 @@ signInNextAction = "Siguiente";
 errorFieldRequired = "Este campo es obligatorio";
 errorEmailInvalid = "Email invalido";
 errorPasswordInvalid = "Contraseña demasiado corta";
+
+/*labels*/
+tableLabel = "Mesa";

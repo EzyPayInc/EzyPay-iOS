@@ -29,21 +29,23 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-    <key>CFBundleURLTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>fb1650095188625982</string>
-            </array>
-        </dict>
-    </array>
-    <key>FacebookAppID</key>
-    <string>1650095188625982</string>
-    <key>FacebookDisplayName</key>
-    <string>EzyPay</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb1650095188625982</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>1650095188625982</string>
+	<key>FacebookDisplayName</key>
+	<string>EzyPay</string>
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) needs to use the camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs to use the Photo Library</string>
 	<key>NSContactsUsageDescription</key>
 	<string>$(PRODUCT_NAME) needs to use contacts</string>
 	<key>UILaunchStoryboardName</key>

@@ -15,7 +15,6 @@
 #pragma mark - Coredata methods
 + (Ticket *)ticketFromDictionary:(NSDictionary *)ticketDictionary {
     Ticket *ticket = [CoreDataManager createEntityWithName:@"Ticket"];
-    ticket.ticketId = [[ticketDictionary objectForKey:@"ticketId"] integerValue];
     ticket.restaurantId = [[ticketDictionary objectForKey:@"restaurantId"] integerValue];
     ticket.tableId = [[ticketDictionary objectForKey:@"tableId"] integerValue];
     return ticket;

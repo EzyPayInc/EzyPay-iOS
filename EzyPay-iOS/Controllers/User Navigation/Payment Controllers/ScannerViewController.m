@@ -35,8 +35,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     Ticket *ticket = [TicketManager getTicket];
-    if (ticket) {
-        [self showRestaurantDetail:ticket];
+    if (ticket.ticketId > 0) {
+       [self showRestaurantDetail:ticket];
     }
 }
 
@@ -64,6 +64,8 @@
     Ticket *ticket = [TicketManager ticketFromDictionary:ticketDictionary];
     TicketManager *manager = [[TicketManager alloc] init];
     [manager registerTicket:ticket token:self.user.token successHandler:^(id response) {
+        NSLog(@"Response: %@", response);
+        ticket.ticketId = [[response objectForKey:@"id"] integerValue];
         [CoreDataManager saveContext];
         [self showRestaurantDetail:ticket];
     } failureHandler:^(id response) {

@@ -15,12 +15,14 @@
 #import "CoreDataManager.h"
 #import "UIColor+UIColor.h"
 #import "InitialViewController.h"
+#import "NavigationController.h"
 
-@interface SettingsTableViewController ()<SettingsCellDelegate, ProfileImageViewDelegate>
+@interface SettingsTableViewController ()<SettingsCellDelegate, ProfileImageViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong)User *user;
 
 @property (nonatomic, assign) BOOL isEditableMode;
+@property (nonatomic, strong) UIImageView *profileImageView;
 
 @end
 
@@ -48,7 +50,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return self.user.userType == UserNavigation ? 5 : 4;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {    
@@ -61,38 +63,14 @@
         ProfileImageTableViewCell *cell = (ProfileImageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"profileImageCell"];
         cell.delegate = self;
         cell.profileImageView.image = [UIImage imageNamed:@"profileImage"];
+        self.profileImageView = cell.profileImageView;
         cell.userInteractionEnabled = self.isEditableMode;
         return cell;
         
     } else {
-        SettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"settingsCell"];
-        switch (indexPath.row) {
-            case NameCell:
-                cell.detailLabel.text = @"Name";
-                cell.txtValue.text = self.user.name;
-                cell.cellType = NameCell;
-                break;
-            case LastNameCell:
-                cell.detailLabel.text = @"Last Name";
-                cell.txtValue.text = self.user.lastName;
-                cell.cellType = LastNameCell;
-                break;
-            case PhoneNumberCell:
-                cell.detailLabel.text = @"Phone Number";
-                cell.txtValue.text = self.user.phoneNumber;
-                cell.cellType = PhoneNumberCell;
-                break;
-            case EmailCell:
-                cell.detailLabel.text = @"Email";
-                cell.txtValue.text = self.user.email;
-                cell.cellType = EmailCell;
-                break;
-            default:
-                break;
-        }
-        cell.delegate = self;
-        cell.userInteractionEnabled = self.isEditableMode;
-        return cell;
+        return self.user.userType == UserNavigation ?
+        [self tableView:tableView userCellForRowAtIndexPath:indexPath] :
+        [self tableView:tableView commerceCellForRowAtIndexPath:indexPath];
     }
 }
 
@@ -105,6 +83,61 @@
 
 
 #pragma mark - actions
+-(UITableViewCell *)tableView:(UITableView *)tableView userCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"settingsCell"];
+    switch (indexPath.row) {
+        case NameCell:
+            cell.detailLabel.text = @"Name";
+            cell.txtValue.text = self.user.name;
+            cell.cellType = NameCell;
+            break;
+        case LastNameCell:
+            cell.detailLabel.text = @"Last Name";
+            cell.txtValue.text = self.user.lastName;
+            cell.cellType = LastNameCell;
+            break;
+        case PhoneNumberCell:
+            cell.detailLabel.text = @"Phone Number";
+            cell.txtValue.text = self.user.phoneNumber;
+            cell.cellType = PhoneNumberCell;
+            break;
+        case EmailCell:
+            cell.detailLabel.text = @"Email";
+            cell.txtValue.text = self.user.email;
+            cell.cellType = EmailCell;
+            break;
+        default:
+            break;
+    }
+    cell.delegate = self;
+    cell.userInteractionEnabled = self.isEditableMode;
+    return cell;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView commerceCellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"settingsCell"];
+    if (indexPath.row == 1) {
+        cell.detailLabel.text = @"Name";
+        cell.txtValue.text = self.user.name;
+        cell.cellType = NameCell;
+    } else if(indexPath.row == 2) {
+        cell.detailLabel.text = @"Phone Number";
+        cell.txtValue.text = self.user.phoneNumber;
+        cell.cellType = PhoneNumberCell;
+    } else if(indexPath.row == 3) {
+        cell.detailLabel.text = @"Email";
+        cell.txtValue.text = self.user.email;
+        cell.cellType = EmailCell;
+    }
+    cell.delegate = self;
+    cell.userInteractionEnabled = self.isEditableMode;
+    return cell;
+}
+
+
+
 - (void)addNavigationBarButtons {
     UIImage *cardListImage = [[UIImage imageNamed:@"ic_credit_card"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UIBarButtonItem *cardButton = [[UIBarButtonItem alloc] initWithImage:cardListImage style:UIBarButtonItemStyleDone target:self action:@selector(showCardList:)];
@@ -165,9 +198,19 @@
         [CoreDataManager saveContext];
         [self.tableView reloadData];
         [self addNavigationBarButtons];
+        [self updateImage];
     } failureHandler:^(id response) {
         NSLog(@"Error: %@", response);
     }];
+}
+
+- (void)updateImage {
+    UserManager *manager = [[UserManager alloc] init];
+    [manager uploadUserImage: self.profileImageView.image User:self.user successHandler:^(id response) {
+         NSLog(@"%@", response);
+     } failureHandler:^(id response) {
+         NSLog(@"%@", response);
+     }];
 }
 
 - (void)cancelUpdateAction {
@@ -200,8 +243,52 @@
 #pragma mark - ProfileImageViewDelegate
 - (void)imageViewDidTap:(UIImageView *)imageView {
     if(self.isEditableMode) {
-        
+        [self imageOptions];
     }
+}
+
+
+#pragma mark - Gallery
+- (void)imageOptions {
+    UIAlertController  *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *editAction = [UIAlertAction actionWithTitle:@"Take Picture" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self takePicture];
+    }];
+    UIAlertAction *logOutAction = [UIAlertAction actionWithTitle:@"Open Gallery" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self openGallery];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:editAction];
+    [alertController addAction:logOutAction];
+    [alertController addAction:cancelAction];
+    alertController.disablesAutomaticKeyboardDismissal = NO;
+    [self.navigationController presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)openGallery{
+    UIImagePickerController *picker;
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:picker animated:YES completion:nil];
+    }
+}
+
+- (void)takePicture {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    self.profileImageView.image = image;
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

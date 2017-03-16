@@ -34,3 +34,7 @@ signInNextAction = "Next";
 errorFieldRequired = "This field is required";
 errorEmailInvalid = "This email address is invalid";
 errorPasswordInvalid = "This password is too short";
+
+
+/*labels*/
+tableLabel = "Table";

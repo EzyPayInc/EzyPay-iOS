@@ -2,17 +2,15 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "200x200 square.png",
+      "filename" : "static_qr_code_without_logo.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "400x400 square.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "600x600 square.png",
       "scale" : "3x"
     }
   ],

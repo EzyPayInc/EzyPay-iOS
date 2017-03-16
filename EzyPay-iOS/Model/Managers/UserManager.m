@@ -81,5 +81,10 @@
     [service validatePhoneNumbers:phoneNumbers token:token successHandler:successHandler failureHandler:failureHandler];
 }
 
+- (void)uploadUserImage:(UIImage *)image User:(User *)user successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
+    UserServiceClient *service = [[UserServiceClient alloc] init];
+    [service uploadUserImage:image User:user successHandler:successHandler failureHandler:failureHandler];
+}
+
 
 @end

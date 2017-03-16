@@ -8,12 +8,16 @@
 
 #import "RestaurantDetailViewController.h"
 #import "ContactListTableViewController.h"
+#import "UserManager.h"
 #import "TicketManager.h"
 
 @interface RestaurantDetailViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *btnBill;
 @property (weak, nonatomic) IBOutlet UIButton *btnWaiter;
+@property (weak, nonatomic) IBOutlet UILabel *lblCommerceName;
+
+@property (nonatomic, strong) User *user;
 
 @end
 
@@ -22,7 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Restaurant";
+    self.user = [UserManager getUser];
     [self addCancelButton];
+    [self getRestaurantInfo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,6 +37,16 @@
 }
 
 #pragma mark - actions
+
+- (void)getRestaurantInfo
+{
+    UserManager *manager = [[UserManager alloc] init];
+    [manager getUserFromServer:self.ticket.restaurantId token:self.user.token successHandler:^(id response) {
+        self.lblCommerceName.text = [[response objectForKey:@"name"] uppercaseString];
+    } failureHandler:^(id response) {
+        NSLog(@"%@", response);
+    }];
+}
 
 - (void)addCancelButton {
     UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(cancelAction)];
@@ -46,7 +62,4 @@
     ContactListTableViewController *tableViewController = (ContactListTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ContactListTableViewController"];
     [self.navigationController pushViewController:tableViewController animated:true];
 }
-
-
-
 @end

@@ -2,7 +2,7 @@
 //  TableCollectionViewController.h
 //  EzyPay-iOS
 //
-//  Created by Gustavo Quesada Sanchez on 2/24/17.
+//  Created by Gustavo Quesada Sanchez on 3/12/17.
 //  Copyright © 2017 EzyPay Inc. All rights reserved.
 //
 
