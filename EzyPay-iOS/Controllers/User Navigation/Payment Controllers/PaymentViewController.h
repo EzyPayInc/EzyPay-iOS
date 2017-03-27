@@ -10,4 +10,6 @@
 
 @interface PaymentViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, assign) NSArray *splitContacts;
+
 @end

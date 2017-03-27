@@ -40,6 +40,7 @@
         CoreDataManager *manager = [[CoreDataManager alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:manager.managedObjectContext];
         User *user = (User *)[[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:nil];
+        user.id = [[userDictionary objectForKey:@"id"] integerValue];
         user.name = [userDictionary objectForKey:@"name"];
         user.email = [userDictionary objectForKey:@"email"];
         user.lastName = [userDictionary objectForKey:@"lastName"];
@@ -84,6 +85,11 @@
 - (void)uploadUserImage:(UIImage *)image User:(User *)user successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
     UserServiceClient *service = [[UserServiceClient alloc] init];
     [service uploadUserImage:image User:user successHandler:successHandler failureHandler:failureHandler];
+}
+
+- (void)downloadImage:(int64_t)idUser toImageView:(UIImageView *)imageView defaultImage:(NSString *)defaultImage {
+    UserServiceClient *service = [[UserServiceClient alloc] init];
+    [service downloadImage:idUser toImageView:imageView defaultImage:defaultImage];
 }
 
 

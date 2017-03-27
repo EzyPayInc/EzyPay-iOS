@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnBill;
 @property (weak, nonatomic) IBOutlet UIButton *btnWaiter;
 @property (weak, nonatomic) IBOutlet UILabel *lblCommerceName;
+@property (weak, nonatomic) IBOutlet UIImageView *restaurantImageView;
 
 @property (nonatomic, strong) User *user;
 
@@ -43,6 +44,7 @@
     UserManager *manager = [[UserManager alloc] init];
     [manager getUserFromServer:self.ticket.restaurantId token:self.user.token successHandler:^(id response) {
         self.lblCommerceName.text = [[response objectForKey:@"name"] uppercaseString];
+        [self getImage];
     } failureHandler:^(id response) {
         NSLog(@"%@", response);
     }];
@@ -62,4 +64,13 @@
     ContactListTableViewController *tableViewController = (ContactListTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ContactListTableViewController"];
     [self.navigationController pushViewController:tableViewController animated:true];
 }
+
+
+- (void)getImage {
+    UserManager *manager = [[UserManager alloc] init];
+    [manager downloadImage:self.ticket.restaurantId
+               toImageView:self.restaurantImageView
+              defaultImage:@"restaurant"];
+}
+
 @end

@@ -89,6 +89,7 @@
         cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", self.user.name, self.user.lastName];
         cell.profileImageView.image = [UIImage imageNamed:@"profileImage"];
         cell.quantityLabel.text = @"$1000";
+        [self getImage:cell fromId:self.user.id];
         return cell;
 
     } else if (indexPath.section == 1) {
@@ -97,6 +98,7 @@
         cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", user.name, user.lastName];
         cell.profileImageView.image = [UIImage imageNamed:@"profileImage"];
         cell.quantityLabel.text = @"$1000";
+        [self getImage:cell fromId:user.id];
         return cell;
     } else {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"paymentCell" forIndexPath:indexPath];
@@ -111,9 +113,19 @@
     }
 }
 
+#pragma mark - Actions
+- (void)getImage: (SplitTableViewCell *)cell fromId:(int64_t )id {
+    UserManager *manager = [[UserManager alloc] init];
+    [manager downloadImage:id
+               toImageView:cell.profileImageView
+              defaultImage:@"profileImage"];
+}
+
+
 #pragma mark - events
 - (IBAction)navigateToPayment:(id)sender {
     PaymentViewController *viewController = (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewController"];
+    viewController.splitContacts = self.splitContacts;
     [self.navigationController pushViewController:viewController animated:true];
 }
 

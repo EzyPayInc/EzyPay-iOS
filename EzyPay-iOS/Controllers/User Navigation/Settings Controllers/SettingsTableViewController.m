@@ -16,6 +16,7 @@
 #import "UIColor+UIColor.h"
 #import "InitialViewController.h"
 #import "NavigationController.h"
+#import "SessionHandler.h"
 
 @interface SettingsTableViewController ()<SettingsCellDelegate, ProfileImageViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -62,7 +63,10 @@
     if(indexPath.row == 0){
         ProfileImageTableViewCell *cell = (ProfileImageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"profileImageCell"];
         cell.delegate = self;
-        cell.profileImageView.image = [UIImage imageNamed:@"profileImage"];
+        if(!self.isEditableMode) {
+            [self getImage];
+        }
+        
         self.profileImageView = cell.profileImageView;
         cell.userInteractionEnabled = self.isEditableMode;
         return cell;
@@ -205,12 +209,15 @@
 }
 
 - (void)updateImage {
-    UserManager *manager = [[UserManager alloc] init];
-    [manager uploadUserImage: self.profileImageView.image User:self.user successHandler:^(id response) {
-         NSLog(@"%@", response);
-     } failureHandler:^(id response) {
-         NSLog(@"%@", response);
-     }];
+    if(self.profileImageView.image != nil){
+        UserManager *manager = [[UserManager alloc] init];
+        [manager uploadUserImage: self.profileImageView.image User:self.user successHandler:^(id response) {
+            [self getImage];
+        } failureHandler:^(id response) {
+            NSLog(@"%@", response);
+        }];
+    }
+    
 }
 
 - (void)cancelUpdateAction {
@@ -289,6 +296,25 @@
     UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
     self.profileImageView.image = image;
     [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)getImage {
+    UserManager *manager = [[UserManager alloc] init];
+    [manager downloadImage:self.user.id
+               toImageView: self.profileImageView
+              defaultImage:@"profileImage"];
+   /* dispatch_async(dispatch_get_global_queue(0,0), ^{
+        NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@%lld",BASE_URL, @"user/downloadImage/", self.user.id]];
+        NSData *data = [[NSData alloc] initWithContentsOfURL:url];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if(data == nil) {
+                self.profileImageView.image = [UIImage imageNamed:@"profileImage"];
+            } else {
+                UIImage *image = [UIImage imageWithData: data];
+                self.profileImageView.image = image;
+            }
+        });
+    });*/
 }
 
 @end

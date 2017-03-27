@@ -12,5 +12,6 @@
 @interface QRPaymentViewController : UIViewController
 
 @property (nonatomic, strong) Table *table;
+@property (nonatomic, assign) CGFloat cost;
 
 @end

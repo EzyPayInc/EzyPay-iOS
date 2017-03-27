@@ -9,6 +9,7 @@
 #import "PaymentViewController.h"
 #import "UIColor+UIColor.h"
 #import "PaymentTableViewCell.h"
+#import "UserManager.h"
 
 @interface PaymentViewController ()
 
@@ -51,7 +52,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return [self.splitContacts count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -67,11 +68,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PaymentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"paymentCell" forIndexPath:indexPath];
-    cell.userNameLabel.text = @"Gustavo Quesada";
+    User *user = [self.splitContacts objectAtIndex:indexPath.row];
+    cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", user.name, user.lastName];
     cell.quantityLabel.text = @"$4000";
     cell.indicatorImageView.image = [UIImage imageNamed:@"ic_loading_spinner"];
+    [self getImage:cell fromUser:user.id];
     
     return  cell;
+}
+
+- (void)getImage:(PaymentTableViewCell *)cell fromUser:(int64_t)userId {
+    UserManager *manager = [[UserManager alloc] init];
+    [manager downloadImage:userId toImageView:cell.profileImageView defaultImage:@"profileImage"];
 }
 
 @end

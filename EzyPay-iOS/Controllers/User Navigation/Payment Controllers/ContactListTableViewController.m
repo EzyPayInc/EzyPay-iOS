@@ -47,18 +47,24 @@
     return [self.contactsArray count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60.f;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"contactsCell" forIndexPath:indexPath];
     User *user = [self.contactsArray objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", user.name, user.lastName];
     cell.imageView.image = [UIImage imageNamed:@"profileImage"];
+    cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width / 2;
+    cell.imageView.clipsToBounds = YES;
     if([self validatePhoneNumber:user.phoneNumber]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    
+    [self getImage:cell fromId:user.id];
     return cell;
 }
 
@@ -165,5 +171,11 @@
     }];
 }
 
+- (void)getImage: (UITableViewCell *)cell fromId:(int64_t )id {
+    UserManager *manager = [[UserManager alloc] init];
+    [manager downloadImage:id
+               toImageView:cell.imageView
+              defaultImage:@"profileImage"];
+}
 
 @end

@@ -113,6 +113,23 @@ static NSString *const USER_URL = @"user/";
     [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
 }
 
+- (void)downloadImage:(int64_t)idUser
+          toImageView:(UIImageView *)imageView
+         defaultImage:(NSString *)defaultImage {
+    dispatch_async(dispatch_get_global_queue(0,0), ^{
+        NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@%lld",BASE_URL, @"user/downloadImage/", idUser]];
+        NSData *data = [[NSData alloc] initWithContentsOfURL:url];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if(data == nil) {
+                imageView.image = [UIImage imageNamed:defaultImage];
+            } else {
+                UIImage *image = [UIImage imageWithData: data];
+                imageView.image = image;
+            }
+        });
+    });
+}
+
 
 - (NSString *)stringByBase64EncodingWithString:(NSString *)inString
 {

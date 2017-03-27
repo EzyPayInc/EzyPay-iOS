@@ -8,6 +8,15 @@
         <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="cards" inverseEntity="User" syncable="YES"/>
     </entity>
+    <entity name="Payment" representedClassName="Payment" syncable="YES" codeGenerationType="class">
+        <attribute name="cost" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isCanceled" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="paymentDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="tableNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="commerce" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="payments" inverseEntity="User" syncable="YES"/>
+        <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="payment" inverseEntity="User" syncable="YES"/>
+    </entity>
     <entity name="Table" representedClassName="Table" syncable="YES" codeGenerationType="class">
         <attribute name="tableId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="tableNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -28,12 +37,15 @@
         <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Card" inverseName="user" inverseEntity="Card" syncable="YES"/>
+        <relationship name="payment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Payment" inverseName="users" inverseEntity="Payment" syncable="YES"/>
+        <relationship name="payments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="commerce" inverseEntity="Payment" syncable="YES"/>
         <relationship name="tables" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Table" inverseName="restaurant" inverseEntity="Table" syncable="YES"/>
     </entity>
     <elements>
         <element name="Card" positionX="-54" positionY="45" width="128" height="135"/>
-        <element name="Ticket" positionX="-63" positionY="63" width="128" height="90"/>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="195"/>
         <element name="Table" positionX="-63" positionY="63" width="128" height="90"/>
+        <element name="Ticket" positionX="-63" positionY="63" width="128" height="90"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="225"/>
+        <element name="Payment" positionX="-54" positionY="63" width="128" height="150"/>
     </elements>
 </model>

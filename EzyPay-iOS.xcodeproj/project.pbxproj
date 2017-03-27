@@ -12,6 +12,7 @@
 		80016E571E1CC30B00D4658D /* TicketServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80016E561E1CC30B00D4658D /* TicketServiceClient.m */; };
 		800829751E15875500D2C5F2 /* CardDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 800829741E15875500D2C5F2 /* CardDetailViewController.m */; };
 		800859911E23312200E3451F /* SettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 800859901E23312200E3451F /* SettingsTableViewCell.m */; };
+		8012A6501E82429800FE5606 /* PaymentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8012A64F1E82429800FE5606 /* PaymentManager.m */; };
 		801551911E4FA8ED0013F3E6 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801551901E4FA8ED0013F3E6 /* InitialViewController.m */; };
 		801B252D1DD79B620039FB90 /* CompletionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 801B252C1DD79B620039FB90 /* CompletionHandler.m */; };
 		801BFA3A1E77A5950098F0DF /* QRPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801BFA391E77A5950098F0DF /* QRPaymentViewController.m */; };
@@ -107,6 +108,8 @@
 		800829741E15875500D2C5F2 /* CardDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardDetailViewController.m; sourceTree = "<group>"; };
 		8008598F1E23312200E3451F /* SettingsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewCell.h; sourceTree = "<group>"; };
 		800859901E23312200E3451F /* SettingsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewCell.m; sourceTree = "<group>"; };
+		8012A64E1E82429800FE5606 /* PaymentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentManager.h; sourceTree = "<group>"; };
+		8012A64F1E82429800FE5606 /* PaymentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentManager.m; sourceTree = "<group>"; };
 		8015518F1E4FA8ED0013F3E6 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
 		801551901E4FA8ED0013F3E6 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		801B252B1DD79B620039FB90 /* CompletionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionHandler.h; sourceTree = "<group>"; };
@@ -405,6 +408,8 @@
 				80016E531E1CBEDD00D4658D /* TicketManager.m */,
 				80E688D61E74DD250002CF76 /* TableManager.h */,
 				80E688D71E74DD250002CF76 /* TableManager.m */,
+				8012A64E1E82429800FE5606 /* PaymentManager.h */,
+				8012A64F1E82429800FE5606 /* PaymentManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -726,6 +731,7 @@
 				80016E541E1CBEDD00D4658D /* TicketManager.m in Sources */,
 				801BFA3A1E77A5950098F0DF /* QRPaymentViewController.m in Sources */,
 				801B252D1DD79B620039FB90 /* CompletionHandler.m in Sources */,
+				8012A6501E82429800FE5606 /* PaymentManager.m in Sources */,
 				80F88F5B1E21F2E600941E11 /* SplitTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
