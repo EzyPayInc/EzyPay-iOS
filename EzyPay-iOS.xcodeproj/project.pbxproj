@@ -58,10 +58,6 @@
 		80FCD2D11E763DE0009FC48D /* TableCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FCD2D01E763DE0009FC48D /* TableCollectionViewController.m */; };
 		80FCD2D71E763F9B009FC48D /* AddTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FCD2D61E763F9B009FC48D /* AddTableViewController.m */; };
 		80FD06571E4AEAA600D3FA38 /* UIColor+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FD06561E4AEAA600D3FA38 /* UIColor+UIColor.m */; };
-		80FD2DD81E6E9AEE003E1A80 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80FD2DD71E6E9AEE003E1A80 /* FBSDKLoginKit.framework */; };
-		80FD2DD91E6E9AEE003E1A80 /* FBSDKLoginKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 80FD2DD71E6E9AEE003E1A80 /* FBSDKLoginKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		80FD2DDC1E6E9BC7003E1A80 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80FD2DDB1E6E9BC7003E1A80 /* FBSDKCoreKit.framework */; };
-		80FD2DDD1E6E9BC7003E1A80 /* FBSDKCoreKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 80FD2DDB1E6E9BC7003E1A80 /* FBSDKCoreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		80FDEB361E6D23E500DD4F06 /* ChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FDEB351E6D23E500DD4F06 /* ChooseViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -81,21 +77,6 @@
 			remoteInfo = "EzyPay-iOS";
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		80FD2DDA1E6E9AEE003E1A80 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				80FD2DD91E6E9AEE003E1A80 /* FBSDKLoginKit.framework in Embed Frameworks */,
-				80FD2DDD1E6E9BC7003E1A80 /* FBSDKCoreKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		80016E4C1E1C943100D4658D /* BarcodeScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarcodeScannerViewController.h; sourceTree = "<group>"; };
@@ -201,8 +182,6 @@
 		80FCD2D61E763F9B009FC48D /* AddTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTableViewController.m; sourceTree = "<group>"; };
 		80FD06551E4AEAA600D3FA38 /* UIColor+UIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+UIColor.h"; sourceTree = "<group>"; };
 		80FD06561E4AEAA600D3FA38 /* UIColor+UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+UIColor.m"; sourceTree = "<group>"; };
-		80FD2DD71E6E9AEE003E1A80 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		80FD2DDB1E6E9BC7003E1A80 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		80FDEB341E6D23E500DD4F06 /* ChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseViewController.h; sourceTree = "<group>"; };
 		80FDEB351E6D23E500DD4F06 /* ChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -212,8 +191,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80FD2DD81E6E9AEE003E1A80 /* FBSDKLoginKit.framework in Frameworks */,
-				80FD2DDC1E6E9BC7003E1A80 /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,8 +432,6 @@
 		80EFEB871DB8552900D874E2 = {
 			isa = PBXGroup;
 			children = (
-				80FD2DDB1E6E9BC7003E1A80 /* FBSDKCoreKit.framework */,
-				80FD2DD71E6E9AEE003E1A80 /* FBSDKLoginKit.framework */,
 				80EFEB921DB8552900D874E2 /* EzyPay-iOS */,
 				80EFEBAC1DB8552900D874E2 /* EzyPay-iOSTests */,
 				80EFEBB71DB8552900D874E2 /* EzyPay-iOSUITests */,
@@ -563,7 +538,6 @@
 				80EFEB8C1DB8552900D874E2 /* Sources */,
 				80EFEB8D1DB8552900D874E2 /* Frameworks */,
 				80EFEB8E1DB8552900D874E2 /* Resources */,
-				80FD2DDA1E6E9AEE003E1A80 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
