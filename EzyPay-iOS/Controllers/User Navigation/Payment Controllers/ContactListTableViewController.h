@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Payment+CoreDataClass.h"
 
 @interface ContactListTableViewController : UITableViewController
+
+@property (nonatomic, strong) Payment *payment;
 
 @end

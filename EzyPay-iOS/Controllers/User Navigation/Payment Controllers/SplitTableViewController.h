@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Payment+CoreDataClass.h"
 
 @interface SplitTableViewController : UITableViewController
 
-@property (nonatomic, assign) NSArray *splitContacts;
+@property (nonatomic, strong) Payment *payment;
 
 @end

@@ -7,22 +7,48 @@
 //
 
 #import "PaymentManager.h"
-#import "Payment+CoreDataClass.h"
-#import "CoreDataManager.h"
 #import "User+CoreDataClass.h"
+#import "CoreDataManager.h"
+#import "PaymentServiceClient.h"
 
 @implementation PaymentManager
 
-+ (Payment *)ticketFromDictionary:(NSDictionary *)paymentDictionary {
+#pragma mark - CoreData Methods
++ (Payment *)paymentFromDictionary:(NSDictionary *)paymentDictionary {
     Payment *payment = [CoreDataManager createEntityWithName:@"Payment"];
-    CoreDataManager *manager = [[CoreDataManager alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:manager.managedObjectContext];
-    User *commerce = (User *)[[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:nil];
+    User *commerce = [CoreDataManager createEntityWithName:@"User"];
     commerce.id = [[paymentDictionary objectForKey:@"commerceId"] integerValue];
+    commerce.name = [paymentDictionary objectForKey:@"commerceName"];
     payment.commerce = commerce;
     payment.tableNumber = [[paymentDictionary objectForKey:@"tableId"] integerValue];
     payment.cost = [[paymentDictionary objectForKey:@"cost"] floatValue];
     return payment;
 }
+
++ (Payment *)getPayment {
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Payment"];
+    NSError *error;
+    NSArray *array = [[[CoreDataManager sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
+    if(!error && [array count] > 0){
+        return [array firstObject];
+    }
+    return nil;
+}
+
++ (void)deletePayment {
+    [CoreDataManager deleteDataFromEntity:@"Payment"];
+}
+
+#pragma mark - Web Service Methods
+- (void) registerPayment:(Payment *)payment user:(User *)user successHandler:(ConnectionSuccessHandler)successHandler failureHandler:(ConnectionErrorHandler) failureHandler {
+    PaymentServiceClient *service = [[PaymentServiceClient alloc] init];
+    [service registerPayment:payment user:user successHandler:successHandler failureHandler:failureHandler];
+}
+
+- (void) updatePayment:(Payment *)payment user:(User *)user successHandler:(ConnectionSuccessHandler)successHandler failureHandler:(ConnectionErrorHandler) failureHandler {
+    PaymentServiceClient *service = [[PaymentServiceClient alloc] init];
+    [service updatePayment:payment user:user successHandler:successHandler failureHandler:failureHandler];
+}
+
 
 @end

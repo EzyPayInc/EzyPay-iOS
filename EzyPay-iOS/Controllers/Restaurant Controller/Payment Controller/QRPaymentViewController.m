@@ -48,7 +48,7 @@
 }
 
 - (NSString *)generateQRInformation {
-    NSString *qRInformation = [NSString stringWithFormat:@"{\"commerceId\": %lld, \"tableNumber\": %lld, \"commerceName\": %@, \"cost\": %f }", self.table.restaurant.id, self.table.tableId, self.table.restaurant.name,self.cost];
+    NSString *qRInformation = [NSString stringWithFormat:@"{\"commerceId\": %lld, \"tableNumber\": %lld, \"commerceName\":\"%@\", \"cost\": %f }", self.table.restaurant.id, self.table.tableId, self.table.restaurant.name,self.cost];
     return qRInformation;
 }
 

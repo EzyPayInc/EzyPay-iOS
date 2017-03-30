@@ -10,6 +10,8 @@
 #import <Contacts/Contacts.h>
 #import "SplitTableViewController.h"
 #import "UserManager.h"
+#import "FriendManager.h"
+#import "CoreDataManager.h"
 
 @interface ContactListTableViewController () <UISearchBarDelegate>
 
@@ -89,7 +91,10 @@
 
 - (void)nextAction {
     SplitTableViewController *tableViewController = (SplitTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SplitTableViewController"];
-    tableViewController.splitContacts = self.contactsChecked;
+    NSArray *friends = [FriendManager friendsFromUserArray:self.contactsChecked];
+    self.payment.friends = [NSSet setWithArray:friends];
+    [CoreDataManager saveContext];
+    tableViewController.payment = self.payment;
     [self.navigationController pushViewController:tableViewController animated:true];
 }
 

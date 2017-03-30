@@ -626,12 +626,15 @@
                                             <color key="textColor" red="0.32156862745098036" green="0.32156862745098036" blue="0.32156862745098036" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="jMR-B0-dPv">
+                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="jMR-B0-dPv">
                                             <rect key="frame" x="91" y="34" width="317" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="wmW-ka-Fsz"/>
                                             </constraints>
                                             <color key="minimumTrackTintColor" red="0.32156862749999998" green="0.32156862749999998" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="ValueChanged:" destination="Cpd-v7-aPO" eventType="valueChanged" id="Xp7-JB-vw3"/>
+                                            </connections>
                                         </slider>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOi-93-ajx">
                                             <rect key="frame" x="93" y="79" width="313" height="0.0"/>

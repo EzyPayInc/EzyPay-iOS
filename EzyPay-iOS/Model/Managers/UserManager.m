@@ -26,8 +26,9 @@
 
 + (User *)getUser {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"token.length > 0"];
     NSError *error;
-    NSArray *array = [[[CoreDataManager sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
+    NSArray *array = [[[[CoreDataManager sharedInstance] managedObjectContext] executeFetchRequest:request error:&error] filteredArrayUsingPredicate:predicate];
     if(!error && [array count] > 0){
         return [array firstObject];
     }

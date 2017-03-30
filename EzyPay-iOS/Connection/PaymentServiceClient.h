@@ -1,25 +1,17 @@
 //
-//  PaymentManager.h
+//  PaymentServiceClient.h
 //  EzyPay-iOS
 //
-//  Created by Gustavo Quesada Sanchez on 3/21/17.
+//  Created by Gustavo Quesada Sanchez on 3/28/17.
 //  Copyright © 2017 EzyPay Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "Payment+CoreDataClass.h"
 #import "Connection.h"
 
-@class User;
-@interface PaymentManager : NSObject
+@class Payment, User;
+@interface PaymentServiceClient : NSObject
 
-#pragma mark - CoreData Methods
-+ (Payment *)paymentFromDictionary:(NSDictionary *)paymentDictionary;
-+ (Payment *)getPayment;
-+ (void)deletePayment;
-
-#pragma mark - Web Service Methods
 - (void) registerPayment:(Payment *)payment user:(User *)user successHandler:(ConnectionSuccessHandler)successHandler failureHandler:(ConnectionErrorHandler) failureHandler;
 - (void) updatePayment:(Payment *)payment user:(User *)user successHandler:(ConnectionSuccessHandler)successHandler failureHandler:(ConnectionErrorHandler) failureHandler;
-
 @end

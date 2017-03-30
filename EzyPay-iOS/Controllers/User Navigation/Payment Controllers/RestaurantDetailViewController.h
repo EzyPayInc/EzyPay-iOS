@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Ticket+CoreDataClass.h"
+#import "Payment+CoreDataClass.h"
 
 @interface RestaurantDetailViewController : UIViewController
 
-@property(nonatomic, strong) Ticket *ticket;
+@property(nonatomic, strong) Payment *payment;
 
 @end

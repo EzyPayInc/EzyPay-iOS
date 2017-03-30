@@ -9,7 +9,7 @@
 #import "ScannerViewController.h"
 #import "RestaurantDetailViewController.h"
 #import "BarcodeScannerViewController.h"
-#import "TicketManager.h"
+#import "PaymentManager.h"
 #import "UserManager.h"
 #import "CoreDataManager.h"
 
@@ -34,9 +34,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    Ticket *ticket = [TicketManager getTicket];
-    if (ticket.ticketId > 0) {
-       [self showRestaurantDetail:ticket];
+    Payment *payment = [PaymentManager getPayment];
+    if (payment.id > 0) {
+       [self showCommerceDetail:payment];
     }
 }
 
@@ -54,29 +54,29 @@
 - (void)barcodeScannerDidScanBarcode:(NSString *)barcodeString {
     NSError *error;
     NSData *data = [barcodeString dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *tickeData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    NSDictionary *paymentData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     if(error == nil) {
-        [self registerTicket:tickeData];
+        [self registerTicket:paymentData];
     }
 }
 
-- (void)registerTicket:(NSDictionary *)ticketDictionary {
-    Ticket *ticket = [TicketManager ticketFromDictionary:ticketDictionary];
-    TicketManager *manager = [[TicketManager alloc] init];
-    [manager registerTicket:ticket token:self.user.token successHandler:^(id response) {
+- (void)registerTicket:(NSDictionary *)paymentDictionary {
+    Payment *payment = [PaymentManager paymentFromDictionary:paymentDictionary];
+    PaymentManager *manager = [[PaymentManager alloc] init];
+    [manager registerPayment:payment user:self.user successHandler:^(id response) {
         NSLog(@"Response: %@", response);
-        ticket.ticketId = [[response objectForKey:@"id"] integerValue];
+        payment.id = [[response objectForKey:@"id"] integerValue];
         [CoreDataManager saveContext];
-        [self showRestaurantDetail:ticket];
+        [self showCommerceDetail:payment];
     } failureHandler:^(id response) {
-        NSLog(@"Register ticket request failed");
+        NSLog(@"Register payment request failed: %@", response);
     }];
     
 }
 
-- (void)showRestaurantDetail:(Ticket *)ticket {
+- (void)showCommerceDetail:(Payment *)payment {
     RestaurantDetailViewController *viewController = (RestaurantDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RestaurantDetailViewController"];
-    viewController.ticket = ticket;
+    viewController.payment = payment;
     [self.navigationController pushViewController:viewController animated:true];
 }
 

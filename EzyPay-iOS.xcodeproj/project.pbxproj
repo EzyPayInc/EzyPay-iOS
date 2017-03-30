@@ -26,6 +26,8 @@
 		802C03AF1DF47C14001370E2 /* NSString+String.m in Sources */ = {isa = PBXBuildFile; fileRef = 802C03AE1DF47C14001370E2 /* NSString+String.m */; };
 		802D5FFA1DD573CF000478F0 /* DropDownTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 802D5FF91DD573CF000478F0 /* DropDownTableViewController.m */; };
 		8030CB071DC1A54A006C0070 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8030CB061DC1A54A006C0070 /* LoginViewController.m */; };
+		80415C111E8B5CF1005696D3 /* PaymentServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80415C101E8B5CF1005696D3 /* PaymentServiceClient.m */; };
+		80415C141E8B7742005696D3 /* FriendManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80415C131E8B7742005696D3 /* FriendManager.m */; };
 		804CEE811DED242C0078BB54 /* EzyPay.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 804CEE7F1DED242C0078BB54 /* EzyPay.xcdatamodeld */; };
 		804CEEAB1DED3C9E0078BB54 /* GeneralServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 804CEEAA1DED3C9E0078BB54 /* GeneralServiceClient.m */; };
 		804CEEDF1DED54DB0078BB54 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 804CEEDE1DED54DB0078BB54 /* NavigationController.m */; };
@@ -119,6 +121,10 @@
 		802D5FF91DD573CF000478F0 /* DropDownTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropDownTableViewController.m; sourceTree = "<group>"; };
 		8030CB051DC1A54A006C0070 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		8030CB061DC1A54A006C0070 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		80415C0F1E8B5CF1005696D3 /* PaymentServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentServiceClient.h; sourceTree = "<group>"; };
+		80415C101E8B5CF1005696D3 /* PaymentServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentServiceClient.m; sourceTree = "<group>"; };
+		80415C121E8B7742005696D3 /* FriendManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendManager.h; sourceTree = "<group>"; };
+		80415C131E8B7742005696D3 /* FriendManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendManager.m; sourceTree = "<group>"; };
 		804CEE801DED242C0078BB54 /* EzyPay.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EzyPay.xcdatamodel; sourceTree = "<group>"; };
 		804CEEA91DED3C9E0078BB54 /* GeneralServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralServiceClient.h; sourceTree = "<group>"; };
 		804CEEAA1DED3C9E0078BB54 /* GeneralServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralServiceClient.m; sourceTree = "<group>"; };
@@ -337,6 +343,8 @@
 				80016E561E1CC30B00D4658D /* TicketServiceClient.m */,
 				80E688D21E74D88E0002CF76 /* TableServiceClient.h */,
 				80E688D31E74D88E0002CF76 /* TableServiceClient.m */,
+				80415C0F1E8B5CF1005696D3 /* PaymentServiceClient.h */,
+				80415C101E8B5CF1005696D3 /* PaymentServiceClient.m */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
@@ -387,6 +395,8 @@
 				80E688D71E74DD250002CF76 /* TableManager.m */,
 				8012A64E1E82429800FE5606 /* PaymentManager.h */,
 				8012A64F1E82429800FE5606 /* PaymentManager.m */,
+				80415C121E8B7742005696D3 /* FriendManager.h */,
+				80415C131E8B7742005696D3 /* FriendManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -687,6 +697,7 @@
 				80217A731DEFCFC60096DEF4 /* CardManager.m in Sources */,
 				802D5FFA1DD573CF000478F0 /* DropDownTableViewController.m in Sources */,
 				804CEE811DED242C0078BB54 /* EzyPay.xcdatamodeld in Sources */,
+				80415C111E8B5CF1005696D3 /* PaymentServiceClient.m in Sources */,
 				801D0C2E1DF13ED50079F9AB /* HistoryTableViewController.m in Sources */,
 				80FDEB361E6D23E500DD4F06 /* ChooseViewController.m in Sources */,
 				80F760CB1E6FCB1500178608 /* SignInCommerceViewController.m in Sources */,
@@ -705,6 +716,7 @@
 				80016E541E1CBEDD00D4658D /* TicketManager.m in Sources */,
 				801BFA3A1E77A5950098F0DF /* QRPaymentViewController.m in Sources */,
 				801B252D1DD79B620039FB90 /* CompletionHandler.m in Sources */,
+				80415C141E8B7742005696D3 /* FriendManager.m in Sources */,
 				8012A6501E82429800FE5606 /* PaymentManager.m in Sources */,
 				80F88F5B1E21F2E600941E11 /* SplitTableViewController.m in Sources */,
 			);

@@ -9,7 +9,8 @@
 #import "RestaurantDetailViewController.h"
 #import "ContactListTableViewController.h"
 #import "UserManager.h"
-#import "TicketManager.h"
+#import "PaymentManager.h"
+#import "CoreDataManager.h"
 
 @interface RestaurantDetailViewController ()
 
@@ -26,10 +27,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Restaurant";
+    self.navigationItem.title = @"Commerce";
+    self.lblCommerceName.text = self.payment.commerce.name;
     self.user = [UserManager getUser];
     [self addCancelButton];
-    [self getRestaurantInfo];
+    [self getImage];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,36 +41,34 @@
 
 #pragma mark - actions
 
-- (void)getRestaurantInfo
-{
-    UserManager *manager = [[UserManager alloc] init];
-    [manager getUserFromServer:self.ticket.restaurantId token:self.user.token successHandler:^(id response) {
-        self.lblCommerceName.text = [[response objectForKey:@"name"] uppercaseString];
-        [self getImage];
-    } failureHandler:^(id response) {
-        NSLog(@"%@", response);
-    }];
-}
-
 - (void)addCancelButton {
     UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(cancelAction)];
     self.navigationItem.leftBarButtonItem = leftBarButton;
 }
 
 - (void)cancelAction {
-    [TicketManager deleteTicket];
+    [PaymentManager deletePayment];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)payBill:(id)sender {
     ContactListTableViewController *tableViewController = (ContactListTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ContactListTableViewController"];
-    [self.navigationController pushViewController:tableViewController animated:true];
+    self.payment.cost = 150000;
+    self.payment.paymentDate = [NSDate date];
+    PaymentManager *manager = [[PaymentManager alloc] init];
+    [manager updatePayment:self.payment user:self.user successHandler:^(id response) {
+        [CoreDataManager saveContext];
+        tableViewController.payment = self.payment;
+        [self.navigationController pushViewController:tableViewController animated:true];
+    } failureHandler:^(id response) {
+        NSLog(@"%@", response);
+    }];
 }
 
 
 - (void)getImage {
     UserManager *manager = [[UserManager alloc] init];
-    [manager downloadImage:self.ticket.restaurantId
+    [manager downloadImage:self.payment.commerce.id
                toImageView:self.restaurantImageView
               defaultImage:@"restaurant"];
 }

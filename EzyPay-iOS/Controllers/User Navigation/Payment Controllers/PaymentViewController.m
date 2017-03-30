@@ -9,6 +9,7 @@
 #import "PaymentViewController.h"
 #import "UIColor+UIColor.h"
 #import "PaymentTableViewCell.h"
+#import "Friend+CoreDataClass.h"
 #import "UserManager.h"
 
 @interface PaymentViewController ()
@@ -52,7 +53,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.splitContacts count];
+    return [self.payment.friends count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -68,11 +69,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PaymentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"paymentCell" forIndexPath:indexPath];
-    User *user = [self.splitContacts objectAtIndex:indexPath.row];
-    cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", user.name, user.lastName];
-    cell.quantityLabel.text = @"$4000";
+    Friend *friend = [[self.payment.friends allObjects] objectAtIndex:indexPath.row];
+    cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", friend.name, friend.lastname];
+    cell.quantityLabel.text = [NSString stringWithFormat:@"%d", (int)friend.cost];
     cell.indicatorImageView.image = [UIImage imageNamed:@"ic_loading_spinner"];
-    [self getImage:cell fromUser:user.id];
+    [self getImage:cell fromUser:friend.id];
     
     return  cell;
 }
