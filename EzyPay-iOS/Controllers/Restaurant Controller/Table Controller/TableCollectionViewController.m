@@ -13,6 +13,7 @@
 #import "UserManager.h"
 #import "AddTableViewController.h"
 #import "QRPaymentViewController.h"
+#import "NavigationController.h"
 
 @interface TableCollectionViewController ()
 @property (nonatomic, strong)NSArray *tables;
@@ -25,8 +26,10 @@ static NSString * const reuseIdentifier = @"TableCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self displayRightBarButton];
     self.user = [UserManager getUser];
+    if(self.user.userType != EmployeeNavigation) {
+        [self displayRightBarButton];
+    }
     self.navigationItem.title = NSLocalizedString(@"tableTitle", nil);
     self.collectionView.backgroundColor = [UIColor grayBackgroundViewColor];
 }
@@ -71,38 +74,16 @@ static NSString * const reuseIdentifier = @"TableCell";
 }
 
 #pragma mark <UICollectionViewDelegate>
-
-/*
- // Uncomment this method to specify if the specified item should be highlighted during tracking
- - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
- }
- */
-
- // Uncomment this method to specify if the specified item should be selected
  - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
      return YES;
  }
 
-/*
- // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
- - (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
- }
- 
- - (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
- }
- 
- - (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
- }
- */
-
 #pragma mark Actions
 - (void)getTables {
     TableManager *manager = [[TableManager alloc] init];
-    [manager getTablesByRestaurantFromServer:self.user.id token:self.user.token successHandler:^(id response) {
+    int64_t userId = self.user.userType == EmployeeNavigation ?
+        [[self.userBoss objectForKey:@"id"] integerValue] : self.user.id;
+    [manager getTablesByRestaurantFromServer:userId token:self.user.token successHandler:^(id response) {
         self.tables = [TableManager geTablesFromArray:response withUser:self.user];
         [self.collectionView reloadData];
     } failureHandler:^(id response) {

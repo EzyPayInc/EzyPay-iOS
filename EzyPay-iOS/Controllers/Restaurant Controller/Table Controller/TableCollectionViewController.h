@@ -10,4 +10,6 @@
 
 @interface TableCollectionViewController : UICollectionViewController
 
+@property(nonatomic, strong)NSDictionary *userBoss;
+
 @end

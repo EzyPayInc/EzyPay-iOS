@@ -8,6 +8,7 @@
 
 #import "NavigationController.h"
 #import "CommerceDetailViewController.h"
+#import "TableCollectionViewController.h"
 
 @implementation NavigationController
 
@@ -136,6 +137,16 @@
         CommerceDetailViewController *viewController = [[navController viewControllers] firstObject];
         viewController.userBoss = userBoss;
         
+        [controller setObject:navController forKey:@"controller"];
+        [controllers addObject:controller];
+    } else {
+        /*Tables Controller*/
+        navController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"TablesNavigationController"];
+        navController.tabBarItem.title = NSLocalizedString(@"tableTitle", nil);
+        navController.tabBarItem.image =  [[UIImage imageNamed:@"ic_scanner"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        TableCollectionViewController *viewController = [[navController viewControllers] firstObject];
+        viewController.userBoss = userBoss;
+
         [controller setObject:navController forKey:@"controller"];
         [controllers addObject:controller];
     }
