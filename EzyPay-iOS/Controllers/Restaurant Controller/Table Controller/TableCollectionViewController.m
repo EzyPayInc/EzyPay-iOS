@@ -82,7 +82,7 @@ static NSString * const reuseIdentifier = @"TableCell";
 - (void)getTables {
     TableManager *manager = [[TableManager alloc] init];
     int64_t userId = self.user.userType == EmployeeNavigation ?
-        [[self.userBoss objectForKey:@"id"] integerValue] : self.user.id;
+        self.user.boss.id : self.user.id;
     [manager getTablesByRestaurantFromServer:userId token:self.user.token successHandler:^(id response) {
         self.tables = [TableManager geTablesFromArray:response withUser:self.user];
         [self.collectionView reloadData];
@@ -131,8 +131,9 @@ static NSString * const reuseIdentifier = @"TableCell";
 
 - (void) displayQrViewController:(Table *)table {
     QRPaymentViewController *viewController = (QRPaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"QRPaymentViewController"];
-    table.restaurant = self.user;
-    viewController.table = table;
+    viewController.tableNumber = table.tableNumber;
+    viewController.cost = 150000;
+    viewController.user = self.user.userType == EmployeeNavigation ? self.user.boss : self.user;
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

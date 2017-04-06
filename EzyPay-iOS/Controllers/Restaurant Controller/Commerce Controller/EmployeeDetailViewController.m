@@ -35,15 +35,13 @@
 
 #pragma mark - Actions
 - (IBAction)saveEmployee:(id)sender {
-    CoreDataManager *coreDataManager = [[CoreDataManager alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:coreDataManager.managedObjectContext];
-    User *employee = (User *)[[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:nil];
+    User *employee = [CoreDataManager createEntityWithName:@"User"];
     employee.name = self.txtName.text;
     employee.lastName = self.txtLastName.text;
     employee.email = self.txtEmail.text;
     employee.password = self.txtPassword.text;
     employee.userType = EmployeeNavigation;
-    employee.boss = self.user.id;
+    employee.boss = self.user;
     UserManager *manager = [[UserManager alloc] init];
     [manager registerUser:employee successHandler:^(id response) {
         [self.navigationController popViewControllerAnimated:true];

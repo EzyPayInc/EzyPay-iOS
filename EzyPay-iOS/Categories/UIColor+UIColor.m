@@ -13,10 +13,10 @@
 
 + (UIColor *)grayBackgroundViewColor
 {
-    return [UIColor colorWithRed:82.0f/255.0f
-                    green:82.0f/255.0f
-                     blue:82.0f/255.0f
-                    alpha:1.0f];
+    return [UIColor colorWithRed:102.0f/255.0f
+                           green:102.0f/255.0f
+                            blue:102.0f/255.0f
+                           alpha:1.0f];
 }
 
 + (UIColor *)ezypayGreenColor
@@ -27,7 +27,7 @@
                            alpha:1.0f];
 }
 
-+ (UIColor *)DarkGrayColor
++ (UIColor *)ezypayDarkGrayColor
 {
     return [UIColor colorWithRed:185.0f/255.0f
                            green:185.0f/255.0f

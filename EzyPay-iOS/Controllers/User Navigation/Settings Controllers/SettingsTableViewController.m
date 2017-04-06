@@ -145,8 +145,7 @@
     return cell;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView commerceCellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(UITableViewCell *)tableView:(UITableView *)tableView commerceCellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"settingsCell"];
     if (indexPath.row == 1) {
         cell.detailLabel.text = @"Name";

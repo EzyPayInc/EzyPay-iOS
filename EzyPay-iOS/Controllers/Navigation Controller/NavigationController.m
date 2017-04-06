@@ -123,20 +123,15 @@
     return controllers;
 }
 
-- (UITabBarController *)controllersForEmployee:(NSDictionary *)userBoss {
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    NSInteger userType = [[userBoss objectForKey:@"userType"] integerValue];
+- (NSArray *)controllersForEmployeeNavigation:(User *)user {
     NSMutableArray *controllers = [NSMutableArray array];
     NSMutableDictionary *controller = [NSMutableDictionary dictionary];
     UINavigationController *navController;
-    if(userType == CommerceNavigation) {
+    if(user.boss.userType == CommerceNavigation) {
         /*Commerce Controller*/
         navController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"NavCommerceController"];
         navController.tabBarItem.title = NSLocalizedString(@"commerceTitle", nil);
         navController.tabBarItem.image =  [[UIImage imageNamed:@"ic_scanner"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        CommerceDetailViewController *viewController = [[navController viewControllers] firstObject];
-        viewController.userBoss = userBoss;
-        
         [controller setObject:navController forKey:@"controller"];
         [controllers addObject:controller];
     } else {
@@ -144,31 +139,21 @@
         navController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"TablesNavigationController"];
         navController.tabBarItem.title = NSLocalizedString(@"tableTitle", nil);
         navController.tabBarItem.image =  [[UIImage imageNamed:@"ic_scanner"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        TableCollectionViewController *viewController = [[navController viewControllers] firstObject];
-        viewController.userBoss = userBoss;
-
         [controller setObject:navController forKey:@"controller"];
         [controllers addObject:controller];
     }
     
-    [tabBarController setViewControllers:[controllers valueForKey:@"controller"] animated:NO];
-    return tabBarController;
+    return controllers;
 }
-
 
 - (void)presentTabBarController:(UIViewController *) controller
              withNavigationType:(NavigationTypes) navigationType
                         withUser:(User *) user {
-    if(navigationType != EmployeeNavigation) {
-        UITabBarController *tabBarController = [self setupTabBarController:navigationType];
-        [controller presentViewController:tabBarController animated:YES completion:NULL];
-    } else {
-        [self getUserboss:user controller:controller];
-    }
+    UITabBarController *tabBarController = [self setupTabBarController:navigationType withUser:user];
+    [controller presentViewController:tabBarController animated:YES completion:NULL];
 }
 
-
-- (UITabBarController *)setupTabBarController:(NavigationTypes) navigationType {
+- (UITabBarController *)setupTabBarController:(NavigationTypes) navigationType withUser:(User *)user {
     NSArray *controllers;
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     switch (navigationType) {
@@ -183,22 +168,12 @@
             controllers = [[self controllersForCommerNavigation] valueForKey:@"controller"];
             break;
         case EmployeeNavigation:
+            controllers = [[self controllersForEmployeeNavigation:user] valueForKey:@"controller"];
+            break;
         default:
             break;
     }
     [tabBarController setViewControllers:controllers animated:NO];
     return tabBarController;
 }
-
-- (void)getUserboss:(User *)user controller:(UIViewController *) controller{
-    UserManager *manager = [[UserManager alloc] init];
-    [manager getUserFromServer:user.boss token:user.token successHandler:^(id response) {
-        NSDictionary *userBoss = response;
-        UITabBarController *tabBarController = [self controllersForEmployee:userBoss];
-        [controller presentViewController:tabBarController animated:YES completion:NULL];
-    } failureHandler:^(id response) {
-        NSLog(@"Error getting user");
-    }];
-}
-
 @end

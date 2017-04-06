@@ -29,7 +29,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     self.user = [UserManager getUser];
     if(self.user.userType == EmployeeNavigation) {
-       self.lblCommerceName.text = [self.userBoss objectForKey:@"name"];
+        self.lblCommerceName.text = self.user.boss.name;
     } else {
          self.lblCommerceName.text = self.user.name;
     }
@@ -43,10 +43,7 @@
 
 #pragma mark - actions
 - (void)getImage {
-    int64_t id = self.user.id;
-    if(self.user.userType == EmployeeNavigation) {
-        id = [[self.userBoss objectForKey:@"id"] integerValue];
-    }
+    int64_t id = self.user.userType == EmployeeNavigation ? self.user.boss.id : self.user.id;
     UserManager *manager = [[UserManager alloc] init];
     [manager downloadImage:id
                toImageView:self.commerceImageView
@@ -62,6 +59,9 @@
 
 - (void) displayQrViewController {
     QRPaymentViewController *viewController = (QRPaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"QRPaymentViewController"];
+    viewController.tableNumber = 0;
+    viewController.cost = 150000;
+    viewController.user = self.user.userType == EmployeeNavigation ? self.user.boss : self.user;
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

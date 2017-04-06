@@ -13,6 +13,7 @@
 #import "FriendManager.h"
 #import "CoreDataManager.h"
 #import "ContactTableViewCell.h"
+#import "UIColor+UIColor.h"
 
 @interface ContactListTableViewController () <UISearchBarDelegate>
 
@@ -27,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.backgroundColor = [UIColor grayBackgroundViewColor];
     self.navigationItem.title = @"Friends";
     self.contactsArray = [NSArray array];
     self.contactsChecked = [NSMutableArray array];
@@ -51,7 +53,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80.f;
+    return 60.f;
 }
 
 

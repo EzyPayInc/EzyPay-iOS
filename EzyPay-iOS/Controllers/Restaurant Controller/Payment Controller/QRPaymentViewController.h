@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TableManager.h"
+#import "UserManager.h"
 
 @interface QRPaymentViewController : UIViewController
 
-@property (nonatomic, strong) Table *table;
+@property (nonatomic, strong) User *user;
 @property (nonatomic, assign) CGFloat cost;
+@property (nonatomic, assign) int64_t tableNumber;
 
 @end

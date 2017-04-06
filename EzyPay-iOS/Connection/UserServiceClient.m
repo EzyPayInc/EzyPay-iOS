@@ -37,7 +37,8 @@ static NSString *const USER_URL = @"user/";
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
-    NSString *body = [NSString stringWithFormat:@"name=%@&lastName=%@&phoneNumber=%@&email=%@&password=%@&userType=%hd&boss=%lld", user.name, user.lastName, user.phoneNumber, user.email, user.password, user.userType, user.boss];
+    int64_t boss = user.boss == nil ? 0 : user.boss.id;
+    NSString *body = [NSString stringWithFormat:@"name=%@&lastName=%@&phoneNumber=%@&email=%@&password=%@&userType=%hd&boss=%lld", user.name, user.lastName, user.phoneNumber, user.email, user.password, user.userType, boss];
     request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
     request.HTTPMethod = @"POST";
     [request addValue:[NSString stringWithFormat:@"Basic %@",encodedString] forHTTPHeaderField:@"Authorization"];

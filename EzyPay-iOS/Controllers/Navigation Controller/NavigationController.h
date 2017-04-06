@@ -23,7 +23,6 @@ typedef enum {
 - (void)presentTabBarController:(UIViewController *) controller
              withNavigationType:(NavigationTypes) navigationType
                        withUser:(User *) user;
-- (UITabBarController *)setupTabBarController:(NavigationTypes) navigationType;
-- (UITabBarController *)controllersForEmployee:(NSDictionary *)userBoss;
+- (UITabBarController *)setupTabBarController:(NavigationTypes) navigationType withUser:(User *)user;
 
 @end

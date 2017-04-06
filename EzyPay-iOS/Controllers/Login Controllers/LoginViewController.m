@@ -101,15 +101,39 @@
         User *user = [UserManager userFromDictionary:response];
         user.id = userId;
         user.token = token;
+        int64_t companyId = [[response objectForKey:@"boss"] integerValue];
+        [CoreDataManager saveContext];
+        if (user.userType == EmployeeNavigation) {
+            [self getUserCompany:user companyId:companyId];
+        } else {
+            NavigationController *navigationController = [NavigationController sharedInstance];
+            [navigationController presentTabBarController:self
+                                       withNavigationType:user.userType
+                                                 withUser:user];
+        }
+        
+    } failureHandler:^(id response) {
+        NSLog(@"%@", response);
+    }];
+}
+
+- (void)getUserCompany:(User *)user companyId:(int64_t)companyId {
+    UserManager *manager = [[UserManager alloc] init];
+    [manager getUserFromServer:companyId token:user.token successHandler:^(id response) {
+        User *company = [UserManager userFromDictionary:response];
+        company.id = [[response objectForKey:@"id"] integerValue];
+        company.token = nil;
+        user.boss = company;
         [CoreDataManager saveContext];
         NavigationController *navigationController = [NavigationController sharedInstance];
         [navigationController presentTabBarController:self
                                    withNavigationType:user.userType
                                              withUser:user];
     } failureHandler:^(id response) {
-        NSLog(@"%@", response);
+        NSLog(@"Error getting user");
     }];
 }
+
 
 
 

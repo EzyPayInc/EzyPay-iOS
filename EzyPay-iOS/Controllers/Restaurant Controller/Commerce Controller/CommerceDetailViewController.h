@@ -10,6 +10,4 @@
 
 @interface CommerceDetailViewController : UIViewController
 
-@property(nonatomic, strong)NSDictionary *userBoss;
-
 @end

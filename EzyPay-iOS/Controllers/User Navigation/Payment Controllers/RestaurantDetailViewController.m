@@ -29,6 +29,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"Commerce";
     self.lblCommerceName.text = self.payment.commerce.name;
+    self.btnWaiter.hidden = self.payment.tableNumber == 0;
     self.user = [UserManager getUser];
     [self addCancelButton];
     [self getImage];

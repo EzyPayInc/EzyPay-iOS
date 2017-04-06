@@ -29,13 +29,7 @@
         <attribute name="tableNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="restaurant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="tables" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="Ticket" representedClassName="Ticket" syncable="YES" codeGenerationType="class">
-        <attribute name="restaurantId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="tableId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="ticketId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-    </entity>
     <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
-        <attribute name="boss" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
@@ -44,16 +38,17 @@
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="boss" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="employees" inverseEntity="User" syncable="YES"/>
         <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Card" inverseName="user" inverseEntity="Card" syncable="YES"/>
+        <relationship name="employees" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="boss" inverseEntity="User" syncable="YES"/>
         <relationship name="payments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Payment" inverseName="commerce" inverseEntity="Payment" syncable="YES"/>
-        <relationship name="tables" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Table" inverseName="restaurant" inverseEntity="Table" syncable="YES"/>
+        <relationship name="tables" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Table" inverseName="restaurant" inverseEntity="Table" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Card" positionX="-54" positionY="45" width="128" height="135"/>
-        <element name="Friend" positionX="-54" positionY="81" width="128" height="120"/>
-        <element name="Payment" positionX="-54" positionY="63" width="128" height="30"/>
-        <element name="Table" positionX="-63" positionY="63" width="128" height="90"/>
-        <element name="Ticket" positionX="-63" positionY="63" width="128" height="90"/>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="225"/>
+        <element name="Card" positionX="61" positionY="-117" width="128" height="135"/>
+        <element name="Friend" positionX="34" positionY="81" width="128" height="120"/>
+        <element name="Payment" positionX="-306" positionY="261" width="128" height="148"/>
+        <element name="Table" positionX="-63" positionY="-243" width="128" height="90"/>
+        <element name="User" positionX="-360" positionY="-213" width="128" height="238"/>
     </elements>
 </model>

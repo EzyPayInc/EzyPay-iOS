@@ -12,7 +12,6 @@
 @interface QRPaymentViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *qrImageView;
-@property (nonatomic, strong)User *user;
 
 @end
 
@@ -21,7 +20,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"QR Code";
-    self.user = [UserManager getUser];
     [self generateQRCode];
 }
 
@@ -51,8 +49,7 @@
 }
 
 - (NSString *)generateQRInformation {
-    int64_t tableId = self.table == nil ? 0 : self.table.tableId;
-    NSString *qRInformation = [NSString stringWithFormat:@"{\"commerceId\": %lld, \"tableNumber\": %lld, \"commerceName\":\"%@\", \"cost\": %f }", self.user.id, tableId, self.user.name,self.cost];
+    NSString *qRInformation = [NSString stringWithFormat:@"{\"commerceId\": %lld, \"tableNumber\": %lld, \"commerceName\":\"%@\", \"cost\": %f }", self.user.id, _tableNumber, self.user.name,self.cost];
     return qRInformation;
 }
 
