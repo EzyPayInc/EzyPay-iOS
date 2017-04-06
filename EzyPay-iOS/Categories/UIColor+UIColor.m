@@ -27,4 +27,11 @@
                            alpha:1.0f];
 }
 
++ (UIColor *)DarkGrayColor
+{
+    return [UIColor colorWithRed:185.0f/255.0f
+                           green:185.0f/255.0f
+                            blue:185.0f/255.0f
+                           alpha:1.0f];
+}
 @end

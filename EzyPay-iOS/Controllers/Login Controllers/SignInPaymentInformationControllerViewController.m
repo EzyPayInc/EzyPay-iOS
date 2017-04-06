@@ -80,7 +80,9 @@
         [CoreDataManager saveContext];
         NavigationController *navigationController = [NavigationController sharedInstance];
         navigationController.navigationType = self.user.userType;
-        [navigationController presentTabBarController:self withNavigationType:self.user.userType];
+        [navigationController presentTabBarController:self
+                                   withNavigationType:self.user.userType
+                                             withUser:self.user];
     } failureHandler:^(id response) {
         NSLog(@"Error: %@", response);
     }];

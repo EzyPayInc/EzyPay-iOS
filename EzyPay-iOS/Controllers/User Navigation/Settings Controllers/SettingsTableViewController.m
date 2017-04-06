@@ -17,6 +17,7 @@
 #import "InitialViewController.h"
 #import "NavigationController.h"
 #import "SessionHandler.h"
+#import "EmployeeTableViewController.h"
 
 @interface SettingsTableViewController ()<SettingsCellDelegate, ProfileImageViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -47,41 +48,66 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return self.user.userType == CommerceNavigation ? 2 : 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.user.userType == UserNavigation ? 5 : 4;
+    if(section == 0) {
+        return self.user.userType == UserNavigation ? 5 : 4;
+    } else {
+        return 1;
+    }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {    
-    return indexPath.row == 0 ? 250.f : 44.f;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.section == 0) {
+         return indexPath.row == 0 ? 200.f : 44.f;
+    } else {
+        return 44.f;
+    }
+   
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return section == 0 ? @"" : @"Employees";
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.row == 0){
-        ProfileImageTableViewCell *cell = (ProfileImageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"profileImageCell"];
-        cell.delegate = self;
-        if(!self.isEditableMode) {
-            [self getImage];
+    if(indexPath.section == 0){
+        if(indexPath.row == 0){
+            ProfileImageTableViewCell *cell = (ProfileImageTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"profileImageCell"];
+            cell.delegate = self;
+            if(!self.isEditableMode) {
+                [self getImage];
+            }
+            
+            self.profileImageView = cell.profileImageView;
+            cell.userInteractionEnabled = self.isEditableMode;
+            return cell;
+            
+        } else {
+            return self.user.userType == UserNavigation ?
+            [self tableView:tableView userCellForRowAtIndexPath:indexPath] :
+            [self tableView:tableView commerceCellForRowAtIndexPath:indexPath];
         }
-        
-        self.profileImageView = cell.profileImageView;
-        cell.userInteractionEnabled = self.isEditableMode;
-        return cell;
-        
     } else {
-        return self.user.userType == UserNavigation ?
-        [self tableView:tableView userCellForRowAtIndexPath:indexPath] :
-        [self tableView:tableView commerceCellForRowAtIndexPath:indexPath];
+           UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EmployeeCell" forIndexPath:indexPath];
+        cell.textLabel.text = @"Add a new Employee";
+        return cell;
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    if(indexPath.row > 0){
+    if(indexPath.section == 0 && indexPath.row > 0) {
         SettingsTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
         [cell.txtValue becomeFirstResponder];
+    } else {
+        if (indexPath.section == 1) {
+            EmployeeTableViewController *tableViewController = (EmployeeTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"EmployeeTableViewController"];
+            tableViewController.user = self.user;
+            [self.navigationController pushViewController:tableViewController animated:YES];
+        }
     }
 }
 
@@ -299,11 +325,7 @@
 }
 
 - (void)getImage {
-    UserManager *manager = [[UserManager alloc] init];
-    [manager downloadImage:self.user.id
-               toImageView: self.profileImageView
-              defaultImage:@"profileImage"];
-   /* dispatch_async(dispatch_get_global_queue(0,0), ^{
+   dispatch_async(dispatch_get_global_queue(0,0), ^{
         NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@%lld",BASE_URL, @"user/downloadImage/", self.user.id]];
         NSData *data = [[NSData alloc] initWithContentsOfURL:url];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -314,7 +336,7 @@
                 self.profileImageView.image = image;
             }
         });
-    });*/
+    });
 }
 
 @end

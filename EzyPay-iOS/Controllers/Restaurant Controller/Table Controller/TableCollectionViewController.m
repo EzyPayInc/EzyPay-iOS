@@ -126,8 +126,9 @@ static NSString * const reuseIdentifier = @"TableCell";
 - (void)showOptions:(Table *)table {
     UIAlertController  *alertController = [UIAlertController alertControllerWithTitle:@"Actions" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *quickPaymentAction = [UIAlertAction actionWithTitle:@"Quick Payment" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self quickPaymentAction:table];
     }];
-    UIAlertAction *reservationAction = [UIAlertAction actionWithTitle:@"Reservation" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *reservationAction = [UIAlertAction actionWithTitle:@"Sync" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self reservationAction:table];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
@@ -140,6 +141,10 @@ static NSString * const reuseIdentifier = @"TableCell";
 
 
 - (void) reservationAction:(Table *)table {
+    [self displayQrViewController: table];
+}
+
+- (void) quickPaymentAction:(Table *)table {
     [self displayQrViewController: table];
 }
 

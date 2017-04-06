@@ -14,6 +14,9 @@ settingsTitle = "Configuración";
 tableTitle = "Mesas";
 logInTitle = "Log In";
 signInTitle = "Registrarse";
+commerceTitle = "Comercio";
+employeesTitle = "Empleados";
+employeeTitle = "Empleado";
 
 /*Months*/
 januaryMonth = "Enero";

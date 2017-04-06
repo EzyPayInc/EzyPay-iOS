@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "UserManager.h"
 typedef enum {
     UserNavigation = 1,
-    CommerceNavigation = 2
+    RestaurantNavigation = 2,
+    CommerceNavigation = 3,
+    EmployeeNavigation = 4
 }NavigationTypes;
 @interface NavigationController : NSObject
 
@@ -18,7 +21,9 @@ typedef enum {
 
 + (NavigationController *)sharedInstance;
 - (void)presentTabBarController:(UIViewController *) controller
-             withNavigationType:(NavigationTypes) navigationType;
+             withNavigationType:(NavigationTypes) navigationType
+                       withUser:(User *) user;
 - (UITabBarController *)setupTabBarController:(NavigationTypes) navigationType;
+- (UITabBarController *)controllersForEmployee:(NSDictionary *)userBoss;
 
 @end

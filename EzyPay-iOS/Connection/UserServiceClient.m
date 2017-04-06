@@ -37,7 +37,7 @@ static NSString *const USER_URL = @"user/";
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
-    NSString *body = [NSString stringWithFormat:@"name=%@&lastName=%@&phoneNumber=%@&email=%@&password=%@&userType=%hd", user.name, user.lastName, user.phoneNumber, user.email, user.password, user.userType];
+    NSString *body = [NSString stringWithFormat:@"name=%@&lastName=%@&phoneNumber=%@&email=%@&password=%@&userType=%hd&boss=%lld", user.name, user.lastName, user.phoneNumber, user.email, user.password, user.userType, user.boss];
     request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
     request.HTTPMethod = @"POST";
     [request addValue:[NSString stringWithFormat:@"Basic %@",encodedString] forHTTPHeaderField:@"Authorization"];
@@ -179,6 +179,18 @@ static NSString *const USER_URL = @"user/";
         }
     }
     return [body dataUsingEncoding:NSUTF8StringEncoding];
+}
+
+- (void)getEmployees:(int64_t)boss token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler:(ConnectionErrorHandler) failureHandler {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/getAll", BASE_URL, USER_URL]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    NSString *body = [NSString stringWithFormat:@"boss=%lld", boss];
+    request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
+    request.HTTPMethod = @"POST";
+    [request addValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"Authorization"];
+    [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
 }
 
 @end

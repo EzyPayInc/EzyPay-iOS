@@ -11,7 +11,11 @@ cardsTitle = "Cards";
 settingsTitle = "Settings";
 tableTitle = "Tables";
 logInTitle = "Log In";
-signInTitle = "Sign In";
+signInTitle = "Sign Up";
+commerceTitle = "Commerce";
+employeesTitle = "Employees";
+employeeTitle = "Employee";
+
 
 /*Months*/
 januaryMonth = "January";

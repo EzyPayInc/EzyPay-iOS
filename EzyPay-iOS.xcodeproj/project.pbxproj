@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		80016E4E1E1C943100D4658D /* BarcodeScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80016E4D1E1C943100D4658D /* BarcodeScannerViewController.m */; };
-		80016E541E1CBEDD00D4658D /* TicketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80016E531E1CBEDD00D4658D /* TicketManager.m */; };
-		80016E571E1CC30B00D4658D /* TicketServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80016E561E1CC30B00D4658D /* TicketServiceClient.m */; };
 		800829751E15875500D2C5F2 /* CardDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 800829741E15875500D2C5F2 /* CardDetailViewController.m */; };
 		800859911E23312200E3451F /* SettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 800859901E23312200E3451F /* SettingsTableViewCell.m */; };
 		8012A6501E82429800FE5606 /* PaymentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8012A64F1E82429800FE5606 /* PaymentManager.m */; };
@@ -32,6 +30,10 @@
 		804CEEAB1DED3C9E0078BB54 /* GeneralServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 804CEEAA1DED3C9E0078BB54 /* GeneralServiceClient.m */; };
 		804CEEDF1DED54DB0078BB54 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 804CEEDE1DED54DB0078BB54 /* NavigationController.m */; };
 		804CEEE21DED5A630078BB54 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 804CEEE11DED5A630078BB54 /* UserManager.m */; };
+		805F368B1E949C6D0099932A /* EmployeeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 805F368A1E949C6D0099932A /* EmployeeDetailViewController.m */; };
+		805F36901E94C4630099932A /* HistoryCommerceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 805F368F1E94C4630099932A /* HistoryCommerceTableViewCell.m */; };
+		805F36931E94C5980099932A /* HistoryCommerceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 805F36921E94C5980099932A /* HistoryCommerceTableViewController.m */; };
+		805F36961E94D7330099932A /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 805F36951E94D7330099932A /* ContactTableViewCell.m */; };
 		806BF0661DC8519300AD97CB /* SignInUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 806BF0651DC8519300AD97CB /* SignInUserViewController.m */; };
 		806BF0691DC85C8100AD97CB /* UserServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 806BF0681DC85C8100AD97CB /* UserServiceClient.m */; };
 		8071B3FD1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8071B3FC1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.m */; };
@@ -41,6 +43,8 @@
 		80E171741E4C1CE400C099F5 /* HistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E171731E4C1CE400C099F5 /* HistoryTableViewCell.m */; };
 		80E688D41E74D88E0002CF76 /* TableServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E688D31E74D88E0002CF76 /* TableServiceClient.m */; };
 		80E688D81E74DD250002CF76 /* TableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E688D71E74DD250002CF76 /* TableManager.m */; };
+		80E982BA1E936D7400A0B4FA /* CommerceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E982B91E936D7400A0B4FA /* CommerceDetailViewController.m */; };
+		80E982BD1E9377A800A0B4FA /* EmployeeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E982BC1E9377A800A0B4FA /* EmployeeTableViewController.m */; };
 		80EFEB951DB8552900D874E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EFEB941DB8552900D874E2 /* main.m */; };
 		80EFEB981DB8552900D874E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EFEB971DB8552900D874E2 /* AppDelegate.m */; };
 		80EFEB9E1DB8552900D874E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80EFEB9C1DB8552900D874E2 /* Main.storyboard */; };
@@ -83,10 +87,6 @@
 /* Begin PBXFileReference section */
 		80016E4C1E1C943100D4658D /* BarcodeScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarcodeScannerViewController.h; sourceTree = "<group>"; };
 		80016E4D1E1C943100D4658D /* BarcodeScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarcodeScannerViewController.m; sourceTree = "<group>"; };
-		80016E521E1CBEDD00D4658D /* TicketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketManager.h; sourceTree = "<group>"; };
-		80016E531E1CBEDD00D4658D /* TicketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketManager.m; sourceTree = "<group>"; };
-		80016E551E1CC30B00D4658D /* TicketServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketServiceClient.h; sourceTree = "<group>"; };
-		80016E561E1CC30B00D4658D /* TicketServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketServiceClient.m; sourceTree = "<group>"; };
 		800829731E15875500D2C5F2 /* CardDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardDetailViewController.h; sourceTree = "<group>"; };
 		800829741E15875500D2C5F2 /* CardDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardDetailViewController.m; sourceTree = "<group>"; };
 		8008598F1E23312200E3451F /* SettingsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewCell.h; sourceTree = "<group>"; };
@@ -132,6 +132,14 @@
 		804CEEDE1DED54DB0078BB54 /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		804CEEE01DED5A630078BB54 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
 		804CEEE11DED5A630078BB54 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
+		805F36891E949C6D0099932A /* EmployeeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeeDetailViewController.h; sourceTree = "<group>"; };
+		805F368A1E949C6D0099932A /* EmployeeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeeDetailViewController.m; sourceTree = "<group>"; };
+		805F368E1E94C4630099932A /* HistoryCommerceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryCommerceTableViewCell.h; sourceTree = "<group>"; };
+		805F368F1E94C4630099932A /* HistoryCommerceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryCommerceTableViewCell.m; sourceTree = "<group>"; };
+		805F36911E94C5980099932A /* HistoryCommerceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryCommerceTableViewController.h; sourceTree = "<group>"; };
+		805F36921E94C5980099932A /* HistoryCommerceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryCommerceTableViewController.m; sourceTree = "<group>"; };
+		805F36941E94D7330099932A /* ContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewCell.h; sourceTree = "<group>"; };
+		805F36951E94D7330099932A /* ContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewCell.m; sourceTree = "<group>"; };
 		806BF0641DC8519300AD97CB /* SignInUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInUserViewController.h; sourceTree = "<group>"; };
 		806BF0651DC8519300AD97CB /* SignInUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInUserViewController.m; sourceTree = "<group>"; };
 		806BF0671DC85C8100AD97CB /* UserServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserServiceClient.h; sourceTree = "<group>"; };
@@ -150,6 +158,10 @@
 		80E688D31E74D88E0002CF76 /* TableServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableServiceClient.m; sourceTree = "<group>"; };
 		80E688D61E74DD250002CF76 /* TableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableManager.h; sourceTree = "<group>"; };
 		80E688D71E74DD250002CF76 /* TableManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableManager.m; sourceTree = "<group>"; };
+		80E982B81E936D7400A0B4FA /* CommerceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommerceDetailViewController.h; sourceTree = "<group>"; };
+		80E982B91E936D7400A0B4FA /* CommerceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommerceDetailViewController.m; sourceTree = "<group>"; };
+		80E982BB1E9377A800A0B4FA /* EmployeeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeeTableViewController.h; sourceTree = "<group>"; };
+		80E982BC1E9377A800A0B4FA /* EmployeeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeeTableViewController.m; sourceTree = "<group>"; };
 		80EFEB901DB8552900D874E2 /* EzyPay-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EzyPay-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80EFEB941DB8552900D874E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		80EFEB961DB8552900D874E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -339,8 +351,6 @@
 				801B252C1DD79B620039FB90 /* CompletionHandler.m */,
 				804CEEA91DED3C9E0078BB54 /* GeneralServiceClient.h */,
 				804CEEAA1DED3C9E0078BB54 /* GeneralServiceClient.m */,
-				80016E551E1CC30B00D4658D /* TicketServiceClient.h */,
-				80016E561E1CC30B00D4658D /* TicketServiceClient.m */,
 				80E688D21E74D88E0002CF76 /* TableServiceClient.h */,
 				80E688D31E74D88E0002CF76 /* TableServiceClient.m */,
 				80415C0F1E8B5CF1005696D3 /* PaymentServiceClient.h */,
@@ -389,8 +399,6 @@
 				804CEEE11DED5A630078BB54 /* UserManager.m */,
 				80217A711DEFCFC60096DEF4 /* CardManager.h */,
 				80217A721DEFCFC60096DEF4 /* CardManager.m */,
-				80016E521E1CBEDD00D4658D /* TicketManager.h */,
-				80016E531E1CBEDD00D4658D /* TicketManager.m */,
 				80E688D61E74DD250002CF76 /* TableManager.h */,
 				80E688D71E74DD250002CF76 /* TableManager.m */,
 				8012A64E1E82429800FE5606 /* PaymentManager.h */,
@@ -410,9 +418,30 @@
 			path = "Navigation Controller";
 			sourceTree = "<group>";
 		};
+		805F368C1E94BF9A0099932A /* History Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				805F368D1E94C4260099932A /* Prototype Cells */,
+				805F36911E94C5980099932A /* HistoryCommerceTableViewController.h */,
+				805F36921E94C5980099932A /* HistoryCommerceTableViewController.m */,
+			);
+			path = "History Controllers";
+			sourceTree = "<group>";
+		};
+		805F368D1E94C4260099932A /* Prototype Cells */ = {
+			isa = PBXGroup;
+			children = (
+				805F368E1E94C4630099932A /* HistoryCommerceTableViewCell.h */,
+				805F368F1E94C4630099932A /* HistoryCommerceTableViewCell.m */,
+			);
+			path = "Prototype Cells";
+			sourceTree = "<group>";
+		};
 		809788611E613D14001F30F9 /* Commerce Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				805F368C1E94BF9A0099932A /* History Controllers */,
+				80E982B11E93683700A0B4FA /* Commerce Controller */,
 				801BFA371E77A5000098F0DF /* Payment Controller */,
 				80FCD2CE1E763C91009FC48D /* Table Controller */,
 				809788651E615209001F30F9 /* Prototype Cells */,
@@ -437,6 +466,19 @@
 				80E171731E4C1CE400C099F5 /* HistoryTableViewCell.m */,
 			);
 			path = "Prototype Cells";
+			sourceTree = "<group>";
+		};
+		80E982B11E93683700A0B4FA /* Commerce Controller */ = {
+			isa = PBXGroup;
+			children = (
+				80E982B81E936D7400A0B4FA /* CommerceDetailViewController.h */,
+				80E982B91E936D7400A0B4FA /* CommerceDetailViewController.m */,
+				80E982BB1E9377A800A0B4FA /* EmployeeTableViewController.h */,
+				80E982BC1E9377A800A0B4FA /* EmployeeTableViewController.m */,
+				805F36891E949C6D0099932A /* EmployeeDetailViewController.h */,
+				805F368A1E949C6D0099932A /* EmployeeDetailViewController.m */,
+			);
+			path = "Commerce Controller";
 			sourceTree = "<group>";
 		};
 		80EFEB871DB8552900D874E2 = {
@@ -523,6 +565,8 @@
 				80F88F571E21F15600941E11 /* SplitTableViewCell.m */,
 				80F36E701E516A7A009A8CE7 /* PaymentTableViewCell.h */,
 				80F36E711E516A7A009A8CE7 /* PaymentTableViewCell.m */,
+				805F36941E94D7330099932A /* ContactTableViewCell.h */,
+				805F36951E94D7330099932A /* ContactTableViewCell.m */,
 			);
 			path = "Prototype Cells";
 			sourceTree = "<group>";
@@ -680,14 +724,17 @@
 				801551911E4FA8ED0013F3E6 /* InitialViewController.m in Sources */,
 				80F88F541E21775D00941E11 /* ProfileImageTableViewCell.m in Sources */,
 				806BF0691DC85C8100AD97CB /* UserServiceClient.m in Sources */,
+				805F36931E94C5980099932A /* HistoryCommerceTableViewController.m in Sources */,
 				80F700641E1B540600946CFD /* RestaurantDetailViewController.m in Sources */,
 				800859911E23312200E3451F /* SettingsTableViewCell.m in Sources */,
+				805F36961E94D7330099932A /* ContactTableViewCell.m in Sources */,
+				805F368B1E949C6D0099932A /* EmployeeDetailViewController.m in Sources */,
 				80F700671E1B645E00946CFD /* ContactListTableViewController.m in Sources */,
 				801FE3131DD40778004318CC /* CoreDataManager.m in Sources */,
 				80016E4E1E1C943100D4658D /* BarcodeScannerViewController.m in Sources */,
-				80016E571E1CC30B00D4658D /* TicketServiceClient.m in Sources */,
 				80FCD2D71E763F9B009FC48D /* AddTableViewController.m in Sources */,
 				80EFEB981DB8552900D874E2 /* AppDelegate.m in Sources */,
+				805F36901E94C4630099932A /* HistoryCommerceTableViewCell.m in Sources */,
 				804CEEDF1DED54DB0078BB54 /* NavigationController.m in Sources */,
 				801D3C7C1DEE636700C8845D /* ScannerViewController.m in Sources */,
 				802AE9431DC8194F006008B3 /* SessionHandler.m in Sources */,
@@ -713,12 +760,13 @@
 				80F602AD1E14B63B0030F7C5 /* CardListTableViewController.m in Sources */,
 				80F88F581E21F15600941E11 /* SplitTableViewCell.m in Sources */,
 				802891671DD66C3800A088EE /* Connection.m in Sources */,
-				80016E541E1CBEDD00D4658D /* TicketManager.m in Sources */,
 				801BFA3A1E77A5950098F0DF /* QRPaymentViewController.m in Sources */,
 				801B252D1DD79B620039FB90 /* CompletionHandler.m in Sources */,
+				80E982BA1E936D7400A0B4FA /* CommerceDetailViewController.m in Sources */,
 				80415C141E8B7742005696D3 /* FriendManager.m in Sources */,
 				8012A6501E82429800FE5606 /* PaymentManager.m in Sources */,
 				80F88F5B1E21F2E600941E11 /* SplitTableViewController.m in Sources */,
+				80E982BD1E9377A800A0B4FA /* EmployeeTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

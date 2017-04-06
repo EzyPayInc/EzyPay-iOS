@@ -113,7 +113,7 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"paymentCell" forIndexPath:indexPath];
         if (indexPath.row == 0) {
             self.shortageLabel = cell.detailTextLabel;
-            cell.textLabel.text = @"Faltante";
+            cell.textLabel.text = @"Shortage";
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", (int)self.paymentShortage];
         } else {
             cell.textLabel.text = @"Total";
@@ -159,6 +159,7 @@
 - (IBAction)navigateToPayment:(id)sender {
     PaymentViewController *viewController = (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewController"];
     viewController.payment = self.payment;
+    viewController.userPayment = self.userPayment;
     [self.navigationController pushViewController:viewController animated:true];
 }
 

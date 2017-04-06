@@ -25,10 +25,14 @@
     [self setupTabBar];
     User *user= [UserManager getUser];
     if(user && user.token) {
-        NavigationController *navigationController = [NavigationController sharedInstance];
-        navigationController.navigationType = user.userType;
-        self.window.rootViewController = [navigationController setupTabBarController:user.userType];
-        [self.window makeKeyAndVisible];
+        if(user.userType != EmployeeNavigation){
+            NavigationController *navigationController = [NavigationController sharedInstance];
+            navigationController.navigationType = user.userType;
+            self.window.rootViewController = [navigationController setupTabBarController:user.userType];
+            [self.window makeKeyAndVisible];
+        } else {
+            [self getUserboss:user];
+        }
     }
     
     return YES;
@@ -71,6 +75,19 @@
                                                  NSForegroundColorAttributeName: [UIColor grayBackgroundViewColor]
                                                  };
     [[UITabBarItem appearance] setTitleTextAttributes:attributesForSelectedState forState: UIControlStateSelected];
+}
+
+- (void)getUserboss:(User *)user {
+    UserManager *manager = [[UserManager alloc] init];
+    [manager getUserFromServer:user.boss token:user.token successHandler:^(id response) {
+        NSDictionary *userBoss = response;
+        NavigationController *navigationController = [NavigationController sharedInstance];
+        navigationController.navigationType = user.userType;
+        self.window.rootViewController = [navigationController controllersForEmployee:userBoss];
+        [self.window makeKeyAndVisible];
+    } failureHandler:^(id response) {
+        NSLog(@"Error getting user");
+    }];
 }
 
 @end

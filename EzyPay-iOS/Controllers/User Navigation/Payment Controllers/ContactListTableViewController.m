@@ -12,6 +12,7 @@
 #import "UserManager.h"
 #import "FriendManager.h"
 #import "CoreDataManager.h"
+#import "ContactTableViewCell.h"
 
 @interface ContactListTableViewController () <UISearchBarDelegate>
 
@@ -50,17 +51,15 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60.f;
+    return 80.f;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"contactsCell" forIndexPath:indexPath];
+    ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"contactsCell" forIndexPath:indexPath];
     User *user = [self.contactsArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", user.name, user.lastName];
-    cell.imageView.image = [UIImage imageNamed:@"profileImage"];
-    cell.imageView.layer.cornerRadius = cell.imageView.frame.size.width / 2;
-    cell.imageView.clipsToBounds = YES;
+    cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", user.name, user.lastName];
+    cell.userProfileImage.image = [UIImage imageNamed:@"profileImage"];
     if([self validatePhoneNumber:user.phoneNumber]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
@@ -73,7 +72,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     User *user = [self.contactsArray objectAtIndex:indexPath.row];
     NSUInteger index = [[tableView indexPathsForVisibleRows] indexOfObject:indexPath];
-    UITableViewCell *cell = [[tableView visibleCells] objectAtIndex:index];
+    ContactTableViewCell *cell = [[tableView visibleCells] objectAtIndex:index];
     if ([cell accessoryType] == UITableViewCellAccessoryNone) {
         [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
         [self.contactsChecked addObject:user];
@@ -176,10 +175,10 @@
     }];
 }
 
-- (void)getImage: (UITableViewCell *)cell fromId:(int64_t )id {
+- (void)getImage: (ContactTableViewCell *)cell fromId:(int64_t )id {
     UserManager *manager = [[UserManager alloc] init];
     [manager downloadImage:id
-               toImageView:cell.imageView
+               toImageView:cell.userProfileImage
               defaultImage:@"profileImage"];
 }
 

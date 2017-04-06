@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnCancel;
 @property (weak, nonatomic) IBOutlet UIButton *btnPayment;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) User *user;
 
 @end
 
@@ -24,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.user = [UserManager getUser];
     [self setupButtons];
     self.navigationItem.title = @"Payment";
     self.tableView.backgroundColor = [UIColor grayBackgroundViewColor];
@@ -48,16 +50,16 @@
 #pragma mark - table view delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return [self.payment.friends count] > 0 ? 2 : 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.payment.friends count];
+    return section == 0 ? 1 : [self.payment.friends count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return  @"Friends";
+    return  section == 0 ? @"Me" : @"Friends" ;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
@@ -68,13 +70,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PaymentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"paymentCell" forIndexPath:indexPath];
-    Friend *friend = [[self.payment.friends allObjects] objectAtIndex:indexPath.row];
-    cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", friend.name, friend.lastname];
-    cell.quantityLabel.text = [NSString stringWithFormat:@"%d", (int)friend.cost];
-    cell.indicatorImageView.image = [UIImage imageNamed:@"ic_loading_spinner"];
-    [self getImage:cell fromUser:friend.id];
-    
+     PaymentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"paymentCell" forIndexPath:indexPath];
+    if(indexPath.section == 0) {
+        cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", self.user.name, self.user.lastName];
+        cell.quantityLabel.text = [NSString stringWithFormat:@"%d", (int)self.userPayment];
+        [self getImage:cell fromUser:self.user.id];
+    } else {
+        Friend *friend = [[self.payment.friends allObjects] objectAtIndex:indexPath.row];
+        cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", friend.name, friend.lastname];
+        cell.quantityLabel.text = [NSString stringWithFormat:@"%d", (int)friend.cost];
+        cell.indicatorImageView.image = [UIImage imageNamed:@"ic_loading_spinner"];
+        [self getImage:cell fromUser:friend.id];
+    }
     return  cell;
 }
 

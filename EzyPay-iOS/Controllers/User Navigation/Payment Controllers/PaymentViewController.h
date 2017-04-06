@@ -12,5 +12,7 @@
 @interface PaymentViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, assign) Payment *payment;
+@property (nonatomic, assign) float userPayment;
+
 
 @end

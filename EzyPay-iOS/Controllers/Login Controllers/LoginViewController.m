@@ -103,7 +103,9 @@
         user.token = token;
         [CoreDataManager saveContext];
         NavigationController *navigationController = [NavigationController sharedInstance];
-        [navigationController presentTabBarController:self withNavigationType:user.userType];
+        [navigationController presentTabBarController:self
+                                   withNavigationType:user.userType
+                                             withUser:user];
     } failureHandler:^(id response) {
         NSLog(@"%@", response);
     }];
