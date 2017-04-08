@@ -48,9 +48,32 @@
                                            orientation:UIImageOrientationUp];
 }
 
-- (NSString *)generateQRInformation {
-    NSString *qRInformation = [NSString stringWithFormat:@"{\"commerceId\": %lld, \"tableNumber\": %lld, \"commerceName\":\"%@\", \"cost\": %f }", self.user.id, _tableNumber, self.user.name,self.cost];
-    return qRInformation;
+- (NSString *)generateQRInformation
+{
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[self serializePayment] options:NSJSONWritingPrettyPrinted error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    return jsonString;
+}
+
+- (NSDictionary *)serializePayment {
+    NSMutableDictionary *paymentDictionary = [self serializeObject:self.payment];
+    [paymentDictionary setObject:[self serializeObject:self.payment.commerce] forKey:@"Commerce"];
+    [paymentDictionary setObject:[self serializeObject:self.payment.currency] forKey:@"Currency"];
+    
+    return paymentDictionary;
+    
+}
+
+- (NSMutableDictionary *)serializeObject:(id)object {
+    NSArray *keys = [[[object entity] attributesByName] allKeys];
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    for (NSString *key in keys) {
+        if([object valueForKey:key] && ![key isEqualToString:@"token"]) {
+            [dictionary setObject:[object valueForKey:key] forKey:key];
+        }
+    }
+    return dictionary;
 }
 
 @end

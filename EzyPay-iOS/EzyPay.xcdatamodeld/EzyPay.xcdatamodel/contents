@@ -8,6 +8,12 @@
         <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="cards" inverseEntity="User" syncable="YES"/>
     </entity>
+    <entity name="Currency" representedClassName="Currency" syncable="YES" codeGenerationType="class">
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="payment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Payment" inverseName="currency" inverseEntity="Payment" syncable="YES"/>
+    </entity>
     <entity name="Friend" representedClassName="Friend" syncable="YES" codeGenerationType="class">
         <attribute name="cost" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -22,6 +28,7 @@
         <attribute name="paymentDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="tableNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="commerce" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="payments" inverseEntity="User" syncable="YES"/>
+        <relationship name="currency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="payment" inverseEntity="Currency" syncable="YES"/>
         <relationship name="friends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Friend" inverseName="payment" inverseEntity="Friend" syncable="YES"/>
     </entity>
     <entity name="Table" representedClassName="Table" syncable="YES" codeGenerationType="class">
@@ -46,8 +53,9 @@
     </entity>
     <elements>
         <element name="Card" positionX="61" positionY="-117" width="128" height="135"/>
+        <element name="Currency" positionX="-153" positionY="-90" width="128" height="105"/>
         <element name="Friend" positionX="34" positionY="81" width="128" height="120"/>
-        <element name="Payment" positionX="-306" positionY="261" width="128" height="148"/>
+        <element name="Payment" positionX="-306" positionY="261" width="128" height="165"/>
         <element name="Table" positionX="-63" positionY="-243" width="128" height="90"/>
         <element name="User" positionX="-360" positionY="-213" width="128" height="238"/>
     </elements>

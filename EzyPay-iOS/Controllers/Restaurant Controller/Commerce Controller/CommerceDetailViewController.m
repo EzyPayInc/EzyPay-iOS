@@ -9,7 +9,7 @@
 #import "CommerceDetailViewController.h"
 #import "UserManager.h"
 #import "NavigationController.h"
-#import "QRPaymentViewController.h"
+#import "PaymentDetailViewController.h"
 
 @interface CommerceDetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *lblCommerceName;
@@ -52,16 +52,15 @@
 
 - (void) displayRightBarButton {
     UIImage *image = [[UIImage imageNamed:@"ic_add_card"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(displayQrViewController)];
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(displayPaymentDetailViewController)];
     
     self.navigationItem.rightBarButtonItem = rightBarButton;
 }
 
-- (void) displayQrViewController {
-    QRPaymentViewController *viewController = (QRPaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"QRPaymentViewController"];
+- (void) displayPaymentDetailViewController {
+    PaymentDetailViewController *viewController = (PaymentDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentDetailViewController"];
     viewController.tableNumber = 0;
-    viewController.cost = 150000;
-    viewController.user = self.user.userType == EmployeeNavigation ? self.user.boss : self.user;
+    viewController.user = self.user;
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

@@ -56,11 +56,11 @@
     NSData *data = [barcodeString dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *paymentData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     if(error == nil) {
-        [self registerTicket:paymentData];
+        [self registerPayment:paymentData];
     }
 }
 
-- (void)registerTicket:(NSDictionary *)paymentDictionary {
+- (void)registerPayment:(NSDictionary *)paymentDictionary {
     Payment *payment = [PaymentManager paymentFromDictionary:paymentDictionary];
     PaymentManager *manager = [[PaymentManager alloc] init];
     [manager registerPayment:payment user:self.user successHandler:^(id response) {

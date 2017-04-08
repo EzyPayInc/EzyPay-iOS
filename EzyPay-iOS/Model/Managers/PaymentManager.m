@@ -10,6 +10,7 @@
 #import "User+CoreDataClass.h"
 #import "CoreDataManager.h"
 #import "PaymentServiceClient.h"
+#import "CurrencyManager.h"
 
 @implementation PaymentManager
 
@@ -17,11 +18,14 @@
 + (Payment *)paymentFromDictionary:(NSDictionary *)paymentDictionary {
     Payment *payment = [CoreDataManager createEntityWithName:@"Payment"];
     User *commerce = [CoreDataManager createEntityWithName:@"User"];
-    commerce.id = [[paymentDictionary objectForKey:@"commerceId"] integerValue];
-    commerce.name = [paymentDictionary objectForKey:@"commerceName"];
+    Currency *currency = [CurrencyManager currencyFromDictionary:[paymentDictionary objectForKey:@"Currency"]];
+    NSDictionary *commerceData = [paymentDictionary objectForKey:@"Commerce"];
+    commerce.id = [[commerceData objectForKey:@"id"] integerValue];
+    commerce.name = [commerceData objectForKey:@"name"];
     payment.commerce = commerce;
-    payment.tableNumber = [[paymentDictionary objectForKey:@"tableId"] integerValue];
+    payment.tableNumber = [[paymentDictionary objectForKey:@"tableNumber"] integerValue];
     payment.cost = [[paymentDictionary objectForKey:@"cost"] floatValue];
+    payment.currency = currency;
     return payment;
 }
 

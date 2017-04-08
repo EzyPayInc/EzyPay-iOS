@@ -21,7 +21,6 @@
     user.lastName = [userDictionary objectForKey:@"lastName"];
     user.phoneNumber = [userDictionary objectForKey:@"phoneNumber"];
     user.userType = [[userDictionary objectForKey:@"userType"] integerValue];
-    //user.boss = [[userDictionary objectForKey:@"boss"] integerValue];
     return user;
 }
 

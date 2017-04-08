@@ -12,7 +12,7 @@
 #import "TableManager.h"
 #import "UserManager.h"
 #import "AddTableViewController.h"
-#import "QRPaymentViewController.h"
+#import "PaymentDetailViewController.h"
 #import "NavigationController.h"
 
 @interface TableCollectionViewController ()
@@ -70,7 +70,7 @@ static NSString * const reuseIdentifier = @"TableCell";
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     Table *table = [self.tables objectAtIndex:indexPath.row];
-    [self showOptions:table];
+    [self displayPaymentDetailViewController:table];
 }
 
 #pragma mark <UICollectionViewDelegate>
@@ -104,36 +104,10 @@ static NSString * const reuseIdentifier = @"TableCell";
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
-- (void)showOptions:(Table *)table {
-    UIAlertController  *alertController = [UIAlertController alertControllerWithTitle:@"Actions" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *quickPaymentAction = [UIAlertAction actionWithTitle:@"Quick Payment" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self quickPaymentAction:table];
-    }];
-    UIAlertAction *reservationAction = [UIAlertAction actionWithTitle:@"Sync" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self reservationAction:table];
-    }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-    [alertController addAction:quickPaymentAction];
-    [alertController addAction:reservationAction];
-    [alertController addAction:cancelAction];
-    alertController.disablesAutomaticKeyboardDismissal = NO;
-    [self.navigationController presentViewController:alertController animated:YES completion:nil];
-}
-
-
-- (void) reservationAction:(Table *)table {
-    [self displayQrViewController: table];
-}
-
-- (void) quickPaymentAction:(Table *)table {
-    [self displayQrViewController: table];
-}
-
-- (void) displayQrViewController:(Table *)table {
-    QRPaymentViewController *viewController = (QRPaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"QRPaymentViewController"];
+- (void) displayPaymentDetailViewController:(Table *)table {
+    PaymentDetailViewController *viewController = (PaymentDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentDetailViewController"];
     viewController.tableNumber = table.tableNumber;
-    viewController.cost = 150000;
-    viewController.user = self.user.userType == EmployeeNavigation ? self.user.boss : self.user;
+    viewController.user = self.user;
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

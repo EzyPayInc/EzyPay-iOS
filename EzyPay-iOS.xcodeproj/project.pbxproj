@@ -12,6 +12,9 @@
 		800859911E23312200E3451F /* SettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 800859901E23312200E3451F /* SettingsTableViewCell.m */; };
 		8012A6501E82429800FE5606 /* PaymentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8012A64F1E82429800FE5606 /* PaymentManager.m */; };
 		801551911E4FA8ED0013F3E6 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801551901E4FA8ED0013F3E6 /* InitialViewController.m */; };
+		80188F761E989B8A008AB708 /* PaymentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80188F751E989B8A008AB708 /* PaymentDetailViewController.m */; };
+		80188F791E98A22F008AB708 /* CurrencyServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80188F781E98A22F008AB708 /* CurrencyServiceClient.m */; };
+		80188F7C1E98A6B7008AB708 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80188F7B1E98A6B7008AB708 /* CurrencyManager.m */; };
 		801B252D1DD79B620039FB90 /* CompletionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 801B252C1DD79B620039FB90 /* CompletionHandler.m */; };
 		801BFA3A1E77A5950098F0DF /* QRPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801BFA391E77A5950098F0DF /* QRPaymentViewController.m */; };
 		801D0C2E1DF13ED50079F9AB /* HistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801D0C2D1DF13ED50079F9AB /* HistoryTableViewController.m */; };
@@ -95,6 +98,12 @@
 		8012A64F1E82429800FE5606 /* PaymentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentManager.m; sourceTree = "<group>"; };
 		8015518F1E4FA8ED0013F3E6 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
 		801551901E4FA8ED0013F3E6 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
+		80188F741E989B8A008AB708 /* PaymentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentDetailViewController.h; sourceTree = "<group>"; };
+		80188F751E989B8A008AB708 /* PaymentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentDetailViewController.m; sourceTree = "<group>"; };
+		80188F771E98A22F008AB708 /* CurrencyServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyServiceClient.h; sourceTree = "<group>"; };
+		80188F781E98A22F008AB708 /* CurrencyServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyServiceClient.m; sourceTree = "<group>"; };
+		80188F7A1E98A6B7008AB708 /* CurrencyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyManager.h; sourceTree = "<group>"; };
+		80188F7B1E98A6B7008AB708 /* CurrencyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyManager.m; sourceTree = "<group>"; };
 		801B252B1DD79B620039FB90 /* CompletionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionHandler.h; sourceTree = "<group>"; };
 		801B252C1DD79B620039FB90 /* CompletionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionHandler.m; sourceTree = "<group>"; };
 		801BFA381E77A5950098F0DF /* QRPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRPaymentViewController.h; sourceTree = "<group>"; };
@@ -262,6 +271,8 @@
 			children = (
 				801BFA381E77A5950098F0DF /* QRPaymentViewController.h */,
 				801BFA391E77A5950098F0DF /* QRPaymentViewController.m */,
+				80188F741E989B8A008AB708 /* PaymentDetailViewController.h */,
+				80188F751E989B8A008AB708 /* PaymentDetailViewController.m */,
 			);
 			path = "Payment Controller";
 			sourceTree = "<group>";
@@ -355,6 +366,8 @@
 				80E688D31E74D88E0002CF76 /* TableServiceClient.m */,
 				80415C0F1E8B5CF1005696D3 /* PaymentServiceClient.h */,
 				80415C101E8B5CF1005696D3 /* PaymentServiceClient.m */,
+				80188F771E98A22F008AB708 /* CurrencyServiceClient.h */,
+				80188F781E98A22F008AB708 /* CurrencyServiceClient.m */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
@@ -405,6 +418,8 @@
 				8012A64F1E82429800FE5606 /* PaymentManager.m */,
 				80415C121E8B7742005696D3 /* FriendManager.h */,
 				80415C131E8B7742005696D3 /* FriendManager.m */,
+				80188F7A1E98A6B7008AB708 /* CurrencyManager.h */,
+				80188F7B1E98A6B7008AB708 /* CurrencyManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -724,6 +739,7 @@
 				801551911E4FA8ED0013F3E6 /* InitialViewController.m in Sources */,
 				80F88F541E21775D00941E11 /* ProfileImageTableViewCell.m in Sources */,
 				806BF0691DC85C8100AD97CB /* UserServiceClient.m in Sources */,
+				80188F791E98A22F008AB708 /* CurrencyServiceClient.m in Sources */,
 				805F36931E94C5980099932A /* HistoryCommerceTableViewController.m in Sources */,
 				80F700641E1B540600946CFD /* RestaurantDetailViewController.m in Sources */,
 				800859911E23312200E3451F /* SettingsTableViewCell.m in Sources */,
@@ -740,12 +756,14 @@
 				802AE9431DC8194F006008B3 /* SessionHandler.m in Sources */,
 				80CFE8AB1E1F65D000DE276C /* SettingsTableViewController.m in Sources */,
 				8071B3FD1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.m in Sources */,
+				80188F7C1E98A6B7008AB708 /* CurrencyManager.m in Sources */,
 				806BF0661DC8519300AD97CB /* SignInUserViewController.m in Sources */,
 				80217A731DEFCFC60096DEF4 /* CardManager.m in Sources */,
 				802D5FFA1DD573CF000478F0 /* DropDownTableViewController.m in Sources */,
 				804CEE811DED242C0078BB54 /* EzyPay.xcdatamodeld in Sources */,
 				80415C111E8B5CF1005696D3 /* PaymentServiceClient.m in Sources */,
 				801D0C2E1DF13ED50079F9AB /* HistoryTableViewController.m in Sources */,
+				80188F761E989B8A008AB708 /* PaymentDetailViewController.m in Sources */,
 				80FDEB361E6D23E500DD4F06 /* ChooseViewController.m in Sources */,
 				80F760CB1E6FCB1500178608 /* SignInCommerceViewController.m in Sources */,
 				80E688D81E74DD250002CF76 /* TableManager.m in Sources */,
