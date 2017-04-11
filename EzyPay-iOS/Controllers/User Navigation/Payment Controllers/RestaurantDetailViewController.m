@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnWaiter;
 @property (weak, nonatomic) IBOutlet UILabel *lblCommerceName;
 @property (weak, nonatomic) IBOutlet UIImageView *restaurantImageView;
+@property (weak, nonatomic) IBOutlet UIView *paymentOptionsView;
+@property (nonatomic, assign) CGRect paymentOptionsFrame;
 
 @property (nonatomic, strong) User *user;
 
@@ -27,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.paymentOptionsView.hidden = YES;
     self.navigationItem.title = @"Commerce";
     self.lblCommerceName.text = self.payment.commerce.name;
     self.btnWaiter.hidden = self.payment.tableNumber == 0;
@@ -52,19 +55,22 @@
 }
 
 - (IBAction)payBill:(id)sender {
-    ContactListTableViewController *tableViewController = (ContactListTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ContactListTableViewController"];
-    self.payment.cost = 150000;
-    self.payment.paymentDate = [NSDate date];
-    PaymentManager *manager = [[PaymentManager alloc] init];
-    [manager updatePayment:self.payment user:self.user successHandler:^(id response) {
-        [CoreDataManager saveContext];
-        tableViewController.payment = self.payment;
-        [self.navigationController pushViewController:tableViewController animated:true];
-    } failureHandler:^(id response) {
-        NSLog(@"%@", response);
-    }];
+    self.paymentOptionsView.hidden = NO;
 }
 
+- (IBAction)splitPayment:(id)sender {
+    ContactListTableViewController *tableViewController = (ContactListTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ContactListTableViewController"];
+     self.payment.cost = 150000;
+     self.payment.paymentDate = [NSDate date];
+     PaymentManager *manager = [[PaymentManager alloc] init];
+     [manager updatePayment:self.payment user:self.user successHandler:^(id response) {
+     [CoreDataManager saveContext];
+     tableViewController.payment = self.payment;
+     [self.navigationController pushViewController:tableViewController animated:true];
+     } failureHandler:^(id response) {
+     NSLog(@"%@", response);
+     }];
+}
 
 - (void)getImage {
     UserManager *manager = [[UserManager alloc] init];
