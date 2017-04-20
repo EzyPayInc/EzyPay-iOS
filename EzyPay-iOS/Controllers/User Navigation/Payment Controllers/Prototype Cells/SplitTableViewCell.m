@@ -13,7 +13,7 @@
     [super awakeFromNib];
     self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
     self.profileImageView.clipsToBounds = YES;
-    self.stepValue = 500;
+    self.stepValue = 1;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -26,7 +26,6 @@
     UISlider *slider = (UISlider *)sender;
     float value = (int)slider.value * self.stepValue;
     [self.delegate sliderDidChangeValue:value InCell:self WithFriend:self.paymentFriend];
-    NSLog(@"slider value = %f", slider.value);
 }
 
 -(void)setTotalPayment:(float)totalPayment

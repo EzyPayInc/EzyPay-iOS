@@ -11,6 +11,7 @@
 #import "PaymentTableViewCell.h"
 #import "Friend+CoreDataClass.h"
 #import "UserManager.h"
+#import "Currency+CoreDataClass.h"
 
 @interface PaymentViewController ()
 
@@ -73,12 +74,12 @@
      PaymentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"paymentCell" forIndexPath:indexPath];
     if(indexPath.section == 0) {
         cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", self.user.name, self.user.lastName];
-        cell.quantityLabel.text = [NSString stringWithFormat:@"%d", (int)self.userPayment];
+        cell.quantityLabel.text = [self quantityWithCurrencyCode:self.userPayment];
         [self getImage:cell fromUser:self.user.id];
     } else {
         Friend *friend = [[self.payment.friends allObjects] objectAtIndex:indexPath.row];
         cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", friend.name, friend.lastname];
-        cell.quantityLabel.text = [NSString stringWithFormat:@"%d", (int)friend.cost];
+        cell.quantityLabel.text = [self quantityWithCurrencyCode:friend.cost];
         cell.indicatorImageView.image = [UIImage imageNamed:@"ic_loading_spinner"];
         [self getImage:cell fromUser:friend.id];
     }
@@ -88,6 +89,13 @@
 - (void)getImage:(PaymentTableViewCell *)cell fromUser:(int64_t)userId {
     UserManager *manager = [[UserManager alloc] init];
     [manager downloadImage:userId toImageView:cell.profileImageView defaultImage:@"profileImage"];
+}
+
+- (NSString *)quantityWithCurrencyCode:(CGFloat) value {
+    NSString *currencyCode = self.payment.currency.code;
+    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:currencyCode];
+    NSString *currencySymbol = [NSString stringWithFormat:@"%@",[locale displayNameForKey:NSLocaleCurrencySymbol value:currencyCode]];
+    return [NSString stringWithFormat:@"%@ %.02f", currencySymbol, value];
 }
 
 @end

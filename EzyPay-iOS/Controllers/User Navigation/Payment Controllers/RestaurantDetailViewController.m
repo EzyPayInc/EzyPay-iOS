@@ -11,6 +11,7 @@
 #import "UserManager.h"
 #import "PaymentManager.h"
 #import "CoreDataManager.h"
+#import "UIColor+UIColor.h"
 
 @interface RestaurantDetailViewController ()
 
@@ -19,7 +20,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblCommerceName;
 @property (weak, nonatomic) IBOutlet UIImageView *restaurantImageView;
 @property (weak, nonatomic) IBOutlet UIView *paymentOptionsView;
-@property (nonatomic, assign) CGRect paymentOptionsFrame;
+@property (weak, nonatomic) IBOutlet UIButton *btnPay;
+@property (weak, nonatomic) IBOutlet UIButton *btnSplit;
 
 @property (nonatomic, strong) User *user;
 
@@ -29,18 +31,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.paymentOptionsView.hidden = YES;
     self.navigationItem.title = @"Commerce";
     self.lblCommerceName.text = self.payment.commerce.name;
     self.btnWaiter.hidden = self.payment.tableNumber == 0;
     self.user = [UserManager getUser];
     [self addCancelButton];
     [self getImage];
+    [self setupButtons];
+    self.paymentOptionsView.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setupButtons {
+    self.btnPay.layer.borderWidth = 2.0f;
+    self.btnSplit.layer.borderWidth = 2.0f;
+    self.btnPay.layer.borderColor = [[UIColor grayBackgroundViewColor] CGColor];
+    self.btnSplit.layer.borderColor = [[UIColor grayBackgroundViewColor] CGColor];
+    self.btnPay.layer.cornerRadius = 4.f;
+    self.btnSplit.layer.cornerRadius = 4.f;
 }
 
 #pragma mark - actions
@@ -60,7 +72,6 @@
 
 - (IBAction)splitPayment:(id)sender {
     ContactListTableViewController *tableViewController = (ContactListTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ContactListTableViewController"];
-     self.payment.cost = 150000;
      self.payment.paymentDate = [NSDate date];
      PaymentManager *manager = [[PaymentManager alloc] init];
      [manager updatePayment:self.payment user:self.user successHandler:^(id response) {
@@ -78,5 +89,33 @@
                toImageView:self.restaurantImageView
               defaultImage:@"restaurant"];
 }
+
+#pragma mark - Animation
+/*- (void)slideUpOptionsView {
+    self.paymentOptionsView.hidden = NO;
+    [self moveView:CGRectMake(self.paymentOptionsView.frame.origin.x,
+                              self.paymentOptionsView.frame.origin.y * -1,
+                              self.paymentOptionsView.frame.size.width,
+                              self.paymentOptionsView.frame.size.height)
+            hidden:NO];
+}
+
+- (void)slideDownOptionsView {
+    [self moveView:CGRectMake(self.paymentOptionsView.frame.origin.x,
+                              self.paymentOptionsView.frame.origin.y * -1,
+                              self.paymentOptionsView.frame.size.width,
+                              self.paymentOptionsView.frame.size.height)
+     hidden:YES];
+}
+
+- (void)moveView:(CGRect)newFrame hidden:(BOOL)hidden {
+    [UIView animateWithDuration:1
+                          delay:0
+                        options: UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         self.paymentOptionsView.frame = newFrame;
+                     }
+                     completion:nil];
+}*/
 
 @end

@@ -8,12 +8,12 @@
 
 #import "ContactListTableViewController.h"
 #import <Contacts/Contacts.h>
-#import "SplitTableViewController.h"
 #import "UserManager.h"
 #import "FriendManager.h"
 #import "CoreDataManager.h"
 #import "ContactTableViewCell.h"
 #import "UIColor+UIColor.h"
+#import "SplitViewController.h"
 
 @interface ContactListTableViewController () <UISearchBarDelegate>
 
@@ -91,12 +91,12 @@
 }
 
 - (void)nextAction {
-    SplitTableViewController *tableViewController = (SplitTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SplitTableViewController"];
+    SplitViewController *viewController = (SplitViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SplitViewController"];
     NSArray *friends = [FriendManager friendsFromUserArray:self.contactsChecked];
     self.payment.friends = [NSSet setWithArray:friends];
     [CoreDataManager saveContext];
-    tableViewController.payment = self.payment;
-    [self.navigationController pushViewController:tableViewController animated:true];
+    viewController.payment = self.payment;
+    [self.navigationController pushViewController:viewController animated:true];
 }
 
 

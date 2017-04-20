@@ -42,9 +42,9 @@ UIPickerViewDataSource>
 #pragma mark - Textfield delegate
 -(void) textFieldDidBeginEditing:(UITextField *)textField {
     if([textField isEqual:self.txtCurrency]) {
-        [self.view resignFirstResponder];
+        [self.txtCost resignFirstResponder];
+        [self.view endEditing:YES];
         [self showPicker];
-        [textField resignFirstResponder];
     } else {
         [self closePicker];
     }

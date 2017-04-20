@@ -41,6 +41,7 @@
 		806BF0691DC85C8100AD97CB /* UserServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 806BF0681DC85C8100AD97CB /* UserServiceClient.m */; };
 		8071B3FD1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8071B3FC1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.m */; };
 		8071B4001DD2DF6F001D8761 /* CardServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8071B3FF1DD2DF6F001D8761 /* CardServiceClient.m */; };
+		807F00461E9CAAE900F3B983 /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807F00451E9CAAE900F3B983 /* SplitViewController.m */; };
 		809788681E61526C001F30F9 /* TableCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 809788671E61526C001F30F9 /* TableCollectionViewCell.m */; };
 		80CFE8AB1E1F65D000DE276C /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CFE8AA1E1F65D000DE276C /* SettingsTableViewController.m */; };
 		80E171741E4C1CE400C099F5 /* HistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E171731E4C1CE400C099F5 /* HistoryTableViewCell.m */; };
@@ -63,7 +64,6 @@
 		80F760CB1E6FCB1500178608 /* SignInCommerceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F760CA1E6FCB1500178608 /* SignInCommerceViewController.m */; };
 		80F88F541E21775D00941E11 /* ProfileImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F88F531E21775D00941E11 /* ProfileImageTableViewCell.m */; };
 		80F88F581E21F15600941E11 /* SplitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F88F571E21F15600941E11 /* SplitTableViewCell.m */; };
-		80F88F5B1E21F2E600941E11 /* SplitTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F88F5A1E21F2E600941E11 /* SplitTableViewController.m */; };
 		80FCD2D11E763DE0009FC48D /* TableCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FCD2D01E763DE0009FC48D /* TableCollectionViewController.m */; };
 		80FCD2D71E763F9B009FC48D /* AddTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FCD2D61E763F9B009FC48D /* AddTableViewController.m */; };
 		80FD06571E4AEAA600D3FA38 /* UIColor+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FD06561E4AEAA600D3FA38 /* UIColor+UIColor.m */; };
@@ -94,6 +94,7 @@
 		800829741E15875500D2C5F2 /* CardDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardDetailViewController.m; sourceTree = "<group>"; };
 		8008598F1E23312200E3451F /* SettingsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewCell.h; sourceTree = "<group>"; };
 		800859901E23312200E3451F /* SettingsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewCell.m; sourceTree = "<group>"; };
+		801007CE1EA5C2B1006A521B /* EzyPay-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "EzyPay-iOS.entitlements"; sourceTree = "<group>"; };
 		8012A64E1E82429800FE5606 /* PaymentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentManager.h; sourceTree = "<group>"; };
 		8012A64F1E82429800FE5606 /* PaymentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentManager.m; sourceTree = "<group>"; };
 		8015518F1E4FA8ED0013F3E6 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
@@ -157,6 +158,8 @@
 		8071B3FC1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInPaymentInformationControllerViewController.m; sourceTree = "<group>"; };
 		8071B3FE1DD2DF6F001D8761 /* CardServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardServiceClient.h; sourceTree = "<group>"; };
 		8071B3FF1DD2DF6F001D8761 /* CardServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardServiceClient.m; sourceTree = "<group>"; };
+		807F00441E9CAAE900F3B983 /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewController.h; sourceTree = "<group>"; };
+		807F00451E9CAAE900F3B983 /* SplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewController.m; sourceTree = "<group>"; };
 		809788661E61526C001F30F9 /* TableCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCollectionViewCell.h; sourceTree = "<group>"; };
 		809788671E61526C001F30F9 /* TableCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCollectionViewCell.m; sourceTree = "<group>"; };
 		80CFE8A91E1F65D000DE276C /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
@@ -201,8 +204,6 @@
 		80F88F531E21775D00941E11 /* ProfileImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileImageTableViewCell.m; sourceTree = "<group>"; };
 		80F88F561E21F15600941E11 /* SplitTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitTableViewCell.h; sourceTree = "<group>"; };
 		80F88F571E21F15600941E11 /* SplitTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitTableViewCell.m; sourceTree = "<group>"; };
-		80F88F591E21F2E600941E11 /* SplitTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitTableViewController.h; sourceTree = "<group>"; };
-		80F88F5A1E21F2E600941E11 /* SplitTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitTableViewController.m; sourceTree = "<group>"; };
 		80FCD2CF1E763DE0009FC48D /* TableCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCollectionViewController.h; sourceTree = "<group>"; };
 		80FCD2D01E763DE0009FC48D /* TableCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCollectionViewController.m; sourceTree = "<group>"; };
 		80FCD2D51E763F9B009FC48D /* AddTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTableViewController.h; sourceTree = "<group>"; };
@@ -329,10 +330,10 @@
 				80F700631E1B540600946CFD /* RestaurantDetailViewController.m */,
 				80F700651E1B645E00946CFD /* ContactListTableViewController.h */,
 				80F700661E1B645E00946CFD /* ContactListTableViewController.m */,
-				80F88F591E21F2E600941E11 /* SplitTableViewController.h */,
-				80F88F5A1E21F2E600941E11 /* SplitTableViewController.m */,
 				80F36E6D1E5157F5009A8CE7 /* PaymentViewController.h */,
 				80F36E6E1E5157F5009A8CE7 /* PaymentViewController.m */,
+				807F00441E9CAAE900F3B983 /* SplitViewController.h */,
+				807F00451E9CAAE900F3B983 /* SplitViewController.m */,
 			);
 			path = "Payment Controllers";
 			sourceTree = "<group>";
@@ -519,6 +520,7 @@
 		80EFEB921DB8552900D874E2 /* EzyPay-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				801007CE1EA5C2B1006A521B /* EzyPay-iOS.entitlements */,
 				802C03AC1DF47B65001370E2 /* Categories */,
 				801FE3101DD406E2004318CC /* Model */,
 				802AE9401DC818F4006008B3 /* Connection */,
@@ -664,7 +666,16 @@
 				TargetAttributes = {
 					80EFEB8F1DB8552900D874E2 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = S85ZPM9T23;
+						DevelopmentTeam = NEY65554FF;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					80EFEBA81DB8552900D874E2 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -781,9 +792,9 @@
 				801BFA3A1E77A5950098F0DF /* QRPaymentViewController.m in Sources */,
 				801B252D1DD79B620039FB90 /* CompletionHandler.m in Sources */,
 				80E982BA1E936D7400A0B4FA /* CommerceDetailViewController.m in Sources */,
+				807F00461E9CAAE900F3B983 /* SplitViewController.m in Sources */,
 				80415C141E8B7742005696D3 /* FriendManager.m in Sources */,
 				8012A6501E82429800FE5606 /* PaymentManager.m in Sources */,
-				80F88F5B1E21F2E600941E11 /* SplitTableViewController.m in Sources */,
 				80E982BD1E9377A800A0B4FA /* EmployeeTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -945,7 +956,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = S85ZPM9T23;
+				CODE_SIGN_ENTITLEMENTS = "EzyPay-iOS/EzyPay-iOS.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Developer Ezypay (8YKXV224V8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = NEY65554FF;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -953,8 +967,10 @@
 				INFOPLIST_FILE = "EzyPay-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "net.ezypay.EzyPay-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = net.ezypay.EzyPay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -962,7 +978,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = S85ZPM9T23;
+				CODE_SIGN_ENTITLEMENTS = "EzyPay-iOS/EzyPay-iOS.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Developer Ezypay (8YKXV224V8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = NEY65554FF;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -970,8 +989,10 @@
 				INFOPLIST_FILE = "EzyPay-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "net.ezypay.EzyPay-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = net.ezypay.EzyPay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

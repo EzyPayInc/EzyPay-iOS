@@ -30,8 +30,42 @@
         self.window.rootViewController = [navigationController setupTabBarController:user.userType withUser:user];
         [self.window makeKeyAndVisible];
     }
-    
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:                                     (UIUserNotificationTypeAlert |
+                                                                                         UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+
     return YES;
+}
+
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(nonnull UIUserNotificationSettings *)notificationSettings {
+    if(notificationSettings != UIUserNotificationTypeNone) {
+        [application registerForRemoteNotifications];
+    }
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(nonnull NSData *)deviceToken {
+    const char *tokenChars = deviceToken.bytes;
+    NSMutableString *tokenString = [NSMutableString string];
+    for (int i = 0; i < deviceToken.length; i++) {
+        [tokenString appendFormat:@"%02.2hhx", tokenChars[i]];
+    }
+    NSLog(@"%@", tokenString);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"%@", [error description]);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    application.applicationIconBadgeNumber = 0;
+    NSString *msg = [NSString stringWithFormat:@"%@", userInfo];
+    NSLog(@"%@",msg);
+    [self createAlert:msg];
+}
+
+- (void)createAlert:(NSString *)msg {
+    NSLog(@"%@", msg);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
