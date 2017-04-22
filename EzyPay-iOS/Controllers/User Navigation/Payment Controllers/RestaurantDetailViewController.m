@@ -12,6 +12,7 @@
 #import "PaymentManager.h"
 #import "CoreDataManager.h"
 #import "UIColor+UIColor.h"
+#import "PushNotificationManager.h"
 
 @interface RestaurantDetailViewController ()
 
@@ -69,6 +70,16 @@
 - (IBAction)payBill:(id)sender {
     self.paymentOptionsView.hidden = NO;
 }
+
+- (IBAction)callWaiter:(id)sender {
+    PushNotificationManager *manager = [[PushNotificationManager alloc] init];
+    [manager callWaiterNotification:self.payment token:self.user.token successHandler:^(id response) {
+        NSLog(@"Success: %@", response);
+    } failureHandler:^(id response) {
+        NSLog(@"Error: %@", response);
+    }];
+}
+
 
 - (IBAction)splitPayment:(id)sender {
     ContactListTableViewController *tableViewController = (ContactListTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ContactListTableViewController"];

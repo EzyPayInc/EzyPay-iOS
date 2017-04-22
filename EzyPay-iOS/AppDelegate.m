@@ -10,6 +10,8 @@
 #import "UserManager.h"
 #import "NavigationController.h"
 #import "UIColor+UIColor.h"
+#import "DeviceTokenManager.h"
+#import "CoreDataManager.h"
 
 @interface AppDelegate ()
 
@@ -49,7 +51,8 @@
     for (int i = 0; i < deviceToken.length; i++) {
         [tokenString appendFormat:@"%02.2hhx", tokenChars[i]];
     }
-    NSLog(@"%@", tokenString);
+    [self registerToken:tokenString];
+
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
@@ -105,6 +108,30 @@
                                                  NSForegroundColorAttributeName: [UIColor grayBackgroundViewColor]
                                                  };
     [[UITabBarItem appearance] setTitleTextAttributes:attributesForSelectedState forState: UIControlStateSelected];
+}
+
+- (void)registerToken:(NSString *)deviceToken {
+    User *user = [UserManager getUser];
+    NSString* Identifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    NSLog(@"Identifier: %@", Identifier);
+    LocalToken *localToken = [DeviceTokenManager initLocalToken];
+    localToken.deviceToken = deviceToken;
+    [CoreDataManager saveContext];
+    if(user && user.token) {
+        DeviceTokenManager *manager = [[DeviceTokenManager alloc] init];
+        [manager registerDeviceToken:localToken user:user successHandler:^(id response) {
+            [self deleteToken];
+        } failureHandler:^(id response) {
+            NSLog(@"%@", response);
+            [self deleteToken];
+        }];
+    }
+}
+
+- (void)deleteToken {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [CoreDataManager deleteDataFromEntity:@"LocalToken"];
+    });
 }
 
 @end

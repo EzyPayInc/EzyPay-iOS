@@ -14,6 +14,7 @@
 #import "Card+CoreDataClass.h"
 #import "CoreDataManager.h"
 #import "NavigationController.h"
+#import "DeviceTokenManager.h"
 
 @interface SignInPaymentInformationControllerViewController ()<UITextFieldDelegate>
 
@@ -83,6 +84,7 @@
         [navigationController presentTabBarController:self
                                    withNavigationType:self.user.userType
                                              withUser:self.user];
+        [self registerToken:self.user];
     } failureHandler:^(id response) {
         NSLog(@"Error: %@", response);
     }];
@@ -152,6 +154,25 @@
         [alert dismissViewControllerAnimated:YES completion:nil];
     }]];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+#pragma mark - registerToken
+- (void)registerToken:(User *)user {
+    LocalToken *localToken = [DeviceTokenManager getDeviceToken];
+    if(localToken != nil){
+        DeviceTokenManager *manager = [[DeviceTokenManager alloc] init];
+        [manager registerDeviceToken:localToken user:user successHandler:^(id response) {
+            [self deleteToken];
+        } failureHandler:^(id response) {
+            [self deleteToken];
+        }];
+    }
+}
+
+- (void)deleteToken {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [CoreDataManager deleteDataFromEntity:@"DeviceToken"];
+    });
 }
 
 @end

@@ -15,6 +15,7 @@
 #import "User+CoreDataClass.h"
 #import "CoreDataManager.h"
 #import "NavigationController.h"
+#import "DeviceTokenManager.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
@@ -111,6 +112,7 @@
                                        withNavigationType:user.userType
                                                  withUser:user];
         }
+        [self registerToken:user];
         
     } failureHandler:^(id response) {
         NSLog(@"%@", response);
@@ -135,6 +137,23 @@
 }
 
 
+#pragma mark - register Token
+- (void)registerToken:(User *)user {
+    LocalToken *localToken = [DeviceTokenManager getDeviceToken];
+    if(localToken != nil){
+        DeviceTokenManager *manager = [[DeviceTokenManager alloc] init];
+        [manager registerDeviceToken:localToken user:user successHandler:^(id response) {
+            [self deleteToken];
+        } failureHandler:^(id response) {
+            [self deleteToken];
+        }];
+    }
+}
 
+- (void)deleteToken {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [CoreDataManager deleteDataFromEntity:@"LocalToken"];
+    });
+}
 
 @end

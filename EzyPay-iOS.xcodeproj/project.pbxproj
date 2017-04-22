@@ -43,12 +43,16 @@
 		8071B4001DD2DF6F001D8761 /* CardServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8071B3FF1DD2DF6F001D8761 /* CardServiceClient.m */; };
 		807F00461E9CAAE900F3B983 /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807F00451E9CAAE900F3B983 /* SplitViewController.m */; };
 		809788681E61526C001F30F9 /* TableCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 809788671E61526C001F30F9 /* TableCollectionViewCell.m */; };
+		80B18A231EAB28D800A56A4A /* PushNotificationServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B18A221EAB28D800A56A4A /* PushNotificationServiceClient.m */; };
+		80B18A291EAB2AF000A56A4A /* PushNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B18A281EAB2AF000A56A4A /* PushNotificationManager.m */; };
 		80CFE8AB1E1F65D000DE276C /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CFE8AA1E1F65D000DE276C /* SettingsTableViewController.m */; };
 		80E171741E4C1CE400C099F5 /* HistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E171731E4C1CE400C099F5 /* HistoryTableViewCell.m */; };
 		80E688D41E74D88E0002CF76 /* TableServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E688D31E74D88E0002CF76 /* TableServiceClient.m */; };
 		80E688D81E74DD250002CF76 /* TableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E688D71E74DD250002CF76 /* TableManager.m */; };
 		80E982BA1E936D7400A0B4FA /* CommerceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E982B91E936D7400A0B4FA /* CommerceDetailViewController.m */; };
 		80E982BD1E9377A800A0B4FA /* EmployeeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E982BC1E9377A800A0B4FA /* EmployeeTableViewController.m */; };
+		80EF9FC61EA9BEC200362D18 /* DeviceTokenServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EF9FC51EA9BEC200362D18 /* DeviceTokenServiceClient.m */; };
+		80EF9FC91EA9C71B00362D18 /* DeviceTokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EF9FC81EA9C71B00362D18 /* DeviceTokenManager.m */; };
 		80EFEB951DB8552900D874E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EFEB941DB8552900D874E2 /* main.m */; };
 		80EFEB981DB8552900D874E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EFEB971DB8552900D874E2 /* AppDelegate.m */; };
 		80EFEB9E1DB8552900D874E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80EFEB9C1DB8552900D874E2 /* Main.storyboard */; };
@@ -162,6 +166,10 @@
 		807F00451E9CAAE900F3B983 /* SplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewController.m; sourceTree = "<group>"; };
 		809788661E61526C001F30F9 /* TableCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCollectionViewCell.h; sourceTree = "<group>"; };
 		809788671E61526C001F30F9 /* TableCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCollectionViewCell.m; sourceTree = "<group>"; };
+		80B18A211EAB28D800A56A4A /* PushNotificationServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationServiceClient.h; sourceTree = "<group>"; };
+		80B18A221EAB28D800A56A4A /* PushNotificationServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationServiceClient.m; sourceTree = "<group>"; };
+		80B18A271EAB2AF000A56A4A /* PushNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationManager.h; sourceTree = "<group>"; };
+		80B18A281EAB2AF000A56A4A /* PushNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationManager.m; sourceTree = "<group>"; };
 		80CFE8A91E1F65D000DE276C /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		80CFE8AA1E1F65D000DE276C /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		80E171721E4C1CE400C099F5 /* HistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewCell.h; sourceTree = "<group>"; };
@@ -174,6 +182,10 @@
 		80E982B91E936D7400A0B4FA /* CommerceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommerceDetailViewController.m; sourceTree = "<group>"; };
 		80E982BB1E9377A800A0B4FA /* EmployeeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeeTableViewController.h; sourceTree = "<group>"; };
 		80E982BC1E9377A800A0B4FA /* EmployeeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeeTableViewController.m; sourceTree = "<group>"; };
+		80EF9FC41EA9BEC200362D18 /* DeviceTokenServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceTokenServiceClient.h; sourceTree = "<group>"; };
+		80EF9FC51EA9BEC200362D18 /* DeviceTokenServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceTokenServiceClient.m; sourceTree = "<group>"; };
+		80EF9FC71EA9C71B00362D18 /* DeviceTokenManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceTokenManager.h; sourceTree = "<group>"; };
+		80EF9FC81EA9C71B00362D18 /* DeviceTokenManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceTokenManager.m; sourceTree = "<group>"; };
 		80EFEB901DB8552900D874E2 /* EzyPay-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EzyPay-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80EFEB941DB8552900D874E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		80EFEB961DB8552900D874E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -369,6 +381,10 @@
 				80415C101E8B5CF1005696D3 /* PaymentServiceClient.m */,
 				80188F771E98A22F008AB708 /* CurrencyServiceClient.h */,
 				80188F781E98A22F008AB708 /* CurrencyServiceClient.m */,
+				80EF9FC41EA9BEC200362D18 /* DeviceTokenServiceClient.h */,
+				80EF9FC51EA9BEC200362D18 /* DeviceTokenServiceClient.m */,
+				80B18A211EAB28D800A56A4A /* PushNotificationServiceClient.h */,
+				80B18A221EAB28D800A56A4A /* PushNotificationServiceClient.m */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
@@ -421,6 +437,10 @@
 				80415C131E8B7742005696D3 /* FriendManager.m */,
 				80188F7A1E98A6B7008AB708 /* CurrencyManager.h */,
 				80188F7B1E98A6B7008AB708 /* CurrencyManager.m */,
+				80EF9FC71EA9C71B00362D18 /* DeviceTokenManager.h */,
+				80EF9FC81EA9C71B00362D18 /* DeviceTokenManager.m */,
+				80B18A271EAB2AF000A56A4A /* PushNotificationManager.h */,
+				80B18A281EAB2AF000A56A4A /* PushNotificationManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -755,6 +775,8 @@
 				80F700641E1B540600946CFD /* RestaurantDetailViewController.m in Sources */,
 				800859911E23312200E3451F /* SettingsTableViewCell.m in Sources */,
 				805F36961E94D7330099932A /* ContactTableViewCell.m in Sources */,
+				80B18A291EAB2AF000A56A4A /* PushNotificationManager.m in Sources */,
+				80EF9FC61EA9BEC200362D18 /* DeviceTokenServiceClient.m in Sources */,
 				805F368B1E949C6D0099932A /* EmployeeDetailViewController.m in Sources */,
 				80F700671E1B645E00946CFD /* ContactListTableViewController.m in Sources */,
 				801FE3131DD40778004318CC /* CoreDataManager.m in Sources */,
@@ -780,6 +802,8 @@
 				80E688D81E74DD250002CF76 /* TableManager.m in Sources */,
 				800829751E15875500D2C5F2 /* CardDetailViewController.m in Sources */,
 				80EFEB951DB8552900D874E2 /* main.m in Sources */,
+				80EF9FC91EA9C71B00362D18 /* DeviceTokenManager.m in Sources */,
+				80B18A231EAB28D800A56A4A /* PushNotificationServiceClient.m in Sources */,
 				80F36E6F1E5157F5009A8CE7 /* PaymentViewController.m in Sources */,
 				80E688D41E74D88E0002CF76 /* TableServiceClient.m in Sources */,
 				802C03AF1DF47C14001370E2 /* NSString+String.m in Sources */,
