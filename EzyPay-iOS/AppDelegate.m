@@ -12,6 +12,7 @@
 #import "UIColor+UIColor.h"
 #import "DeviceTokenManager.h"
 #import "CoreDataManager.h"
+#import "NotificationHandlerFactory.h"
 
 @interface AppDelegate ()
 
@@ -62,14 +63,11 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     application.applicationIconBadgeNumber = 0;
-    NSString *msg = [NSString stringWithFormat:@"%@", userInfo];
-    NSLog(@"%@",msg);
-    [self createAlert:msg];
+    NSDictionary *notification = [userInfo objectForKey:@"aps"];
+    id<NotificationHandler>handler = [NotificationHandlerFactory initNotificationHandler:[notification objectForKey:@"category"]];
+    [handler notificationAction:userInfo];
 }
 
-- (void)createAlert:(NSString *)msg {
-    NSLog(@"%@", msg);
-}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

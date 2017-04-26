@@ -13,6 +13,19 @@
 
 @interface PushNotificationServiceClient : NSObject
 
-- (void)callWaiterNotification:(Payment *)payment token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler;
+- (void)callWaiterNotification:(Payment *)payment
+                         token:(NSString *)token
+                successHandler:(ConnectionSuccessHandler) successHandler
+                failureHandler: (ConnectionErrorHandler) failureHandler;
+- (void)billRequestNotification:(Payment *)payment
+                          token:(NSString *)token
+                 successHandler:(ConnectionSuccessHandler) successHandler
+                 failureHandler: (ConnectionErrorHandler) failureHandler;
+- (void)sendBillNotification:(int64_t)clientId
+                currencyCode:(NSString *)currencyCode
+                      amount:(CGFloat)amount
+                       token:(NSString *)token
+              successHandler:(ConnectionSuccessHandler) successHandler
+              failureHandler: (ConnectionErrorHandler) failureHandler;
 
 @end

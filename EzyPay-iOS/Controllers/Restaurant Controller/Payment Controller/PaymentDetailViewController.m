@@ -12,6 +12,7 @@
 #import "Payment+CoreDataClass.h"
 #import "NavigationController.h"
 #import "QRPaymentViewController.h"
+#import "PushNotificationManager.h"
 
 @interface PaymentDetailViewController () <UITextFieldDelegate, UIPickerViewDelegate,
 UIPickerViewDataSource>
@@ -103,14 +104,17 @@ UIPickerViewDataSource>
 }
 
 - (IBAction)displayQrViewController:(id)sender {
-    [CoreDataManager deleteDataFromEntity:@"Payment"];
-    Payment *payment = [CoreDataManager createEntityWithName:@"Payment"];
-    payment.currency = self.currentCurrency;
-    payment.cost = [self.txtCost.text isEqualToString:@""]? 0.f : [self.txtCost.text floatValue];
-    payment.tableNumber = self.tableNumber;
-    payment.commerce = self.user.userType == EmployeeNavigation ? self.user.boss : self.user;
-    [self navigateToQRViewController:payment];
-    
+    if(!self.isNotification){
+        [CoreDataManager deleteDataFromEntity:@"Payment"];
+        Payment *payment = [CoreDataManager createEntityWithName:@"Payment"];
+        payment.currency = self.currentCurrency;
+        payment.cost = [self.txtCost.text isEqualToString:@""]? 0.f : [self.txtCost.text floatValue];
+        payment.tableNumber = self.tableNumber;
+        payment.commerce = self.user.userType == EmployeeNavigation ? self.user.boss : self.user;
+        [self navigateToQRViewController:payment];
+    } else {
+        [self sendBillNotification];
+    }
 }
 
 - (void)navigateToQRViewController:(Payment *)payment {
@@ -120,6 +124,19 @@ UIPickerViewDataSource>
     viewController.user = self.user.userType == EmployeeNavigation ? self.user.boss : self.user;
     viewController.payment = payment;
     [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (void)sendBillNotification {
+    PushNotificationManager *manager = [[PushNotificationManager alloc] init];
+    [manager sendBillNotification:self.clientId
+                     currencyCode:self.currentCurrency.code
+                           amount:[self.txtCost.text floatValue]
+                            token:self.user.token
+                   successHandler:^(id response) {
+                       NSLog(@"%@", response);
+                   } failureHandler:^(id response) {
+                       NSLog(@"%@", response);
+                   }];
 }
 
 

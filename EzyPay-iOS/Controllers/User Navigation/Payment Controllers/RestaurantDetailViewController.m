@@ -68,7 +68,17 @@
 }
 
 - (IBAction)payBill:(id)sender {
-    self.paymentOptionsView.hidden = NO;
+    if(self.payment.cost > 0) {
+        self.paymentOptionsView.hidden = NO;
+    } else {
+        PushNotificationManager *manager = [[PushNotificationManager alloc] init];
+        [manager billRequestNotification:self.payment
+                                   token:self.user.token successHandler:^(id response) {
+                                       NSLog(@"%@", response);
+                                   } failureHandler:^(id response) {
+                                       NSLog(@"%@", response);
+                                   }];
+    }
 }
 
 - (IBAction)callWaiter:(id)sender {

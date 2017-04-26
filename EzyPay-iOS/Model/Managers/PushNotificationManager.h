@@ -6,13 +6,26 @@
 //  Copyright © 2017 EzyPay Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "Connection.h"
 
 @class Payment;
 @interface PushNotificationManager : NSObject
 
 #pragma mark - web service clients
-- (void)callWaiterNotification:(Payment *)payment token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler;
+- (void)callWaiterNotification:(Payment *)payment
+                         token:(NSString *)token
+                successHandler:(ConnectionSuccessHandler) successHandler
+                failureHandler: (ConnectionErrorHandler) failureHandler;
+- (void)billRequestNotification:(Payment *)payment
+                          token:(NSString *)token
+                 successHandler:(ConnectionSuccessHandler) successHandler
+                 failureHandler: (ConnectionErrorHandler) failureHandler;
+- (void)sendBillNotification:(int64_t)clientId
+                currencyCode:(NSString *)currencyCode
+                      amount:(CGFloat)amount
+                       token:(NSString *)token
+              successHandler:(ConnectionSuccessHandler) successHandler
+              failureHandler: (ConnectionErrorHandler) failureHandler;
 
 @end

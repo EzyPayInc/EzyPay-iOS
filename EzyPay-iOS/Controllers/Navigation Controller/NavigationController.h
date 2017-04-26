@@ -24,5 +24,6 @@ typedef enum {
              withNavigationType:(NavigationTypes) navigationType
                        withUser:(User *) user;
 - (UITabBarController *)setupTabBarController:(NavigationTypes) navigationType withUser:(User *)user;
+- (UIViewController*)topViewController;
 
 @end

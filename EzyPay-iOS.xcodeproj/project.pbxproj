@@ -19,6 +19,7 @@
 		801BFA3A1E77A5950098F0DF /* QRPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801BFA391E77A5950098F0DF /* QRPaymentViewController.m */; };
 		801D0C2E1DF13ED50079F9AB /* HistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801D0C2D1DF13ED50079F9AB /* HistoryTableViewController.m */; };
 		801D3C7C1DEE636700C8845D /* ScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801D3C7B1DEE636700C8845D /* ScannerViewController.m */; };
+		801DBAFB1EB069CB006527D7 /* SendBillNotificationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 801DBAFA1EB069CB006527D7 /* SendBillNotificationHandler.m */; };
 		801FE3131DD40778004318CC /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 801FE3121DD40778004318CC /* CoreDataManager.m */; };
 		80217A731DEFCFC60096DEF4 /* CardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80217A721DEFCFC60096DEF4 /* CardManager.m */; };
 		80217A761DEFF8E60096DEF4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80217A781DEFF8E60096DEF4 /* Localizable.strings */; };
@@ -68,6 +69,9 @@
 		80F760CB1E6FCB1500178608 /* SignInCommerceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F760CA1E6FCB1500178608 /* SignInCommerceViewController.m */; };
 		80F88F541E21775D00941E11 /* ProfileImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F88F531E21775D00941E11 /* ProfileImageTableViewCell.m */; };
 		80F88F581E21F15600941E11 /* SplitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F88F571E21F15600941E11 /* SplitTableViewCell.m */; };
+		80F938361EAEFFCC0033D193 /* NotificationHandlerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F938351EAEFFCC0033D193 /* NotificationHandlerFactory.m */; };
+		80F9383C1EAF144A0033D193 /* BillRequestNotificationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F9383B1EAF144A0033D193 /* BillRequestNotificationHandler.m */; };
+		80F9383F1EAF18CF0033D193 /* GeneralNotificationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F9383E1EAF18CF0033D193 /* GeneralNotificationHandler.m */; };
 		80FCD2D11E763DE0009FC48D /* TableCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FCD2D01E763DE0009FC48D /* TableCollectionViewController.m */; };
 		80FCD2D71E763F9B009FC48D /* AddTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FCD2D61E763F9B009FC48D /* AddTableViewController.m */; };
 		80FD06571E4AEAA600D3FA38 /* UIColor+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FD06561E4AEAA600D3FA38 /* UIColor+UIColor.m */; };
@@ -117,6 +121,8 @@
 		801D0C2D1DF13ED50079F9AB /* HistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryTableViewController.m; sourceTree = "<group>"; };
 		801D3C7A1DEE636700C8845D /* ScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScannerViewController.h; sourceTree = "<group>"; };
 		801D3C7B1DEE636700C8845D /* ScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScannerViewController.m; sourceTree = "<group>"; };
+		801DBAF91EB069CB006527D7 /* SendBillNotificationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendBillNotificationHandler.h; sourceTree = "<group>"; };
+		801DBAFA1EB069CB006527D7 /* SendBillNotificationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendBillNotificationHandler.m; sourceTree = "<group>"; };
 		801FE3111DD40778004318CC /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
 		801FE3121DD40778004318CC /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
 		80217A711DEFCFC60096DEF4 /* CardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardManager.h; sourceTree = "<group>"; };
@@ -216,6 +222,13 @@
 		80F88F531E21775D00941E11 /* ProfileImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileImageTableViewCell.m; sourceTree = "<group>"; };
 		80F88F561E21F15600941E11 /* SplitTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitTableViewCell.h; sourceTree = "<group>"; };
 		80F88F571E21F15600941E11 /* SplitTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitTableViewCell.m; sourceTree = "<group>"; };
+		80F938301EAEFB7D0033D193 /* NotificationHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationHandler.h; sourceTree = "<group>"; };
+		80F938341EAEFFCC0033D193 /* NotificationHandlerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationHandlerFactory.h; sourceTree = "<group>"; };
+		80F938351EAEFFCC0033D193 /* NotificationHandlerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationHandlerFactory.m; sourceTree = "<group>"; };
+		80F9383A1EAF144A0033D193 /* BillRequestNotificationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillRequestNotificationHandler.h; sourceTree = "<group>"; };
+		80F9383B1EAF144A0033D193 /* BillRequestNotificationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillRequestNotificationHandler.m; sourceTree = "<group>"; };
+		80F9383D1EAF18CF0033D193 /* GeneralNotificationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralNotificationHandler.h; sourceTree = "<group>"; };
+		80F9383E1EAF18CF0033D193 /* GeneralNotificationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralNotificationHandler.m; sourceTree = "<group>"; };
 		80FCD2CF1E763DE0009FC48D /* TableCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCollectionViewController.h; sourceTree = "<group>"; };
 		80FCD2D01E763DE0009FC48D /* TableCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCollectionViewController.m; sourceTree = "<group>"; };
 		80FCD2D51E763F9B009FC48D /* AddTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTableViewController.h; sourceTree = "<group>"; };
@@ -541,6 +554,7 @@
 			isa = PBXGroup;
 			children = (
 				801007CE1EA5C2B1006A521B /* EzyPay-iOS.entitlements */,
+				80F9382F1EAEFAAC0033D193 /* Notifications Handlers */,
 				802C03AC1DF47B65001370E2 /* Categories */,
 				801FE3101DD406E2004318CC /* Model */,
 				802AE9401DC818F4006008B3 /* Connection */,
@@ -606,6 +620,22 @@
 				805F36951E94D7330099932A /* ContactTableViewCell.m */,
 			);
 			path = "Prototype Cells";
+			sourceTree = "<group>";
+		};
+		80F9382F1EAEFAAC0033D193 /* Notifications Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				80F938301EAEFB7D0033D193 /* NotificationHandler.h */,
+				80F938341EAEFFCC0033D193 /* NotificationHandlerFactory.h */,
+				80F938351EAEFFCC0033D193 /* NotificationHandlerFactory.m */,
+				80F9383A1EAF144A0033D193 /* BillRequestNotificationHandler.h */,
+				80F9383B1EAF144A0033D193 /* BillRequestNotificationHandler.m */,
+				80F9383D1EAF18CF0033D193 /* GeneralNotificationHandler.h */,
+				80F9383E1EAF18CF0033D193 /* GeneralNotificationHandler.m */,
+				801DBAF91EB069CB006527D7 /* SendBillNotificationHandler.h */,
+				801DBAFA1EB069CB006527D7 /* SendBillNotificationHandler.m */,
+			);
+			path = "Notifications Handlers";
 			sourceTree = "<group>";
 		};
 		80FCD2CE1E763C91009FC48D /* Table Controller */ = {
@@ -761,6 +791,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80F9383C1EAF144A0033D193 /* BillRequestNotificationHandler.m in Sources */,
 				804CEEE21DED5A630078BB54 /* UserManager.m in Sources */,
 				80FD06571E4AEAA600D3FA38 /* UIColor+UIColor.m in Sources */,
 				8030CB071DC1A54A006C0070 /* LoginViewController.m in Sources */,
@@ -778,6 +809,8 @@
 				80B18A291EAB2AF000A56A4A /* PushNotificationManager.m in Sources */,
 				80EF9FC61EA9BEC200362D18 /* DeviceTokenServiceClient.m in Sources */,
 				805F368B1E949C6D0099932A /* EmployeeDetailViewController.m in Sources */,
+				80F9383F1EAF18CF0033D193 /* GeneralNotificationHandler.m in Sources */,
+				80F938361EAEFFCC0033D193 /* NotificationHandlerFactory.m in Sources */,
 				80F700671E1B645E00946CFD /* ContactListTableViewController.m in Sources */,
 				801FE3131DD40778004318CC /* CoreDataManager.m in Sources */,
 				80016E4E1E1C943100D4658D /* BarcodeScannerViewController.m in Sources */,
@@ -799,6 +832,7 @@
 				80188F761E989B8A008AB708 /* PaymentDetailViewController.m in Sources */,
 				80FDEB361E6D23E500DD4F06 /* ChooseViewController.m in Sources */,
 				80F760CB1E6FCB1500178608 /* SignInCommerceViewController.m in Sources */,
+				801DBAFB1EB069CB006527D7 /* SendBillNotificationHandler.m in Sources */,
 				80E688D81E74DD250002CF76 /* TableManager.m in Sources */,
 				800829751E15875500D2C5F2 /* CardDetailViewController.m in Sources */,
 				80EFEB951DB8552900D874E2 /* main.m in Sources */,
