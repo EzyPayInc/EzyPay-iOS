@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Connection.h"
 
-@class Payment;
+@class Payment, User;
 @interface PushNotificationManager : NSObject
 
 #pragma mark - web service clients
@@ -27,5 +27,9 @@
                        token:(NSString *)token
               successHandler:(ConnectionSuccessHandler) successHandler
               failureHandler: (ConnectionErrorHandler) failureHandler;
+- (void)splitRequestNotification:(User *)user
+                         payment:(Payment *)payment
+                  successHandler:(ConnectionSuccessHandler) successHandler
+                  failureHandler: (ConnectionErrorHandler) failureHandler;
 
 @end

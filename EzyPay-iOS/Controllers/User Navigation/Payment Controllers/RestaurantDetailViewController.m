@@ -42,6 +42,14 @@
     self.paymentOptionsView.hidden = YES;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if(self.payment.cost > 0) {
+        self.paymentOptionsView.hidden = NO;
+    }
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -109,6 +117,10 @@
     [manager downloadImage:self.payment.commerce.id
                toImageView:self.restaurantImageView
               defaultImage:@"restaurant"];
+}
+
+- (void)showPaymentView{
+    self.paymentOptionsView.hidden = NO;
 }
 
 #pragma mark - Animation

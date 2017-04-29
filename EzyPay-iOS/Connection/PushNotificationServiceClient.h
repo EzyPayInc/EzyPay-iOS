@@ -28,4 +28,8 @@
               successHandler:(ConnectionSuccessHandler) successHandler
               failureHandler: (ConnectionErrorHandler) failureHandler;
 
+- (void)splitRequestNotification:(User *)user
+                         payment:(Payment *)payment
+                  successHandler:(ConnectionSuccessHandler) successHandler
+                failureHandler: (ConnectionErrorHandler) failureHandler;
 @end

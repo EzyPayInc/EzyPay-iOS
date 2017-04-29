@@ -10,6 +10,7 @@
 #import "CoreDataManager.h"
 #import "Friend+CoreDataClass.h"
 #import "User+CoreDataClass.h"
+#import "UserPaymentServiceClient.h"
 
 @implementation FriendManager
 
@@ -24,6 +25,33 @@
         [friends addObject:friend];
     }
     return friends;
+}
+
+#pragma mark Web Services method
+- (void)addFriendsToPayment:(Payment *)payment
+                       user:(User *)user
+                   userCost:(float)userCost
+             successHandler:(ConnectionSuccessHandler) successHandler
+             failureHandler:(ConnectionErrorHandler) failureHandler {
+    UserPaymentServiceClient *service = [[UserPaymentServiceClient alloc] init];
+    [service addFriendsToPayment:payment
+                            user:user
+                        userCost:userCost
+                  successHandler:successHandler
+                  failureHandler:failureHandler];
+}
+
+-(void)updateUserPayment:(User *)user
+               paymentId:(int64_t)paymentId
+                   state:(int16_t)state
+          successHandler:(ConnectionSuccessHandler) successHandler
+          failureHandler:(ConnectionErrorHandler) failureHandler {
+    UserPaymentServiceClient *service = [[UserPaymentServiceClient alloc] init];
+    [service updateUserPayment:user
+                     paymentId:paymentId
+                         state:state
+                successHandler:successHandler
+                failureHandler:failureHandler];
 }
 
 

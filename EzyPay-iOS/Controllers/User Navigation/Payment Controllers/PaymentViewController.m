@@ -75,12 +75,14 @@
     if(indexPath.section == 0) {
         cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", self.user.name, self.user.lastName];
         cell.quantityLabel.text = [self quantityWithCurrencyCode:self.userPayment];
+        cell.activityIndicator.hidden = YES;
         [self getImage:cell fromUser:self.user.id];
     } else {
         Friend *friend = [[self.payment.friends allObjects] objectAtIndex:indexPath.row];
         cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", friend.name, friend.lastname];
         cell.quantityLabel.text = [self quantityWithCurrencyCode:friend.cost];
-        cell.indicatorImageView.image = [UIImage imageNamed:@"ic_loading_spinner"];
+        cell.activityIndicator.hidden = friend.state != 0;
+        cell.indicatorImageView.hidden = friend.state == 0;
         [self getImage:cell fromUser:friend.id];
     }
     return  cell;

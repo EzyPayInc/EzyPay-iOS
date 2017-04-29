@@ -17,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *quantityLabel;
 
 @property (weak, nonatomic) IBOutlet UIImageView *indicatorImageView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end

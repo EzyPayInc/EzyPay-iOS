@@ -13,4 +13,6 @@
 
 @property(nonatomic, strong) Payment *payment;
 
+- (void)showPaymentView;
+
 @end

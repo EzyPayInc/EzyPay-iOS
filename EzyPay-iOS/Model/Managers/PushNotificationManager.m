@@ -45,4 +45,14 @@
                    failureHandler:failureHandler];
 }
 
+- (void)splitRequestNotification:(User *)user
+                         payment:(Payment *)payment
+                  successHandler:(ConnectionSuccessHandler) successHandler
+                  failureHandler: (ConnectionErrorHandler) failureHandler {
+    PushNotificationServiceClient *service = [[PushNotificationServiceClient alloc] init];
+    [service splitRequestNotification:user payment:payment successHandler:successHandler failureHandler:failureHandler];
+    
+}
+
+
 @end

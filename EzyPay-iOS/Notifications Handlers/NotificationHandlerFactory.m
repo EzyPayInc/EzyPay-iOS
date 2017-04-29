@@ -10,6 +10,7 @@
 #import "BillRequestNotificationHandler.h"
 #import "GeneralNotificationHandler.h"
 #import "SendBillNotificationHandler.h"
+#import "SplitRequestNotificationHandler.h"
 
 
 @implementation NotificationHandlerFactory
@@ -19,11 +20,14 @@
     NSInteger notificationCategory = [category integerValue];
     id<NotificationHandler> handler;
     switch (notificationCategory) {
-        case BILLREQUEST:
+        case BILLREQUEST: 
             handler = [[BillRequestNotificationHandler alloc] init];
             break;
         case SENDBILL:
             handler = [[SendBillNotificationHandler alloc] init];
+            break;
+        case SPLITREQUEST:
+            handler = [[SplitRequestNotificationHandler alloc] init];
             break;
         case CALLWAITER:
         default:

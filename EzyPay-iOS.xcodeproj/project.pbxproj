@@ -34,6 +34,8 @@
 		804CEEAB1DED3C9E0078BB54 /* GeneralServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 804CEEAA1DED3C9E0078BB54 /* GeneralServiceClient.m */; };
 		804CEEDF1DED54DB0078BB54 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 804CEEDE1DED54DB0078BB54 /* NavigationController.m */; };
 		804CEEE21DED5A630078BB54 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 804CEEE11DED5A630078BB54 /* UserManager.m */; };
+		805501841EB4379100B41E65 /* UserPaymentServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 805501831EB4379100B41E65 /* UserPaymentServiceClient.m */; };
+		805501871EB45D5200B41E65 /* SplitRequestNotificationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 805501861EB45D5200B41E65 /* SplitRequestNotificationHandler.m */; };
 		805F368B1E949C6D0099932A /* EmployeeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 805F368A1E949C6D0099932A /* EmployeeDetailViewController.m */; };
 		805F36901E94C4630099932A /* HistoryCommerceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 805F368F1E94C4630099932A /* HistoryCommerceTableViewCell.m */; };
 		805F36931E94C5980099932A /* HistoryCommerceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 805F36921E94C5980099932A /* HistoryCommerceTableViewController.m */; };
@@ -152,6 +154,10 @@
 		804CEEDE1DED54DB0078BB54 /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		804CEEE01DED5A630078BB54 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
 		804CEEE11DED5A630078BB54 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
+		805501821EB4379100B41E65 /* UserPaymentServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPaymentServiceClient.h; sourceTree = "<group>"; };
+		805501831EB4379100B41E65 /* UserPaymentServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPaymentServiceClient.m; sourceTree = "<group>"; };
+		805501851EB45D5200B41E65 /* SplitRequestNotificationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitRequestNotificationHandler.h; sourceTree = "<group>"; };
+		805501861EB45D5200B41E65 /* SplitRequestNotificationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitRequestNotificationHandler.m; sourceTree = "<group>"; };
 		805F36891E949C6D0099932A /* EmployeeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeeDetailViewController.h; sourceTree = "<group>"; };
 		805F368A1E949C6D0099932A /* EmployeeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeeDetailViewController.m; sourceTree = "<group>"; };
 		805F368E1E94C4630099932A /* HistoryCommerceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryCommerceTableViewCell.h; sourceTree = "<group>"; };
@@ -398,6 +404,8 @@
 				80EF9FC51EA9BEC200362D18 /* DeviceTokenServiceClient.m */,
 				80B18A211EAB28D800A56A4A /* PushNotificationServiceClient.h */,
 				80B18A221EAB28D800A56A4A /* PushNotificationServiceClient.m */,
+				805501821EB4379100B41E65 /* UserPaymentServiceClient.h */,
+				805501831EB4379100B41E65 /* UserPaymentServiceClient.m */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
@@ -634,6 +642,8 @@
 				80F9383E1EAF18CF0033D193 /* GeneralNotificationHandler.m */,
 				801DBAF91EB069CB006527D7 /* SendBillNotificationHandler.h */,
 				801DBAFA1EB069CB006527D7 /* SendBillNotificationHandler.m */,
+				805501851EB45D5200B41E65 /* SplitRequestNotificationHandler.h */,
+				805501861EB45D5200B41E65 /* SplitRequestNotificationHandler.m */,
 			);
 			path = "Notifications Handlers";
 			sourceTree = "<group>";
@@ -793,6 +803,7 @@
 			files = (
 				80F9383C1EAF144A0033D193 /* BillRequestNotificationHandler.m in Sources */,
 				804CEEE21DED5A630078BB54 /* UserManager.m in Sources */,
+				805501871EB45D5200B41E65 /* SplitRequestNotificationHandler.m in Sources */,
 				80FD06571E4AEAA600D3FA38 /* UIColor+UIColor.m in Sources */,
 				8030CB071DC1A54A006C0070 /* LoginViewController.m in Sources */,
 				80FCD2D11E763DE0009FC48D /* TableCollectionViewController.m in Sources */,
@@ -825,6 +836,7 @@
 				80188F7C1E98A6B7008AB708 /* CurrencyManager.m in Sources */,
 				806BF0661DC8519300AD97CB /* SignInUserViewController.m in Sources */,
 				80217A731DEFCFC60096DEF4 /* CardManager.m in Sources */,
+				805501841EB4379100B41E65 /* UserPaymentServiceClient.m in Sources */,
 				802D5FFA1DD573CF000478F0 /* DropDownTableViewController.m in Sources */,
 				804CEE811DED242C0078BB54 /* EzyPay.xcdatamodeld in Sources */,
 				80415C111E8B5CF1005696D3 /* PaymentServiceClient.m in Sources */,

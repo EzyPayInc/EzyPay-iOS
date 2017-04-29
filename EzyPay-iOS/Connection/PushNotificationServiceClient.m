@@ -8,6 +8,9 @@
 
 #import "PushNotificationServiceClient.h"
 #import "SessionHandler.h"
+#import "Payment+CoreDataClass.h"
+#import "Currency+CoreDataClass.h"
+#import "Friend+CoreDataClass.h"
 
 @interface PushNotificationServiceClient()
 
@@ -86,6 +89,45 @@ static NSString *const NOTIFICATIONS_URL = @"notifications/";
     [request addValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"Authorization"];
     [request addValue:language forHTTPHeaderField:@"lang"];
     [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
+}
+
+- (void)splitRequestNotification:(User *)user
+                         payment:(Payment *)payment
+                  successHandler:(ConnectionSuccessHandler) successHandler
+                  failureHandler: (ConnectionErrorHandler) failureHandler {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/splitRequest", BASE_URL, NOTIFICATIONS_URL]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    NSDictionary *paymentDictionary = @{@"paymentId": [NSNumber numberWithLongLong:payment.id],
+                                        @"currency": payment.currency.code,
+                                        @"cost": [NSNumber numberWithFloat:payment.cost]};
+    NSDictionary *data = @{@"friends": [self getFriends:payment.friends], @"payment": paymentDictionary};
+
+    NSDictionary *postData = @{@"data": data};
+
+    NSString * language = [[[[NSLocale preferredLanguages] objectAtIndex:0]
+                            componentsSeparatedByString:@"-"] objectAtIndex:0];
+    NSData *body = [NSJSONSerialization dataWithJSONObject:postData options:NSUTF8StringEncoding error:nil];
+    request.HTTPBody = body;
+    request.HTTPMethod = @"POST";
+    [request addValue:
+     [NSString stringWithFormat:@"Bearer %@",user.token] forHTTPHeaderField:@"Authorization"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:language forHTTPHeaderField:@"lang"];
+    [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
+
+}
+
+- (NSArray *)getFriends:(NSSet *)friends {
+    NSMutableArray *friensToSend = [NSMutableArray array];
+    for (Friend *friend in friends) {
+        NSMutableDictionary *friendDictionary = [NSMutableDictionary dictionary];
+        [friendDictionary setObject:[NSNumber numberWithLongLong:friend.id] forKey:@"id"];
+        [friendDictionary setObject:[NSNumber numberWithFloat:friend.cost] forKey:@"cost"];
+        [friensToSend addObject:friendDictionary];
+    }
+    return friensToSend;
 }
 
 

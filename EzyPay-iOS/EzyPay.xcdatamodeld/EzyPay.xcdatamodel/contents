@@ -19,6 +19,7 @@
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="payment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Payment" inverseName="friends" inverseEntity="Payment" syncable="YES"/>
     </entity>
     <entity name="LocalToken" representedClassName="LocalToken" syncable="YES" codeGenerationType="class">
@@ -59,10 +60,10 @@
     <elements>
         <element name="Card" positionX="61" positionY="-117" width="128" height="135"/>
         <element name="Currency" positionX="-153" positionY="-90" width="128" height="105"/>
-        <element name="Friend" positionX="34" positionY="81" width="128" height="120"/>
+        <element name="Friend" positionX="34" positionY="81" width="128" height="135"/>
+        <element name="LocalToken" positionX="-153" positionY="-90" width="128" height="90"/>
         <element name="Payment" positionX="-306" positionY="261" width="128" height="165"/>
         <element name="Table" positionX="-63" positionY="-243" width="128" height="90"/>
         <element name="User" positionX="-360" positionY="-213" width="128" height="238"/>
-        <element name="LocalToken" positionX="-153" positionY="-90" width="128" height="90"/>
     </elements>
 </model>

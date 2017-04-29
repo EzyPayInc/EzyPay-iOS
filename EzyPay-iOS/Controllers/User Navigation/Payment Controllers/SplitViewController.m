@@ -11,8 +11,9 @@
 #import "UserManager.h"
 #import "UIColor+UIColor.h"
 #import "PaymentViewController.h"
-#import "Friend+CoreDataClass.h"
+#import "FriendManager.h"
 #import "Currency+CoreDataClass.h"
+#import "PushNotificationManager.h"
 
 @interface SplitViewController ()<UITableViewDataSource, UITableViewDelegate, SplitCellDelegate, UIGestureRecognizerDelegate>
 
@@ -253,10 +254,28 @@
 
 #pragma mark - events
 - (IBAction)navigateToPayment:(id)sender {
-    PaymentViewController *viewController = (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewController"];
-    viewController.payment = self.payment;
-    viewController.userPayment = self.userPayment;
-    [self.navigationController pushViewController:viewController animated:true];
+    FriendManager *manager = [[FriendManager alloc] init];
+    [manager addFriendsToPayment:self.payment
+                            user:self.user
+                           userCost:self.userPayment
+                  successHandler:^(id response) {
+                      [self sendSplitNotifications];
+                  } failureHandler:^(id response) {
+        NSLog(@"%@Response: ", response);
+    }];
+   
+}
+
+- (void)sendSplitNotifications {
+    PushNotificationManager *manager = [[PushNotificationManager alloc] init];
+    [manager splitRequestNotification:self.user payment:self.payment successHandler:^(id response) {
+        PaymentViewController *viewController = (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewController"];
+        viewController.payment = self.payment;
+        viewController.userPayment = self.userPayment;
+        [self.navigationController pushViewController:viewController animated:true];
+    } failureHandler:^(id response) {
+        NSLog(@"Response: %@", response);
+    }];
 }
 
 #pragma mark - Split cell delegate

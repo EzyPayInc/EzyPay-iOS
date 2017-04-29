@@ -1011,6 +1011,13 @@
                                                         <constraint firstAttribute="width" constant="30" id="FkP-9e-lKv"/>
                                                     </constraints>
                                                 </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="PAx-tA-7hZ">
+                                                    <rect key="frame" x="366" y="29" width="30" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="DEK-rv-rxm"/>
+                                                        <constraint firstAttribute="width" constant="30" id="mnN-Qo-5OL"/>
+                                                    </constraints>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <color key="backgroundColor" red="0.81176470588235294" green="0.87058823529411766" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -1022,12 +1029,16 @@
                                                 <constraint firstItem="OVm-q8-OL3" firstAttribute="trailing" secondItem="BZT-fR-ado" secondAttribute="trailingMargin" id="VK6-AU-xXW"/>
                                                 <constraint firstItem="E33-3w-VJX" firstAttribute="top" secondItem="BZT-fR-ado" secondAttribute="topMargin" id="fRJ-52-Fep"/>
                                                 <constraint firstItem="OVm-q8-OL3" firstAttribute="leading" secondItem="qs4-1s-mR3" secondAttribute="trailing" constant="8" id="hBV-xL-x0t"/>
+                                                <constraint firstItem="PAx-tA-7hZ" firstAttribute="top" secondItem="E33-3w-VJX" secondAttribute="bottom" id="igO-WW-toW"/>
                                                 <constraint firstItem="M89-1V-yJ9" firstAttribute="top" secondItem="E33-3w-VJX" secondAttribute="bottom" id="nQ9-II-CHJ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="PAx-tA-7hZ" secondAttribute="trailing" constant="10" id="qgf-VK-ZCh"/>
+                                                <constraint firstItem="PAx-tA-7hZ" firstAttribute="bottom" secondItem="OVm-q8-OL3" secondAttribute="top" id="vcP-jk-Taz"/>
                                                 <constraint firstItem="E33-3w-VJX" firstAttribute="leading" secondItem="qs4-1s-mR3" secondAttribute="trailing" constant="8" id="z6L-wz-CZC"/>
                                                 <constraint firstItem="E33-3w-VJX" firstAttribute="trailing" secondItem="BZT-fR-ado" secondAttribute="trailingMargin" id="zLj-mC-KC1"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="activityIndicator" destination="PAx-tA-7hZ" id="yhd-fN-thp"/>
                                             <outlet property="indicatorImageView" destination="M89-1V-yJ9" id="c47-Cy-bBe"/>
                                             <outlet property="profileImageView" destination="qs4-1s-mR3" id="jfK-J2-wFN"/>
                                             <outlet property="quantityLabel" destination="OVm-q8-OL3" id="4UV-N9-WnJ"/>
