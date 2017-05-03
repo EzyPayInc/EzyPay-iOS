@@ -123,32 +123,4 @@
     self.paymentOptionsView.hidden = NO;
 }
 
-#pragma mark - Animation
-/*- (void)slideUpOptionsView {
-    self.paymentOptionsView.hidden = NO;
-    [self moveView:CGRectMake(self.paymentOptionsView.frame.origin.x,
-                              self.paymentOptionsView.frame.origin.y * -1,
-                              self.paymentOptionsView.frame.size.width,
-                              self.paymentOptionsView.frame.size.height)
-            hidden:NO];
-}
-
-- (void)slideDownOptionsView {
-    [self moveView:CGRectMake(self.paymentOptionsView.frame.origin.x,
-                              self.paymentOptionsView.frame.origin.y * -1,
-                              self.paymentOptionsView.frame.size.width,
-                              self.paymentOptionsView.frame.size.height)
-     hidden:YES];
-}
-
-- (void)moveView:(CGRect)newFrame hidden:(BOOL)hidden {
-    [UIView animateWithDuration:1
-                          delay:0
-                        options: UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         self.paymentOptionsView.frame = newFrame;
-                     }
-                     completion:nil];
-}*/
-
 @end

@@ -159,20 +159,14 @@
 #pragma mark - registerToken
 - (void)registerToken:(User *)user {
     LocalToken *localToken = [DeviceTokenManager getDeviceToken];
-    if(localToken != nil){
+    if(localToken != nil && localToken.isSaved == 0){
         DeviceTokenManager *manager = [[DeviceTokenManager alloc] init];
         [manager registerDeviceToken:localToken user:user successHandler:^(id response) {
-            [self deleteToken];
+            localToken.isSaved = 1;
+            [CoreDataManager saveContext];
         } failureHandler:^(id response) {
-            [self deleteToken];
+            NSLog(@"%@", response);
         }];
     }
 }
-
-- (void)deleteToken {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [CoreDataManager deleteDataFromEntity:@"DeviceToken"];
-    });
-}
-
 @end

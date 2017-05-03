@@ -11,6 +11,7 @@
 #import "CoreDataManager.h"
 #import "PaymentServiceClient.h"
 #import "CurrencyManager.h"
+#import "Friend+CoreDataClass.h"
 
 @implementation PaymentManager
 
@@ -26,6 +27,7 @@
     payment.tableNumber = [[paymentDictionary objectForKey:@"tableNumber"] integerValue];
     payment.cost = [[paymentDictionary objectForKey:@"cost"] floatValue];
     payment.currency = currency;
+    payment.employeeId = [[paymentDictionary objectForKey:@"employeeId"] integerValue];
     return payment;
 }
 
@@ -37,6 +39,18 @@
         return [array firstObject];
     }
     return nil;
+}
+
++ (void)updateFriendStateWithId:(int64_t)friendId withState:(int16_t)state; {
+    Payment *payment = [PaymentManager getPayment];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %lld", friendId];
+    NSArray *array = [[payment.friends allObjects] filteredArrayUsingPredicate:predicate];
+    if([array count] > 0){
+        Friend *friend = [array firstObject];
+        friend.state = state;
+        NSLog(@"%d", friend.state);
+        [CoreDataManager saveContext];
+    }
 }
 
 + (void)deletePayment {

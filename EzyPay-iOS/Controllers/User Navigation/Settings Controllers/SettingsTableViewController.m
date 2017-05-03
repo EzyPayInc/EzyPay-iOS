@@ -18,6 +18,7 @@
 #import "NavigationController.h"
 #import "SessionHandler.h"
 #import "EmployeeTableViewController.h"
+#import "DeviceTokenManager.h"
 
 @interface SettingsTableViewController ()<SettingsCellDelegate, ProfileImageViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -205,9 +206,17 @@
 }
 
 - (void)logOutAction {
-    [UserManager deleteUser];
-    InitialViewController *viewController = (InitialViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"InitialViewController"];
-    [self presentViewController:viewController animated:YES completion:nil];
+    LocalToken *localToken = [DeviceTokenManager getDeviceToken];
+    DeviceTokenManager *manager = [[DeviceTokenManager alloc] init];
+    [manager deleteDeviceToken:localToken.deviceId user:self.user successHandler:^(id response) {
+        localToken.isSaved = 0;
+        [CoreDataManager saveContext];
+        InitialViewController *viewController = (InitialViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"InitialViewController"];
+        [UserManager deleteUser];
+        [self presentViewController:viewController animated:YES completion:nil];
+    } failureHandler:^(id response) {
+        NSLog(@"Response %@", response);
+    }];
 }
 
 - (void)addEditButtons {

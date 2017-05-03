@@ -23,12 +23,15 @@
         <relationship name="payment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Payment" inverseName="friends" inverseEntity="Payment" syncable="YES"/>
     </entity>
     <entity name="LocalToken" representedClassName="LocalToken" syncable="YES" codeGenerationType="class">
+        <attribute name="deviceId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="devicePlatform" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="deviceToken" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isSaved" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Payment" representedClassName="Payment" syncable="YES" codeGenerationType="class">
         <attribute name="cost" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="employeeId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isCanceled" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="paymentDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -61,8 +64,8 @@
         <element name="Card" positionX="61" positionY="-117" width="128" height="135"/>
         <element name="Currency" positionX="-153" positionY="-90" width="128" height="105"/>
         <element name="Friend" positionX="34" positionY="81" width="128" height="135"/>
-        <element name="LocalToken" positionX="-153" positionY="-90" width="128" height="90"/>
-        <element name="Payment" positionX="-306" positionY="261" width="128" height="165"/>
+        <element name="LocalToken" positionX="-153" positionY="-90" width="128" height="120"/>
+        <element name="Payment" positionX="-306" positionY="261" width="128" height="180"/>
         <element name="Table" positionX="-63" positionY="-243" width="128" height="90"/>
         <element name="User" positionX="-360" positionY="-213" width="128" height="238"/>
     </elements>

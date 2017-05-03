@@ -13,7 +13,8 @@ typedef enum {
     CALLWAITER = 1,
     BILLREQUEST = 2,
     SENDBILL = 3,
-    SPLITREQUEST = 4
+    SPLITREQUEST = 4,
+    SPLITRESPONSE = 5
 }NotificationCategories;
 
 @interface NotificationHandlerFactory : NSObject

@@ -81,8 +81,15 @@
         Friend *friend = [[self.payment.friends allObjects] objectAtIndex:indexPath.row];
         cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", friend.name, friend.lastname];
         cell.quantityLabel.text = [self quantityWithCurrencyCode:friend.cost];
+        NSLog(@"Friend: %@", friend);
+        if(friend.state != 0) {
+            [cell.activityIndicator stopAnimating];
+        } else {
+            [cell.activityIndicator startAnimating];
+        }
         cell.activityIndicator.hidden = friend.state != 0;
         cell.indicatorImageView.hidden = friend.state == 0;
+        cell.indicatorImageView.image = [UIImage imageNamed:@"ic_check"];
         [self getImage:cell fromUser:friend.id];
     }
     return  cell;
@@ -98,6 +105,10 @@
     NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:currencyCode];
     NSString *currencySymbol = [NSString stringWithFormat:@"%@",[locale displayNameForKey:NSLocaleCurrencySymbol value:currencyCode]];
     return [NSString stringWithFormat:@"%@ %.02f", currencySymbol, value];
+}
+
+- (void)reloadData {
+    [self.tableView reloadData];
 }
 
 @end

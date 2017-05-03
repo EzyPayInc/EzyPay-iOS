@@ -14,6 +14,7 @@
 
 #pragma mark - CoreData methods
 + (NSArray *)friendsFromUserArray:(NSArray *)userArray;
++(void)updateFriendStateWithId:(int64_t)friendId withState:(int16_t)state;
 
 #pragma mark Web Services method
 - (void)addFriendsToPayment:(Payment *)payment

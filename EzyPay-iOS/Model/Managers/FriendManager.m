@@ -11,6 +11,7 @@
 #import "Friend+CoreDataClass.h"
 #import "User+CoreDataClass.h"
 #import "UserPaymentServiceClient.h"
+#import "Payment+CoreDataClass.h"
 
 @implementation FriendManager
 
@@ -25,6 +26,19 @@
         [friends addObject:friend];
     }
     return friends;
+}
+
++(void)updateFriendStateWithId:(int64_t)friendId withState:(int16_t)state
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Friend"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %lld", friendId];
+    NSError *error;
+    NSArray *array = [[[[CoreDataManager sharedInstance] managedObjectContext] executeFetchRequest:request error:&error] filteredArrayUsingPredicate:predicate];
+    if(!error && [array count] > 0){
+        Friend *friend = [array firstObject];
+        friend.state = state;
+        [CoreDataManager saveContext];
+    }
 }
 
 #pragma mark Web Services method

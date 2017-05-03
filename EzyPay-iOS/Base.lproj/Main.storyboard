@@ -1011,7 +1011,7 @@
                                                         <constraint firstAttribute="width" constant="30" id="FkP-9e-lKv"/>
                                                     </constraints>
                                                 </imageView>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="PAx-tA-7hZ">
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="PAx-tA-7hZ">
                                                     <rect key="frame" x="366" y="29" width="30" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="DEK-rv-rxm"/>

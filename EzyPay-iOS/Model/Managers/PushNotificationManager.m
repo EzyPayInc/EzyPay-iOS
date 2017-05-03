@@ -55,4 +55,18 @@
 }
 
 
+- (void)responseSplitNotification:(User *)user
+                        response:(NSInteger)response
+                        clientId:(int64_t)clientId
+                  successHandler:(ConnectionSuccessHandler) successHandler
+                  failureHandler: (ConnectionErrorHandler) failureHandler {
+    PushNotificationServiceClient *service = [[PushNotificationServiceClient alloc] init];
+    [service responseSplitNotification:user
+                              response:response
+                              clientId:clientId
+                        successHandler:successHandler
+                        failureHandler:failureHandler];
+}
+
+
 @end

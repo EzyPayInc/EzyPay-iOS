@@ -16,6 +16,7 @@
 #pragma mark - CoreData Methods
 + (Payment *)paymentFromDictionary:(NSDictionary *)paymentDictionary;
 + (Payment *)getPayment;
++ (void)updateFriendStateWithId:(int64_t)friendId withState:(int16_t)state;
 + (void)deletePayment;
 
 #pragma mark - Web Service Methods

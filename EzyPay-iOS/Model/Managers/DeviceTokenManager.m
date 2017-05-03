@@ -14,6 +14,7 @@
 
 #pragma mark - CoreData methods
 + (LocalToken *)initLocalToken {
+    [CoreDataManager deleteDataFromEntity:@"LocalToken"];
     LocalToken *localToken = [CoreDataManager createEntityWithName:@"LocalToken"];
     return localToken;
 }
@@ -36,6 +37,17 @@
                             user:user
                   successHandler:successHandler
                   failureHandler:failureHandler];
+}
+
+- (void)deleteDeviceToken:(NSString *)deviceId
+                     user:(User *)user
+           successHandler:(ConnectionSuccessHandler) successHandler
+           failureHandler: (ConnectionErrorHandler) failureHandler {
+    DeviceTokenServiceClient *service = [[DeviceTokenServiceClient alloc] init];
+    [service deleteDeviceToken:deviceId
+                          user:user
+                successHandler:successHandler
+                failureHandler:failureHandler];
 }
 
 @end

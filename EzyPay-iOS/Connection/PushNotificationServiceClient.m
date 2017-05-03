@@ -40,8 +40,9 @@ static NSString *const NOTIFICATIONS_URL = @"notifications/";
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
+    int64_t commerceId = payment.employeeId == 0 ? payment.commerce.id : payment.employeeId;
     NSString *body = [NSString stringWithFormat:@"tableNumber=%lld&commerceId=%lld",
-                      payment.tableNumber, payment.commerce.id];
+                      payment.tableNumber, commerceId];
     NSString * language = [[[[NSLocale preferredLanguages] objectAtIndex:0]
                             componentsSeparatedByString:@"-"] objectAtIndex:0];
     request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
@@ -59,8 +60,9 @@ static NSString *const NOTIFICATIONS_URL = @"notifications/";
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
+    int64_t commerceId = payment.employeeId == 0 ? payment.commerce.id : payment.employeeId;
     NSString *body = [NSString stringWithFormat:@"tableNumber=%lld&commerceId=%lld",
-                      payment.tableNumber, payment.commerce.id];
+                      payment.tableNumber, commerceId];
     NSString * language = [[[[NSLocale preferredLanguages] objectAtIndex:0]
                             componentsSeparatedByString:@"-"] objectAtIndex:0];
     request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
@@ -130,5 +132,33 @@ static NSString *const NOTIFICATIONS_URL = @"notifications/";
     return friensToSend;
 }
 
+
+-(void)responseSplitNotification:(User *)user
+                        response:(NSInteger)response
+                        clientId:(int64_t)clientId
+                  successHandler:(ConnectionSuccessHandler) successHandler
+                  failureHandler: (ConnectionErrorHandler) failureHandler {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/splitResponse", BASE_URL, NOTIFICATIONS_URL]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    NSDictionary *postData = @{@"userId": [NSNumber numberWithLongLong:clientId],
+                           @"response": [NSNumber numberWithInteger:response],
+                           @"friendId": [NSNumber numberWithFloat:user.id]};
+
+    
+    NSString * language = [[[[NSLocale preferredLanguages] objectAtIndex:0]
+                            componentsSeparatedByString:@"-"] objectAtIndex:0];
+    NSData *body = [NSJSONSerialization dataWithJSONObject:postData options:NSUTF8StringEncoding error:nil];
+    request.HTTPBody = body;
+    request.HTTPMethod = @"POST";
+    [request addValue:
+     [NSString stringWithFormat:@"Bearer %@",user.token] forHTTPHeaderField:@"Authorization"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:language forHTTPHeaderField:@"lang"];
+    [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
+
+    
+}
 
 @end

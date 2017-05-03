@@ -111,6 +111,7 @@ UIPickerViewDataSource>
         payment.cost = [self.txtCost.text isEqualToString:@""]? 0.f : [self.txtCost.text floatValue];
         payment.tableNumber = self.tableNumber;
         payment.commerce = self.user.userType == EmployeeNavigation ? self.user.boss : self.user;
+        payment.employeeId = self.user.userType == EmployeeNavigation  ? self.user.id : 0;
         [self navigateToQRViewController:payment];
     } else {
         [self sendBillNotification];

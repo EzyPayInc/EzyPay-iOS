@@ -110,26 +110,23 @@
 
 - (void)registerToken:(NSString *)deviceToken {
     User *user = [UserManager getUser];
-    NSString* Identifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    NSLog(@"Identifier: %@", Identifier);
+    NSString* deviceIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    NSLog(@"Identifier: %@", deviceIdentifier);
     LocalToken *localToken = [DeviceTokenManager initLocalToken];
     localToken.deviceToken = deviceToken;
+    localToken.deviceId = deviceIdentifier;
+    localToken.isSaved = 0;
     [CoreDataManager saveContext];
     if(user && user.token) {
         DeviceTokenManager *manager = [[DeviceTokenManager alloc] init];
         [manager registerDeviceToken:localToken user:user successHandler:^(id response) {
-            [self deleteToken];
+            localToken.isSaved = 1;
+            [CoreDataManager saveContext];
         } failureHandler:^(id response) {
             NSLog(@"%@", response);
-            [self deleteToken];
         }];
     }
 }
 
-- (void)deleteToken {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [CoreDataManager deleteDataFromEntity:@"LocalToken"];
-    });
-}
 
 @end

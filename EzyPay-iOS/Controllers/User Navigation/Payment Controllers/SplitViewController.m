@@ -14,6 +14,7 @@
 #import "FriendManager.h"
 #import "Currency+CoreDataClass.h"
 #import "PushNotificationManager.h"
+#import "CoreDataManager.h"
 
 @interface SplitViewController ()<UITableViewDataSource, UITableViewDelegate, SplitCellDelegate, UIGestureRecognizerDelegate>
 
@@ -267,6 +268,7 @@
 }
 
 - (void)sendSplitNotifications {
+    [CoreDataManager saveContext];
     PushNotificationManager *manager = [[PushNotificationManager alloc] init];
     [manager splitRequestNotification:self.user payment:self.payment successHandler:^(id response) {
         PaymentViewController *viewController = (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewController"];

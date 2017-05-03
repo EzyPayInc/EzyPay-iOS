@@ -10,6 +10,7 @@
 #import "NavigationController.h"
 #import "FriendManager.h"
 #import "UserManager.h"
+#import "PushNotificationManager.h"
 
 @implementation SplitRequestNotificationHandler
 
@@ -37,14 +38,24 @@
     [viewController presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)responseRequest:(NSDictionary *)notification response:(int16_t)response {
+- (void)responseRequest:(NSDictionary *)notification response:(int16_t)userResponse {
     User *user = [UserManager getUser];
     int64_t paymentId = [[notification objectForKey:@"paymentId"] integerValue];
     FriendManager *manager = [[FriendManager alloc] init];
-    [manager updateUserPayment:user paymentId:paymentId state:response successHandler:^(id response) {
+    [manager updateUserPayment:user paymentId:paymentId state:userResponse successHandler:^(id response) {
+        [self responseSplitRequestNotification:notification response:userResponse user:user];
+    } failureHandler:^(id response) {
+        NSLog(@"Error Rsponse %@", response);
+    }];
+}
+
+- (void)responseSplitRequestNotification:notification response:(int16_t)response user:(User *)user {
+    PushNotificationManager *manager = [[PushNotificationManager alloc] init];
+    int64_t clientId = [[notification objectForKey:@"userId"] integerValue];
+    [manager responseSplitNotification:user response:response clientId:clientId successHandler:^(id response) {
         NSLog(@"Success Rsponse %@", response);
     } failureHandler:^(id response) {
-        NSLog(@"Success Rsponse %@", response);
+        NSLog(@"Error Rsponse %@", response);
     }];
 }
 

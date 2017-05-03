@@ -13,6 +13,6 @@
 
 @property (nonatomic, assign) Payment *payment;
 @property (nonatomic, assign) float userPayment;
-
+- (void)reloadData; 
 
 @end

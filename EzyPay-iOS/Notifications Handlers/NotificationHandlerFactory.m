@@ -11,6 +11,7 @@
 #import "GeneralNotificationHandler.h"
 #import "SendBillNotificationHandler.h"
 #import "SplitRequestNotificationHandler.h"
+#import "ResponseSplitRequestNotificationHandler.h"
 
 
 @implementation NotificationHandlerFactory
@@ -28,6 +29,9 @@
             break;
         case SPLITREQUEST:
             handler = [[SplitRequestNotificationHandler alloc] init];
+            break;
+        case SPLITRESPONSE:
+            handler = [[ResponseSplitRequestNotificationHandler alloc] init];
             break;
         case CALLWAITER:
         default:
