@@ -24,6 +24,7 @@
 - (void)sendBillNotification:(int64_t)clientId
                 currencyCode:(NSString *)currencyCode
                       amount:(CGFloat)amount
+                   paymentId:(int64_t)paymentId
                        token:(NSString *)token
               successHandler:(ConnectionSuccessHandler) successHandler
               failureHandler: (ConnectionErrorHandler) failureHandler;

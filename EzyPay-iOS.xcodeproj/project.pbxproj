@@ -12,6 +12,7 @@
 		800859911E23312200E3451F /* SettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 800859901E23312200E3451F /* SettingsTableViewCell.m */; };
 		8012A6501E82429800FE5606 /* PaymentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8012A64F1E82429800FE5606 /* PaymentManager.m */; };
 		801551911E4FA8ED0013F3E6 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801551901E4FA8ED0013F3E6 /* InitialViewController.m */; };
+		80178EBB1EC1805700790B88 /* CallWaiterNotificationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 80178EBA1EC1805700790B88 /* CallWaiterNotificationHandler.m */; };
 		80188F761E989B8A008AB708 /* PaymentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80188F751E989B8A008AB708 /* PaymentDetailViewController.m */; };
 		80188F791E98A22F008AB708 /* CurrencyServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80188F781E98A22F008AB708 /* CurrencyServiceClient.m */; };
 		80188F7C1E98A6B7008AB708 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80188F7B1E98A6B7008AB708 /* CurrencyManager.m */; };
@@ -110,6 +111,8 @@
 		8012A64F1E82429800FE5606 /* PaymentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentManager.m; sourceTree = "<group>"; };
 		8015518F1E4FA8ED0013F3E6 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
 		801551901E4FA8ED0013F3E6 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
+		80178EB91EC1805700790B88 /* CallWaiterNotificationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallWaiterNotificationHandler.h; sourceTree = "<group>"; };
+		80178EBA1EC1805700790B88 /* CallWaiterNotificationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallWaiterNotificationHandler.m; sourceTree = "<group>"; };
 		80188F741E989B8A008AB708 /* PaymentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentDetailViewController.h; sourceTree = "<group>"; };
 		80188F751E989B8A008AB708 /* PaymentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentDetailViewController.m; sourceTree = "<group>"; };
 		80188F771E98A22F008AB708 /* CurrencyServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyServiceClient.h; sourceTree = "<group>"; };
@@ -649,6 +652,8 @@
 				805501861EB45D5200B41E65 /* SplitRequestNotificationHandler.m */,
 				804AC1131EB78D6A00401B29 /* ResponseSplitRequestNotificationHandler.h */,
 				804AC1141EB78D6A00401B29 /* ResponseSplitRequestNotificationHandler.m */,
+				80178EB91EC1805700790B88 /* CallWaiterNotificationHandler.h */,
+				80178EBA1EC1805700790B88 /* CallWaiterNotificationHandler.m */,
 			);
 			path = "Notifications Handlers";
 			sourceTree = "<group>";
@@ -822,6 +827,7 @@
 				805F36931E94C5980099932A /* HistoryCommerceTableViewController.m in Sources */,
 				80F700641E1B540600946CFD /* RestaurantDetailViewController.m in Sources */,
 				800859911E23312200E3451F /* SettingsTableViewCell.m in Sources */,
+				80178EBB1EC1805700790B88 /* CallWaiterNotificationHandler.m in Sources */,
 				805F36961E94D7330099932A /* ContactTableViewCell.m in Sources */,
 				80B18A291EAB2AF000A56A4A /* PushNotificationManager.m in Sources */,
 				80EF9FC61EA9BEC200362D18 /* DeviceTokenServiceClient.m in Sources */,

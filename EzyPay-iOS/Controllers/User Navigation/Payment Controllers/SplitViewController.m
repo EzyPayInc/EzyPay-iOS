@@ -19,7 +19,7 @@
 @interface SplitViewController ()<UITableViewDataSource, UITableViewDelegate, SplitCellDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) User *user;
-@property (nonatomic, assign) float userPayment, paymentShortage;
+@property (nonatomic, assign) float paymentShortage;
 @property (nonatomic, strong) UILabel *shortageLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *modalBackgroundView;
@@ -183,7 +183,7 @@
         SplitTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"splitCell" forIndexPath:indexPath];
         cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", self.user.name, self.user.lastName];
         cell.profileImageView.image = [UIImage imageNamed:@"profileImage"];
-        cell.quantityLabel.text = [self quantityWithCurrencyCode:self.userPayment];
+        cell.quantityLabel.text = [self quantityWithCurrencyCode:self.payment.userCost];
         cell.totalPayment = self.payment.cost;
         cell.delegate = self;
         [self getImage:cell fromId:self.user.id];
@@ -228,12 +228,12 @@
     if(friend) {
         friend.cost = quantity;
     } else {
-        self.userPayment = quantity;
+        self.payment.userCost = quantity;
     }
     for(Friend *friend in self.payment.friends) {
         currentQuantity += friend.cost;
     }
-    currentQuantity += self.userPayment;
+    currentQuantity += self.payment.userCost;
     if(currentQuantity  <= self.payment.cost) {
         self.paymentShortage = self.payment.cost - currentQuantity;
         return 0;
@@ -258,7 +258,7 @@
     FriendManager *manager = [[FriendManager alloc] init];
     [manager addFriendsToPayment:self.payment
                             user:self.user
-                           userCost:self.userPayment
+                           userCost:self.payment.userCost
                   successHandler:^(id response) {
                       [self sendSplitNotifications];
                   } failureHandler:^(id response) {
@@ -273,7 +273,6 @@
     [manager splitRequestNotification:self.user payment:self.payment successHandler:^(id response) {
         PaymentViewController *viewController = (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewController"];
         viewController.payment = self.payment;
-        viewController.userPayment = self.userPayment;
         [self.navigationController pushViewController:viewController animated:true];
     } failureHandler:^(id response) {
         NSLog(@"Response: %@", response);
@@ -289,8 +288,8 @@
         paymentFriend.cost += validateValue;
         value = paymentFriend.cost;
     } else {
-        self.userPayment += validateValue;
-        value = self.userPayment;
+        self.payment.userCost += validateValue;
+        value = self.payment.userCost;
         
     }
     self.shortageLabel.text = [self quantityWithCurrencyCode:self.paymentShortage];

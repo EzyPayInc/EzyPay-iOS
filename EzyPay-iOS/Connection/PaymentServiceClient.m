@@ -10,6 +10,7 @@
 #import "SessionHandler.h"
 #import "Payment+CoreDataClass.h"
 #import "User+CoreDataClass.h"
+#import "Currency+CoreDataClass.h"
 
 @interface PaymentServiceClient()
 
@@ -38,8 +39,7 @@ static NSString *const PAYMENT_URL = @"payment/";
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
-    NSString *body = [NSString stringWithFormat:@"commerceId=%lld&userId=%lld&cost=%f&tableNumber=%lld&isCanceled=%d",
-                      payment.commerce.id, user.id, payment.cost, payment.tableNumber,0];
+    NSString *body = [NSString stringWithFormat:@"commerceId=%lld&userId=%lld&cost=%f&tableNumber=%lld&isCanceled=%d&currencyId=%lld", payment.commerce.id, user.id, payment.cost, payment.tableNumber,0, payment.currency.id];
     request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
     request.HTTPMethod = @"POST";
     [request addValue:[NSString stringWithFormat:@"Bearer %@",user.token] forHTTPHeaderField:@"Authorization"];
@@ -60,6 +60,57 @@ static NSString *const PAYMENT_URL = @"payment/";
     request.HTTPMethod = @"PUT";
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request addValue:[NSString stringWithFormat:@"Bearer %@",user.token] forHTTPHeaderField:@"Authorization"];
+    [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
+}
+
+- (void)getActivePaymentByUser:(User *)user
+                successHandler:(ConnectionSuccessHandler)successHandler
+                failureHandler:(ConnectionErrorHandler) failureHandler {
+    NSURL *url = [NSURL URLWithString:
+                  [NSString stringWithFormat:@"%@%@activePayment/%lld",BASE_URL, PAYMENT_URL, user.id]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    request.HTTPMethod = @"GET";
+    [request addValue:
+     [NSString stringWithFormat:@"Bearer %@",user.token] forHTTPHeaderField:@"Authorization"];
+    [self.sessionHandler sendRequestWithRequest:request
+                                successHandeler:successHandler
+                                 failureHandler:failureHandler];
+}
+
+- (void)getPaymentById:(int64_t)paymentId
+                 token:(NSString *)token
+        successHandler:(ConnectionSuccessHandler)successHandler
+        failureHandler:(ConnectionErrorHandler) failureHandler {
+    NSURL *url = [NSURL URLWithString:
+                  [NSString stringWithFormat:@"%@%@/%lld",BASE_URL, PAYMENT_URL, paymentId]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    request.HTTPMethod = @"GET";
+    [request addValue:
+     [NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"Authorization"];
+    [self.sessionHandler sendRequestWithRequest:request
+                                successHandeler:successHandler
+                                 failureHandler:failureHandler];
+}
+
+- (void)updatePaymentAmount:(int64_t)paymentId
+                    currencyId:(int64_t)currencyId
+                        amount:(float)amount
+                        token:(NSString *)token
+               successHandler:(ConnectionSuccessHandler)successHandler
+               failureHandler:(ConnectionErrorHandler) failureHandler {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/%lld", BASE_URL, PAYMENT_URL, paymentId]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    NSString *body = [NSString stringWithFormat:@"currencyId=%lld&cost=%f", currencyId, amount];
+    request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
+    request.HTTPMethod = @"PUT";
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"Authorization"];
     [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
 }
 

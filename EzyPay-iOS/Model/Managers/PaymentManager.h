@@ -22,5 +22,18 @@
 #pragma mark - Web Service Methods
 - (void) registerPayment:(Payment *)payment user:(User *)user successHandler:(ConnectionSuccessHandler)successHandler failureHandler:(ConnectionErrorHandler) failureHandler;
 - (void) updatePayment:(Payment *)payment user:(User *)user successHandler:(ConnectionSuccessHandler)successHandler failureHandler:(ConnectionErrorHandler) failureHandler;
+- (void)getActivePaymentByUser:(User *)user
+                successHandler:(ConnectionSuccessHandler)successHandler
+                failureHandler:(ConnectionErrorHandler) failureHandler;
+- (void)getPaymentById:(int64_t)paymentId
+                 token:(NSString *)token
+        successHandler:(ConnectionSuccessHandler)successHandler
+        failureHandler:(ConnectionErrorHandler) failureHandler;
+- (void)updatePaymentAmount:(int64_t)paymentId
+                 currencyId:(int64_t)currencyId
+                     amount:(float)amount
+                      token:(NSString *)token
+             successHandler:(ConnectionSuccessHandler)successHandler
+             failureHandler:(ConnectionErrorHandler) failureHandler;
 
 @end

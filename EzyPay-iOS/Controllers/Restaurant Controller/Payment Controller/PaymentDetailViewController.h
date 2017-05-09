@@ -15,5 +15,6 @@
 @property (nonatomic, assign) int64_t tableNumber;
 @property (nonatomic, assign) BOOL isNotification;
 @property (nonatomic, assign) int64_t clientId;
+@property (nonatomic, assign) int64_t paymentId;
 
 @end

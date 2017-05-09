@@ -9,6 +9,10 @@
 #import "NavigationController.h"
 #import "CommerceDetailViewController.h"
 #import "TableCollectionViewController.h"
+#import "Payment+CoreDataClass.h"
+#import "Friend+CoreDataClass.h"
+#import "RestaurantDetailViewController.h"
+#import "PaymentViewController.h"
 
 @implementation NavigationController
 
@@ -177,8 +181,24 @@
     return tabBarController;
 }
 
-- (UIViewController*)topViewController {
+- (UIViewController *)topViewController {
     return [self topViewControllerWithRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
+}
+
++ (void)validatePaymentController:(Payment *)payment
+            currentViewController:(UIViewController *)currentViewCotroller {
+    if(payment.friends == nil || [payment.friends count] == 0) {
+        RestaurantDetailViewController *viewController =
+        [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RestaurantDetailViewController"];
+        viewController.payment = payment;
+        [currentViewCotroller.navigationController pushViewController:viewController animated:YES];
+    } else {
+        PaymentViewController *viewController =
+        [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewController"];
+        viewController.payment = payment;
+        [currentViewCotroller.navigationController pushViewController:viewController animated:YES];
+    }
+    
 }
 
 - (UIViewController*)topViewControllerWithRootViewController:(UIViewController*)rootViewController {

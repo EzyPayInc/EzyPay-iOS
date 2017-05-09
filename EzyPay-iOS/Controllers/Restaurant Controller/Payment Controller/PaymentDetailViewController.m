@@ -9,7 +9,7 @@
 #import "PaymentDetailViewController.h"
 #import "CurrencyManager.h"
 #import "CoreDataManager.h"
-#import "Payment+CoreDataClass.h"
+#import "PaymentManager.h"
 #import "NavigationController.h"
 #import "QRPaymentViewController.h"
 #import "PushNotificationManager.h"
@@ -114,7 +114,9 @@ UIPickerViewDataSource>
         payment.employeeId = self.user.userType == EmployeeNavigation  ? self.user.id : 0;
         [self navigateToQRViewController:payment];
     } else {
-        [self sendBillNotification];
+        if([self.txtCost.text floatValue] > 0) {
+            [self updatePaymentCurrency];
+        }
     }
 }
 
@@ -127,11 +129,25 @@ UIPickerViewDataSource>
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
+- (void)updatePaymentCurrency {
+    PaymentManager *manager = [[PaymentManager alloc] init];
+    [manager updatePaymentAmount:self.paymentId
+                        currencyId:self.currentCurrency.id
+                          amount:[self.txtCost.text floatValue]
+                           token:self.user.token
+                  successHandler:^(id response) {
+                      [self sendBillNotification];
+                } failureHandler:^(id response) {
+                    NSLog(@"%@", response);
+                }];
+}
+
 - (void)sendBillNotification {
     PushNotificationManager *manager = [[PushNotificationManager alloc] init];
     [manager sendBillNotification:self.clientId
                      currencyCode:self.currentCurrency.code
                            amount:[self.txtCost.text floatValue]
+                        paymentId:self.paymentId
                             token:self.user.token
                    successHandler:^(id response) {
                        NSLog(@"%@", response);

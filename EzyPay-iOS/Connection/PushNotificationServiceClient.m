@@ -41,8 +41,8 @@ static NSString *const NOTIFICATIONS_URL = @"notifications/";
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
     int64_t commerceId = payment.employeeId == 0 ? payment.commerce.id : payment.employeeId;
-    NSString *body = [NSString stringWithFormat:@"tableNumber=%lld&commerceId=%lld",
-                      payment.tableNumber, commerceId];
+    NSString *body = [NSString stringWithFormat:@"tableNumber=%lld&commerceId=%lld&paymentId==%lld",
+                      payment.tableNumber, commerceId, payment.id];
     NSString * language = [[[[NSLocale preferredLanguages] objectAtIndex:0]
                             componentsSeparatedByString:@"-"] objectAtIndex:0];
     request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
@@ -61,8 +61,8 @@ static NSString *const NOTIFICATIONS_URL = @"notifications/";
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
     int64_t commerceId = payment.employeeId == 0 ? payment.commerce.id : payment.employeeId;
-    NSString *body = [NSString stringWithFormat:@"tableNumber=%lld&commerceId=%lld",
-                      payment.tableNumber, commerceId];
+    NSString *body = [NSString stringWithFormat:@"tableNumber=%lld&commerceId=%lld&paymentId=%lld",
+                      payment.tableNumber, commerceId, payment.id];
     NSString * language = [[[[NSLocale preferredLanguages] objectAtIndex:0]
                             componentsSeparatedByString:@"-"] objectAtIndex:0];
     request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
@@ -75,6 +75,7 @@ static NSString *const NOTIFICATIONS_URL = @"notifications/";
 - (void)sendBillNotification:(int64_t)clientId
                 currencyCode:(NSString *)currencyCode
                       amount:(CGFloat)amount
+                   paymentId:(int64_t)paymentId
                        token:(NSString *)token
               successHandler:(ConnectionSuccessHandler) successHandler
               failureHandler: (ConnectionErrorHandler) failureHandler {
@@ -82,8 +83,8 @@ static NSString *const NOTIFICATIONS_URL = @"notifications/";
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
-    NSString *body = [NSString stringWithFormat:@"clientId=%lld&currencyCode=%@&amount=%f",
-                      clientId, currencyCode, amount];
+    NSString *body = [NSString stringWithFormat:@"clientId=%lld&currencyCode=%@&amount=%f&paymentId=%lld",
+                      clientId, currencyCode, amount, paymentId];
     NSString * language = [[[[NSLocale preferredLanguages] objectAtIndex:0]
                             componentsSeparatedByString:@"-"] objectAtIndex:0];
     request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];

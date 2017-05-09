@@ -74,7 +74,7 @@
      PaymentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"paymentCell" forIndexPath:indexPath];
     if(indexPath.section == 0) {
         cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", self.user.name, self.user.lastName];
-        cell.quantityLabel.text = [self quantityWithCurrencyCode:self.userPayment];
+        cell.quantityLabel.text = [self quantityWithCurrencyCode:self.payment.userCost];
         cell.activityIndicator.hidden = YES;
         [self getImage:cell fromUser:self.user.id];
     } else {

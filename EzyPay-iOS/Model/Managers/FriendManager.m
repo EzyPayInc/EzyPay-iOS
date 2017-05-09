@@ -28,6 +28,20 @@
     return friends;
 }
 
++ (NSArray *)friendsFromArray:(NSArray *)friendsArray {
+    NSMutableArray *friends = [NSMutableArray array];
+    for (NSDictionary  *dictionary in friendsArray) {
+        Friend *friend = [CoreDataManager createEntityWithName:@"Friend"];
+        friend.id = [[dictionary objectForKey:@"id"] integerValue];
+        friend.name = [dictionary objectForKey:@"name"];
+        friend.lastname = [dictionary objectForKey:@"lastname"];
+        friend.cost = [[dictionary objectForKey:@"cost"] floatValue];
+        friend.state = [[dictionary objectForKey:@"state"] integerValue];
+        [friends addObject:friend];
+    }
+    return friends;
+}
+
 +(void)updateFriendStateWithId:(int64_t)friendId withState:(int16_t)state
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Friend"];

@@ -20,6 +20,8 @@ typedef enum {
 @property (nonatomic, assign) NavigationTypes navigationType;
 
 + (NavigationController *)sharedInstance;
++ (void)validatePaymentController:(Payment *)payment
+            currentViewController:(UIViewController *)currentViewCotroller;
 - (void)presentTabBarController:(UIViewController *) controller
              withNavigationType:(NavigationTypes) navigationType
                        withUser:(User *) user;

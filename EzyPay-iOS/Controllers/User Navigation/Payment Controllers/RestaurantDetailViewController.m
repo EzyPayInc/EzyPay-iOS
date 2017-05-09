@@ -104,8 +104,8 @@
      self.payment.paymentDate = [NSDate date];
      PaymentManager *manager = [[PaymentManager alloc] init];
      [manager updatePayment:self.payment user:self.user successHandler:^(id response) {
-     [CoreDataManager saveContext];
-     tableViewController.payment = self.payment;
+         [CoreDataManager saveContext];
+         tableViewController.payment = self.payment;
      [self.navigationController pushViewController:tableViewController animated:true];
      } failureHandler:^(id response) {
      NSLog(@"%@", response);

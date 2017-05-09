@@ -12,6 +12,7 @@
 #import "PaymentManager.h"
 #import "UserManager.h"
 #import "CoreDataManager.h"
+#import "NavigationController.h"
 
 @interface ScannerViewController ()<BarcodeScannerDelegate>
 
@@ -30,6 +31,7 @@
     self.containerView.layer.cornerRadius = self.containerView.frame.size.width / 2;
     self.navigationItem.title = @"EzyPay";
     self.user = [UserManager getUser];
+    [self getActivePayment];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -80,5 +82,19 @@
     [self.navigationController pushViewController:viewController animated:true];
 }
 
-
+- (void)getActivePayment {
+    [CoreDataManager deleteDataFromEntity:@"Payment"];
+    PaymentManager *manager = [[PaymentManager alloc] init];
+    [manager getActivePaymentByUser:self.user
+                     successHandler:^(id response) {
+                         if([response count] > 0) {
+                             Payment *payment = [PaymentManager paymentFromDictionary:response];
+                             [CoreDataManager saveContext];
+                             [NavigationController validatePaymentController:payment
+                                                       currentViewController:self];
+                         }
+                     } failureHandler:^(id response) {
+                         NSLog(@"%@", response);
+                     }];
+}
 @end

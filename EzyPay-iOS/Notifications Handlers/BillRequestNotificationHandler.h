@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "NotificationHandler.h"
+#import "UserManager.h"
 
 @interface BillRequestNotificationHandler : NSObject<NotificationHandler>
+
+@property (nonatomic, strong)User *user;
 
 @end
