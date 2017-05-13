@@ -135,6 +135,7 @@ static NSString *const NOTIFICATIONS_URL = @"notifications/";
 
 
 -(void)responseSplitNotification:(User *)user
+                        paymentId:(int64_t)paymentId
                         response:(NSInteger)response
                         clientId:(int64_t)clientId
                   successHandler:(ConnectionSuccessHandler) successHandler
@@ -144,8 +145,8 @@ static NSString *const NOTIFICATIONS_URL = @"notifications/";
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
     NSDictionary *postData = @{@"userId": [NSNumber numberWithLongLong:clientId],
-                           @"response": [NSNumber numberWithInteger:response],
-                           @"friendId": [NSNumber numberWithFloat:user.id]};
+                            @"response": [NSNumber numberWithInteger:response],
+                           @"paymentId": [NSNumber numberWithLongLong:paymentId]};
 
     
     NSString * language = [[[[NSLocale preferredLanguages] objectAtIndex:0]

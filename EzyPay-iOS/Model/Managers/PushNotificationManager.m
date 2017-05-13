@@ -58,12 +58,14 @@
 
 
 - (void)responseSplitNotification:(User *)user
-                        response:(NSInteger)response
+                       paymentId:(int64_t)paymentId
+                         response:(NSInteger)response
                         clientId:(int64_t)clientId
                   successHandler:(ConnectionSuccessHandler) successHandler
                   failureHandler: (ConnectionErrorHandler) failureHandler {
     PushNotificationServiceClient *service = [[PushNotificationServiceClient alloc] init];
     [service responseSplitNotification:user
+                              paymentId:paymentId
                               response:response
                               clientId:clientId
                         successHandler:successHandler

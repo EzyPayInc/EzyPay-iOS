@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "NotificationHandler.h"
+#import "User+CoreDataClass.h"
 
 @interface SplitRequestNotificationHandler : NSObject<NotificationHandler>
+
+@property (nonatomic, strong)User *user;
 
 @end

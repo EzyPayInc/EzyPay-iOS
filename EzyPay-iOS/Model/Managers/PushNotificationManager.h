@@ -33,9 +33,10 @@
                   successHandler:(ConnectionSuccessHandler) successHandler
                   failureHandler: (ConnectionErrorHandler) failureHandler;
 - (void)responseSplitNotification:(User *)user
+                       paymentId:(int64_t)paymentId
                          response:(NSInteger)response
-                         clientId:(int64_t)clientId
-                   successHandler:(ConnectionSuccessHandler) successHandler
-                   failureHandler: (ConnectionErrorHandler) failureHandler;
+                        clientId:(int64_t)clientId
+                  successHandler:(ConnectionSuccessHandler) successHandler
+                  failureHandler: (ConnectionErrorHandler) failureHandler;
 
 @end
