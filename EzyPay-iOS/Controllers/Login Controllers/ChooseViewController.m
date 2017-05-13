@@ -21,12 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.btnUser.layer.borderWidth = 2.0f;
-    self.btnCommerce.layer.borderWidth = 2.0f;
-    self.btnUser.layer.borderColor = [[UIColor grayBackgroundViewColor] CGColor];
-    self.btnCommerce.layer.borderColor = [[UIColor grayBackgroundViewColor] CGColor];
-    self.btnUser.layer.cornerRadius = 4.f;
-    self.btnCommerce.layer.cornerRadius = 4.f;
+    self.btnUser.layer.cornerRadius = 20.f;
+    self.btnCommerce.layer.cornerRadius = 20.f;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

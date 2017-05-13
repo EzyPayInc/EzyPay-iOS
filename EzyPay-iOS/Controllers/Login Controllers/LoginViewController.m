@@ -16,11 +16,14 @@
 #import "CoreDataManager.h"
 #import "NavigationController.h"
 #import "DeviceTokenManager.h"
+#import "ChooseViewController.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
 @property (nonatomic, assign) BOOL keyboardisActive;
+@property (weak, nonatomic) IBOutlet UIButton *btnLogIn;
+@property (weak, nonatomic) IBOutlet UILabel *lblSignUp;
 
 
 @end
@@ -32,6 +35,11 @@
     self.navigationItem.title = NSLocalizedString(@"logInTitle", nil);
     self.txtPassword.delegate = self;
     self.txtEmail.delegate = self;
+    self.btnLogIn.layer.cornerRadius = 20;
+    UITapGestureRecognizer *signUpTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                          action:@selector(signUpTapLabel:)];
+    [self.lblSignUp setUserInteractionEnabled:YES];
+    [self.lblSignUp addGestureRecognizer:signUpTapRecognizer];
     
 }
 
@@ -50,6 +58,12 @@
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)signUpTapLabel:(UITapGestureRecognizer*)sender {
+    UINavigationController *navigationController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInNavigationViewController"];
+    [self presentViewController:navigationController animated:YES completion:nil];
+
 }
 
 - (void)keyboardDidShow:(NSNotification *)notification

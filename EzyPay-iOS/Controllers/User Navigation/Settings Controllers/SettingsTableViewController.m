@@ -14,11 +14,11 @@
 #import "Connection.h"
 #import "CoreDataManager.h"
 #import "UIColor+UIColor.h"
-#import "InitialViewController.h"
 #import "NavigationController.h"
 #import "SessionHandler.h"
 #import "EmployeeTableViewController.h"
 #import "DeviceTokenManager.h"
+#import "LoginViewController.h"
 
 @interface SettingsTableViewController ()<SettingsCellDelegate, ProfileImageViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -211,7 +211,7 @@
     [manager deleteDeviceToken:localToken.deviceId user:self.user successHandler:^(id response) {
         localToken.isSaved = 0;
         [CoreDataManager saveContext];
-        InitialViewController *viewController = (InitialViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"InitialViewController"];
+        LoginViewController *viewController = (LoginViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
         [UserManager deleteUser];
         [self presentViewController:viewController animated:YES completion:nil];
     } failureHandler:^(id response) {

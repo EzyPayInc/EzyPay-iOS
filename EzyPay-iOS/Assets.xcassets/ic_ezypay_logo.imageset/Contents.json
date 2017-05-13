@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "250 x 250.png",
+      "filename" : "ezypay_logo.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "500 x 500.png",
+      "filename" : "ezypay_logo@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "750 x 750.png",
+      "filename" : "ezypay_logo@3x.png",
       "scale" : "3x"
     }
   ],

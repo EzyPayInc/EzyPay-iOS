@@ -93,12 +93,17 @@
 
 #pragma mark - setup controls appearence
 - (void)setupNavigationBar {
-    UIColor *color = [UIColor colorWithRed:105.0f/255.0f
-                                     green:105.0f/255.0f
-                                      blue:105.0f/255.0f
-                                     alpha:1.0f];
-    [[UINavigationBar appearance] setTintColor:color];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:color}];
+    UIColor *backgroundColor = [UIColor colorWithRed:186.0f/255.0f
+                                               green:210.0f/255.0f
+                                                blue:48.0f/255.0f
+                                               alpha:1.0f];
+    UIColor *tintColor = [UIColor colorWithRed:255.0f/255.0f
+                                         green:255.0f/255.0f
+                                          blue:255.0f/255.0f
+                                         alpha:1.0f];
+    [[UINavigationBar appearance] setBackgroundColor:backgroundColor];
+    [[UINavigationBar appearance] setTintColor:tintColor];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:tintColor}];
 }
 
 - (void)setupTabBar {
