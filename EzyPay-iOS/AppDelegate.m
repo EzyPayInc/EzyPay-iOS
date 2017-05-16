@@ -97,11 +97,9 @@
                                                green:210.0f/255.0f
                                                 blue:48.0f/255.0f
                                                alpha:1.0f];
-    UIColor *tintColor = [UIColor colorWithRed:255.0f/255.0f
-                                         green:255.0f/255.0f
-                                          blue:255.0f/255.0f
-                                         alpha:1.0f];
+    UIColor *tintColor = [UIColor whiteColor];
     [[UINavigationBar appearance] setBackgroundColor:backgroundColor];
+    [[UINavigationBar appearance] setBarTintColor:backgroundColor];
     [[UINavigationBar appearance] setTintColor:tintColor];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:tintColor}];
 }

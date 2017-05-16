@@ -16,13 +16,13 @@
 
 @interface RestaurantDetailViewController ()
 
-@property (weak, nonatomic) IBOutlet UIButton *btnBill;
-@property (weak, nonatomic) IBOutlet UIButton *btnWaiter;
-@property (weak, nonatomic) IBOutlet UILabel *lblCommerceName;
 @property (weak, nonatomic) IBOutlet UIImageView *restaurantImageView;
 @property (weak, nonatomic) IBOutlet UIView *paymentOptionsView;
 @property (weak, nonatomic) IBOutlet UIButton *btnPay;
 @property (weak, nonatomic) IBOutlet UIButton *btnSplit;
+@property (weak, nonatomic) IBOutlet UIView *actionsView;
+@property (weak, nonatomic) IBOutlet UIView *actionView;
+@property (weak, nonatomic) IBOutlet UILabel *questionLabel;
 
 @property (nonatomic, strong) User *user;
 
@@ -32,22 +32,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Commerce";
-    self.lblCommerceName.text = self.payment.commerce.name;
-    self.btnWaiter.hidden = self.payment.tableNumber == 0;
+    self.navigationItem.title = self.payment.commerce.name;
     self.user = [UserManager getUser];
+    [self setupView];
     [self addCancelButton];
     [self getImage];
-    [self setupButtons];
     self.paymentOptionsView.hidden = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if(self.payment.cost > 0) {
-        self.paymentOptionsView.hidden = NO;
-    }
-    
+    self.paymentOptionsView.hidden = (self.payment.cost == 0);
+    self.questionLabel.hidden = (self.payment.cost == 0);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,13 +51,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setupButtons {
-    self.btnPay.layer.borderWidth = 2.0f;
-    self.btnSplit.layer.borderWidth = 2.0f;
-    self.btnPay.layer.borderColor = [[UIColor grayBackgroundViewColor] CGColor];
-    self.btnSplit.layer.borderColor = [[UIColor grayBackgroundViewColor] CGColor];
-    self.btnPay.layer.cornerRadius = 4.f;
-    self.btnSplit.layer.cornerRadius = 4.f;
+- (void)setupView {
+    self.btnPay.layer.cornerRadius = 20.f;
+    self.btnSplit.layer.cornerRadius = 20.f;
+    self.actionsView.layer.cornerRadius = 20.f;
+    self.actionView.layer.cornerRadius = 20.f;
 }
 
 #pragma mark - actions
@@ -75,18 +69,8 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)payBill:(id)sender {
-    if(self.payment.cost > 0) {
-        self.paymentOptionsView.hidden = NO;
-    } else {
-        PushNotificationManager *manager = [[PushNotificationManager alloc] init];
-        [manager billRequestNotification:self.payment
-                                   token:self.user.token successHandler:^(id response) {
-                                       NSLog(@"%@", response);
-                                   } failureHandler:^(id response) {
-                                       NSLog(@"%@", response);
-                                   }];
-    }
+- (IBAction)requestBill:(id)sender {
+    [self requestBillAction];
 }
 
 - (IBAction)callWaiter:(id)sender {
@@ -112,6 +96,20 @@
      }];
 }
 
+- (void)requestBillAction {
+    if(self.payment.cost > 0) {
+        self.paymentOptionsView.hidden = NO;
+    } else {
+        PushNotificationManager *manager = [[PushNotificationManager alloc] init];
+        [manager billRequestNotification:self.payment
+                                   token:self.user.token successHandler:^(id response) {
+                                       NSLog(@"%@", response);
+                                   } failureHandler:^(id response) {
+                                       NSLog(@"%@", response);
+                                   }];
+    }
+}
+
 - (void)getImage {
     UserManager *manager = [[UserManager alloc] init];
     [manager downloadImage:self.payment.commerce.id
@@ -121,6 +119,7 @@
 
 - (void)showPaymentView{
     self.paymentOptionsView.hidden = NO;
+    self.questionLabel.hidden = NO;
 }
 
 @end

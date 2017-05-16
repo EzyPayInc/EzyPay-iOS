@@ -19,7 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = NSLocalizedString(@"historyTitle", nil);
-    self.tableView.backgroundColor = [UIColor ezypayGreenColor];
 }
 
 - (void)didReceiveMemoryWarning {

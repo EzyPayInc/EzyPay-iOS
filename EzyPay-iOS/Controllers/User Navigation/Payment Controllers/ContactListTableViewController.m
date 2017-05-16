@@ -28,7 +28,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.backgroundColor = [UIColor grayBackgroundViewColor];
     self.navigationItem.title = @"Friends";
     self.contactsArray = [NSArray array];
     self.contactsChecked = [NSMutableArray array];
@@ -54,6 +53,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 60.f;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return @"Friends";
 }
 
 
