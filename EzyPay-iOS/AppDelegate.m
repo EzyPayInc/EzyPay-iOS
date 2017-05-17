@@ -93,10 +93,7 @@
 
 #pragma mark - setup controls appearence
 - (void)setupNavigationBar {
-    UIColor *backgroundColor = [UIColor colorWithRed:186.0f/255.0f
-                                               green:210.0f/255.0f
-                                                blue:48.0f/255.0f
-                                               alpha:1.0f];
+    UIColor *backgroundColor = [UIColor ezypayGreenColor];
     UIColor *tintColor = [UIColor whiteColor];
     [[UINavigationBar appearance] setBackgroundColor:backgroundColor];
     [[UINavigationBar appearance] setBarTintColor:backgroundColor];
@@ -114,7 +111,6 @@
 - (void)registerToken:(NSString *)deviceToken {
     User *user = [UserManager getUser];
     NSString* deviceIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    NSLog(@"Identifier: %@", deviceIdentifier);
     LocalToken *localToken = [DeviceTokenManager initLocalToken];
     localToken.deviceToken = deviceToken;
     localToken.deviceId = deviceIdentifier;

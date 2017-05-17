@@ -20,7 +20,11 @@
 
 @property (nonatomic, strong) User *user;
 @property (nonatomic, assign) float paymentShortage;
-@property (nonatomic, strong) UILabel *shortageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *shortageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *shortageValueLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalValueLabel;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *modalBackgroundView;
 @property (weak, nonatomic) IBOutlet UIView *modalView;
@@ -28,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnCancel;
 @property (weak, nonatomic) IBOutlet UIButton *btnChange;
 @property (weak, nonatomic) IBOutlet UIButton *btnSendNotifications;
+@property (weak, nonatomic) IBOutlet UIView *infoPaymentView;
 
 @property (nonatomic, assign) BOOL keyboardisActive;
 @property (nonatomic, strong) SplitTableViewCell *currentSelectedCell;
@@ -40,10 +45,9 @@
     [super viewDidLoad];
     self.paymentShortage = self.payment.cost;
     self.navigationItem.title = @"Split";
-    self.tableView.backgroundColor = [UIColor grayBackgroundViewColor];
     self.user = [UserManager getUser];
     [self setupGestures];
-    [self setupButtons];
+    [self setupView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -69,13 +73,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setupButtons {
-    self.btnCancel.layer.borderWidth = 2.0f;
-    self.btnChange.layer.borderWidth = 2.0f;
-    self.btnCancel.layer.borderColor = [[UIColor grayBackgroundViewColor] CGColor];
-    self.btnChange.layer.borderColor = [[UIColor grayBackgroundViewColor] CGColor];
-    self.btnCancel.layer.cornerRadius = 4.f;
-    self.btnChange.layer.cornerRadius = 4.f;
+- (void)setupView {
+    self.btnSendNotifications.userInteractionEnabled = self.paymentShortage <= 0;
+    self.btnCancel.layer.cornerRadius = 20.f;
+    self.btnChange.layer.cornerRadius = 20.f;
+    self.btnSendNotifications.layer.cornerRadius = self.btnSendNotifications.frame.size.width / 2;
+    self.infoPaymentView.layer.cornerRadius = 20.f;
+    self.shortageValueLabel.text = [self quantityWithCurrencyCode:self.paymentShortage];
+    self.totalValueLabel.text = [self quantityWithCurrencyCode:self.payment.cost];
 }
 
 - (void)setupGestures {
@@ -128,30 +133,16 @@
 
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    switch (section) {
-        case 0:
-            return 1;
-            break;
-        case 1:
-            return [self.payment.friends count];
-            break;
-        case 2:
-            return 2;
-            break;
-        default:
-            break;
-    }
-    return 0;
+    return section == 0 ? 1 : [self.payment.friends count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return indexPath.section == 2 ? 44.f : 80.f;
+    return 140;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -160,11 +151,7 @@
             return @"Me";
             break;
         case 1:
-            return @"Friends";
-            break;
-        case 2:
-            return @"Payment";
-            ;
+            return @"Others";
             break;
         default:
             break;
@@ -172,15 +159,12 @@
     return @"";
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
-{
-    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
-    [header.textLabel setTextColor:[UIColor whiteColor]];
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0) {
         SplitTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"splitCell" forIndexPath:indexPath];
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.userNameLabel.textColor = [UIColor ezypayGreenColor];
         cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", self.user.name, self.user.lastName];
         cell.profileImageView.image = [UIImage imageNamed:@"profileImage"];
         cell.quantityLabel.text = [self quantityWithCurrencyCode:self.payment.userCost];
@@ -189,7 +173,7 @@
         [self getImage:cell fromId:self.user.id];
         return cell;
         
-    } else if (indexPath.section == 1) {
+    } else {
         SplitTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"splitCell" forIndexPath:indexPath];
         Friend *friend = [[self.payment.friends allObjects]objectAtIndex:indexPath.row];
         cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", friend.name, friend.lastname];
@@ -199,17 +183,6 @@
         cell.paymentFriend = friend;
         cell.delegate = self;
         [self getImage:cell fromId:friend.id];
-        return cell;
-    } else {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"paymentCell" forIndexPath:indexPath];
-        if (indexPath.row == 0) {
-            self.shortageLabel = cell.detailTextLabel;
-            cell.textLabel.text = @"Shortage";
-            cell.detailTextLabel.text = [self quantityWithCurrencyCode:self.paymentShortage];
-        } else {
-            cell.textLabel.text = @"Total";
-            cell.detailTextLabel.text = [self quantityWithCurrencyCode:self.payment.cost];
-        }
         return cell;
     }
 }
@@ -292,14 +265,10 @@
         value = self.payment.userCost;
         
     }
-    self.shortageLabel.text = [self quantityWithCurrencyCode:self.paymentShortage];
+    self.shortageValueLabel.text = [self quantityWithCurrencyCode:self.paymentShortage];
     splitCell.quantityLabel.text = [self quantityWithCurrencyCode:value];
     splitCell.paymentSlider.value = value / splitCell.stepValue;
-    if(self.paymentShortage <= 0) {
-        self.btnSendNotifications.hidden = NO;
-    } else {
-        self.btnSendNotifications.hidden = YES;
-    }
+    self.btnSendNotifications.userInteractionEnabled = self.paymentShortage <= 0;
 }
 
 #pragma mark - Gesture recognizer delegate

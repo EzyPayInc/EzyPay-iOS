@@ -21,9 +21,9 @@
 
 + (UIColor *)ezypayGreenColor
 {
-    return [UIColor colorWithRed:207.0f/255.0f
-                           green:222.0f/255.0f
-                            blue:40.0f/255.0f
+    return [UIColor colorWithRed:186.0f/255.0f
+                           green:210.0f/255.0f
+                            blue:48.0f/255.0f
                            alpha:1.0f];
 }
 
