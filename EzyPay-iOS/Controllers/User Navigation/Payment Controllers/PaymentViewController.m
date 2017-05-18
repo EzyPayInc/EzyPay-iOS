@@ -12,6 +12,7 @@
 #import "Friend+CoreDataClass.h"
 #import "UserManager.h"
 #import "Currency+CoreDataClass.h"
+#import "PaymentResultViewController.h"
 
 @interface PaymentViewController ()
 
@@ -27,11 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.user = [UserManager getUser];
-    [self setupButtons];
+    [self setupView];
     self.navigationItem.title = @"Payment";
-    self.tableView.backgroundColor = [UIColor grayBackgroundViewColor];
-
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,13 +37,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setupButtons {
-    self.btnCancel.layer.borderWidth = 2.0f;
-    self.btnPayment.layer.borderWidth = 2.0f;
-    self.btnCancel.layer.borderColor = [[UIColor grayBackgroundViewColor] CGColor];
-    self.btnPayment.layer.borderColor = [[UIColor grayBackgroundViewColor] CGColor];
-    self.btnCancel.layer.cornerRadius = 4.f;
-    self.btnPayment.layer.cornerRadius = 4.f;
+- (void)setupView {
+    self.btnCancel.layer.cornerRadius = 20.f;
+    self.btnPayment.layer.cornerRadius = 20.f;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 #pragma mark - table view delegate
@@ -59,20 +54,21 @@
     return section == 0 ? 1 : [self.payment.friends count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100;
+}
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return  section == 0 ? @"Me" : @"Friends" ;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
-{
-    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
-    [header.textLabel setTextColor:[UIColor whiteColor]];
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-     PaymentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"paymentCell" forIndexPath:indexPath];
+     PaymentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"paymentCell"
+                                                                  forIndexPath:indexPath];
     if(indexPath.section == 0) {
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.userNameLabel.textColor = [UIColor ezypayGreenColor];
         cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", self.user.name, self.user.lastName];
         cell.quantityLabel.text = [self quantityWithCurrencyCode:self.payment.userCost];
         cell.activityIndicator.hidden = YES;
@@ -95,6 +91,12 @@
     return  cell;
 }
 
+#pragma mark - actions
+- (IBAction)paymentAction:(id)sender {
+    [self goToPaymentResultView];
+}
+
+
 - (void)getImage:(PaymentTableViewCell *)cell fromUser:(int64_t)userId {
     UserManager *manager = [[UserManager alloc] init];
     [manager downloadImage:userId toImageView:cell.profileImageView defaultImage:@"profileImage"];
@@ -105,6 +107,11 @@
     NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:currencyCode];
     NSString *currencySymbol = [NSString stringWithFormat:@"%@",[locale displayNameForKey:NSLocaleCurrencySymbol value:currencyCode]];
     return [NSString stringWithFormat:@"%@ %.02f", currencySymbol, value];
+}
+
+- (void)goToPaymentResultView {
+    PaymentResultViewController *viewController = (PaymentResultViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentResultViewController"];
+    [self.navigationController pushViewController:viewController animated:true];
 }
 
 - (void)reloadData {

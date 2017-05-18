@@ -44,6 +44,7 @@
 		806BF0691DC85C8100AD97CB /* UserServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 806BF0681DC85C8100AD97CB /* UserServiceClient.m */; };
 		8071B3FD1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8071B3FC1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.m */; };
 		8071B4001DD2DF6F001D8761 /* CardServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8071B3FF1DD2DF6F001D8761 /* CardServiceClient.m */; };
+		807C69E41ECD74560059D53C /* PaymentResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807C69E31ECD74560059D53C /* PaymentResultViewController.m */; };
 		807F00461E9CAAE900F3B983 /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807F00451E9CAAE900F3B983 /* SplitViewController.m */; };
 		809788681E61526C001F30F9 /* TableCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 809788671E61526C001F30F9 /* TableCollectionViewCell.m */; };
 		80B18A231EAB28D800A56A4A /* PushNotificationServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B18A221EAB28D800A56A4A /* PushNotificationServiceClient.m */; };
@@ -174,6 +175,8 @@
 		8071B3FC1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInPaymentInformationControllerViewController.m; sourceTree = "<group>"; };
 		8071B3FE1DD2DF6F001D8761 /* CardServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardServiceClient.h; sourceTree = "<group>"; };
 		8071B3FF1DD2DF6F001D8761 /* CardServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardServiceClient.m; sourceTree = "<group>"; };
+		807C69E21ECD74560059D53C /* PaymentResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentResultViewController.h; sourceTree = "<group>"; };
+		807C69E31ECD74560059D53C /* PaymentResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentResultViewController.m; sourceTree = "<group>"; };
 		807F00441E9CAAE900F3B983 /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewController.h; sourceTree = "<group>"; };
 		807F00451E9CAAE900F3B983 /* SplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewController.m; sourceTree = "<group>"; };
 		809788661E61526C001F30F9 /* TableCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCollectionViewCell.h; sourceTree = "<group>"; };
@@ -363,6 +366,8 @@
 				80F36E6E1E5157F5009A8CE7 /* PaymentViewController.m */,
 				807F00441E9CAAE900F3B983 /* SplitViewController.h */,
 				807F00451E9CAAE900F3B983 /* SplitViewController.m */,
+				807C69E21ECD74560059D53C /* PaymentResultViewController.h */,
+				807C69E31ECD74560059D53C /* PaymentResultViewController.m */,
 			);
 			path = "Payment Controllers";
 			sourceTree = "<group>";
@@ -857,6 +862,7 @@
 				807F00461E9CAAE900F3B983 /* SplitViewController.m in Sources */,
 				80415C141E8B7742005696D3 /* FriendManager.m in Sources */,
 				8012A6501E82429800FE5606 /* PaymentManager.m in Sources */,
+				807C69E41ECD74560059D53C /* PaymentResultViewController.m in Sources */,
 				80E982BD1E9377A800A0B4FA /* EmployeeTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -74,6 +74,7 @@
 }
 
 - (void)setupView {
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.btnSendNotifications.userInteractionEnabled = self.paymentShortage <= 0;
     self.btnCancel.layer.cornerRadius = 20.f;
     self.btnChange.layer.cornerRadius = 20.f;
@@ -161,8 +162,9 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    SplitTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"splitCell"
+                                                               forIndexPath:indexPath];
     if(indexPath.section == 0) {
-        SplitTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"splitCell" forIndexPath:indexPath];
         cell.backgroundColor = [UIColor whiteColor];
         cell.userNameLabel.textColor = [UIColor ezypayGreenColor];
         cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", self.user.name, self.user.lastName];
@@ -171,10 +173,7 @@
         cell.totalPayment = self.payment.cost;
         cell.delegate = self;
         [self getImage:cell fromId:self.user.id];
-        return cell;
-        
     } else {
-        SplitTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"splitCell" forIndexPath:indexPath];
         Friend *friend = [[self.payment.friends allObjects]objectAtIndex:indexPath.row];
         cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", friend.name, friend.lastname];
         cell.profileImageView.image = [UIImage imageNamed:@"profileImage"];
@@ -183,8 +182,8 @@
         cell.paymentFriend = friend;
         cell.delegate = self;
         [self getImage:cell fromId:friend.id];
-        return cell;
     }
+    return cell;
 }
 
 #pragma mark - Actions
