@@ -26,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupView];
+    [self roundedViews];
     self.user = [UserManager getUser];
 }
 
@@ -73,6 +74,13 @@
     self.txtExpirationDate.userInteractionEnabled = YES;
     self.btnAction.hidden = NO;
     self.navigationItem.rightBarButtonItem = nil;
+}
+
+- (void)roundedViews {
+    self.txtCvv.layer.cornerRadius = 20.f;
+    self.txtCardNumber.layer.cornerRadius = 20.f;
+    self.txtExpirationDate.layer.cornerRadius = 20.f;
+    self.btnAction.layer.cornerRadius = 20.f;
 }
 
 - (void)populateFields {

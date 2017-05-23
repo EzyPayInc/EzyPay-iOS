@@ -7,8 +7,8 @@
 //
 
 #import "CardListTableViewController.h"
-#import "CardManager.h"
 #import "UserManager.h"
+#import "CardManager.h"
 #import "CardDetailViewController.h"
 #import "UIColor+UIColor.h"
 
@@ -25,8 +25,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"Payment";
     self.user = [UserManager getUser];
-    self.tableView.backgroundColor = [UIColor grayBackgroundViewColor];
-    [self displayRightBarButton];
+    [self addTableViewFooter];
 
 }
 
@@ -39,11 +38,8 @@
      [self getCardsFromServer];
 }
 
-- (void) displayRightBarButton {
-    UIImage *image = [[UIImage imageNamed:@"ic_add_card"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(showDetailCard:)];
-    
-    self.navigationItem.rightBarButtonItem = rightBarButton;
+- (void)addTableViewFooter {
+   
 }
 
 #pragma mark - Table view data source
@@ -59,10 +55,22 @@
     return self.cards.count;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
-{
-    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
-    [header.textLabel setTextColor:[UIColor whiteColor]];
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 200;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200)];
+    UIButton* btnAddCard = [[UIButton alloc] initWithFrame:
+                            CGRectMake(0, 100, 150, 50)];
+    btnAddCard.center = CGPointMake(CGRectGetMidX(self.view.bounds), btnAddCard.center.y);
+    btnAddCard.layer.cornerRadius = 20.f;
+    btnAddCard.backgroundColor = [UIColor ezypayGreenColor];
+    [btnAddCard setTitle:@"Add Card" forState:UIControlStateNormal];
+    [btnAddCard setImage:[UIImage imageNamed:@"ic_add_card"] forState:UIControlStateNormal];
+    [btnAddCard addTarget:self action:@selector(goToDetailCard) forControlEvents:UIControlEventTouchDown];
+    [view  addSubview:btnAddCard];
+    return view;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -83,7 +91,6 @@
     
 }
 
-
 #pragma mark - actions
 - (void)getCardsFromServer {
     CardManager *manager = [[CardManager alloc] init];
@@ -95,8 +102,7 @@
     }];
 }
 
-
-- (IBAction)showDetailCard:(id)sender {
+- (void)goToDetailCard {
     CardDetailViewController *cardDetailViewController = (CardDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CardDetailViewController"];
     cardDetailViewController.viewType = AddCard;
     [self.navigationController pushViewController:cardDetailViewController animated:true];

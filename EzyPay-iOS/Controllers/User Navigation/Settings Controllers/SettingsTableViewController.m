@@ -35,10 +35,8 @@
     [super viewDidLoad];
     self.isEditableMode = NO;
     self.navigationItem.title = NSLocalizedString(@"settingsTitle", nil);
-    self.tableView.backgroundColor = [UIColor grayBackgroundViewColor];
     self.user = [UserManager getUser];
     [self addNavigationBarButtons];
-    
 }
 
 - (void)didReceiveMemoryWarning {

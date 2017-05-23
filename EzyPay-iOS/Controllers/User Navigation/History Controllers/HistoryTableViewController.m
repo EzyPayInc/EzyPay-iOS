@@ -41,7 +41,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 81.f;
+    return 100.f;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -59,7 +59,8 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    HistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"historyCell" forIndexPath:indexPath];
+    HistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"historyCell"
+                                                                 forIndexPath:indexPath];
     cell.imageViewHistory.image = [UIImage imageNamed:@"restaurant"];
     cell.restaurantName.text = @"Titos & Blancos";
     cell.payment.text = @"$4000";
