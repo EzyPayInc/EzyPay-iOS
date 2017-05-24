@@ -19,6 +19,8 @@
 
 @end
 
+static NSString *const CARD_STARTS = @"**** ";
+
 @implementation CardListTableViewController
 
 - (void)viewDidLoad {
@@ -76,7 +78,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cardCell" forIndexPath:indexPath];
     Card *card = [self.cards objectAtIndex:indexPath.row];
-    cell.textLabel.text = card.number;
+    NSString *lastCharacters = [card.number substringFromIndex:MAX((int)[card.number length]-4, 0)];
+    cell.textLabel.text = [CARD_STARTS stringByAppendingString:lastCharacters];
     cell.imageView.image = [self creditCardIcon:card.number];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;

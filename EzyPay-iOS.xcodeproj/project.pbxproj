@@ -29,6 +29,7 @@
 		8030CB071DC1A54A006C0070 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8030CB061DC1A54A006C0070 /* LoginViewController.m */; };
 		80415C111E8B5CF1005696D3 /* PaymentServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80415C101E8B5CF1005696D3 /* PaymentServiceClient.m */; };
 		80415C141E8B7742005696D3 /* FriendManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80415C131E8B7742005696D3 /* FriendManager.m */; };
+		8048977D1ED55588006CFBBE /* BottomBorderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8048977C1ED55588006CFBBE /* BottomBorderTextField.m */; };
 		804AC1151EB78D6A00401B29 /* ResponseSplitRequestNotificationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 804AC1141EB78D6A00401B29 /* ResponseSplitRequestNotificationHandler.m */; };
 		804CEE811DED242C0078BB54 /* EzyPay.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 804CEE7F1DED242C0078BB54 /* EzyPay.xcdatamodeld */; };
 		804CEEAB1DED3C9E0078BB54 /* GeneralServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 804CEEAA1DED3C9E0078BB54 /* GeneralServiceClient.m */; };
@@ -146,6 +147,8 @@
 		80415C101E8B5CF1005696D3 /* PaymentServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentServiceClient.m; sourceTree = "<group>"; };
 		80415C121E8B7742005696D3 /* FriendManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendManager.h; sourceTree = "<group>"; };
 		80415C131E8B7742005696D3 /* FriendManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendManager.m; sourceTree = "<group>"; };
+		8048977B1ED55588006CFBBE /* BottomBorderTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomBorderTextField.h; sourceTree = "<group>"; };
+		8048977C1ED55588006CFBBE /* BottomBorderTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomBorderTextField.m; sourceTree = "<group>"; };
 		804AC1131EB78D6A00401B29 /* ResponseSplitRequestNotificationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseSplitRequestNotificationHandler.h; sourceTree = "<group>"; };
 		804AC1141EB78D6A00401B29 /* ResponseSplitRequestNotificationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseSplitRequestNotificationHandler.m; sourceTree = "<group>"; };
 		804CEE801DED242C0078BB54 /* EzyPay.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EzyPay.xcdatamodel; sourceTree = "<group>"; };
@@ -436,6 +439,15 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		8048977A1ED55500006CFBBE /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				8048977B1ED55588006CFBBE /* BottomBorderTextField.h */,
+				8048977C1ED55588006CFBBE /* BottomBorderTextField.m */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
 		804CEE821DED25FC0078BB54 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -554,6 +566,7 @@
 		80EFEB921DB8552900D874E2 /* EzyPay-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				8048977A1ED55500006CFBBE /* Custom Views */,
 				801007CE1EA5C2B1006A521B /* EzyPay-iOS.entitlements */,
 				80F9382F1EAEFAAC0033D193 /* Notifications Handlers */,
 				802C03AC1DF47B65001370E2 /* Categories */,
@@ -830,6 +843,7 @@
 				801D3C7C1DEE636700C8845D /* ScannerViewController.m in Sources */,
 				802AE9431DC8194F006008B3 /* SessionHandler.m in Sources */,
 				80CFE8AB1E1F65D000DE276C /* SettingsTableViewController.m in Sources */,
+				8048977D1ED55588006CFBBE /* BottomBorderTextField.m in Sources */,
 				8071B3FD1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.m in Sources */,
 				80188F7C1E98A6B7008AB708 /* CurrencyManager.m in Sources */,
 				806BF0661DC8519300AD97CB /* SignInUserViewController.m in Sources */,

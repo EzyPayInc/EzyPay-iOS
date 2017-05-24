@@ -61,6 +61,8 @@
     self.btnAction.hidden = !userInteractionEnabled;
     if(!userInteractionEnabled) {
         [self addEditButton];
+    } else {
+        [self removeEditButton];
     }
     self.txtExpirationDate.delegate = self;
     self.txtCardNumber.delegate = self;
@@ -96,29 +98,37 @@
     self.navigationItem.rightBarButtonItem = rightBarButton;
 }
 
+-(void)removeEditButton {
+    self.navigationItem.rightBarButtonItem = nil;
+}
+
 - (IBAction)editAction:(id)sender{
     self.viewType = EditCard;
     [self setupView];
 }
 
 - (IBAction)submitAction:(id)sender {
-    Card *card = [CoreDataManager createEntityWithName:@"Card"];
-    card.id = self.card.id;
-    card.user = self.user;
-    card.number = [self.txtCardNumber.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-    card.cvv = [self.txtCvv.text integerValue];
-    NSString *expirationDate = self.txtExpirationDate.text;
-    card.month = [[[expirationDate componentsSeparatedByString:@"/"] objectAtIndex:0] integerValue];
-    card.year = [[[expirationDate componentsSeparatedByString:@"/"] objectAtIndex:1] integerValue];
-    switch (self.viewType) {
-        case AddCard:
-            [self registerCard:card];
-            break;
-        case EditCard:
-            [self updateCard:card];
-            break;
-        default:
-            break;
+    if([self isCardNumberValid] && [self isCvvValid] && [self isDateValid]) {
+        Card *card = [CoreDataManager createEntityWithName:@"Card"];
+        card.id = self.card.id;
+        card.user = self.user;
+        card.number = [self.txtCardNumber.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+        card.cvv = [self.txtCvv.text integerValue];
+        NSString *expirationDate = self.txtExpirationDate.text;
+        card.month = [[[expirationDate componentsSeparatedByString:@"/"] objectAtIndex:0] integerValue];
+        card.year = [[[expirationDate componentsSeparatedByString:@"/"] objectAtIndex:1] integerValue];
+        switch (self.viewType) {
+            case AddCard:
+                [self registerCard:card];
+                break;
+            case EditCard:
+                [self updateCard:card];
+                break;
+            default:
+                break;
+        }
+    } else {
+        [self displayErrorMessage];
     }
 
 }
@@ -145,16 +155,16 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if([textField isEqual:self.txtExpirationDate]){
-        return [self validateExpirationDate:textField string:string];
+        return [self expirationDateFormat:textField string:string];
     } else if ([textField isEqual:self.txtCvv]) {
-        return [self validateCvvValue:textField string:string];
+        return [self cvvFormtat:textField string:string];
     } else if ([textField isEqual:self.txtCardNumber]){
-        return [self validateCardNumberValue:textField string:string];
+        return [self cardNumberFormat:textField string:string];
     }
     return YES;
 }
 
-- (BOOL)validateExpirationDate:(UITextField *)textField string:(NSString *)string {
+- (BOOL)expirationDateFormat:(UITextField *)textField string:(NSString *)string {
     NSString *expirationDate = [textField.text stringByAppendingString:string];
     if(expirationDate.length == 2 && string.length > 0) {
         textField.text = [expirationDate stringByAppendingString:@"/"];
@@ -174,12 +184,12 @@
     return YES;
 }
 
-- (BOOL)validateCvvValue:(UITextField *)textField string:(NSString *)string {
+- (BOOL)cvvFormtat:(UITextField *)textField string:(NSString *)string {
     NSString *cvvString = [textField.text stringByAppendingString:string];
     return cvvString.length > 3? NO : YES;
 }
 
-- (BOOL)validateCardNumberValue:(UITextField *)textField string:(NSString *)string {
+- (BOOL)cardNumberFormat:(UITextField *)textField string:(NSString *)string {
     NSString *cardNumber = [textField.text stringByAppendingString:string];
     if (cardNumber.length < 20){
         if([cardNumber stringByReplacingOccurrencesOfString:@" " withString:@""].length % 4 == 0 && string.length > 0){
@@ -191,6 +201,25 @@
     return NO;
 }
 
+- (BOOL)isCardNumberValid {
+    return !(self.txtCardNumber.text.length < 16);
+}
+
+- (BOOL)isCvvValid {
+    return (self.txtCvv.text.length >= 3) && ([self isNumeric:self.txtCvv.text]);
+}
+
+- (BOOL)isDateValid {
+    NSString *expirationDate = self.txtExpirationDate.text;
+    if(expirationDate.length >= 4) {
+        NSArray *array = [expirationDate componentsSeparatedByString:@"/"];
+        if([array count] == 2) {
+            return [self isNumeric:array[0]] && [self isNumeric:array[1]];
+        }
+    }
+    return false;
+}
+
 - (BOOL)isNumeric:(NSString *)string {
     NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
     NSNumber* number = [numberFormatter numberFromString:string];
@@ -198,6 +227,18 @@
         return YES;
     }
     return NO;
+}
+
+- (void)displayErrorMessage {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                   message:@"Invalid data."
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:nil];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 
