@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtPhoneNumber;
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
+@property (weak, nonatomic) IBOutlet UIButton *btnNext;
 
 @end
 
@@ -32,6 +33,7 @@
     self.navigationItem.title = NSLocalizedString(@"signInTitle", nil);
     [self setTextFieldDelegate];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    self.btnNext.layer.cornerRadius = 20.f;
 }
 
 - (void)didReceiveMemoryWarning {

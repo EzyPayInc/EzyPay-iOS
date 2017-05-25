@@ -14,7 +14,7 @@
     [super drawRect:rect];
     CALayer *border = [CALayer layer];
     CGFloat borderWidth = 0.5;
-    border.borderColor = [UIColor darkGrayColor].CGColor;
+    border.borderColor = [UIColor grayColor].CGColor;
     border.frame = CGRectMake(0, self.frame.size.height - borderWidth, self.frame.size.width, self.frame.size.height);
     border.borderWidth = borderWidth;
     [self.layer addSublayer:border];

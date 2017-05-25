@@ -21,7 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"employeesTitle", nil);
-    self.tableView.backgroundColor = [UIColor grayBackgroundViewColor];
     [self displayRightBarButton];
 }
 

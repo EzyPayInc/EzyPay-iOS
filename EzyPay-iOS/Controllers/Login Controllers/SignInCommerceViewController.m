@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtUserType;
 @property (weak, nonatomic) IBOutlet UIPickerView *userTypePicker;
 @property (weak, nonatomic) IBOutlet UITextField *txtTables;
+@property (weak, nonatomic) IBOutlet UIButton *btnNext;
 
 @property (nonatomic, strong) NSArray *userTypePickerData;
 
@@ -37,6 +38,7 @@
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     self.userTypePickerData = @[@"Restaurant", @"Commerce"];
     self.userTypePicker.showsSelectionIndicator = YES;
+    self.btnNext.layer.cornerRadius = 20.f;
 }
 
 - (void)didReceiveMemoryWarning {

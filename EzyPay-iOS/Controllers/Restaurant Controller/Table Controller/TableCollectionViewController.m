@@ -31,7 +31,6 @@ static NSString * const reuseIdentifier = @"TableCell";
         [self displayRightBarButton];
     }
     self.navigationItem.title = NSLocalizedString(@"tableTitle", nil);
-    self.collectionView.backgroundColor = [UIColor grayBackgroundViewColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -62,8 +61,7 @@ static NSString * const reuseIdentifier = @"TableCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TableCollectionViewCell *cell = (TableCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     Table *table = [self.tables objectAtIndex:indexPath.row];
-    cell.tableName.text = [NSString stringWithFormat:@"%@ %lld", NSLocalizedString(@"tableLabel", nil),
-                           table.tableNumber];
+    cell.tableName.text = [NSString stringWithFormat:@"%lld", table.tableNumber];
     return cell;
 }
 

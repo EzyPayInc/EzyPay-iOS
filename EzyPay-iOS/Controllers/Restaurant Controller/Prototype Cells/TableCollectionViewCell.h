@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface TableCollectionViewCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *tableImage;
+@property (weak, nonatomic) IBOutlet UIView *circleView;
+
 @property (weak, nonatomic) IBOutlet UILabel *tableName;
 
 @end

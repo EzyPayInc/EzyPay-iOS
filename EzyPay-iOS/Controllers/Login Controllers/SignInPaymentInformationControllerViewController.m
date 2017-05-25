@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtCardNumber;
 @property (strong, nonatomic) IBOutlet UITextField *txtCvv;
 @property (weak, nonatomic) IBOutlet UITextField *txtExpirationDate;
+@property (weak, nonatomic) IBOutlet UIButton *btnSingUp;
 
 @end
 
@@ -31,6 +32,7 @@
     self.txtExpirationDate.delegate = self;
     self.txtCardNumber.delegate = self;
     self.txtCvv.delegate = self;
+    self.btnSingUp.layer.cornerRadius = 20.f;
 }
 
 - (void)didReceiveMemoryWarning {
