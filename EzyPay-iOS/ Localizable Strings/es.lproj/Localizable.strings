@@ -34,6 +34,7 @@ decemberMonth = "Diciembre";
 
 /*actions*/
 signInNextAction = "Siguiente";
+generateQRAction = "Generar código QR";
 
 /*label errors*/
 errorFieldRequired = "Este campo es obligatorio";
@@ -42,3 +43,5 @@ errorPasswordInvalid = "Contraseña demasiado corta";
 
 /*labels*/
 tableLabel = "Mesa";
+currentlySignedInLabel = "Usuario Logueado: ";
+changeEmployeeLabel = "cambiar empleado";

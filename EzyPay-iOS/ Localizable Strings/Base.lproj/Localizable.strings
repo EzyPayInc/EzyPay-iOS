@@ -33,6 +33,7 @@ decemberMonth = "December";
 
 /*actions*/
 signInNextAction = "Next";
+generateQRAction = "Generate QR code";
 
 /*label errors*/
 errorFieldRequired = "This field is required";
@@ -42,3 +43,5 @@ errorPasswordInvalid = "This password is too short";
 
 /*labels*/
 tableLabel = "Table";
+currentlySignedInLabel = "Currently signed in:";
+changeEmployeeLabel = "change employee";

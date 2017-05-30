@@ -20,7 +20,7 @@
 
 @implementation SessionHandler
 
-NSString *const BASE_URL = @"http:192.168.1.113:3000/";
+NSString *const BASE_URL = @"http:192.168.1.101:3000/";
 NSString *const CLIENT_ID  = @"ceWZ_4G8CjQZy7,8";
 NSString *const SECRET_KEY = @"9F=_wPs^;W]=Hqf!3e^)ZpdR;MUym+";
 

@@ -12,8 +12,11 @@
 #import "PaymentDetailViewController.h"
 
 @interface CommerceDetailViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *lblCommerceName;
 @property (weak, nonatomic) IBOutlet UIImageView *commerceImageView;
+@property (weak, nonatomic) IBOutlet UILabel *signInLabel;
+@property (weak, nonatomic) IBOutlet UILabel *employeeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *changeEmployeeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *btnGenerateQR;
 
 @property (nonatomic, strong) User *user;
 
@@ -23,17 +26,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self displayRightBarButton];
+    //[self displayRightBarButton];
+    [self setupView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     self.user = [UserManager getUser];
-    if(self.user.userType == EmployeeNavigation) {
-        self.lblCommerceName.text = self.user.boss.name;
-    } else {
-         self.lblCommerceName.text = self.user.name;
-    }
+    self.employeeLabel.text = self.user.name;
+    NSString *title = self.user.userType == EmployeeNavigation ? self.user.boss.name : self.user.name;
+    self.navigationItem.title = title;
     [self getImage];
+}
+
+- (void)setupView {
+    self.commerceImageView.layer.borderWidth = 2.0f;
+    self.commerceImageView.layer.borderColor = [UIColor blackColor].CGColor;
+    self.commerceImageView.layer.cornerRadius = self.commerceImageView.frame.size.width / 2;
+    self.commerceImageView.clipsToBounds = YES;
+    NSMutableAttributedString *underlineString = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"changeEmployeeLabel", nil)];
+    [underlineString addAttribute:NSUnderlineStyleAttributeName
+                            value:[NSNumber numberWithInt:1]
+                            range:(NSRange){0,[underlineString length]}];
+    self.signInLabel.text = NSLocalizedString(@"currentlySignedInLabel", nil);
+    self.changeEmployeeLabel.attributedText = underlineString;
+    [self.btnGenerateQR setTitle:  NSLocalizedString(@"generateQRAction", nil) forState:UIControlStateNormal];
+    self.btnGenerateQR.layer.cornerRadius = 20.f;
+    
 }
 
 - (void)didReceiveMemoryWarning {
