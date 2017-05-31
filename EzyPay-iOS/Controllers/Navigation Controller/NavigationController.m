@@ -131,21 +131,21 @@
     NSMutableArray *controllers = [NSMutableArray array];
     NSMutableDictionary *controller = [NSMutableDictionary dictionary];
     UINavigationController *navController;
-    if(user.boss.userType == CommerceNavigation) {
+    //if(user.boss.userType == CommerceNavigation) {
         /*Commerce Controller*/
         navController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"NavCommerceController"];
         navController.tabBarItem.title = NSLocalizedString(@"commerceTitle", nil);
         navController.tabBarItem.image =  [[UIImage imageNamed:@"ic_scanner"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [controller setObject:navController forKey:@"controller"];
         [controllers addObject:controller];
-    } else {
+    //} else {
         /*Tables Controller*/
-        navController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"TablesNavigationController"];
+      /*  navController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"TablesNavigationController"];
         navController.tabBarItem.title = NSLocalizedString(@"tableTitle", nil);
         navController.tabBarItem.image =  [[UIImage imageNamed:@"ic_scanner"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [controller setObject:navController forKey:@"controller"];
         [controllers addObject:controller];
-    }
+    }*/
     
     return controllers;
 }

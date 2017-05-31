@@ -474,14 +474,14 @@
                                 <rect key="frame" x="16" y="312" width="288" height="120"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQg-Ai-UxF" userLabel="Call Waiter Button">
-                                        <rect key="frame" x="14.5" y="7" width="115" height="107"/>
+                                        <rect key="frame" x="14.5" y="6.5" width="115" height="108"/>
                                         <state key="normal" backgroundImage="ic_waiter"/>
                                         <connections>
                                             <action selector="requestBill:" destination="yb0-WJ-8Kk" eventType="touchUpInside" id="QCF-yu-XPH"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZA-Z9-1dH" userLabel="Pay Bill Button">
-                                        <rect key="frame" x="159" y="7" width="115" height="107"/>
+                                        <rect key="frame" x="159" y="6.5" width="115" height="108"/>
                                         <state key="normal" backgroundImage="ic_bill"/>
                                         <connections>
                                             <action selector="requestBill:" destination="yb0-WJ-8Kk" eventType="touchUpInside" id="gBQ-Gr-2Z5"/>
@@ -504,7 +504,7 @@
                                 <rect key="frame" x="16" y="312" width="288" height="120"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqR-p5-8f0">
-                                        <rect key="frame" x="44" y="6.5" width="200" height="107"/>
+                                        <rect key="frame" x="44" y="6" width="200" height="108"/>
                                         <state key="normal" backgroundImage="ic_bill"/>
                                     </button>
                                 </subviews>
@@ -526,7 +526,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Gj-dv-mpa" userLabel="Split Button">
-                                        <rect key="frame" x="32" y="76.5" width="256" height="39.5"/>
+                                        <rect key="frame" x="32" y="77" width="256" height="38.5"/>
                                         <color key="backgroundColor" red="0.79607843137254897" green="0.8666666666666667" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Split">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1685,7 +1685,7 @@
         <!--Table Collection View Controller-->
         <scene sceneID="Tnl-3X-gIe">
             <objects>
-                <collectionViewController id="goD-X0-Skl" customClass="TableCollectionViewController" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="TableCollectionViewController" id="goD-X0-Skl" customClass="TableCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="diU-rC-QvO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2057,6 +2057,9 @@
                                 <state key="normal" title="Button">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="generateQRAction:" destination="LTt-QW-04D" eventType="touchUpInside" id="3u9-wG-dqt"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

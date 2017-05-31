@@ -10,6 +10,10 @@
 #import "UserManager.h"
 #import "NavigationController.h"
 #import "PaymentDetailViewController.h"
+#import "DeviceTokenManager.h"
+#import "LoginViewController.h"
+#import "TableCollectionViewController.h"
+#import "CoreDataManager.h"
 
 @interface CommerceDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *commerceImageView;
@@ -26,15 +30,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //[self displayRightBarButton];
     [self setupView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     self.user = [UserManager getUser];
-    self.employeeLabel.text = self.user.name;
-    NSString *title = self.user.userType == EmployeeNavigation ? self.user.boss.name : self.user.name;
-    self.navigationItem.title = title;
+    if(self.user.userType == EmployeeNavigation) {
+        self.employeeLabel.text = [NSString stringWithFormat:@"%@ %@", self.user.name, self.user.lastName];
+        self.navigationItem.title = self.user.boss.name;
+    } else {
+        self.employeeLabel.text = self.user.name;
+        self.navigationItem.title = self.user.name;
+    }
     [self getImage];
 }
 
@@ -52,6 +59,12 @@
     [self.btnGenerateQR setTitle:  NSLocalizedString(@"generateQRAction", nil) forState:UIControlStateNormal];
     self.btnGenerateQR.layer.cornerRadius = 20.f;
     
+    UITapGestureRecognizer *gestureRecognizer =
+        [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                action:@selector(logOutAction)];
+    [self.changeEmployeeLabel setUserInteractionEnabled:YES];
+    [self.changeEmployeeLabel addGestureRecognizer:gestureRecognizer];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,18 +81,38 @@
               defaultImage:@"restaurant"];
 }
 
-- (void) displayRightBarButton {
-    UIImage *image = [[UIImage imageNamed:@"ic_add_card"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(displayPaymentDetailViewController)];
-    
-    self.navigationItem.rightBarButtonItem = rightBarButton;
+- (IBAction)generateQRAction:(id)sender {
+    if(self.user.userType == EmployeeNavigation && self.user.boss.userType == RestaurantNavigation) {
+        [self displayTablesViewController];
+    } else {
+        [self displayPaymentDetailViewController];
+    }
 }
 
-- (void) displayPaymentDetailViewController {
+- (void)displayPaymentDetailViewController {
     PaymentDetailViewController *viewController = (PaymentDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentDetailViewController"];
     viewController.tableNumber = 0;
     viewController.user = self.user;
     [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (void)displayTablesViewController {
+    TableCollectionViewController *viewController = (TableCollectionViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"TableCollectionViewController"];
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (void)logOutAction {
+    LocalToken *localToken = [DeviceTokenManager getDeviceToken];
+    DeviceTokenManager *manager = [[DeviceTokenManager alloc] init];
+    [manager deleteDeviceToken:localToken.deviceId user:self.user successHandler:^(id response) {
+        localToken.isSaved = 0;
+        [CoreDataManager saveContext];
+        LoginViewController *viewController = (LoginViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        [UserManager deleteUser];
+        [self presentViewController:viewController animated:YES completion:nil];
+    } failureHandler:^(id response) {
+        NSLog(@"Response %@", response);
+    }];
 }
 
 @end
