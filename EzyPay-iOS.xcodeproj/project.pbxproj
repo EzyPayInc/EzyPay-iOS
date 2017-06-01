@@ -131,16 +131,14 @@
 		801FE3121DD40778004318CC /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
 		80217A711DEFCFC60096DEF4 /* CardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardManager.h; sourceTree = "<group>"; };
 		80217A721DEFCFC60096DEF4 /* CardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardManager.m; sourceTree = "<group>"; };
-		80217A771DEFF8E60096DEF4 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		80217A791DEFF8F00096DEF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		802186D11DC9ACE2001F3F5F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
-		802186D21DC9ACE3001F3F5F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		802891651DD66C3800A088EE /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
 		802891661DD66C3800A088EE /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
 		802AE9411DC8194F006008B3 /* SessionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionHandler.h; sourceTree = "<group>"; };
 		802AE9421DC8194F006008B3 /* SessionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionHandler.m; sourceTree = "<group>"; };
 		802C03AD1DF47C14001370E2 /* NSString+String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+String.h"; sourceTree = "<group>"; };
 		802C03AE1DF47C14001370E2 /* NSString+String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+String.m"; sourceTree = "<group>"; };
+		802EA17E1EDE6D8100BE5082 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8030CB051DC1A54A006C0070 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		8030CB061DC1A54A006C0070 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		80415C0F1E8B5CF1005696D3 /* PaymentServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentServiceClient.h; sourceTree = "<group>"; };
@@ -916,8 +914,8 @@
 		80217A781DEFF8E60096DEF4 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				80217A771DEFF8E60096DEF4 /* es */,
 				80217A791DEFF8F00096DEF4 /* Base */,
+				802EA17E1EDE6D8100BE5082 /* es */,
 			);
 			name = Localizable.strings;
 			path = " Localizable Strings";
@@ -927,7 +925,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				80EFEB9D1DB8552900D874E2 /* Base */,
-				802186D11DC9ACE2001F3F5F /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -936,7 +933,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				80EFEBA21DB8552900D874E2 /* Base */,
-				802186D21DC9ACE3001F3F5F /* es */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

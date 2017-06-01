@@ -39,6 +39,14 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark - actions
+- (void)setupView {
+    self.txtCardNumber.placeholder = NSLocalizedString(@"cardNumberPlaceholder", nil);
+    self.txtExpirationDate.placeholder = NSLocalizedString(@"expirationDatePlaceholder", nil);
+    self.txtCvv.placeholder = NSLocalizedString(@"cvvPlaceholder", nil);
+    [self.btnSingUp setTitle:NSLocalizedString(@"signUpAction", nil) forState:UIControlStateNormal];
+}
+
 
 - (IBAction)registerUser:(id)sender {
     [self saveUser];

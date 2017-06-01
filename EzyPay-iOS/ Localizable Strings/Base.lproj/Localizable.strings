@@ -5,7 +5,7 @@
   Created by Gustavo Quesada Sanchez on 12/1/16.
   Copyright © 2016 EzyPay Inc. All rights reserved.
 */
-scannerTitle = "Scanner";
+scannerTitle = "Scan QR code";
 historyTitle = "History";
 cardsTitle = "Cards";
 settingsTitle = "Settings";
@@ -15,25 +15,29 @@ signInTitle = "Sign Up";
 commerceTitle = "Commerce";
 employeesTitle = "Employees";
 employeeTitle = "Employee";
+contactsTitle = "Contacts";
+cardsTitle = "My cards";
+splitTitle = "Split";
+cardInfoTitle = "Card Information";
 
-
-/*Months*/
-januaryMonth = "January";
-februaryMonth = "February";
-marchMonth = "March";
-aprilMonth = "April";
-mayMonth = "May";
-juneMonth = "June";
-julyMonth = "July";
-augustMonth = "August";
-septemberMonth = "September";
-octoberMonth = "October";
-novemberMonth = "November";
-decemberMonth = "December";
 
 /*actions*/
+loginAction = "Log in";
 signInNextAction = "Next";
 generateQRAction = "Generate QR code";
+userAction = "User";
+commerceAction = "Commerce";
+signUpAction = "Sign Up";
+editAction = "Edit";
+logOutAction = "Log Out";
+aloneAction = "Alone";
+splitAction = "Split";
+cancelAction = "Cancel";
+changeAction = "Change";
+cancelUpperAction = "CANCEL";
+payAction = "PAY";
+goHomeAction = "Go back to home screen";
+
 
 /*label errors*/
 errorFieldRequired = "This field is required";
@@ -42,6 +46,29 @@ errorPasswordInvalid = "This password is too short";
 
 
 /*labels*/
+forgotPasswordLabel = "Forgot Password?";
+orLabel = "or";
+signUpHereLabel = "Don't have an account? Sign up here!";
 tableLabel = "Table";
 currentlySignedInLabel = "Currently signed in:";
 changeEmployeeLabel = "change employee";
+paymentQuestionLabel = "How would you like to pay the check?";
+friendsLabel = "Friends";
+meLabel = "Me";
+othersLabel = "Others";
+shortageLabel = "Shortage";
+totalLabel = "Total";
+splitLabel = "Split";
+cardsLabel = "Cards";
+paymentMessageLabel = "Successfully paid!";
+actionsLabel = "Actions";
+
+/*Placeholders*/
+emailPlaceholder = "Email";
+passwordPlaceholder = "Password";
+namePlaceholder = "Name";
+lastNamePlaceholder = "Last Name";
+phoneNumberPlaceholder = "Phone Number";
+cardNumberPlaceholder = "Card number";
+expirationDatePlaceholder = "Expiration Date";
+cvvPlaceholder = "cvv";

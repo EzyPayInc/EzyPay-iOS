@@ -28,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Friends";
+    self.navigationItem.title = NSLocalizedString(@"contactsTitle", nil);
     self.contactsArray = [NSArray array];
     self.contactsChecked = [NSMutableArray array];
     self.user = [UserManager getUser];
@@ -56,7 +56,7 @@
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"Friends";
+    return NSLocalizedString(@"friendsLabel", nil);
 }
 
 
@@ -89,7 +89,11 @@
 
 #pragma mark - Search bar delegate
 - (void)addNextButton {
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleDone target:self action:@selector(nextAction)];
+    UIBarButtonItem *rightBarButton =
+    [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"nextAction", nil)
+                                     style:UIBarButtonItemStyleDone
+                                    target:self
+                                    action:@selector(nextAction)];
     self.navigationItem.rightBarButtonItem = rightBarButton;
 }
 

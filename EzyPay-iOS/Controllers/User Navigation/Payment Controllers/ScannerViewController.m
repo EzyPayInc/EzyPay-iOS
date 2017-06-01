@@ -29,7 +29,7 @@
     [super viewDidLoad];
     self.scannerButton.layer.cornerRadius = self.scannerButton.frame.size.width / 2;
     self.containerView.layer.cornerRadius = self.containerView.frame.size.width / 2;
-    self.navigationItem.title = @"EzyPay";
+    self.navigationItem.title = NSLocalizedString(@"scannerTitle", nil);
     self.user = [UserManager getUser];
     [self getActivePayment];
 }

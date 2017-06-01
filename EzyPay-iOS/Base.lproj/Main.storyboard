@@ -204,7 +204,9 @@
                     <navigationItem key="navigationItem" id="f3o-V2-TiT"/>
                     <connections>
                         <outlet property="btnLogIn" destination="I5o-WF-B0w" id="gn2-VZ-4LE"/>
+                        <outlet property="forgotLabel" destination="uXb-Lj-bOq" id="I6T-C0-8Kx"/>
                         <outlet property="lblSignUp" destination="Onc-dP-S98" id="LCM-YM-kAi"/>
+                        <outlet property="orLabel" destination="38I-V4-bV0" id="E6x-Q6-LsG"/>
                         <outlet property="txtEmail" destination="yrG-m5-cEL" id="1P3-HP-aGh"/>
                         <outlet property="txtPassword" destination="W1t-qb-lTV" id="BH3-6n-5vG"/>
                     </connections>
@@ -1179,6 +1181,7 @@
                     <connections>
                         <outlet property="btnGoHome" destination="vY6-BQ-B6X" id="lHK-LQ-Ym7"/>
                         <outlet property="containerView" destination="l4W-OH-QVC" id="5IH-Iz-kWm"/>
+                        <outlet property="paymentMessage" destination="YRy-xb-ncb" id="cgi-Sb-EXC"/>
                         <outlet property="resultView" destination="MDH-w5-oaM" id="lUc-Xa-E8T"/>
                     </connections>
                 </viewController>
@@ -1407,10 +1410,10 @@
                         <color key="sectionIndexBackgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="profileImageCell" rowHeight="200" id="q0A-DE-XjA" customClass="ProfileImageTableViewCell">
-                                <rect key="frame" x="0.0" y="55" width="320" height="200"/>
+                                <rect key="frame" x="0.0" y="56" width="320" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q0A-DE-XjA" id="96g-6L-S4a">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gtY-a7-zZC">
@@ -1432,10 +1435,10 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="settingsCell" id="BvN-6l-bKV" customClass="SettingsTableViewCell">
-                                <rect key="frame" x="0.0" y="255" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="256" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BvN-6l-bKV" id="SOE-Eg-e32">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="FQl-Fe-1Fh">
@@ -1470,7 +1473,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EmployeeCell" textLabel="yem-EI-qj5" style="IBUITableViewCellStyleDefault" id="102-lT-3dS" customClass="SettingsTableViewCell">
-                                <rect key="frame" x="0.0" y="299" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="300" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="102-lT-3dS" id="tZ4-OX-UzL">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>

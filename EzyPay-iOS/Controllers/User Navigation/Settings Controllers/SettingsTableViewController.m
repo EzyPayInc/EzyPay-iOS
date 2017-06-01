@@ -117,22 +117,22 @@
     SettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"settingsCell"];
     switch (indexPath.row) {
         case NameCell:
-            cell.detailLabel.text = @"Name";
+            cell.detailLabel.text =NSLocalizedString(@"namePlaceholder", nil);
             cell.txtValue.text = self.user.name;
             cell.cellType = NameCell;
             break;
         case LastNameCell:
-            cell.detailLabel.text = @"Last Name";
+            cell.detailLabel.text = NSLocalizedString(@"lastNamePlaceholder", nil);
             cell.txtValue.text = self.user.lastName;
             cell.cellType = LastNameCell;
             break;
         case PhoneNumberCell:
-            cell.detailLabel.text = @"Phone Number";
+            cell.detailLabel.text = NSLocalizedString(@"phoneNumberPlaceholder", nil);
             cell.txtValue.text = self.user.phoneNumber;
             cell.cellType = PhoneNumberCell;
             break;
         case EmailCell:
-            cell.detailLabel.text = @"Email";
+            cell.detailLabel.text = NSLocalizedString(@"emailPlaceholder", nil);
             cell.txtValue.text = self.user.email;
             cell.cellType = EmailCell;
             break;
@@ -147,15 +147,15 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView commerceCellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"settingsCell"];
     if (indexPath.row == 1) {
-        cell.detailLabel.text = @"Name";
+        cell.detailLabel.text = NSLocalizedString(@"namePlaceholder", nil);
         cell.txtValue.text = self.user.name;
         cell.cellType = NameCell;
     } else if(indexPath.row == 2) {
-        cell.detailLabel.text = @"Phone Number";
+        cell.detailLabel.text = NSLocalizedString(@"phoneNumberPlaceholder", nil);
         cell.txtValue.text = self.user.phoneNumber;
         cell.cellType = PhoneNumberCell;
     } else if(indexPath.row == 3) {
-        cell.detailLabel.text = @"Email";
+        cell.detailLabel.text = NSLocalizedString(@"emailPlaceholder", nil);
         cell.txtValue.text = self.user.email;
         cell.cellType = EmailCell;
     }
@@ -182,14 +182,23 @@
 }
 
 - (IBAction)showOptions:(id)sender {
-    UIAlertController  *alertController = [UIAlertController alertControllerWithTitle:@"Actions" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *editAction = [UIAlertAction actionWithTitle:@"Edit" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController  *alertController =
+    [UIAlertController alertControllerWithTitle:NSLocalizedString(@"actionsLabel", nil)
+                                        message:@""
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *editAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"editAction", nil)
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * _Nonnull action) {
         [self editAction];
     }];
-    UIAlertAction *logOutAction = [UIAlertAction actionWithTitle:@"Log Out" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *logOutAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"logOutAction", nil)
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * _Nonnull action) {
         [self logOutAction];
     }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"cancelAction", nil)
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:nil];
     [alertController addAction:editAction];
     [alertController addAction:logOutAction];
     [alertController addAction:cancelAction];

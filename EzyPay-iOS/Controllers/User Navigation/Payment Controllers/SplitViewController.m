@@ -44,7 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.paymentShortage = self.payment.cost;
-    self.navigationItem.title = @"Split";
+    self.navigationItem.title = NSLocalizedString(@"splitTitle", nil);
     self.user = [UserManager getUser];
     [self setupGestures];
     [self setupView];
@@ -82,6 +82,11 @@
     self.infoPaymentView.layer.cornerRadius = 20.f;
     self.shortageValueLabel.text = [self quantityWithCurrencyCode:self.paymentShortage];
     self.totalValueLabel.text = [self quantityWithCurrencyCode:self.payment.cost];
+    self.shortageLabel.text = NSLocalizedString(@"shortageLabel", nil);
+    self.totalLabel.text = NSLocalizedString(@"totalLabel", nil);
+    [self.btnSendNotifications setTitle:NSLocalizedString(@"splitAction", nil) forState:UIControlStateNormal];
+    [self.btnCancel setTitle:NSLocalizedString(@"cancelAction", nil) forState:UIControlStateNormal];
+    [self.btnChange setTitle:NSLocalizedString(@"cancelAction", nil) forState:UIControlStateNormal];
 }
 
 - (void)setupGestures {
@@ -149,10 +154,10 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return @"Me";
+            return NSLocalizedString(@"meLabel", nil);
             break;
         case 1:
-            return @"Others";
+            return NSLocalizedString(@"othersLabel", nil);;
             break;
         default:
             break;

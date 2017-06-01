@@ -23,6 +23,10 @@
     [super viewDidLoad];
     self.btnUser.layer.cornerRadius = 20.f;
     self.btnCommerce.layer.cornerRadius = 20.f;
+    [self.btnUser setTitle:NSLocalizedString(@"userAction", nil)
+                  forState:UIControlStateNormal];
+    [self.btnCommerce setTitle:NSLocalizedString(@"commerceAction", nil)
+                  forState:UIControlStateNormal];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

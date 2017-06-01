@@ -24,6 +24,8 @@
 @property (nonatomic, assign) BOOL keyboardisActive;
 @property (weak, nonatomic) IBOutlet UIButton *btnLogIn;
 @property (weak, nonatomic) IBOutlet UILabel *lblSignUp;
+@property (weak, nonatomic) IBOutlet UILabel *orLabel;
+@property (weak, nonatomic) IBOutlet UILabel *forgotLabel;
 
 
 @end
@@ -40,6 +42,7 @@
                                                                                           action:@selector(signUpTapLabel:)];
     [self.lblSignUp setUserInteractionEnabled:YES];
     [self.lblSignUp addGestureRecognizer:signUpTapRecognizer];
+    [self setupView];
     
 }
 
@@ -58,6 +61,15 @@
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)setupView {
+    self.txtEmail.placeholder = NSLocalizedString(@"emailPlaceholder", nil);
+    self.txtPassword.placeholder = NSLocalizedString(@"passwordPlaceholder", nil);
+    [self.btnLogIn setTitle:NSLocalizedString(@"loginAction", nil) forState:UIControlStateNormal];
+    self.lblSignUp.text = NSLocalizedString(@"signUpHereLabel", nil);
+    self.orLabel.text = NSLocalizedString(@"orLabel", nil);
+    self.forgotLabel.text = NSLocalizedString(@"forgotPasswordLabel", nil);
 }
 
 - (void)signUpTapLabel:(UITapGestureRecognizer*)sender {

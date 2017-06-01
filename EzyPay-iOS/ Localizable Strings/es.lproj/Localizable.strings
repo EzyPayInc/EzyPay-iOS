@@ -5,11 +5,8 @@
   Created by Gustavo Quesada Sanchez on 12/1/16.
   Copyright © 2016 EzyPay Inc. All rights reserved.
 */
-
-/*Controllers Titles*/
-scannerTitle = "Scanner";
+scannerTitle = "Escanear código QR";
 historyTitle = "Historial";
-cardsTitle = "Tarjetas";
 settingsTitle = "Configuración";
 tableTitle = "Mesas";
 logInTitle = "Log In";
@@ -17,31 +14,61 @@ signInTitle = "Registrarse";
 commerceTitle = "Comercio";
 employeesTitle = "Empleados";
 employeeTitle = "Empleado";
+contactsTitle = "Contactos";
+splitTitle = "Dividir la Cuenta";
+cardsTitle = "Mis Tarjetas";
+cardInfoTitle = "Información de la Tarjeta";
 
-/*Months*/
-januaryMonth = "Enero";
-februaryMonth = "Febrero";
-marchMonth = "Marzo";
-aprilMonth = "Abril";
-mayMonth = "Mayo";
-juneMonth = "Junio";
-julyMonth = "Julio";
-augustMonth = "Agosto";
-septemberMonth = "Setiembre";
-octoberMonth = "Octubre";
-novemberMonth = "Noviembre";
-decemberMonth = "Diciembre";
 
 /*actions*/
+loginAction = "Log in";
 signInNextAction = "Siguiente";
 generateQRAction = "Generar código QR";
+userAction = "Usuario";
+commerceAction = "Comercio";
+signUpAction = "Registrarse";
+editAction = "Editar";
+logOutAction = "Cerrar Sesión";
+aloneAction = "Solo";
+splitAction = "Dividir";
+cancelAction = "Cancelar";
+changeAction = "Cambiar";
+cancelUpperAction = "CANCELAR";
+payAction = "PAGAR";
+goHomeAction = "Regresar a la vista principal";
+paymentMessageLabel = "Pago exitoso!";
+actionsLabel = "Acciones";
+
 
 /*label errors*/
-errorFieldRequired = "Este campo es obligatorio";
-errorEmailInvalid = "Email invalido";
-errorPasswordInvalid = "Contraseña demasiado corta";
+errorFieldRequired = "Este campo es requerido";
+errorEmailInvalid = "Este correo es invalido";
+errorPasswordInvalid = "La contraseña es muy corta";
+
 
 /*labels*/
+forgotPasswordLabel = "¿Olvidó su contraseña?";
+orLabel = "ó";
+signUpHereLabel = "¿No tiene una cuenta? Regístrate acá";
 tableLabel = "Mesa";
-currentlySignedInLabel = "Usuario Logueado: ";
-changeEmployeeLabel = "cambiar empleado";
+currentlySignedInLabel = "Usuario LogueadoÑ";
+changeEmployeeLabel = "cambiar de empleado";
+paymentQuestionLabel = "¿Cómo te gustaría pagar la cuenta?";
+friendsLabel = "Amigos";
+meLabel = "Yo";
+othersLabel = "Otros";
+shortageLabel = "Faltante";
+totalLabel = "Total";
+splitLabel = "Dividir";
+cardsLabel = "Tarjetas";
+
+/*Placeholders*/
+emailPlaceholder = "Email";
+passwordPlaceholder = "Contraseña";
+namePlaceholder = "Nombre";
+lastNamePlaceholder = "Apellidos";
+phoneNumberPlaceholder = "Teléfono";
+cardNumberPlaceholder = "Número de Tarjeta";
+expirationDatePlaceholder = "Fecha de vencimiento";
+cvvPlaceholder = "cvv";
+

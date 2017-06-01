@@ -29,7 +29,7 @@
     [super viewDidLoad];
     self.user = [UserManager getUser];
     [self setupView];
-    self.navigationItem.title = @"Payment";
+    self.navigationItem.title = NSLocalizedString(@"splitTitle", nil);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,7 +59,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return  section == 0 ? @"Me" : @"Friends" ;
+    return  section == 0 ? NSLocalizedString(@"meLabel", nil) : NSLocalizedString(@"othersLabel", nil);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,7 +77,6 @@
         Friend *friend = [[self.payment.friends allObjects] objectAtIndex:indexPath.row];
         cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", friend.name, friend.lastname];
         cell.quantityLabel.text = [self quantityWithCurrencyCode:friend.cost];
-        NSLog(@"Friend: %@", friend);
         if(friend.state != 0) {
             [cell.activityIndicator stopAnimating];
         } else {

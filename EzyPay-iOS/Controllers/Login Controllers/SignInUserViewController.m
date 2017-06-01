@@ -31,14 +31,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = NSLocalizedString(@"signInTitle", nil);
-    [self setTextFieldDelegate];
-    [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    self.btnNext.layer.cornerRadius = 20.f;
+    [self setupView];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setupView {
+    self.txtUserName.placeholder = NSLocalizedString(@"namePlaceholder", nil);
+    self.txtLastname.placeholder = NSLocalizedString(@"lastNamePlaceholder", nil);
+    self.txtPhoneNumber.placeholder = NSLocalizedString(@"phoneNumberPlaceholder", nil);
+    self.txtEmail.placeholder = NSLocalizedString(@"emailPlaceholder", nil);
+    self.txtPassword.placeholder = NSLocalizedString(@"passwordPlaceholder", nil);
+    [self.btnNext setTitle:NSLocalizedString(@"nextAction", nil) forState:UIControlStateNormal];
+    [self setTextFieldDelegate];
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    self.btnNext.layer.cornerRadius = 20.f;
 }
 
 - (void)setTextFieldDelegate {

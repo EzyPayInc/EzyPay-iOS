@@ -56,6 +56,9 @@
     self.btnSplit.layer.cornerRadius = 20.f;
     self.actionsView.layer.cornerRadius = 20.f;
     self.actionView.layer.cornerRadius = 20.f;
+    self.questionLabel.text = NSLocalizedString(@"paymentQuestionLabel", nil);
+    [self.btnPay setTitle:NSLocalizedString(@"aloneAction", nil) forState:UIControlStateNormal];
+    [self.btnSplit setTitle:NSLocalizedString(@"splitAction", nil) forState:UIControlStateNormal];
 }
 
 #pragma mark - actions
