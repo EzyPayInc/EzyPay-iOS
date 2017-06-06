@@ -8,12 +8,14 @@
 
 #import "CompletionHandler.h"
 #import <UIKit/UIKit.h>
+#import "NavigationController.h"
+#import "LoginViewController.h"
 
 @implementation CompletionHandler
 
 - (void)handleResponse:(Connection *) connection{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    if(connection.response.statusCode == 401) {
+    if(connection.response.statusCode == 401 || connection.response.statusCode == 403) {
         [self handleUnauthorizedRequest:connection];
     } else if(connection.error) {
         [self handleConnectionError:connection];
@@ -23,8 +25,7 @@
 }
 
 - (void)handleUnauthorizedRequest:(Connection *)connection {
-    NSLog(@"Unauthorized request");
-    
+    [self invalidCredentials];
 }
 
 - (void)handleConnectionError:(Connection *)connection {
@@ -38,6 +39,23 @@
     } else {
         connection.errorHandler(response);
     }
+}
+
+- (void)invalidCredentials {
+    NavigationController *navigationController = [[NavigationController alloc] init];
+    UIViewController *viewController = [navigationController topViewController];
+    NSString *title = NSLocalizedString(@"errorTitle", nil);
+    NSString *message = NSLocalizedString(@"invalidCredentials", nil);
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil];
+    
+    [alert addAction:okAction];
+    [viewController presentViewController:alert animated:YES completion:nil];
+
 }
 
 @end

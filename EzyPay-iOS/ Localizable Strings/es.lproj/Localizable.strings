@@ -38,12 +38,14 @@ payAction = "PAGAR";
 goHomeAction = "Regresar a la vista principal";
 paymentMessageLabel = "Pago exitoso!";
 actionsLabel = "Acciones";
+errorTitle = "Error";
 
 
 /*label errors*/
 errorFieldRequired = "Este campo es requerido";
 errorEmailInvalid = "Este correo es invalido";
 errorPasswordInvalid = "La contraseña es muy corta";
+invalidCredentials = "Error, Nombre de usuario o contraseña. Por favor intenta de nuevo.";
 
 
 /*labels*/
