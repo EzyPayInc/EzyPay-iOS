@@ -7,8 +7,8 @@
 //
 
 #import "ChooseViewController.h"
-#import "SignInUserViewController.h"
-#import "SignInCommerceViewController.h"
+#import "LoginViewController.h"
+#import "LogInCommerceViewController.h"
 #import "UIColor+UIColor.h"
 
 @interface ChooseViewController ()
@@ -45,21 +45,17 @@
 - (IBAction)commerceAction:(id)sender {
     [self navigateToSignInCommerce];
 }
-- (IBAction)closeView:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 - (void)navigateToSignIn
 {
-    SignInUserViewController *signInUserViewController = (SignInUserViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInUserViewController"];
-    [self.navigationController pushViewController:signInUserViewController animated:true];
+    LoginViewController *viewController = (LoginViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    [self.navigationController pushViewController:viewController animated:true];
 }
 
 - (void)navigateToSignInCommerce
 {
-    SignInCommerceViewController *viewController =
-    (SignInCommerceViewController *)[[UIStoryboard storyboardWithName:
-                                      @"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInCommerceViewController"];
+    LogInCommerceViewController *viewController =
+    (LogInCommerceViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LogInCommerceViewController"];
     [self.navigationController pushViewController:viewController animated:true];
 }
 

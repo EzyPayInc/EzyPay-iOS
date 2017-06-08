@@ -39,6 +39,7 @@ goHomeAction = "Regresar a la vista principal";
 paymentMessageLabel = "Pago exitoso!";
 actionsLabel = "Acciones";
 errorTitle = "Error";
+registerCommerceAction = "Registrar nuevo Comercio";
 
 
 /*label errors*/

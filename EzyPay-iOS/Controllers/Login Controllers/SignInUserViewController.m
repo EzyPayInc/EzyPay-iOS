@@ -71,6 +71,7 @@
     
     SignInPaymentInformationControllerViewController *viewController = (SignInPaymentInformationControllerViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInPaymentInformationControllerViewController"];
     viewController.user = user;
+    viewController.tables = 0;
     [self.navigationController pushViewController:viewController animated:true];
 }
 

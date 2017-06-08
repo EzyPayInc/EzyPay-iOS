@@ -12,5 +12,6 @@
 @interface SignInPaymentInformationControllerViewController : UIViewController
 
 @property (nonatomic, assign)User *user;
+@property (nonatomic, assign)NSInteger tables;
 
 @end

@@ -54,7 +54,9 @@
 
 - (void)saveUser {
     UserManager *manager = [[UserManager alloc] init];
-    [manager registerUser:self.user successHandler:^(id response) {
+    [manager registerUser:self.user
+                   tables: self.tables
+           successHandler:^(id response) {
         int64_t userId = (long)[[response valueForKey:@"userId"] integerValue];
         self.user.id = userId;
         [self login];

@@ -29,7 +29,10 @@ static NSString *const USER_URL = @"user/";
     return self;
 }
 
-- (void)registerUser:(User *) user successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
+- (void)registerUser:(User *) user
+              tables:(NSInteger )tables
+      successHandler:(ConnectionSuccessHandler) successHandler
+      failureHandler: (ConnectionErrorHandler) failureHandler {
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BASE_URL, USER_URL]];
     NSString *basicAuth = [NSString stringWithFormat:@"%@:%@",CLIENT_ID,SECRET_KEY];
@@ -38,7 +41,7 @@ static NSString *const USER_URL = @"user/";
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
     int64_t boss = user.boss == nil ? 0 : user.boss.id;
-    NSString *body = [NSString stringWithFormat:@"name=%@&lastName=%@&phoneNumber=%@&email=%@&password=%@&userType=%hd&boss=%lld", user.name, user.lastName, user.phoneNumber, user.email, user.password, user.userType, boss];
+    NSString *body = [NSString stringWithFormat:@"name=%@&lastName=%@&phoneNumber=%@&email=%@&password=%@&userType=%hd&boss=%lld&tablesQuantity=%ld", user.name, user.lastName, user.phoneNumber, user.email, user.password, user.userType, boss, (long)tables];
     request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
     request.HTTPMethod = @"POST";
     [request addValue:[NSString stringWithFormat:@"Basic %@",encodedString] forHTTPHeaderField:@"Authorization"];

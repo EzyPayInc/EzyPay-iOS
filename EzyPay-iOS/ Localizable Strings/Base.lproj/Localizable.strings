@@ -38,6 +38,7 @@ changeAction = "Change";
 cancelUpperAction = "CANCEL";
 payAction = "PAY";
 goHomeAction = "Go back to home screen";
+registerCommerceAction = "Register new commerce";
 
 
 /*label errors*/

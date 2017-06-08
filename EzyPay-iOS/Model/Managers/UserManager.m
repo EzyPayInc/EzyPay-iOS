@@ -78,9 +78,12 @@
     [service login:email password:password successHandler:successHandler failureHandler:failureHandler];
 }
 
-- (void)registerUser:(User *) user successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
+- (void)registerUser:(User *) user
+              tables:(NSInteger )tables
+      successHandler:(ConnectionSuccessHandler) successHandler
+      failureHandler: (ConnectionErrorHandler) failureHandler {
     UserServiceClient *service = [[UserServiceClient alloc] init];
-    [service registerUser:user successHandler:successHandler failureHandler:failureHandler];
+    [service registerUser:user tables:tables successHandler:successHandler failureHandler:failureHandler];
 }
 
 - (void)getUserFromServer:(int64_t)userId token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler:(ConnectionErrorHandler) failureHandler {

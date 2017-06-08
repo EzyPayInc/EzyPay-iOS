@@ -45,7 +45,7 @@
     employee.userType = EmployeeNavigation;
     employee.boss = self.user;
     UserManager *manager = [[UserManager alloc] init];
-    [manager registerUser:employee successHandler:^(id response) {
+    [manager registerUser:employee tables:0 successHandler:^(id response) {
         [self.navigationController popViewControllerAnimated:true];
     } failureHandler:^(id response) {
         NSLog(@"Error in register employee request %@", response);

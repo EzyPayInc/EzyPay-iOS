@@ -13,17 +13,17 @@
 #import "CoreDataManager.h"
 #import "NSString+String.h"
 #import "NavigationController.h"
+#import "BottomBorderTextField.h"
 
-@interface SignInCommerceViewController ()<UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface SignInCommerceViewController ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *txtName;
 @property (weak, nonatomic) IBOutlet UITextField *txtPhoneNumber;
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
-@property (weak, nonatomic) IBOutlet UITextField *txtUserType;
-@property (weak, nonatomic) IBOutlet UIPickerView *userTypePicker;
-@property (weak, nonatomic) IBOutlet UITextField *txtTables;
+@property (weak, nonatomic) IBOutlet BottomBorderTextField *txtTables;
 @property (weak, nonatomic) IBOutlet UIButton *btnNext;
+
 
 @property (nonatomic, strong) NSArray *userTypePickerData;
 
@@ -36,8 +36,6 @@
     self.navigationItem.title = NSLocalizedString(@"signInTitle", nil);
     [self setTextFieldDelegate];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    self.userTypePickerData = @[@"Restaurant", @"Commerce"];
-    self.userTypePicker.showsSelectionIndicator = YES;
     self.btnNext.layer.cornerRadius = 20.f;
 }
 
@@ -45,16 +43,12 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [self closePicker];
-}
-
 - (void)setTextFieldDelegate {
     self.txtName.delegate = self;
     self.txtPhoneNumber.delegate = self;
     self.txtEmail.delegate = self;
     self.txtPassword.delegate = self;
-    self.txtUserType.delegate = self;
+    self.txtTables.delegate = self;
 }
 
 - (void)saveUser {
@@ -63,15 +57,12 @@
     user.lastName = nil;
     user.phoneNumber = self.txtPhoneNumber.text;
     user.email = self.txtEmail.text;
-    if([self.txtUserType.text isEqualToString:@"Restaurant"]) {
-         user.userType = RestaurantNavigation;
-    } else {
-        user.userType = CommerceNavigation;
-    }
+    user.userType = [self.txtTables.text integerValue] > 0 ? RestaurantNavigation : CommerceNavigation;
     user.password = self.txtPassword.text;
     
     SignInPaymentInformationControllerViewController *viewController = (SignInPaymentInformationControllerViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInPaymentInformationControllerViewController"];
     viewController.user = user;
+    viewController.tables = [self.txtTables.text integerValue];
     [self.navigationController pushViewController:viewController animated:true];
 }
 
@@ -81,51 +72,8 @@
     return YES;
 }
 
--(void) textFieldDidBeginEditing:(UITextField *)textField {
-    if([textField isEqual:self.txtUserType]) {
-        [self showPicker];
-        [textField resignFirstResponder];
-    } else {
-        [self closePicker];
-    }
-}
-
 - (IBAction)nextAction:(id)sender {
     [self saveUser];
-}
-
-#pragma mark - Picker Delegate
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
-// The number of rows of data
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return self.userTypePickerData.count;
-}
-
-// The data to return for the row and component (column) that's being passed in
-- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    return self.userTypePickerData[row];
-}
-
-- (void)pickerView:(UIPickerView *)pickerView
-      didSelectRow:(NSInteger)row
-       inComponent:(NSInteger)component {
-    self.txtUserType.text = self.userTypePickerData[row];
-    [self closePicker];
-}
-
-- (void)showPicker {
-    self.userTypePicker.hidden = NO;
-}
-
-- (void)closePicker {
-    self.userTypePicker.hidden = YES;
- 
 }
 
 @end
