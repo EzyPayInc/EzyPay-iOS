@@ -17,15 +17,19 @@
 #import "NavigationController.h"
 #import "DeviceTokenManager.h"
 #import "ChooseViewController.h"
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
-@interface LoginViewController ()<UITextFieldDelegate>
+@interface LoginViewController ()<UITextFieldDelegate, FBSDKLoginButtonDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
 @property (nonatomic, assign) BOOL keyboardisActive;
 @property (weak, nonatomic) IBOutlet UIButton *btnLogIn;
 @property (weak, nonatomic) IBOutlet UILabel *lblSignUp;
 @property (weak, nonatomic) IBOutlet UILabel *orLabel;
+@property (weak, nonatomic) IBOutlet UIView *facebookView;
 @property (weak, nonatomic) IBOutlet UILabel *forgotLabel;
+@property (nonatomic, strong) FBSDKLoginButton *facebookLoginButton;
 
 
 @end
@@ -53,6 +57,12 @@
     
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.facebookLoginButton.frame = self.facebookView.frame;
+    [self.view addSubview:self.facebookLoginButton];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -70,6 +80,12 @@
     self.lblSignUp.text = NSLocalizedString(@"signUpHereLabel", nil);
     self.orLabel.text = NSLocalizedString(@"orLabel", nil);
     self.forgotLabel.text = NSLocalizedString(@"forgotPasswordLabel", nil);
+    
+    /*Facebook setup*/
+    self.facebookLoginButton = [[FBSDKLoginButton alloc] init];
+    self.facebookLoginButton.delegate = self;
+    self.facebookLoginButton.readPermissions = @[@"public_profile", @"email"];
+
 }
 
 - (void)signUpTapLabel:(UITapGestureRecognizer*)sender {
@@ -177,5 +193,32 @@
     }
 }
 
+
+#pragma mark - facebook delegate
+- (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
+    [self fetchFacebookProfile];
+}
+
+- (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
+    
+}
+
+- (BOOL)loginButtonWillLogin:(FBSDKLoginButton *)loginButton {
+    return YES;
+}
+
+- (void)fetchFacebookProfile {
+    NSDictionary *parameters = @{@"fields": @"email, first_name, last_name,  picture.type(large)"};
+    FBSDKGraphRequest *graphRequest = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me"
+                                                                        parameters:parameters];
+    [graphRequest startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+        if(error) {
+            NSLog(@"Error loggin with Facebook %@", error);
+            return;
+        }
+        NSString *email = result[@"email"];
+        NSLog(@"User Email %@", email);
+    }];
+}
 
 @end

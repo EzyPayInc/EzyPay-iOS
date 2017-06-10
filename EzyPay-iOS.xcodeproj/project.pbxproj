@@ -23,6 +23,9 @@
 		801FE3131DD40778004318CC /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 801FE3121DD40778004318CC /* CoreDataManager.m */; };
 		80217A731DEFCFC60096DEF4 /* CardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80217A721DEFCFC60096DEF4 /* CardManager.m */; };
 		80217A761DEFF8E60096DEF4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80217A781DEFF8E60096DEF4 /* Localizable.strings */; };
+		8022CD0F1EEBCDFA00FA6086 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8022CD0D1EEBCDFA00FA6086 /* FBSDKCoreKit.framework */; };
+		8022CD101EEBCDFA00FA6086 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8022CD0E1EEBCDFA00FA6086 /* FBSDKLoginKit.framework */; };
+		8022CD121EEBD02100FA6086 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8022CD111EEBD02100FA6086 /* Bolts.framework */; };
 		802891671DD66C3800A088EE /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 802891661DD66C3800A088EE /* Connection.m */; };
 		802AE9431DC8194F006008B3 /* SessionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 802AE9421DC8194F006008B3 /* SessionHandler.m */; };
 		802C03AF1DF47C14001370E2 /* NSString+String.m in Sources */ = {isa = PBXBuildFile; fileRef = 802C03AE1DF47C14001370E2 /* NSString+String.m */; };
@@ -134,6 +137,9 @@
 		80217A711DEFCFC60096DEF4 /* CardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardManager.h; sourceTree = "<group>"; };
 		80217A721DEFCFC60096DEF4 /* CardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardManager.m; sourceTree = "<group>"; };
 		80217A791DEFF8F00096DEF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8022CD0D1EEBCDFA00FA6086 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		8022CD0E1EEBCDFA00FA6086 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		8022CD111EEBD02100FA6086 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		802891651DD66C3800A088EE /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
 		802891661DD66C3800A088EE /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
 		802AE9411DC8194F006008B3 /* SessionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionHandler.h; sourceTree = "<group>"; };
@@ -260,6 +266,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8022CD121EEBD02100FA6086 /* Bolts.framework in Frameworks */,
+				8022CD101EEBCDFA00FA6086 /* FBSDKLoginKit.framework in Frameworks */,
+				8022CD0F1EEBCDFA00FA6086 /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,6 +583,9 @@
 		80EFEB921DB8552900D874E2 /* EzyPay-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				8022CD111EEBD02100FA6086 /* Bolts.framework */,
+				8022CD0D1EEBCDFA00FA6086 /* FBSDKCoreKit.framework */,
+				8022CD0E1EEBCDFA00FA6086 /* FBSDKLoginKit.framework */,
 				8048977A1ED55500006CFBBE /* Custom Views */,
 				801007CE1EA5C2B1006A521B /* EzyPay-iOS.entitlements */,
 				80F9382F1EAEFAAC0033D193 /* Notifications Handlers */,
@@ -1053,6 +1065,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/EzyPay-iOS",
 				);
 				INFOPLIST_FILE = "EzyPay-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1075,6 +1088,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/EzyPay-iOS",
 				);
 				INFOPLIST_FILE = "EzyPay-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
