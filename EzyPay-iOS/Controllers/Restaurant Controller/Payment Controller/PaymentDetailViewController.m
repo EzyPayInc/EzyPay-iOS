@@ -13,13 +13,14 @@
 #import "NavigationController.h"
 #import "QRPaymentViewController.h"
 #import "PushNotificationManager.h"
+#import "UIColor+UIColor.h"
 
-@interface PaymentDetailViewController () <UITextFieldDelegate, UIPickerViewDelegate,
-UIPickerViewDataSource>
+@interface PaymentDetailViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UITextField *txtCost;
-@property (weak, nonatomic) IBOutlet UITextField *txtCurrency;
+@property (weak, nonatomic) IBOutlet UITextField *txtQuantity;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIPickerView *currencyPicker;
+@property (weak, nonatomic) IBOutlet UIButton *btnSend;
 
 @property (nonatomic, strong) NSArray *pickerDataSource;
 @property (nonatomic, strong) Currency *currentCurrency;
@@ -31,6 +32,9 @@ UIPickerViewDataSource>
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.currencyPicker.delegate = self;
+    self.currencyPicker.dataSource = self;
+    [self setupView];
     [self getCurrencies];
     // Do any additional setup after loading the view.
 }
@@ -40,15 +44,17 @@ UIPickerViewDataSource>
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Textfield delegate
--(void) textFieldDidBeginEditing:(UITextField *)textField {
-    if([textField isEqual:self.txtCurrency]) {
-        [self.txtCost resignFirstResponder];
-        [self.view endEditing:YES];
-        [self showPicker];
-    } else {
-        [self closePicker];
-    }
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [[self.currencyPicker.subviews objectAtIndex:1] setHidden:YES];
+    [[self.currencyPicker.subviews objectAtIndex:2] setHidden:YES];
+}
+
+- (void)setupView {
+    self.titleLabel.text = NSLocalizedString(@"totalCostLabel", nil);
+    [self.btnSend setTitle:NSLocalizedString(@"sendAction", nil) forState:UIControlStateNormal];
+    self.txtQuantity.placeholder = NSLocalizedString(@"totalCostPlaceholder", nil);
+    self.btnSend.layer.cornerRadius = 20.f;
 }
 
 
@@ -65,27 +71,18 @@ UIPickerViewDataSource>
 }
 
 // The data to return for the row and component (column) that's being passed in
-- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
+- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
     Currency *currency = [self.pickerDataSource objectAtIndex:row];
-    return currency.name;
+    NSAttributedString *attString =
+    [[NSAttributedString alloc] initWithString:[self getCurrencyCode:currency.code] attributes:@{NSForegroundColorAttributeName:[UIColor ezypayGreenColor]}];
+    return attString;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView
       didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component {
     self.currentCurrency = [self.pickerDataSource objectAtIndex:row];
-    self.txtCurrency.text = self.currentCurrency.name;
-    [self closePicker];
-}
-
-- (void)showPicker {
-    self.currencyPicker.hidden = NO;
-}
-
-- (void)closePicker {
-    self.currencyPicker.hidden = YES;
-    
+    NSLog(@"Currency %@", self.currentCurrency.name);
 }
 
 #pragma mark - Actions
@@ -95,7 +92,6 @@ UIPickerViewDataSource>
         self.pickerDataSource = [CurrencyManager currenciesFromArray:response];
         if([self.pickerDataSource count] > 0) {
             self.currentCurrency = [self.pickerDataSource firstObject];
-            self.txtCurrency.text = self.currentCurrency.name;
             [self.currencyPicker reloadAllComponents];
         }
     } failureHandler:^(id response) {
@@ -108,13 +104,13 @@ UIPickerViewDataSource>
         [CoreDataManager deleteDataFromEntity:@"Payment"];
         Payment *payment = [CoreDataManager createEntityWithName:@"Payment"];
         payment.currency = self.currentCurrency;
-        payment.cost = [self.txtCost.text isEqualToString:@""]? 0.f : [self.txtCost.text floatValue];
+        payment.cost = [self.txtQuantity.text isEqualToString:@""]? 0.f : [self.txtQuantity.text floatValue];
         payment.tableNumber = self.tableNumber;
         payment.commerce = self.user.userType == EmployeeNavigation ? self.user.boss : self.user;
         payment.employeeId = self.user.userType == EmployeeNavigation  ? self.user.id : 0;
         [self navigateToQRViewController:payment];
     } else {
-        if([self.txtCost.text floatValue] > 0) {
+        if([self.txtQuantity.text floatValue] > 0) {
             [self updatePaymentCurrency];
         }
     }
@@ -133,7 +129,7 @@ UIPickerViewDataSource>
     PaymentManager *manager = [[PaymentManager alloc] init];
     [manager updatePaymentAmount:self.paymentId
                         currencyId:self.currentCurrency.id
-                          amount:[self.txtCost.text floatValue]
+                          amount:[self.txtQuantity.text floatValue]
                            token:self.user.token
                   successHandler:^(id response) {
                       [self sendBillNotification];
@@ -146,7 +142,7 @@ UIPickerViewDataSource>
     PushNotificationManager *manager = [[PushNotificationManager alloc] init];
     [manager sendBillNotification:self.clientId
                      currencyCode:self.currentCurrency.code
-                           amount:[self.txtCost.text floatValue]
+                           amount:[self.txtQuantity.text floatValue]
                         paymentId:self.paymentId
                             token:self.user.token
                    successHandler:^(id response) {
@@ -154,6 +150,12 @@ UIPickerViewDataSource>
                    } failureHandler:^(id response) {
                        NSLog(@"%@", response);
                    }];
+}
+
+- (NSString *)getCurrencyCode:(NSString *) currencyCode {
+    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:currencyCode];
+    NSString *currencySymbol = [NSString stringWithFormat:@"%@",[locale displayNameForKey:NSLocaleCurrencySymbol value:currencyCode]];
+    return currencySymbol;
 }
 
 

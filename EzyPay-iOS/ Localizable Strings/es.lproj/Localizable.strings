@@ -40,6 +40,8 @@ paymentMessageLabel = "Pago exitoso!";
 actionsLabel = "Acciones";
 errorTitle = "Error";
 registerCommerceAction = "Registrar nuevo Comercio";
+syncAction = "Sincronizado";
+quickAction = "Rápido";
 
 
 /*label errors*/
@@ -64,6 +66,9 @@ shortageLabel = "Faltante";
 totalLabel = "Total";
 splitLabel = "Dividir";
 cardsLabel = "Tarjetas";
+chooseQRLabel = "Elija tipo de QR";
+totalCostLabel = "Total";
+sendAction = "Enviar";
 
 /*Placeholders*/
 emailPlaceholder = "Email";
@@ -74,4 +79,5 @@ phoneNumberPlaceholder = "Teléfono";
 cardNumberPlaceholder = "Número de Tarjeta";
 expirationDatePlaceholder = "Fecha de vencimiento";
 cvvPlaceholder = "cvv";
+totalCostPlaceholder = "Total";
 

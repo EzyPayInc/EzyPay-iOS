@@ -77,6 +77,7 @@
 		80F938361EAEFFCC0033D193 /* NotificationHandlerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F938351EAEFFCC0033D193 /* NotificationHandlerFactory.m */; };
 		80F9383C1EAF144A0033D193 /* BillRequestNotificationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F9383B1EAF144A0033D193 /* BillRequestNotificationHandler.m */; };
 		80F9383F1EAF18CF0033D193 /* GeneralNotificationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F9383E1EAF18CF0033D193 /* GeneralNotificationHandler.m */; };
+		80FA04AA1EEA41A300267913 /* ChoosePaymentMethodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FA04A91EEA41A300267913 /* ChoosePaymentMethodViewController.m */; };
 		80FCD2D11E763DE0009FC48D /* TableCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FCD2D01E763DE0009FC48D /* TableCollectionViewController.m */; };
 		80FCD2D71E763F9B009FC48D /* AddTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FCD2D61E763F9B009FC48D /* AddTableViewController.m */; };
 		80FD06571E4AEAA600D3FA38 /* UIColor+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FD06561E4AEAA600D3FA38 /* UIColor+UIColor.m */; };
@@ -242,6 +243,8 @@
 		80F9383B1EAF144A0033D193 /* BillRequestNotificationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillRequestNotificationHandler.m; sourceTree = "<group>"; };
 		80F9383D1EAF18CF0033D193 /* GeneralNotificationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralNotificationHandler.h; sourceTree = "<group>"; };
 		80F9383E1EAF18CF0033D193 /* GeneralNotificationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralNotificationHandler.m; sourceTree = "<group>"; };
+		80FA04A81EEA41A300267913 /* ChoosePaymentMethodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoosePaymentMethodViewController.h; sourceTree = "<group>"; };
+		80FA04A91EEA41A300267913 /* ChoosePaymentMethodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePaymentMethodViewController.m; sourceTree = "<group>"; };
 		80FCD2CF1E763DE0009FC48D /* TableCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCollectionViewController.h; sourceTree = "<group>"; };
 		80FCD2D01E763DE0009FC48D /* TableCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCollectionViewController.m; sourceTree = "<group>"; };
 		80FCD2D51E763F9B009FC48D /* AddTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTableViewController.h; sourceTree = "<group>"; };
@@ -312,6 +315,8 @@
 				801BFA391E77A5950098F0DF /* QRPaymentViewController.m */,
 				80188F741E989B8A008AB708 /* PaymentDetailViewController.h */,
 				80188F751E989B8A008AB708 /* PaymentDetailViewController.m */,
+				80FA04A81EEA41A300267913 /* ChoosePaymentMethodViewController.h */,
+				80FA04A91EEA41A300267913 /* ChoosePaymentMethodViewController.m */,
 			);
 			path = "Payment Controller";
 			sourceTree = "<group>";
@@ -819,6 +824,7 @@
 				805501871EB45D5200B41E65 /* SplitRequestNotificationHandler.m in Sources */,
 				80FD06571E4AEAA600D3FA38 /* UIColor+UIColor.m in Sources */,
 				8030CB071DC1A54A006C0070 /* LoginViewController.m in Sources */,
+				80FA04AA1EEA41A300267913 /* ChoosePaymentMethodViewController.m in Sources */,
 				80FCD2D11E763DE0009FC48D /* TableCollectionViewController.m in Sources */,
 				804CEEAB1DED3C9E0078BB54 /* GeneralServiceClient.m in Sources */,
 				80E171741E4C1CE400C099F5 /* HistoryTableViewCell.m in Sources */,

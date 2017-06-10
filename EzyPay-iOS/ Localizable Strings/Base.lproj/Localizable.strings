@@ -39,6 +39,9 @@ cancelUpperAction = "CANCEL";
 payAction = "PAY";
 goHomeAction = "Go back to home screen";
 registerCommerceAction = "Register new commerce";
+syncAction = "Sync";
+quickAction = "Quick";
+sendAction = "Send";
 
 
 /*label errors*/
@@ -65,6 +68,8 @@ splitLabel = "Split";
 cardsLabel = "Cards";
 paymentMessageLabel = "Successfully paid!";
 actionsLabel = "Actions";
+chooseQRLabel = "Choose QR type";
+totalCostLabel = "Total cost";
 
 /*Placeholders*/
 emailPlaceholder = "Email";
@@ -75,3 +80,4 @@ phoneNumberPlaceholder = "Phone Number";
 cardNumberPlaceholder = "Card number";
 expirationDatePlaceholder = "Expiration Date";
 cvvPlaceholder = "cvv";
+totalCostPlaceholder = "Total";

@@ -18,8 +18,10 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnCancel;
 @property (weak, nonatomic) IBOutlet UIButton *btnPayment;
+@property (weak, nonatomic) IBOutlet UIView *tipView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) User *user;
+@property (nonatomic, assign) BOOL keyboardisActive;
 
 @end
 
@@ -37,10 +39,55 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)setupView {
     self.btnCancel.layer.cornerRadius = 20.f;
     self.btnPayment.layer.cornerRadius = 20.f;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+- (void)keyboardDidShow:(NSNotification *)notification
+{
+    CGSize keyboardSize =
+        [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    NSInteger height = MIN(keyboardSize.height,keyboardSize.width) - 120;
+    if(!self.keyboardisActive) {
+        self.keyboardisActive = YES;
+        [self moveView:CGRectMake(self.tipView.frame.origin.x,
+                                  self.tipView.frame.origin.y - height,
+                                  self.tipView.frame.size.width,
+                                  self.tipView.frame.size.height)];
+    }
+}
+
+-(void)keyboardDidHide:(NSNotification *)notification
+{
+    self.keyboardisActive = self.keyboardisActive ? NO : YES;
+}
+
+- (void)moveView:(CGRect) newFrame {
+    [UIView animateWithDuration:0.1
+                          delay:0
+                        options: UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         self.tipView.frame = newFrame;
+                     }
+                     completion:nil];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
 }
 
 #pragma mark - table view delegate
