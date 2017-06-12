@@ -20,27 +20,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_ezypay_logo" translatesAutoresizingMaskIntoConstraints="NO" id="zf3-hU-0if">
-                                <rect key="frame" x="137.5" y="283.5" width="100" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="diL-DJ-X6r"/>
-                                    <constraint firstAttribute="height" constant="100" id="fG6-Sg-4Hb"/>
-                                </constraints>
-                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ugwo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emm-WB-oK6">
+                                <rect key="frame" x="0.5" y="292" width="375" height="84"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="70"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.59215686274509804" green="0.80784313725490198" blue="0.19215686274509802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.59215686274509804" green="0.80784313725490198" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="zf3-hU-0if" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="GMG-mL-Z85"/>
-                            <constraint firstItem="zf3-hU-0if" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="idJ-D4-YJ6"/>
+                            <constraint firstItem="emm-WB-oK6" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="Pa8-nd-YWQ"/>
+                            <constraint firstItem="emm-WB-oK6" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="SZf-3i-A2J"/>
+                            <constraint firstItem="emm-WB-oK6" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="cD1-pc-0bD"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="ic_ezypay_logo" width="200" height="200"/>
-    </resources>
 </document>

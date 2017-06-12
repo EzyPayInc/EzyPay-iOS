@@ -13,6 +13,7 @@
 #import "DeviceTokenManager.h"
 #import "CoreDataManager.h"
 #import "NotificationHandlerFactory.h"
+#import <Google/SignIn.h>
 
 @interface AppDelegate ()
 
@@ -25,6 +26,7 @@
     // Override point for customization after application launch.
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
+    
     [NSThread sleepForTimeInterval:2.0];
     [self setupNavigationBar];
     [self setupTabBar];
@@ -51,6 +53,9 @@
                                                         sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
                                                                annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
                     ];
+    handled = !handled ? [[GIDSignIn sharedInstance] handleURL:url
+                                          sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                                              annotation:options[UIApplicationOpenURLOptionsAnnotationKey]] : YES;
     // Add any custom logic here.
     return handled;
 }

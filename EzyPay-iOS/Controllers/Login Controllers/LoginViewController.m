@@ -19,8 +19,10 @@
 #import "ChooseViewController.h"
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <Google/SignIn.h>
 
-@interface LoginViewController ()<UITextFieldDelegate, FBSDKLoginButtonDelegate>
+@interface LoginViewController ()<UITextFieldDelegate, FBSDKLoginButtonDelegate, GIDSignInUIDelegate, GIDSignInDelegate>
+    
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
 @property (nonatomic, assign) BOOL keyboardisActive;
@@ -29,7 +31,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *orLabel;
 @property (weak, nonatomic) IBOutlet UIView *facebookView;
 @property (weak, nonatomic) IBOutlet UILabel *forgotLabel;
+@property (weak, nonatomic) IBOutlet UIView *googleView;
 @property (nonatomic, strong) FBSDKLoginButton *facebookLoginButton;
+@property (nonatomic, strong)  GIDSignInButton *googleLoginButton;
 
 
 @end
@@ -50,17 +54,13 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
-    
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     self.facebookLoginButton.frame = self.facebookView.frame;
     [self.view addSubview:self.facebookLoginButton];
+    
+    self.googleLoginButton = [[GIDSignInButton alloc] initWithFrame:self.googleView.frame];
+    [self.view addSubview:self.googleLoginButton];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,14 +68,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (void)setupView {
     self.txtEmail.placeholder = NSLocalizedString(@"emailPlaceholder", nil);
     self.txtPassword.placeholder = NSLocalizedString(@"passwordPlaceholder", nil);
+    self.txtEmail.delegate = self;
+    self.txtPassword.delegate = self;
     [self.btnLogIn setTitle:NSLocalizedString(@"loginAction", nil) forState:UIControlStateNormal];
     self.lblSignUp.text = NSLocalizedString(@"signUpHereLabel", nil);
     self.orLabel.text = NSLocalizedString(@"orLabel", nil);
@@ -85,40 +82,29 @@
     self.facebookLoginButton = [[FBSDKLoginButton alloc] init];
     self.facebookLoginButton.delegate = self;
     self.facebookLoginButton.readPermissions = @[@"public_profile", @"email"];
+    
+    /*Google setup*/
+    //configurin google sign in
+    NSError* configureError;
+    [[GGLContext sharedInstance] configureWithError: &configureError];
+    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
+    
+    [GIDSignIn sharedInstance].delegate = self;
+    [GIDSignIn sharedInstance].uiDelegate = self;
 
 }
+
+#pragma mark textfield delegate
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 
 - (void)signUpTapLabel:(UITapGestureRecognizer*)sender {
     UINavigationController *navigationController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInNavigationViewController"];
     [self presentViewController:navigationController animated:YES completion:nil];
 
-}
-
-- (void)keyboardDidShow:(NSNotification *)notification
-{
-    if(!self.keyboardisActive) {
-        self.keyboardisActive = YES;
-        [self moveView:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y -200., self.view.frame.size.width, self.view.frame.size.height)];
-    }
-}
-
--(void)keyboardDidHide:(NSNotification *)notification
-{
-    if (self.keyboardisActive) {
-        self.keyboardisActive = NO;
-        [self moveView:self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y +200., self.view.frame.size.width, self.view.frame.size.height)];
-    }
-    
-}
-
-- (void)moveView:(CGRect) newFrame {
-    [UIView animateWithDuration:0.1
-                          delay:0
-                        options: UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         self.view.frame = newFrame;
-                     }
-                     completion:nil];
 }
 
 - (IBAction)loginAction:(id)sender {
@@ -219,6 +205,24 @@
         NSString *email = result[@"email"];
         NSLog(@"User Email %@", email);
     }];
+}
+    
+
+#pragma mark - Google delegate
+- (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error {
+    NSLog(@"User %@", user.profile.name);
+    NSLog(@"User Image %@", [user.profile imageURLWithDimension:200]);
+}
+    
+    
+// Present a view that prompts the user to sign in with Google
+- (void)signIn:(GIDSignIn *)signIn presentViewController:(UIViewController *)viewController {
+    [self presentViewController:viewController animated:YES completion:nil];
+}
+    
+    // Dismiss the "Sign in with Google" view
+- (void)signIn:(GIDSignIn *)signIn dismissViewController:(UIViewController *)viewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

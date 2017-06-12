@@ -15,6 +15,7 @@
 		80188F761E989B8A008AB708 /* PaymentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80188F751E989B8A008AB708 /* PaymentDetailViewController.m */; };
 		80188F791E98A22F008AB708 /* CurrencyServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80188F781E98A22F008AB708 /* CurrencyServiceClient.m */; };
 		80188F7C1E98A6B7008AB708 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80188F7B1E98A6B7008AB708 /* CurrencyManager.m */; };
+		801A747D1EEE483100CEA1C1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 801A747C1EEE483100CEA1C1 /* GoogleService-Info.plist */; };
 		801B252D1DD79B620039FB90 /* CompletionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 801B252C1DD79B620039FB90 /* CompletionHandler.m */; };
 		801BFA3A1E77A5950098F0DF /* QRPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801BFA391E77A5950098F0DF /* QRPaymentViewController.m */; };
 		801D0C2E1DF13ED50079F9AB /* HistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801D0C2D1DF13ED50079F9AB /* HistoryTableViewController.m */; };
@@ -51,6 +52,7 @@
 		8071B4001DD2DF6F001D8761 /* CardServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8071B3FF1DD2DF6F001D8761 /* CardServiceClient.m */; };
 		807C69E41ECD74560059D53C /* PaymentResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807C69E31ECD74560059D53C /* PaymentResultViewController.m */; };
 		807F00461E9CAAE900F3B983 /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 807F00451E9CAAE900F3B983 /* SplitViewController.m */; };
+		80859EE41EEE3890006B74C7 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 80859EE31EEE3890006B74C7 /* Podfile */; };
 		809788681E61526C001F30F9 /* TableCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 809788671E61526C001F30F9 /* TableCollectionViewCell.m */; };
 		80B18A231EAB28D800A56A4A /* PushNotificationServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B18A221EAB28D800A56A4A /* PushNotificationServiceClient.m */; };
 		80B18A291EAB2AF000A56A4A /* PushNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B18A281EAB2AF000A56A4A /* PushNotificationManager.m */; };
@@ -85,6 +87,7 @@
 		80FCD2D71E763F9B009FC48D /* AddTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FCD2D61E763F9B009FC48D /* AddTableViewController.m */; };
 		80FD06571E4AEAA600D3FA38 /* UIColor+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FD06561E4AEAA600D3FA38 /* UIColor+UIColor.m */; };
 		80FDEB361E6D23E500DD4F06 /* ChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FDEB351E6D23E500DD4F06 /* ChooseViewController.m */; };
+		DA3529A28667DAF3F4A71909 /* libPods-EzyPay-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 737E986937DB5082CF66C227 /* libPods-EzyPay-iOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +108,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B363EDAC1617B0E54291A57 /* Pods-EzyPay-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzyPay-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EzyPay-iOS/Pods-EzyPay-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		737E986937DB5082CF66C227 /* libPods-EzyPay-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EzyPay-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80016E4C1E1C943100D4658D /* BarcodeScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarcodeScannerViewController.h; sourceTree = "<group>"; };
 		80016E4D1E1C943100D4658D /* BarcodeScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarcodeScannerViewController.m; sourceTree = "<group>"; };
 		800829731E15875500D2C5F2 /* CardDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardDetailViewController.h; sourceTree = "<group>"; };
@@ -122,6 +127,7 @@
 		80188F781E98A22F008AB708 /* CurrencyServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyServiceClient.m; sourceTree = "<group>"; };
 		80188F7A1E98A6B7008AB708 /* CurrencyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyManager.h; sourceTree = "<group>"; };
 		80188F7B1E98A6B7008AB708 /* CurrencyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyManager.m; sourceTree = "<group>"; };
+		801A747C1EEE483100CEA1C1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		801B252B1DD79B620039FB90 /* CompletionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionHandler.h; sourceTree = "<group>"; };
 		801B252C1DD79B620039FB90 /* CompletionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionHandler.m; sourceTree = "<group>"; };
 		801BFA381E77A5950098F0DF /* QRPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRPaymentViewController.h; sourceTree = "<group>"; };
@@ -190,6 +196,7 @@
 		807C69E31ECD74560059D53C /* PaymentResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentResultViewController.m; sourceTree = "<group>"; };
 		807F00441E9CAAE900F3B983 /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewController.h; sourceTree = "<group>"; };
 		807F00451E9CAAE900F3B983 /* SplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewController.m; sourceTree = "<group>"; };
+		80859EE31EEE3890006B74C7 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		809788661E61526C001F30F9 /* TableCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCollectionViewCell.h; sourceTree = "<group>"; };
 		809788671E61526C001F30F9 /* TableCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCollectionViewCell.m; sourceTree = "<group>"; };
 		80B18A211EAB28D800A56A4A /* PushNotificationServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationServiceClient.h; sourceTree = "<group>"; };
@@ -259,6 +266,7 @@
 		80FD06561E4AEAA600D3FA38 /* UIColor+UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+UIColor.m"; sourceTree = "<group>"; };
 		80FDEB341E6D23E500DD4F06 /* ChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseViewController.h; sourceTree = "<group>"; };
 		80FDEB351E6D23E500DD4F06 /* ChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseViewController.m; sourceTree = "<group>"; };
+		BD7A8875781BB02A76C9AB16 /* Pods-EzyPay-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzyPay-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-EzyPay-iOS/Pods-EzyPay-iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +277,7 @@
 				8022CD121EEBD02100FA6086 /* Bolts.framework in Frameworks */,
 				8022CD101EEBCDFA00FA6086 /* FBSDKLoginKit.framework in Frameworks */,
 				8022CD0F1EEBCDFA00FA6086 /* FBSDKCoreKit.framework in Frameworks */,
+				DA3529A28667DAF3F4A71909 /* libPods-EzyPay-iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +298,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F3BBCFD9AC0C4C5E67FE85A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0B363EDAC1617B0E54291A57 /* Pods-EzyPay-iOS.debug.xcconfig */,
+				BD7A8875781BB02A76C9AB16 /* Pods-EzyPay-iOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		80016E4B1E1C93C800D4658D /* Scanner Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -563,10 +581,13 @@
 		80EFEB871DB8552900D874E2 = {
 			isa = PBXGroup;
 			children = (
+				80859EE31EEE3890006B74C7 /* Podfile */,
 				80EFEB921DB8552900D874E2 /* EzyPay-iOS */,
 				80EFEBAC1DB8552900D874E2 /* EzyPay-iOSTests */,
 				80EFEBB71DB8552900D874E2 /* EzyPay-iOSUITests */,
 				80EFEB911DB8552900D874E2 /* Products */,
+				7F3BBCFD9AC0C4C5E67FE85A /* Pods */,
+				9BCBF927C0E487C6F7D785D0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -608,6 +629,7 @@
 		80EFEB931DB8552900D874E2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				801A747C1EEE483100CEA1C1 /* GoogleService-Info.plist */,
 				80EFEBA41DB8552900D874E2 /* Info.plist */,
 				80EFEB941DB8552900D874E2 /* main.m */,
 			);
@@ -689,6 +711,14 @@
 			path = "Table Controller";
 			sourceTree = "<group>";
 		};
+		9BCBF927C0E487C6F7D785D0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				737E986937DB5082CF66C227 /* libPods-EzyPay-iOS.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -696,9 +726,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80EFEBBD1DB8552900D874E2 /* Build configuration list for PBXNativeTarget "EzyPay-iOS" */;
 			buildPhases = (
+				F3FB3499F17EEB69677EA37D /* [CP] Check Pods Manifest.lock */,
 				80EFEB8C1DB8552900D874E2 /* Sources */,
 				80EFEB8D1DB8552900D874E2 /* Frameworks */,
 				80EFEB8E1DB8552900D874E2 /* Resources */,
+				DA5326F5CDDAC89A94B2640A /* [CP] Embed Pods Frameworks */,
+				F69C47703ECC4CAC6B4262BC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -803,10 +836,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80859EE41EEE3890006B74C7 /* Podfile in Resources */,
 				80EFEBA31DB8552900D874E2 /* LaunchScreen.storyboard in Resources */,
 				80217A761DEFF8E60096DEF4 /* Localizable.strings in Resources */,
 				80EFEBA01DB8552900D874E2 /* Assets.xcassets in Resources */,
 				80EFEB9E1DB8552900D874E2 /* Main.storyboard in Resources */,
+				801A747D1EEE483100CEA1C1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -825,6 +860,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DA5326F5CDDAC89A94B2640A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EzyPay-iOS/Pods-EzyPay-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3FB3499F17EEB69677EA37D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F69C47703ECC4CAC6B4262BC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EzyPay-iOS/Pods-EzyPay-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		80EFEB8C1DB8552900D874E2 /* Sources */ = {
@@ -1056,6 +1139,7 @@
 		};
 		80EFEBBE1DB8552900D874E2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B363EDAC1617B0E54291A57 /* Pods-EzyPay-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "EzyPay-iOS/EzyPay-iOS.entitlements";
@@ -1079,6 +1163,7 @@
 		};
 		80EFEBBF1DB8552900D874E2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD7A8875781BB02A76C9AB16 /* Pods-EzyPay-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "EzyPay-iOS/EzyPay-iOS.entitlements";
