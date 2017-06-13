@@ -39,7 +39,7 @@ static NSString *const PAYMENT_URL = @"payment/";
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
-    NSString *body = [NSString stringWithFormat:@"commerceId=%lld&userId=%lld&cost=%f&tableNumber=%lld&isCanceled=%d&currencyId=%lld", payment.commerce.id, user.id, payment.cost, payment.tableNumber,0, payment.currency.id];
+    NSString *body = [NSString stringWithFormat:@"commerceId=%lld&userId=%lld&cost=%f&tableNumber=%lld&isCanceled=%d&currencyId=%lld&employeeId=%lld", payment.commerce.id, user.id, payment.cost, payment.tableNumber,0, payment.currency.id, payment.employeeId];
     request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
     request.HTTPMethod = @"POST";
     [request addValue:[NSString stringWithFormat:@"Bearer %@",user.token] forHTTPHeaderField:@"Authorization"];
