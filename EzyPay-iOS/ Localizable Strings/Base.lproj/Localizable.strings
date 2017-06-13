@@ -24,7 +24,7 @@ errorTitle = "Error";
 
 /*actions*/
 loginAction = "Log in";
-signInNextAction = "Next";
+nextAction = "Next";
 generateQRAction = "Generate QR code";
 userAction = "User";
 commerceAction = "Commerce";
@@ -70,6 +70,7 @@ paymentMessageLabel = "Successfully paid!";
 actionsLabel = "Actions";
 chooseQRLabel = "Choose QR type";
 totalCostLabel = "Total cost";
+tablesInfoLabel = "If you put 0, the table menu will not appear";
 
 /*Placeholders*/
 emailPlaceholder = "Email";
@@ -81,3 +82,4 @@ cardNumberPlaceholder = "Card number";
 expirationDatePlaceholder = "Expiration Date";
 cvvPlaceholder = "cvv";
 totalCostPlaceholder = "Total";
+tablesQuantityPlaceholder = "How many Tables?";

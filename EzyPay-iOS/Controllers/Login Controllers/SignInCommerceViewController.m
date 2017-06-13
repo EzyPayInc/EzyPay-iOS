@@ -8,7 +8,7 @@
 
 #import "SignInCommerceViewController.h"
 #import "UserServiceClient.h"
-#import "SignInPaymentInformationControllerViewController.h"
+#import "SignInCommerceImageViewController.h"
 #import "User+CoreDataClass.h"
 #import "CoreDataManager.h"
 #import "NSString+String.h"
@@ -60,7 +60,7 @@
     user.userType = [self.txtTables.text integerValue] > 0 ? RestaurantNavigation : CommerceNavigation;
     user.password = self.txtPassword.text;
     
-    SignInPaymentInformationControllerViewController *viewController = (SignInPaymentInformationControllerViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInPaymentInformationControllerViewController"];
+    SignInCommerceImageViewController *viewController = (SignInCommerceImageViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInCommerceImageViewController"];
     viewController.user = user;
     viewController.tables = [self.txtTables.text integerValue];
     [self.navigationController pushViewController:viewController animated:true];

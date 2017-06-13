@@ -10,6 +10,7 @@
 		80016E4E1E1C943100D4658D /* BarcodeScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80016E4D1E1C943100D4658D /* BarcodeScannerViewController.m */; };
 		800829751E15875500D2C5F2 /* CardDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 800829741E15875500D2C5F2 /* CardDetailViewController.m */; };
 		800859911E23312200E3451F /* SettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 800859901E23312200E3451F /* SettingsTableViewCell.m */; };
+		800AF27B1EEFA4130030A49B /* SignInCommerceImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 800AF27A1EEFA4130030A49B /* SignInCommerceImageViewController.m */; };
 		8012A6501E82429800FE5606 /* PaymentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8012A64F1E82429800FE5606 /* PaymentManager.m */; };
 		80178EBB1EC1805700790B88 /* CallWaiterNotificationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 80178EBA1EC1805700790B88 /* CallWaiterNotificationHandler.m */; };
 		80188F761E989B8A008AB708 /* PaymentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80188F751E989B8A008AB708 /* PaymentDetailViewController.m */; };
@@ -116,6 +117,8 @@
 		800829741E15875500D2C5F2 /* CardDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardDetailViewController.m; sourceTree = "<group>"; };
 		8008598F1E23312200E3451F /* SettingsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewCell.h; sourceTree = "<group>"; };
 		800859901E23312200E3451F /* SettingsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewCell.m; sourceTree = "<group>"; };
+		800AF2791EEFA4130030A49B /* SignInCommerceImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInCommerceImageViewController.h; sourceTree = "<group>"; };
+		800AF27A1EEFA4130030A49B /* SignInCommerceImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInCommerceImageViewController.m; sourceTree = "<group>"; };
 		801007CE1EA5C2B1006A521B /* EzyPay-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "EzyPay-iOS.entitlements"; sourceTree = "<group>"; };
 		8012A64E1E82429800FE5606 /* PaymentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentManager.h; sourceTree = "<group>"; };
 		8012A64F1E82429800FE5606 /* PaymentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentManager.m; sourceTree = "<group>"; };
@@ -331,6 +334,8 @@
 				80F760CA1E6FCB1500178608 /* SignInCommerceViewController.m */,
 				80430A691EE90F1300727111 /* LogInCommerceViewController.h */,
 				80430A6A1EE90F1300727111 /* LogInCommerceViewController.m */,
+				800AF2791EEFA4130030A49B /* SignInCommerceImageViewController.h */,
+				800AF27A1EEFA4130030A49B /* SignInCommerceImageViewController.m */,
 			);
 			path = "Login Controllers";
 			sourceTree = "<group>";
@@ -951,6 +956,7 @@
 				8071B3FD1DD2DD4C001D8761 /* SignInPaymentInformationControllerViewController.m in Sources */,
 				80188F7C1E98A6B7008AB708 /* CurrencyManager.m in Sources */,
 				806BF0661DC8519300AD97CB /* SignInUserViewController.m in Sources */,
+				800AF27B1EEFA4130030A49B /* SignInCommerceImageViewController.m in Sources */,
 				80217A731DEFCFC60096DEF4 /* CardManager.m in Sources */,
 				805501841EB4379100B41E65 /* UserPaymentServiceClient.m in Sources */,
 				804CEE811DED242C0078BB54 /* EzyPay.xcdatamodeld in Sources */,

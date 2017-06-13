@@ -22,7 +22,7 @@ cardInfoTitle = "Información de la Tarjeta";
 
 /*actions*/
 loginAction = "Log in";
-signInNextAction = "Siguiente";
+nextAction = "Siguiente";
 generateQRAction = "Generar código QR";
 userAction = "Usuario";
 commerceAction = "Comercio";
@@ -69,6 +69,7 @@ cardsLabel = "Tarjetas";
 chooseQRLabel = "Elija tipo de QR";
 totalCostLabel = "Total";
 sendAction = "Enviar";
+tablesInfoLabel = "Si pones 0, el menú de mesas no aprecerá";
 
 /*Placeholders*/
 emailPlaceholder = "Email";
@@ -80,4 +81,5 @@ cardNumberPlaceholder = "Número de Tarjeta";
 expirationDatePlaceholder = "Fecha de vencimiento";
 cvvPlaceholder = "cvv";
 totalCostPlaceholder = "Total";
+tablesQuantityPlaceholder = "¿Cuántas mesas?";
 
