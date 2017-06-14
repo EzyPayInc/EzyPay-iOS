@@ -42,6 +42,7 @@ registerCommerceAction = "Register new commerce";
 syncAction = "Sync";
 quickAction = "Quick";
 sendAction = "Send";
+uploadLogoAction = "Upload Logo";
 
 
 /*label errors*/

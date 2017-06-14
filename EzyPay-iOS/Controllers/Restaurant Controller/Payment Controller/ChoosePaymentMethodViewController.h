@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserManager.h"
 
 @interface ChoosePaymentMethodViewController : UIViewController
+
+@property (nonatomic, strong) User *user;
+@property (nonatomic, assign) int64_t tableNumber;
 
 @end

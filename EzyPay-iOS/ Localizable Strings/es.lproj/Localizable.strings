@@ -42,6 +42,7 @@ errorTitle = "Error";
 registerCommerceAction = "Registrar nuevo Comercio";
 syncAction = "Sincronizado";
 quickAction = "Rápido";
+uploadLogoAction = "Subir un Logo";
 
 
 /*label errors*/

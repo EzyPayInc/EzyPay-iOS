@@ -7,6 +7,12 @@
 //
 
 #import "ChoosePaymentMethodViewController.h"
+#import "QRPaymentViewController.h"
+#import "PaymentDetailViewController.h"
+#import "NavigationController.h"
+#import "PaymentManager.h"
+#import "CoreDataManager.h"
+#import "CurrencyManager.h"
 
 @interface ChoosePaymentMethodViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -19,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupView];
 
 }
 
@@ -34,10 +41,28 @@
 }
 
 - (IBAction)syncAction:(id)sender {
+    PaymentDetailViewController *viewController = (PaymentDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentDetailViewController"];
+    viewController.tableNumber = self.tableNumber;
+    viewController.user = self.user;
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (IBAction)quickAction:(id)sender {
+    [CoreDataManager deleteDataFromEntity:@"Payment"];
+    Payment *payment = [CoreDataManager createEntityWithName:@"Payment"];
+    payment.cost = 0;
+    payment.tableNumber = self.tableNumber;
+    payment.commerce = self.user.userType == EmployeeNavigation ? self.user.boss : self.user;
+    payment.employeeId = self.user.userType == EmployeeNavigation  ? self.user.id : 0;
+    
+    QRPaymentViewController *viewController = (QRPaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"QRPaymentViewController"];
+    viewController.tableNumber = self.tableNumber;
+    viewController.cost = 0;
+    viewController.user = self.user.userType == EmployeeNavigation ? self.user.boss : self.user;
+    viewController.payment = payment;
+    [self.navigationController pushViewController:viewController animated:YES];
 }
+
 
 
 

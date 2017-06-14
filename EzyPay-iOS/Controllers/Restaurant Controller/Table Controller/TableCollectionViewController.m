@@ -14,6 +14,7 @@
 #import "AddTableViewController.h"
 #import "PaymentDetailViewController.h"
 #import "NavigationController.h"
+#import "ChoosePaymentMethodViewController.h"
 
 @interface TableCollectionViewController ()
 @property (nonatomic, strong)NSArray *tables;
@@ -55,7 +56,7 @@ static NSString * const reuseIdentifier = @"TableCell";
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(100 , 100);
+    return CGSizeMake(80 , 80);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -69,6 +70,11 @@ static NSString * const reuseIdentifier = @"TableCell";
 {
     Table *table = [self.tables objectAtIndex:indexPath.row];
     [self displayPaymentDetailViewController:table];
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 
 #pragma mark <UICollectionViewDelegate>
@@ -103,7 +109,7 @@ static NSString * const reuseIdentifier = @"TableCell";
 }
 
 - (void) displayPaymentDetailViewController:(Table *)table {
-    PaymentDetailViewController *viewController = (PaymentDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentDetailViewController"];
+    ChoosePaymentMethodViewController *viewController = (ChoosePaymentMethodViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ChoosePaymentMethodViewController"];
     viewController.tableNumber = table.tableNumber;
     viewController.user = self.user;
     [self.navigationController pushViewController:viewController animated:YES];
