@@ -27,7 +27,6 @@ static NSString *const CARD_STARTS = @"**** ";
     [super viewDidLoad];
     self.navigationItem.title = @"Payment";
     self.user = [UserManager getUser];
-    [self addTableViewFooter];
 
 }
 
@@ -38,10 +37,6 @@ static NSString *const CARD_STARTS = @"**** ";
 
 - (void)viewWillAppear:(BOOL)animated {
      [self getCardsFromServer];
-}
-
-- (void)addTableViewFooter {
-   
 }
 
 #pragma mark - Table view data source

@@ -180,6 +180,8 @@
         [self getImage:cell fromId:self.user.id];
     } else {
         Friend *friend = [[self.payment.friends allObjects]objectAtIndex:indexPath.row];
+        cell.backgroundColor = [UIColor lightGreenColor];
+        cell.userNameLabel.textColor = [UIColor blackEzyPayColor];
         cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", friend.name, friend.lastname];
         cell.profileImageView.image = [UIImage imageNamed:@"profileImage"];
         cell.quantityLabel.text = [self quantityWithCurrencyCode:friend.cost];

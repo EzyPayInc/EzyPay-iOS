@@ -15,6 +15,7 @@
 #import "PaymentDetailViewController.h"
 #import "NavigationController.h"
 #import "ChoosePaymentMethodViewController.h"
+#import "UIColor+UIColor.h"
 
 @interface TableCollectionViewController ()
 @property (nonatomic, strong)NSArray *tables;
@@ -62,6 +63,7 @@ static NSString * const reuseIdentifier = @"TableCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TableCollectionViewCell *cell = (TableCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     Table *table = [self.tables objectAtIndex:indexPath.row];
+    cell.circleView.backgroundColor = table.isActive == 1 ? [UIColor silverColor] : [UIColor ezypayGreenColor];
     cell.tableName.text = [NSString stringWithFormat:@"%lld", table.tableNumber];
     return cell;
 }
@@ -87,10 +89,12 @@ static NSString * const reuseIdentifier = @"TableCell";
     TableManager *manager = [[TableManager alloc] init];
     int64_t userId = self.user.userType == EmployeeNavigation ?
         self.user.boss.id : self.user.id;
-    [manager getTablesByRestaurantFromServer:userId token:self.user.token successHandler:^(id response) {
+    [manager getTablesByRestaurantFromServer:userId
+                                       token:self.user.token
+                              successHandler:^(id response) {
         self.tables = [TableManager geTablesFromArray:response withUser:self.user];
         [self.collectionView reloadData];
-    } failureHandler:^(id response) {
+                              } failureHandler:^(id response) {
         NSLog(@"%@", response);
     }];
 }

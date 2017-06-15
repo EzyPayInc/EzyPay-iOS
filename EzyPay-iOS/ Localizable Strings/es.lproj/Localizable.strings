@@ -43,6 +43,7 @@ registerCommerceAction = "Registrar nuevo Comercio";
 syncAction = "Sincronizado";
 quickAction = "Rápido";
 uploadLogoAction = "Subir un Logo";
+addNewEmployee = "Agregar un nuevo Empleado";
 
 
 /*label errors*/

@@ -42,13 +42,11 @@ static NSString *const TABLE_URL = @"table/";
 }
 
 - (void)getTablesByRestaurantFromServer:(int64_t) restaurantId token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", BASE_URL, TABLE_URL,@"getAll"]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/restaurant/%lld", BASE_URL, TABLE_URL,restaurantId]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
-    NSString *body = [NSString stringWithFormat:@"restaurantId=%ld",(long)restaurantId];
-    request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
-    request.HTTPMethod = @"POST";
+    request.HTTPMethod = @"GET";
     [request addValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"Authorization"];
     [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
     

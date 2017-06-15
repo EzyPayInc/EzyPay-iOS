@@ -52,23 +52,24 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if(section == 0) {
-        return self.user.userType == UserNavigation ? 5 : 4;
-    } else {
-        return 1;
+        return self.user.userType == UserNavigation ? 9 : 7;
     }
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0) {
-         return indexPath.row == 0 ? 200.f : 44.f;
-    } else {
-        return 44.f;
+        return indexPath.row == 0 ? 200.f : indexPath.row % 2 == 0 ? 5.f : 44.f;
     }
-   
+    return 44.f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return section == 0 ? 0 : 20.f;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return section == 0 ? @"" : @"Employees";
+    return section == 0 ? @"" : NSLocalizedString(@"employeesTitle", nil);
 }
 
 
@@ -86,21 +87,26 @@
             return cell;
             
         } else {
+            if(indexPath.row % 2 == 0) {
+                return [tableView dequeueReusableCellWithIdentifier:@"transparentCell"];
+            }
             return self.user.userType == UserNavigation ?
             [self tableView:tableView userCellForRowAtIndexPath:indexPath] :
             [self tableView:tableView commerceCellForRowAtIndexPath:indexPath];
         }
     } else {
            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EmployeeCell" forIndexPath:indexPath];
-        cell.textLabel.text = @"Add a new Employee";
+        cell.textLabel.text = NSLocalizedString(@"addNewEmployee", nil);
         return cell;
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     if(indexPath.section == 0 && indexPath.row > 0) {
-        SettingsTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        [cell.txtValue becomeFirstResponder];
+        if(indexPath.row % 2 != 0) {
+            SettingsTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            [cell.txtValue becomeFirstResponder];
+        }
     } else {
         if (indexPath.section == 1) {
             EmployeeTableViewController *tableViewController = (EmployeeTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"EmployeeTableViewController"];
@@ -112,10 +118,11 @@
 
 
 #pragma mark - actions
--(UITableViewCell *)tableView:(UITableView *)tableView userCellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(UITableViewCell *)tableView:(UITableView *)tableView
+    userCellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"settingsCell"];
-    switch (indexPath.row) {
+    NSInteger row = indexPath.row == 1 ? 1 : (indexPath.row/ 2) + 1 ;
+    switch (row) {
         case NameCell:
             cell.detailLabel.text =NSLocalizedString(@"namePlaceholder", nil);
             cell.txtValue.text = self.user.name;
@@ -144,17 +151,19 @@
     return cell;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView commerceCellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView
+ commerceCellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"settingsCell"];
-    if (indexPath.row == 1) {
+    NSInteger row = indexPath.row == 1 ? 1 : (indexPath.row/ 2) + 1 ;
+    if (row == 1) {
         cell.detailLabel.text = NSLocalizedString(@"namePlaceholder", nil);
         cell.txtValue.text = self.user.name;
         cell.cellType = NameCell;
-    } else if(indexPath.row == 2) {
+    } else if(row == 2) {
         cell.detailLabel.text = NSLocalizedString(@"phoneNumberPlaceholder", nil);
         cell.txtValue.text = self.user.phoneNumber;
         cell.cellType = PhoneNumberCell;
-    } else if(indexPath.row == 3) {
+    } else if(row == 3) {
         cell.detailLabel.text = NSLocalizedString(@"emailPlaceholder", nil);
         cell.txtValue.text = self.user.email;
         cell.cellType = EmailCell;

@@ -34,4 +34,25 @@
                             blue:185.0f/255.0f
                            alpha:1.0f];
 }
+
++ (UIColor *)silverColor {
+    return [UIColor colorWithRed:178.0f/255.0f
+                           green:178.0f/255.0f
+                            blue:178.0f/255.0f
+                           alpha:1.0f];
+}
+
++ (UIColor *)lightGreenColor {
+    return [UIColor colorWithRed:213.0f/255.0f
+                           green:228.0f/255.0f
+                            blue:138.0f/255.0f
+                           alpha:1.0f];
+}
+
++ (UIColor *)blackEzyPayColor {
+    return [UIColor colorWithRed:80.0f/255.0f
+                           green:80.0f/255.0f
+                            blue:80.0f/255.0f
+                           alpha:1.0f];
+}
 @end

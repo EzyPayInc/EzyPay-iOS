@@ -21,6 +21,7 @@
         Table *table = [CoreDataManager createEntityWithName:@"Table"];
         table.tableId = [[tableDictionary objectForKey:@"id"] integerValue];
         table.tableNumber = [[tableDictionary objectForKey:@"tableNumber"] integerValue];
+        table.isActive = [[tableDictionary objectForKey:@"isActive"] integerValue];
         [tables addObject:table];
     }
     if(tables.count > 0){
