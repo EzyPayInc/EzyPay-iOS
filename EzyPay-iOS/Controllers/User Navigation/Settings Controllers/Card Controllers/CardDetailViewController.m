@@ -10,8 +10,9 @@
 #import "CoreDataManager.h"
 #import "UserManager.h"
 #import "CardManager.h"
+#import "CardIO.h"
 
-@interface CardDetailViewController ()<UITextFieldDelegate>
+@interface CardDetailViewController ()<UITextFieldDelegate, CardIOPaymentViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *txtCardNumber;
 @property (weak, nonatomic) IBOutlet UITextField *txtExpirationDate;
@@ -67,6 +68,7 @@
     self.txtExpirationDate.delegate = self;
     self.txtCardNumber.delegate = self;
     self.txtCvv.delegate = self;
+    [self addScanAction];
     
 }
 
@@ -78,10 +80,19 @@
     self.navigationItem.rightBarButtonItem = nil;
 }
 
+- (void)addScanAction {
+    
+    UIImageView *cameraIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ic_camera"]];
+    cameraIcon.contentMode = UIViewContentModeScaleAspectFit;
+    self.txtCardNumber.rightViewMode = UITextFieldViewModeAlways;
+    self.txtCardNumber.rightView = cameraIcon;
+    self.txtCardNumber.rightView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *scanGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                  action:@selector(scanCardAction)];
+    [self.txtCardNumber.rightView addGestureRecognizer:scanGesture];
+}
+
 - (void)roundedViews {
-    self.txtCvv.layer.cornerRadius = 20.f;
-    self.txtCardNumber.layer.cornerRadius = 20.f;
-    self.txtExpirationDate.layer.cornerRadius = 20.f;
     self.btnAction.layer.cornerRadius = 20.f;
 }
 
@@ -239,6 +250,28 @@
     
     [alert addAction:defaultAction];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)scanCardAction {
+    CardIOPaymentViewController *scanViewController = [[CardIOPaymentViewController alloc] initWithPaymentDelegate:self];
+    scanViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentViewController:scanViewController animated:YES completion:nil];
+}
+
+#pragma mark - CardIOPaymentViewControllerDelegate
+
+- (void)userDidProvideCreditCardInfo:(CardIOCreditCardInfo *)info inPaymentViewController:(CardIOPaymentViewController *)paymentViewController {
+    NSLog(@"Scan succeeded with info: %@", info);
+    // Do whatever needs to be done to deliver the purchased items.
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    NSString *cardData = [NSString stringWithFormat:@"Received card info. Number: %@, expiry: %02lu/%lu, cvv: %@.", info.cardNumber, (unsigned long)info.expiryMonth, (unsigned long)info.expiryYear, info.cvv];
+    NSLog(@"Card Data : %@", cardData);
+}
+
+- (void)userDidCancelPaymentViewController:(CardIOPaymentViewController *)paymentViewController {
+    NSLog(@"User cancelled scan");
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

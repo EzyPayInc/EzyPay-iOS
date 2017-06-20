@@ -1,4 +1,5 @@
 PODS:
+  - CardIO (5.4.1)
   - FirebaseAnalytics (3.9.0):
     - FirebaseCore (~> 3.6)
     - FirebaseInstanceID (~> 1.0)
@@ -36,9 +37,11 @@ PODS:
     - GTMSessionFetcher/Core (= 1.1.10)
 
 DEPENDENCIES:
+  - CardIO
   - Google/SignIn
 
 SPEC CHECKSUMS:
+  CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
   FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
   FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
   FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
@@ -48,6 +51,6 @@ SPEC CHECKSUMS:
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
 
-PODFILE CHECKSUM: bb7dced869850c71f445ebec79dc37297b8276dd
+PODFILE CHECKSUM: 18a70b3d8f38b8e716c87a4949d38a10c06f57f4
 
 COCOAPODS: 1.2.1
