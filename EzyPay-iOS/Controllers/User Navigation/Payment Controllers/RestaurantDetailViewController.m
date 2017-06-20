@@ -21,7 +21,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnPay;
 @property (weak, nonatomic) IBOutlet UIButton *btnSplit;
 @property (weak, nonatomic) IBOutlet UIView *actionsView;
-@property (weak, nonatomic) IBOutlet UIView *actionView;
 @property (weak, nonatomic) IBOutlet UILabel *questionLabel;
 
 @property (nonatomic, strong) User *user;
@@ -55,7 +54,6 @@
     self.btnPay.layer.cornerRadius = 20.f;
     self.btnSplit.layer.cornerRadius = 20.f;
     self.actionsView.layer.cornerRadius = 20.f;
-    self.actionView.layer.cornerRadius = 20.f;
     self.questionLabel.text = NSLocalizedString(@"paymentQuestionLabel", nil);
     [self.btnPay setTitle:NSLocalizedString(@"aloneAction", nil) forState:UIControlStateNormal];
     [self.btnSplit setTitle:NSLocalizedString(@"splitAction", nil) forState:UIControlStateNormal];
@@ -68,8 +66,7 @@
 }
 
 - (void)cancelAction {
-    [PaymentManager deletePayment];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self deletePayment];
 }
 
 - (IBAction)requestBill:(id)sender {
@@ -123,6 +120,19 @@
 - (void)showPaymentView{
     self.paymentOptionsView.hidden = NO;
     self.questionLabel.hidden = NO;
+}
+
+- (void)deletePayment {
+    PaymentManager *manager = [[PaymentManager alloc] init];
+    [manager deletePayment:self.payment.id
+                     token:self.user.token
+            successHandler:^(id response) {
+                [PaymentManager deletePayment];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            failureHandler:^(id response) {
+                NSLog(@"Error deleting a payment : %@", response);
+            }];
 }
 
 @end

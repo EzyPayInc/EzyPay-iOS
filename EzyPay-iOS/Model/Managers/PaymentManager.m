@@ -24,6 +24,7 @@
         payment.friends = [NSSet setWithArray:[FriendManager friendsFromArray:[paymentDictionary valueForKey:@"Friends"]]];
     }
     Currency *currency = [CurrencyManager currencyFromDictionary:[paymentDictionary objectForKey:@"Currency"]];
+    currency = currency.code == nil ? nil: currency;
     NSDictionary *commerceData = [paymentDictionary objectForKey:@"Commerce"];
     commerce.id = [[commerceData objectForKey:@"id"] integerValue];
     commerce.name = [commerceData objectForKey:@"name"];
@@ -35,6 +36,7 @@
     payment.employeeId = [[paymentDictionary objectForKey:@"employeeId"] integerValue];
     payment.userCost = [[paymentDictionary objectForKey:@"userCost"] isKindOfClass:[NSNull class]] ?
     0 : [[paymentDictionary objectForKey:@"userCost"] floatValue];
+    payment.id = [[paymentDictionary objectForKey:@"id"] integerValue];
     return payment;
 }
 
@@ -101,6 +103,17 @@
              successHandler:successHandler
              failureHandler:failureHandler];
     
+}
+
+- (void)deletePayment:(int64_t)paymentId
+                token:(NSString *)token
+       successHandler:(ConnectionSuccessHandler)successHandler
+       failureHandler:(ConnectionErrorHandler) failureHandler {
+    PaymentServiceClient *service = [[PaymentServiceClient alloc] init];
+    [service deletePayment:paymentId
+                     token:token
+            successHandler:successHandler
+            failureHandler:failureHandler];
 }
 
 - (void)updatePaymentAmount:(int64_t)paymentId

@@ -72,6 +72,9 @@
 		80EFEBA31DB8552900D874E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80EFEBA11DB8552900D874E2 /* LaunchScreen.storyboard */; };
 		80EFEBAE1DB8552900D874E2 /* EzyPay_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EFEBAD1DB8552900D874E2 /* EzyPay_iOSTests.m */; };
 		80EFEBB91DB8552900D874E2 /* EzyPay_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EFEBB81DB8552900D874E2 /* EzyPay_iOSUITests.m */; };
+		80F14CED1EF8CB1C00D4AAD9 /* SignInBankAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F14CEC1EF8CB1C00D4AAD9 /* SignInBankAccountViewController.m */; };
+		80F14CF01EF8D4C600D4AAD9 /* BankAccountServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F14CEF1EF8D4C600D4AAD9 /* BankAccountServiceClient.m */; };
+		80F14CF31EF8D78200D4AAD9 /* BankAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F14CF21EF8D78200D4AAD9 /* BankAccountManager.m */; };
 		80F36E6F1E5157F5009A8CE7 /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F36E6E1E5157F5009A8CE7 /* PaymentViewController.m */; };
 		80F36E721E516A7A009A8CE7 /* PaymentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F36E711E516A7A009A8CE7 /* PaymentTableViewCell.m */; };
 		80F602AD1E14B63B0030F7C5 /* CardListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F602AC1E14B63B0030F7C5 /* CardListTableViewController.m */; };
@@ -236,6 +239,12 @@
 		80EFEBB41DB8552900D874E2 /* EzyPay-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EzyPay-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80EFEBB81DB8552900D874E2 /* EzyPay_iOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EzyPay_iOSUITests.m; sourceTree = "<group>"; };
 		80EFEBBA1DB8552900D874E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80F14CEB1EF8CB1C00D4AAD9 /* SignInBankAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInBankAccountViewController.h; sourceTree = "<group>"; };
+		80F14CEC1EF8CB1C00D4AAD9 /* SignInBankAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInBankAccountViewController.m; sourceTree = "<group>"; };
+		80F14CEE1EF8D4C600D4AAD9 /* BankAccountServiceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BankAccountServiceClient.h; sourceTree = "<group>"; };
+		80F14CEF1EF8D4C600D4AAD9 /* BankAccountServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BankAccountServiceClient.m; sourceTree = "<group>"; };
+		80F14CF11EF8D78200D4AAD9 /* BankAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BankAccountManager.h; sourceTree = "<group>"; };
+		80F14CF21EF8D78200D4AAD9 /* BankAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BankAccountManager.m; sourceTree = "<group>"; };
 		80F36E6D1E5157F5009A8CE7 /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
 		80F36E6E1E5157F5009A8CE7 /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
 		80F36E701E516A7A009A8CE7 /* PaymentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentTableViewCell.h; sourceTree = "<group>"; };
@@ -336,6 +345,8 @@
 				80430A6A1EE90F1300727111 /* LogInCommerceViewController.m */,
 				800AF2791EEFA4130030A49B /* SignInCommerceImageViewController.h */,
 				800AF27A1EEFA4130030A49B /* SignInCommerceImageViewController.m */,
+				80F14CEB1EF8CB1C00D4AAD9 /* SignInBankAccountViewController.h */,
+				80F14CEC1EF8CB1C00D4AAD9 /* SignInBankAccountViewController.m */,
 			);
 			path = "Login Controllers";
 			sourceTree = "<group>";
@@ -452,6 +463,8 @@
 				80B18A221EAB28D800A56A4A /* PushNotificationServiceClient.m */,
 				805501821EB4379100B41E65 /* UserPaymentServiceClient.h */,
 				805501831EB4379100B41E65 /* UserPaymentServiceClient.m */,
+				80F14CEE1EF8D4C600D4AAD9 /* BankAccountServiceClient.h */,
+				80F14CEF1EF8D4C600D4AAD9 /* BankAccountServiceClient.m */,
 			);
 			path = Connection;
 			sourceTree = "<group>";
@@ -507,6 +520,8 @@
 				80EF9FC81EA9C71B00362D18 /* DeviceTokenManager.m */,
 				80B18A271EAB2AF000A56A4A /* PushNotificationManager.h */,
 				80B18A281EAB2AF000A56A4A /* PushNotificationManager.m */,
+				80F14CF11EF8D78200D4AAD9 /* BankAccountManager.h */,
+				80F14CF21EF8D78200D4AAD9 /* BankAccountManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -964,6 +979,7 @@
 				801D0C2E1DF13ED50079F9AB /* HistoryTableViewController.m in Sources */,
 				80188F761E989B8A008AB708 /* PaymentDetailViewController.m in Sources */,
 				80FDEB361E6D23E500DD4F06 /* ChooseViewController.m in Sources */,
+				80F14CED1EF8CB1C00D4AAD9 /* SignInBankAccountViewController.m in Sources */,
 				80F760CB1E6FCB1500178608 /* SignInCommerceViewController.m in Sources */,
 				801DBAFB1EB069CB006527D7 /* SendBillNotificationHandler.m in Sources */,
 				80E688D81E74DD250002CF76 /* TableManager.m in Sources */,
@@ -986,8 +1002,10 @@
 				80E982BA1E936D7400A0B4FA /* CommerceDetailViewController.m in Sources */,
 				807F00461E9CAAE900F3B983 /* SplitViewController.m in Sources */,
 				80415C141E8B7742005696D3 /* FriendManager.m in Sources */,
+				80F14CF31EF8D78200D4AAD9 /* BankAccountManager.m in Sources */,
 				8012A6501E82429800FE5606 /* PaymentManager.m in Sources */,
 				807C69E41ECD74560059D53C /* PaymentResultViewController.m in Sources */,
+				80F14CF01EF8D4C600D4AAD9 /* BankAccountServiceClient.m in Sources */,
 				80E982BD1E9377A800A0B4FA /* EmployeeTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

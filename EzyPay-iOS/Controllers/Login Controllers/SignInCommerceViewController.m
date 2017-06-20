@@ -21,7 +21,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtPhoneNumber;
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
-@property (weak, nonatomic) IBOutlet BottomBorderTextField *txtTables;
 @property (weak, nonatomic) IBOutlet UIButton *btnNext;
 
 
@@ -48,7 +47,6 @@
     self.txtPhoneNumber.delegate = self;
     self.txtEmail.delegate = self;
     self.txtPassword.delegate = self;
-    self.txtTables.delegate = self;
 }
 
 - (void)saveUser {
@@ -57,12 +55,10 @@
     user.lastName = nil;
     user.phoneNumber = self.txtPhoneNumber.text;
     user.email = self.txtEmail.text;
-    user.userType = [self.txtTables.text integerValue] > 0 ? RestaurantNavigation : CommerceNavigation;
     user.password = self.txtPassword.text;
     
     SignInCommerceImageViewController *viewController = (SignInCommerceImageViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInCommerceImageViewController"];
     viewController.user = user;
-    viewController.tables = [self.txtTables.text integerValue];
     [self.navigationController pushViewController:viewController animated:true];
 }
 

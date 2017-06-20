@@ -20,6 +20,7 @@ cardsTitle = "My cards";
 splitTitle = "Split";
 cardInfoTitle = "Card Information";
 errorTitle = "Error";
+bankInformationTittle = "Bank Information";
 
 
 /*actions*/
@@ -85,3 +86,5 @@ expirationDatePlaceholder = "Expiration Date";
 cvvPlaceholder = "cvv";
 totalCostPlaceholder = "Total";
 tablesQuantityPlaceholder = "How many Tables?";
+accountNumberPlaceholder = "Account Number";
+userIdentificarionPlaceholder = "Identification";

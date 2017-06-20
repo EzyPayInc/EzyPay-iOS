@@ -21,6 +21,10 @@
                  token:(NSString *)token
         successHandler:(ConnectionSuccessHandler)successHandler
         failureHandler:(ConnectionErrorHandler) failureHandler;
+- (void)deletePayment:(int64_t)paymentId
+                token:(NSString *)token
+       successHandler:(ConnectionSuccessHandler)successHandler
+       failureHandler:(ConnectionErrorHandler) failureHandler;
 - (void)updatePaymentAmount:(int64_t)paymentId
                  currencyId:(int64_t)currencyId
                      amount:(float)amount

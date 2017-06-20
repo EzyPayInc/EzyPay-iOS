@@ -15,7 +15,7 @@
 #import "PushNotificationManager.h"
 #import "UIColor+UIColor.h"
 
-@interface PaymentDetailViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface PaymentDetailViewController () <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *txtQuantity;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -51,10 +51,24 @@
 }
 
 - (void)setupView {
+    self.txtQuantity.delegate = self;
     self.titleLabel.text = NSLocalizedString(@"totalCostLabel", nil);
     [self.btnSend setTitle:NSLocalizedString(@"sendAction", nil) forState:UIControlStateNormal];
     self.txtQuantity.placeholder = NSLocalizedString(@"totalCostPlaceholder", nil);
     self.btnSend.layer.cornerRadius = 20.f;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch * touch = [touches anyObject];
+    if(touch.phase == UITouchPhaseBegan) {
+        [self.txtQuantity resignFirstResponder];
+    }
+}
+
+#pragma mark - TextField Delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 

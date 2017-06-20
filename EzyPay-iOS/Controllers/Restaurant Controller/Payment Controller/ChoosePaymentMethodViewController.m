@@ -41,13 +41,6 @@
 }
 
 - (IBAction)syncAction:(id)sender {
-    PaymentDetailViewController *viewController = (PaymentDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentDetailViewController"];
-    viewController.tableNumber = self.tableNumber;
-    viewController.user = self.user;
-    [self.navigationController pushViewController:viewController animated:YES];
-}
-
-- (IBAction)quickAction:(id)sender {
     [CoreDataManager deleteDataFromEntity:@"Payment"];
     Payment *payment = [CoreDataManager createEntityWithName:@"Payment"];
     payment.cost = 0;
@@ -60,6 +53,14 @@
     viewController.cost = 0;
     viewController.user = self.user.userType == EmployeeNavigation ? self.user.boss : self.user;
     viewController.payment = payment;
+    [self.navigationController pushViewController:viewController animated:YES];
+    
+}
+
+- (IBAction)quickAction:(id)sender {
+    PaymentDetailViewController *viewController = (PaymentDetailViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentDetailViewController"];
+    viewController.tableNumber = self.tableNumber;
+    viewController.user = self.user;
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

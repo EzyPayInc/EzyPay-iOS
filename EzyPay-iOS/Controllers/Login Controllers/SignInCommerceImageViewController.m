@@ -9,8 +9,10 @@
 #import "SignInCommerceImageViewController.h"
 #import "BottomBorderTextField.h"
 #import "UIColor+UIColor.h"
+#import "SignInBankAccountViewController.h"
+#import "NavigationController.h"
 
-@interface SignInCommerceImageViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface SignInCommerceImageViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *profileCommerceImage;
 @property (weak, nonatomic) IBOutlet BottomBorderTextField *tablesQuantity;
@@ -36,6 +38,7 @@
 }
 
 - (void)setupView {
+    self.tablesQuantity.delegate = self;
     self.tablesQuantity.placeholder = NSLocalizedString(@"tablesQuantityPlaceholder", nil);
     self.infoLabel.text = NSLocalizedString(@"tablesInfoLabel", nil);
     [self.nextButton setTitle:NSLocalizedString(@"nextAction", nil) forState:UIControlStateNormal];
@@ -61,8 +64,26 @@
     self.uploadLabel.userInteractionEnabled = YES;
 }
 
+#pragma mark - Textfield delegate
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 
 #pragma mark actions
+- (IBAction)nextAction:(id)sender {
+    SignInBankAccountViewController *viewController = (SignInBankAccountViewController *)
+    [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInBankAccountViewController"];
+    self.user.userType = [self.tablesQuantity.text integerValue] > 0 ? RestaurantNavigation : CommerceNavigation;
+    viewController.user = self.user;
+    viewController.commerceLogo = self.imageSelected;
+    viewController.tables = [self.tablesQuantity.text integerValue];
+    [self.navigationController pushViewController:viewController animated:true];
+}
+
+
+
 - (void)uploadPhotoAction {
     [self openGallery];
 }

@@ -34,19 +34,26 @@ static NSString *const PAYMENT_URL = @"payment/";
 }
 
 
-- (void) registerPayment:(Payment *)payment user:(User *)user successHandler:(ConnectionSuccessHandler)successHandler failureHandler:(ConnectionErrorHandler) failureHandler {
+- (void) registerPayment:(Payment *)payment
+                    user:(User *)user
+          successHandler:(ConnectionSuccessHandler)successHandler
+          failureHandler:(ConnectionErrorHandler) failureHandler {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BASE_URL, PAYMENT_URL]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
-    NSString *body = [NSString stringWithFormat:@"commerceId=%lld&userId=%lld&cost=%f&tableNumber=%lld&isCanceled=%d&currencyId=%lld&employeeId=%lld", payment.commerce.id, user.id, payment.cost, payment.tableNumber,0, payment.currency.id, payment.employeeId];
+    int64_t  currency = payment.currency.id == 0 ? 1 : payment.currency.id;
+    NSString *body = [NSString stringWithFormat:@"commerceId=%lld&userId=%lld&cost=%f&tableNumber=%lld&isCanceled=%d&currencyId=%lld&employeeId=%lld", payment.commerce.id, user.id, payment.cost, payment.tableNumber,0,currency , payment.employeeId];
     request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
     request.HTTPMethod = @"POST";
     [request addValue:[NSString stringWithFormat:@"Bearer %@",user.token] forHTTPHeaderField:@"Authorization"];
     [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
 }
 
-- (void) updatePayment:(Payment *)payment user:(User *)user successHandler:(ConnectionSuccessHandler)successHandler failureHandler:(ConnectionErrorHandler) failureHandler {
+- (void) updatePayment:(Payment *)payment
+                  user:(User *)user
+        successHandler:(ConnectionSuccessHandler)successHandler
+        failureHandler:(ConnectionErrorHandler) failureHandler {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/%lld", BASE_URL, PAYMENT_URL, payment.id]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -91,6 +98,23 @@ static NSString *const PAYMENT_URL = @"payment/";
     request.HTTPMethod = @"GET";
     [request addValue:
      [NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"Authorization"];
+    [self.sessionHandler sendRequestWithRequest:request
+                                successHandeler:successHandler
+                                 failureHandler:failureHandler];
+}
+
+- (void)deletePayment:(int64_t)paymentId
+                token:(NSString *)token
+        successHandler:(ConnectionSuccessHandler)successHandler
+        failureHandler:(ConnectionErrorHandler) failureHandler {
+    NSURL *url = [NSURL URLWithString:
+                  [NSString stringWithFormat:@"%@%@/%lld",BASE_URL, PAYMENT_URL, paymentId]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    request.HTTPMethod = @"DELETE";
+    [request addValue:
+    [NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"Authorization"];
     [self.sessionHandler sendRequestWithRequest:request
                                 successHandeler:successHandler
                                  failureHandler:failureHandler];

@@ -18,6 +18,7 @@ contactsTitle = "Contactos";
 splitTitle = "Dividir la Cuenta";
 cardsTitle = "Mis Tarjetas";
 cardInfoTitle = "Información de la Tarjeta";
+bankInformationTittle = "Información Bancaria";
 
 
 /*actions*/
@@ -58,7 +59,7 @@ forgotPasswordLabel = "¿Olvidó su contraseña?";
 orLabel = "ó";
 signUpHereLabel = "¿No tiene una cuenta? Regístrate acá";
 tableLabel = "Mesa";
-currentlySignedInLabel = "Usuario LogueadoÑ";
+currentlySignedInLabel = "Usuario Logueado";
 changeEmployeeLabel = "cambiar de empleado";
 paymentQuestionLabel = "¿Cómo te gustaría pagar la cuenta?";
 friendsLabel = "Amigos";
@@ -72,6 +73,8 @@ chooseQRLabel = "Elija tipo de QR";
 totalCostLabel = "Total";
 sendAction = "Enviar";
 tablesInfoLabel = "Si pones 0, el menú de mesas no aprecerá";
+accountNumberLabel = "Número de Cuenta";
+userIdentificarionLabel = "Cédula";
 
 /*Placeholders*/
 emailPlaceholder = "Email";
@@ -84,4 +87,6 @@ expirationDatePlaceholder = "Fecha de vencimiento";
 cvvPlaceholder = "cvv";
 totalCostPlaceholder = "Total";
 tablesQuantityPlaceholder = "¿Cuántas mesas?";
+accountNumberPlaceholder = "Número de Cuenta";
+userIdentificarionPlaceholder = "Cédula";
 

@@ -41,7 +41,7 @@ static NSString *const NOTIFICATIONS_URL = @"notifications/";
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
     int64_t commerceId = payment.employeeId == 0 ? payment.commerce.id : payment.employeeId;
-    NSString *body = [NSString stringWithFormat:@"tableNumber=%lld&commerceId=%lld&paymentId==%lld",
+    NSString *body = [NSString stringWithFormat:@"tableNumber=%lld&commerceId=%lld&paymentId=%lld",
                       payment.tableNumber, commerceId, payment.id];
     NSString * language = [[[[NSLocale preferredLanguages] objectAtIndex:0]
                             componentsSeparatedByString:@"-"] objectAtIndex:0];

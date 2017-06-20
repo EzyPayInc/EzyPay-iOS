@@ -18,7 +18,7 @@
 #import "SessionHandler.h"
 #import "EmployeeTableViewController.h"
 #import "DeviceTokenManager.h"
-#import "LoginViewController.h"
+#import "ChooseViewController.h"
 
 @interface SettingsTableViewController ()<SettingsCellDelegate, ProfileImageViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -227,7 +227,7 @@
     [manager deleteDeviceToken:localToken.deviceId user:self.user successHandler:^(id response) {
         localToken.isSaved = 0;
         [CoreDataManager saveContext];
-        LoginViewController *viewController = (LoginViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        ChooseViewController *viewController = (ChooseViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ChooseViewController"];
         [UserManager deleteUser];
         [self presentViewController:viewController animated:YES completion:nil];
     } failureHandler:^(id response) {

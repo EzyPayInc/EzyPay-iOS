@@ -11,7 +11,7 @@
 #import "NavigationController.h"
 #import "PaymentDetailViewController.h"
 #import "DeviceTokenManager.h"
-#import "LoginViewController.h"
+#import "ChooseViewController.h"
 #import "TableCollectionViewController.h"
 #import "CoreDataManager.h"
 
@@ -107,7 +107,7 @@
     [manager deleteDeviceToken:localToken.deviceId user:self.user successHandler:^(id response) {
         localToken.isSaved = 0;
         [CoreDataManager saveContext];
-        LoginViewController *viewController = (LoginViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        ChooseViewController *viewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ChooseViewController"];
         [UserManager deleteUser];
         [self presentViewController:viewController animated:YES completion:nil];
     } failureHandler:^(id response) {
