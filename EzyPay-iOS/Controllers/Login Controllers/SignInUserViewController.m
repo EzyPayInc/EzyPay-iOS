@@ -61,18 +61,20 @@
 }
 
 - (void)saveUser {
-    User *user = [CoreDataManager createEntityWithName:@"User"];
-    user.name = self.txtUserName.text;
-    user.lastName = self.txtLastname.text;
-    user.phoneNumber = self.txtPhoneNumber.text;
-    user.email = self.txtEmail.text;
-    user.userType = UserNavigation;
-    user.password = self.txtPassword.text;
+    if([self isDataValidated]) {
+        User *user = [CoreDataManager createEntityWithName:@"User"];
+        user.name = self.txtUserName.text;
+        user.lastName = self.txtLastname.text;
+        user.phoneNumber = self.txtPhoneNumber.text;
+        user.email = self.txtEmail.text;
+        user.userType = UserNavigation;
+        user.password = self.txtPassword.text;
     
-    SignInPaymentInformationControllerViewController *viewController = (SignInPaymentInformationControllerViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInPaymentInformationControllerViewController"];
-    viewController.user = user;
-    viewController.tables = 0;
-    [self.navigationController pushViewController:viewController animated:true];
+        SignInPaymentInformationControllerViewController *viewController = (SignInPaymentInformationControllerViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInPaymentInformationControllerViewController"];
+        viewController.user = user;
+        viewController.tables = 0;
+        [self.navigationController pushViewController:viewController animated:true];
+    }
 }
 
 #pragma mark - Textfield delegate
@@ -85,48 +87,48 @@
     [self saveUser];
 }
 
-/*- (BOOL)validateFields {
-    if([self validateEmptyFields:self.txtUserName withLabel:self.labelNameError] &&
-       [self validateEmptyFields:self.txtLastname withLabel:self.labelLastNameError] &&
-       [self validateEmptyFields:self.txtPhoneNumber withLabel:self.labelPhoneNumberError] &&
-       [self validateEmptyFields:self.txtEmail withLabel:self.labelEmailError] &&
-       [self validateEmptyFields:self.txtPassword withLabel:self.labelPasswordError]) {
-        if ([self isValidEmail] && [self isValidPassword]) {
-            return true;
-        }
+
+#pragma mark - validate Data
+- (BOOL)isDataValidated {
+    if(![self areFieldsFilled]) {
+        [self displayAlertWithMessage:NSLocalizedString(@"emptyFieldsErrorMessage", nil)];
+        return false;
+    } else if (![self isEmailValidated]) {
+        [self displayAlertWithMessage:NSLocalizedString(@"errorEmailInvalid", nil)];
+        return false;
+    } else if (![self isPasswordValidated]) {
+        [self displayAlertWithMessage:NSLocalizedString(@"errorPasswordInvalid", nil)];
+        return false;
     }
-    return false;
+    
+    return YES;
 }
 
-- (BOOL)validateEmptyFields:(UITextField *)textField withLabel:(UILabel *)labelError {
-    if (![textField hasText]) {
-        labelError.text = NSLocalizedString(@"errorFieldRequired", nil);
-        return false;
-    } else {
-        labelError.text = @"";
-        return true;
-    }
+- (BOOL)areFieldsFilled {
+    return [self.txtUserName hasText] && [self.txtLastname hasText] && [self.txtPhoneNumber hasText]
+        && [self.txtEmail hasText] && [self.txtPassword hasText];
 }
 
-- (BOOL)isValidEmail {
-    if(![self.txtEmail.text isValidEmail]) {
-        self.labelEmailError.text = NSLocalizedString(@"errorEmailInvalid", nil);
-        return false;
-    } else {
-        self.labelEmailError.text = @"";
-        return true;
 
-    }
+- (BOOL)isEmailValidated {
+    return [self.txtEmail.text isValidEmail];
 }
 
-- (BOOL)isValidPassword {
-    if(self.txtPassword.text.length < 5) {
-        self.labelPasswordError.text = NSLocalizedString(@"errorPasswordInvalid", nil);
-        return false;
-    } else {
-        self.labelPasswordError.text = @"";
-        return true;
-    }
-}*/
+- (BOOL)isPasswordValidated {
+    return self.txtPassword.text.length > 4;
+}
+
+- (void)displayAlertWithMessage:(NSString *)message {
+    UIAlertController *alert =
+    [UIAlertController alertControllerWithTitle:NSLocalizedString(@"errorTitle", nil)
+                                        message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil];
+    
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 
 @end

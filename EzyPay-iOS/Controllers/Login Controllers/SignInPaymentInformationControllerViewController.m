@@ -14,6 +14,7 @@
 #import "CoreDataManager.h"
 #import "NavigationController.h"
 #import "DeviceTokenManager.h"
+#import "ValidateCardInformationHelper.h"
 
 @interface SignInPaymentInformationControllerViewController ()<UITextFieldDelegate>
 
@@ -103,53 +104,17 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if([textField isEqual:self.txtExpirationDate]){
-        return [self validateExpirationDate:textField string:string];
+        return [ValidateCardInformationHelper validateExpirationDate:textField string:string];
     } else if ([textField isEqual:self.txtCvv]) {
-        return [self validateCvvValue:textField string:string];
+        return [ValidateCardInformationHelper validateCvvValue:textField string:string];
     } else if ([textField isEqual:self.txtCardNumber]){
-        return [self validateCardNumberValue:textField string:string];
+        return [ValidateCardInformationHelper validateCardNumberValue:textField string:string];
     }
     return YES;
 }
 
-- (BOOL)validateExpirationDate:(UITextField *)textField string:(NSString *)string {
-    NSString *expirationDate = [textField.text stringByAppendingString:string];
-    if(expirationDate.length == 2 && string.length > 0) {
-        textField.text = [expirationDate stringByAppendingString:@"/"];
-        return NO;
-    }
-    
-    if(expirationDate.length > 5) {
-        return NO;
-    }
-    if(expirationDate.length == 1) {
-        NSInteger dateToNumber = [expirationDate integerValue];
-        if(dateToNumber > 1) {
-            self.txtExpirationDate.text = [NSString stringWithFormat:@"0%@/",expirationDate];
-            return NO;
-        }
-    }
-    return YES;
-}
 
-- (BOOL)validateCvvValue:(UITextField *)textField string:(NSString *)string {
-    NSString *cvvString = [textField.text stringByAppendingString:string];
-    return cvvString.length > 3? NO : YES;
-}
-
-- (BOOL)validateCardNumberValue:(UITextField *)textField string:(NSString *)string {
-    NSString *cardNumber = [textField.text stringByAppendingString:string];
-    if (cardNumber.length < 20){
-        if([cardNumber stringByReplacingOccurrencesOfString:@" " withString:@""].length % 4 == 0 && string.length > 0){
-            textField.text = [cardNumber stringByAppendingString:@" "];
-            return NO;
-        }
-        return YES;
-    }
-    return NO;
-}
-
-- (BOOL)isNumeric:(NSString *)string {
++ (BOOL)isNumeric:(NSString *)string {
     NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
     NSNumber* number = [numberFormatter numberFromString:string];
     if (number != nil) {
@@ -157,7 +122,6 @@
     }
     return NO;
 }
-
 
 - (void)showServerMessage:(NSString *)message {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:message preferredStyle:UIAlertControllerStyleAlert];

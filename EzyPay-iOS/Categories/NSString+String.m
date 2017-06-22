@@ -20,4 +20,8 @@
     return [emailTest evaluateWithObject:self];
 }
 
+- (BOOL)isEmpty {
+    return self.length == 0;
+}
+
 @end

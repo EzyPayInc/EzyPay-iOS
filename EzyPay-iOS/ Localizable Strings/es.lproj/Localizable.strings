@@ -52,7 +52,7 @@ errorFieldRequired = "Este campo es requerido";
 errorEmailInvalid = "Este correo es invalido";
 errorPasswordInvalid = "La contraseña es muy corta";
 invalidCredentials = "Error, Nombre de usuario o contraseña. Por favor intenta de nuevo.";
-
+emptyFieldsErrorMessage = "Please fill the data required";
 
 /*labels*/
 forgotPasswordLabel = "¿Olvidó su contraseña?";

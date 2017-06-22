@@ -19,6 +19,7 @@
 #import "EmployeeTableViewController.h"
 #import "DeviceTokenManager.h"
 #import "ChooseViewController.h"
+#import "BankAccountViewController.h"
 
 @interface SettingsTableViewController ()<SettingsCellDelegate, ProfileImageViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -186,8 +187,13 @@
 }
 
 - (IBAction)showCardList:(id)sender {
-    CardListTableViewController *cardListViewController = (CardListTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CardListTableViewController"];
-     [self.navigationController pushViewController:cardListViewController animated:YES];
+    if(self.user.userType == UserNavigation) {
+        CardListTableViewController *cardListViewController = (CardListTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CardListTableViewController"];
+        [self.navigationController pushViewController:cardListViewController animated:YES];
+    } else {
+        BankAccountViewController *viewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"BankAccountViewController"];
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
 }
 
 - (IBAction)showOptions:(id)sender {

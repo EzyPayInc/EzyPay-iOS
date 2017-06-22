@@ -20,6 +20,7 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Google/SignIn.h>
+#import "NSString+String.h"
 
 @interface LoginViewController ()<UITextFieldDelegate, FBSDKLoginButtonDelegate, GIDSignInUIDelegate, GIDSignInDelegate>
     
@@ -109,18 +110,22 @@
 
 - (IBAction)loginAction:(id)sender {
     [self.view endEditing:YES];
-    NSString *email = self.txtEmail.text;
-    NSString *password = self.txtPassword.text;
+    if ([self areFieldsFilled]) {
+        NSString *email = self.txtEmail.text;
+        NSString *password = self.txtPassword.text;
     
-    UserManager *manager = [[UserManager alloc] init];
-    [manager login:email password:password successHandler:^(id response) {
-        NSDictionary *accessToken = [response valueForKey:@"access_token"];
-        int64_t id = (long)[[accessToken valueForKey:@"userId"] integerValue];
-        NSString *token = [accessToken valueForKey:@"value"];
-        [self getUserFromServer:id token:token];
-    } failureHandler:^(id response) {
-        NSLog(@"%@", response);
-    }];
+        UserManager *manager = [[UserManager alloc] init];
+        [manager login:email password:password successHandler:^(id response) {
+            NSDictionary *accessToken = [response valueForKey:@"access_token"];
+            int64_t id = (long)[[accessToken valueForKey:@"userId"] integerValue];
+            NSString *token = [accessToken valueForKey:@"value"];
+            [self getUserFromServer:id token:token];
+        } failureHandler:^(id response) {
+            NSLog(@"%@", response);
+        }];
+    } else {
+        [self displayAlertWithMessage:NSLocalizedString(@"emptyFieldsErrorMessage", nil)];
+    }
     
 }
 
@@ -177,6 +182,24 @@
             NSLog(@"%@", response);
         }];
     }
+}
+
+#pragma mark - validate data
+- (BOOL)areFieldsFilled {
+    return ![self.txtEmail.text isEmpty] && ![self.txtPassword.text isEmpty];
+}
+
+- (void)displayAlertWithMessage:(NSString *)message {
+    UIAlertController *alert =
+    [UIAlertController alertControllerWithTitle:NSLocalizedString(@"errorTitle", nil)
+                                        message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil];
+    
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 

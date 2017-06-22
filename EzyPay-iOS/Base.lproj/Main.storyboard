@@ -1404,6 +1404,68 @@
             </objects>
             <point key="canvasLocation" x="1000.0000000000001" y="2511.684782608696"/>
         </scene>
+        <!--Bank Account View Controller-->
+        <scene sceneID="t5e-TP-5bl">
+            <objects>
+                <viewController storyboardIdentifier="BankAccountViewController" id="4gk-2B-QnF" customClass="BankAccountViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dwV-W8-fRB"/>
+                        <viewControllerLayoutGuide type="bottom" id="enH-Bf-qcG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eNg-f3-I4c">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eeI-zi-ikM" userLabel="txtUserId" customClass="BottomBorderTextField">
+                                <rect key="frame" x="16" y="84" width="288" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="m1C-5j-wtz"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bM3-Pi-3FV" userLabel="txtBankAccount" customClass="BottomBorderTextField">
+                                <rect key="frame" x="16" y="154" width="288" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="82t-eU-FxC"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4G-jn-iJ9" userLabel="btnSave">
+                                <rect key="frame" x="80" y="224" width="160" height="50"/>
+                                <color key="backgroundColor" red="0.72941176470000002" green="0.82352941180000006" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="OMX-JF-5Xa"/>
+                                </constraints>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveUserAction:" destination="txg-r9-TFn" eventType="touchUpInside" id="Ubd-ja-haV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eeI-zi-ikM" firstAttribute="leading" secondItem="eNg-f3-I4c" secondAttribute="leadingMargin" id="I4f-WU-WKJ"/>
+                            <constraint firstItem="bM3-Pi-3FV" firstAttribute="leading" secondItem="eNg-f3-I4c" secondAttribute="leadingMargin" id="JPr-3v-FXK"/>
+                            <constraint firstItem="eeI-zi-ikM" firstAttribute="trailing" secondItem="eNg-f3-I4c" secondAttribute="trailingMargin" id="Wxy-QP-EaM"/>
+                            <constraint firstItem="r4G-jn-iJ9" firstAttribute="width" secondItem="eNg-f3-I4c" secondAttribute="width" multiplier="0.5" id="YFV-rh-Nh7"/>
+                            <constraint firstItem="eeI-zi-ikM" firstAttribute="top" secondItem="dwV-W8-fRB" secondAttribute="bottom" constant="20" id="Yas-WR-9Sm"/>
+                            <constraint firstItem="r4G-jn-iJ9" firstAttribute="centerX" secondItem="eNg-f3-I4c" secondAttribute="centerX" id="bWB-dv-xrc"/>
+                            <constraint firstItem="r4G-jn-iJ9" firstAttribute="top" secondItem="bM3-Pi-3FV" secondAttribute="bottom" constant="20" id="cC0-8P-YEH"/>
+                            <constraint firstItem="bM3-Pi-3FV" firstAttribute="top" secondItem="eeI-zi-ikM" secondAttribute="bottom" constant="20" id="cL3-eA-gU2"/>
+                            <constraint firstItem="bM3-Pi-3FV" firstAttribute="trailing" secondItem="eNg-f3-I4c" secondAttribute="trailingMargin" id="vNA-uf-tpR"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ICa-XZ-GhV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1824" y="2539"/>
+        </scene>
         <!--Choose View Controller-->
         <scene sceneID="VwH-gJ-HTS">
             <objects>
@@ -1773,6 +1835,7 @@
                     <navigationItem key="navigationItem" id="OGp-at-KnU"/>
                     <connections>
                         <segue destination="aLu-sv-xVA" kind="show" identifier="displayEmployees" id="2q2-w9-Axm"/>
+                        <segue destination="4gk-2B-QnF" kind="show" identifier="showBankAccount" id="Qai-mH-Tz9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yce-ty-kzL" userLabel="First Responder" sceneMemberID="firstResponder"/>

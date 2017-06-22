@@ -28,6 +28,8 @@
 		8022CD0F1EEBCDFA00FA6086 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8022CD0D1EEBCDFA00FA6086 /* FBSDKCoreKit.framework */; };
 		8022CD101EEBCDFA00FA6086 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8022CD0E1EEBCDFA00FA6086 /* FBSDKLoginKit.framework */; };
 		8022CD121EEBD02100FA6086 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8022CD111EEBD02100FA6086 /* Bolts.framework */; };
+		80242B2F1EFB884C000FC207 /* ValidateCardInformationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 80242B2E1EFB884C000FC207 /* ValidateCardInformationHelper.m */; };
+		80242B351EFBA50D000FC207 /* BankAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80242B341EFBA50D000FC207 /* BankAccountViewController.m */; };
 		802891671DD66C3800A088EE /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 802891661DD66C3800A088EE /* Connection.m */; };
 		802AE9431DC8194F006008B3 /* SessionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 802AE9421DC8194F006008B3 /* SessionHandler.m */; };
 		802C03AF1DF47C14001370E2 /* NSString+String.m in Sources */ = {isa = PBXBuildFile; fileRef = 802C03AE1DF47C14001370E2 /* NSString+String.m */; };
@@ -152,6 +154,10 @@
 		8022CD0D1EEBCDFA00FA6086 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		8022CD0E1EEBCDFA00FA6086 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		8022CD111EEBD02100FA6086 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		80242B2D1EFB884C000FC207 /* ValidateCardInformationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidateCardInformationHelper.h; sourceTree = "<group>"; };
+		80242B2E1EFB884C000FC207 /* ValidateCardInformationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidateCardInformationHelper.m; sourceTree = "<group>"; };
+		80242B331EFBA50D000FC207 /* BankAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BankAccountViewController.h; sourceTree = "<group>"; };
+		80242B341EFBA50D000FC207 /* BankAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BankAccountViewController.m; sourceTree = "<group>"; };
 		802891651DD66C3800A088EE /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
 		802891661DD66C3800A088EE /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
 		802AE9411DC8194F006008B3 /* SessionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionHandler.h; sourceTree = "<group>"; };
@@ -392,6 +398,8 @@
 				801D0C2A1DF13DA40079F9AB /* Card Controllers */,
 				80CFE8A91E1F65D000DE276C /* SettingsTableViewController.h */,
 				80CFE8AA1E1F65D000DE276C /* SettingsTableViewController.m */,
+				80242B331EFBA50D000FC207 /* BankAccountViewController.h */,
+				80242B341EFBA50D000FC207 /* BankAccountViewController.m */,
 			);
 			path = "Settings Controllers";
 			sourceTree = "<group>";
@@ -434,6 +442,15 @@
 				801FE3121DD40778004318CC /* CoreDataManager.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		80242B2C1EFB87F4000FC207 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				80242B2D1EFB884C000FC207 /* ValidateCardInformationHelper.h */,
+				80242B2E1EFB884C000FC207 /* ValidateCardInformationHelper.m */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		802AE9401DC818F4006008B3 /* Connection */ = {
@@ -624,6 +641,7 @@
 		80EFEB921DB8552900D874E2 /* EzyPay-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				80242B2C1EFB87F4000FC207 /* Helpers */,
 				8022CD111EEBD02100FA6086 /* Bolts.framework */,
 				8022CD0D1EEBCDFA00FA6086 /* FBSDKCoreKit.framework */,
 				8022CD0E1EEBCDFA00FA6086 /* FBSDKLoginKit.framework */,
@@ -996,10 +1014,12 @@
 				8071B4001DD2DF6F001D8761 /* CardServiceClient.m in Sources */,
 				80F602AD1E14B63B0030F7C5 /* CardListTableViewController.m in Sources */,
 				80F88F581E21F15600941E11 /* SplitTableViewCell.m in Sources */,
+				80242B351EFBA50D000FC207 /* BankAccountViewController.m in Sources */,
 				802891671DD66C3800A088EE /* Connection.m in Sources */,
 				801BFA3A1E77A5950098F0DF /* QRPaymentViewController.m in Sources */,
 				801B252D1DD79B620039FB90 /* CompletionHandler.m in Sources */,
 				80E982BA1E936D7400A0B4FA /* CommerceDetailViewController.m in Sources */,
+				80242B2F1EFB884C000FC207 /* ValidateCardInformationHelper.m in Sources */,
 				807F00461E9CAAE900F3B983 /* SplitViewController.m in Sources */,
 				80415C141E8B7742005696D3 /* FriendManager.m in Sources */,
 				80F14CF31EF8D78200D4AAD9 /* BankAccountManager.m in Sources */,
