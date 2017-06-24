@@ -83,7 +83,7 @@
 
 - (void)addScanAction {
     
-    UIImageView *cameraIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ic_camera"]];
+    UIImageView *cameraIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ic_micro_camera"]];
     cameraIcon.contentMode = UIViewContentModeScaleAspectFit;
     self.txtCardNumber.rightViewMode = UITextFieldViewModeAlways;
     self.txtCardNumber.rightView = cameraIcon;

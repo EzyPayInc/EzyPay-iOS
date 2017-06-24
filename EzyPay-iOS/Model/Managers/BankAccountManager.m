@@ -11,6 +11,14 @@
 
 @implementation BankAccountManager
 
+#pragma mark - CoreData methods
++ (BankAccount *)createBankAccountFromDictionary:(NSDictionary *)accountDictionary {
+    BankAccount *bankAccount = [CoreDataManager createEntityWithName:@"BankAccount"];
+    bankAccount.accountNumber = [accountDictionary objectForKey:@"accountNumber"];
+    bankAccount.userIdentification = [accountDictionary objectForKey:@"userIdentification"];
+    return bankAccount;
+}
+
 
 #pragma mark - Web Services methods
 - (void)registerAccount:(BankAccount *)bankAccount

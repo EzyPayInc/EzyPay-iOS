@@ -45,6 +45,7 @@ quickAction = "Quick";
 sendAction = "Send";
 uploadLogoAction = "Upload Logo";
 addNewEmployee = "Add a new Employee";
+saveAction = "Save";
 
 
 /*label errors*/

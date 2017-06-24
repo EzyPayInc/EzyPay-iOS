@@ -15,8 +15,9 @@
 #import "NavigationController.h"
 #import "DeviceTokenManager.h"
 #import "ValidateCardInformationHelper.h"
+#import <CardIO.h>
 
-@interface SignInPaymentInformationControllerViewController ()<UITextFieldDelegate>
+@interface SignInPaymentInformationControllerViewController ()<UITextFieldDelegate, CardIOPaymentViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *txtCardNumber;
 @property (strong, nonatomic) IBOutlet UITextField *txtCvv;
@@ -30,10 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = NSLocalizedString(@"signInTitle", nil);
-    self.txtExpirationDate.delegate = self;
-    self.txtCardNumber.delegate = self;
-    self.txtCvv.delegate = self;
-    self.btnSingUp.layer.cornerRadius = 20.f;
+    [self setupView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,10 +40,27 @@
 
 #pragma mark - actions
 - (void)setupView {
+    self.txtExpirationDate.delegate = self;
+    self.txtCardNumber.delegate = self;
+    self.txtCvv.delegate = self;
+    self.btnSingUp.layer.cornerRadius = 20.f;
     self.txtCardNumber.placeholder = NSLocalizedString(@"cardNumberPlaceholder", nil);
     self.txtExpirationDate.placeholder = NSLocalizedString(@"expirationDatePlaceholder", nil);
     self.txtCvv.placeholder = NSLocalizedString(@"cvvPlaceholder", nil);
     [self.btnSingUp setTitle:NSLocalizedString(@"signUpAction", nil) forState:UIControlStateNormal];
+    [self addScanAction];
+}
+
+- (void)addScanAction {
+    
+    UIImageView *cameraIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ic_micro_camera"]];
+    cameraIcon.contentMode = UIViewContentModeScaleAspectFit;
+    self.txtCardNumber.rightViewMode = UITextFieldViewModeAlways;
+    self.txtCardNumber.rightView = cameraIcon;
+    self.txtCardNumber.rightView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *scanGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                  action:@selector(scanCardAction)];
+    [self.txtCardNumber.rightView addGestureRecognizer:scanGesture];
 }
 
 
@@ -108,7 +123,9 @@
     } else if ([textField isEqual:self.txtCvv]) {
         return [ValidateCardInformationHelper validateCvvValue:textField string:string];
     } else if ([textField isEqual:self.txtCardNumber]){
-        return [ValidateCardInformationHelper validateCardNumberValue:textField string:string];
+        return [ValidateCardInformationHelper validateCardNumberValue:textField
+                                        shouldChangeCharactersInRange:range
+                                                               string:string];
     }
     return YES;
 }
@@ -131,6 +148,13 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+- (void)scanCardAction {
+    CardIOPaymentViewController *scanViewController = [[CardIOPaymentViewController alloc] initWithPaymentDelegate:self];
+    scanViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    scanViewController.hideCardIOLogo = YES;
+    [self presentViewController:scanViewController animated:YES completion:nil];
+}
+
 #pragma mark - registerToken
 - (void)registerToken:(User *)user {
     LocalToken *localToken = [DeviceTokenManager getDeviceToken];
@@ -144,4 +168,20 @@
         }];
     }
 }
+
+#pragma mark - CardIOPaymentViewControllerDelegate
+
+- (void)userDidProvideCreditCardInfo:(CardIOCreditCardInfo *)info inPaymentViewController:(CardIOPaymentViewController *)paymentViewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    self.txtCardNumber.text = info.cardNumber;
+    self.txtExpirationDate.text = [NSString stringWithFormat:@"%02lu / %lu",
+                                   (unsigned long)info.expiryMonth, (unsigned long)info.expiryYear];
+    self.txtCvv.text = info.cvv;
+}
+
+- (void)userDidCancelPaymentViewController:(CardIOPaymentViewController *)paymentViewController {
+    NSLog(@"User cancelled scan");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end

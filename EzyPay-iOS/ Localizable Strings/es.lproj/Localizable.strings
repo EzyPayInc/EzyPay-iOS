@@ -45,6 +45,7 @@ syncAction = "Sincronizado";
 quickAction = "Rápido";
 uploadLogoAction = "Subir un Logo";
 addNewEmployee = "Agregar un nuevo Empleado";
+saveAction = "Guardar";
 
 
 /*label errors*/

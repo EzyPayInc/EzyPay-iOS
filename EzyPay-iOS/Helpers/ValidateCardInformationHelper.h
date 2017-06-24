@@ -12,6 +12,8 @@
 
 + (BOOL)validateExpirationDate:(UITextField *)textField string:(NSString *)string;
 + (BOOL)validateCvvValue:(UITextField *)textField string:(NSString *)string;
-+ (BOOL)validateCardNumberValue:(UITextField *)textField string:(NSString *)string;
++ (BOOL)validateCardNumberValue:(UITextField *)textField
+  shouldChangeCharactersInRange:(NSRange)range
+                         string:(NSString *)string;
 
 @end

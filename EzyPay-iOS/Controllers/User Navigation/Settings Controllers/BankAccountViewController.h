@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserManager.h"
+
+
+typedef enum {
+    ViewBankAccount,
+    AddBankAccount,
+    EditBankAccount
+}BankAccountDetailViewType;
 
 @interface BankAccountViewController : UIViewController
+
+@property (nonatomic, strong) User *user;
+@property (nonatomic, assign) BankAccountDetailViewType viewMode;
 
 @end

@@ -191,7 +191,9 @@
         CardListTableViewController *cardListViewController = (CardListTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CardListTableViewController"];
         [self.navigationController pushViewController:cardListViewController animated:YES];
     } else {
-        BankAccountViewController *viewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"BankAccountViewController"];
+        BankAccountViewController *viewController = (BankAccountViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"BankAccountViewController"];
+        viewController.user = self.user;
+        viewController.viewMode = ViewBankAccount;
         [self.navigationController pushViewController:viewController animated:YES];
     }
 }

@@ -9,8 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "BankAccount+CoreDataClass.h"
 #import "Connection.h"
+#import "CoreDataManager.h"
 
 @interface BankAccountManager : NSObject
+
+#pragma mark - CoreData methods
++ (BankAccount *)createBankAccountFromDictionary:(NSDictionary *)accountDictionary;
 
 
 #pragma mark - Web Services methods

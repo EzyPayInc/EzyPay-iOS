@@ -35,16 +35,33 @@
     return cvvString.length > 3? NO : YES;
 }
 
-+ (BOOL)validateCardNumberValue:(UITextField *)textField string:(NSString *)string {
-    NSString *cardNumber = [textField.text stringByAppendingString:string];
-    if (cardNumber.length <= 20){
-        if([textField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length % 4 == 0 && string.length > 0){
-            textField.text = [textField.text stringByAppendingString:[NSString stringWithFormat:@" %@", string]];
-            return NO;
-        }
-        return YES;
++ (BOOL)validateCardNumberValue:(UITextField *)textField
+  shouldChangeCharactersInRange:(NSRange)range
+                         string:(NSString *)string{
+    NSMutableString *cardNumber = [NSMutableString stringWithString:textField.text];
+    if (string.length == 0) {
+        [cardNumber deleteCharactersInRange:range];
+    } else {
+        [cardNumber insertString:string atIndex:range.location];
+    }
+    if (cardNumber.length < 20){
+        cardNumber = (NSMutableString *)[cardNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
+        textField.text = [self setCardNumberFormat:cardNumber];
     }
     return NO;
 }
+
++ (NSString *)setCardNumberFormat:(NSMutableString *)cardNumber {
+    NSMutableString *cardNumberWithFormat = [NSMutableString string];
+    for (int i = 0; i < [cardNumber length]; i++) {
+        char currentChar = [cardNumber characterAtIndex:i];
+        if(i== 4 || i== 8 || i == 12) {
+            [cardNumberWithFormat appendFormat:@" %c", currentChar];
+        } else {
+            [cardNumberWithFormat appendFormat:@"%c", currentChar];
+        }
+    }
+    return cardNumberWithFormat;
+} 
 
 @end
