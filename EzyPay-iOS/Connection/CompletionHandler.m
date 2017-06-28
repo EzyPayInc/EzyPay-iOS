@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "NavigationController.h"
 #import "LoginViewController.h"
+#import "LogInCommerceViewController.h"
 
 @implementation CompletionHandler
 
@@ -29,7 +30,7 @@
 }
 
 - (void)handleConnectionError:(Connection *)connection {
-    NSLog(@"Connection error");
+    [self communicationError];
 }
 
 - (void)handleCompletionRequest:(Connection *)connection {
@@ -44,8 +45,37 @@
 - (void)invalidCredentials {
     NavigationController *navigationController = [[NavigationController alloc] init];
     UIViewController *viewController = [navigationController topViewController];
+    NSString *message = ([viewController isKindOfClass:[LoginViewController class]] ||
+    [viewController isKindOfClass:[LogInCommerceViewController class]]) ?
+    NSLocalizedString(@"invalidCredentials", nil) : NSLocalizedString(@"sessionExpiredMessage", nil);
     NSString *title = NSLocalizedString(@"errorTitle", nil);
-    NSString *message = NSLocalizedString(@"invalidCredentials", nil);
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * action){
+                                                         [self invalidCredentialsAction:viewController];
+                                                     }];
+    
+    [alert addAction:okAction];
+    [viewController presentViewController:alert animated:YES completion:nil];
+
+}
+
+- (void)invalidCredentialsAction:(UIViewController *)topViewController {
+    if([topViewController isKindOfClass:[LoginViewController class]] ||
+        [topViewController isKindOfClass:[LogInCommerceViewController class]]) {
+        return;
+    }
+    [NavigationController logoutFromViewController:topViewController];
+}
+
+- (void)communicationError {
+    NavigationController *navigationController = [[NavigationController alloc] init];
+    UIViewController *viewController = [navigationController topViewController];
+    NSString *message = NSLocalizedString(@"communicationErrorMessage", nil);
+    NSString *title = NSLocalizedString(@"errorTitle", nil);
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
                                                                    message:message
                                                             preferredStyle:UIAlertControllerStyleAlert];
@@ -55,7 +85,5 @@
     
     [alert addAction:okAction];
     [viewController presentViewController:alert animated:YES completion:nil];
-
 }
-
 @end

@@ -13,6 +13,9 @@
 #import "Friend+CoreDataClass.h"
 #import "RestaurantDetailViewController.h"
 #import "PaymentViewController.h"
+#import "CoreDataManager.h"
+#import "DeviceTokenManager.h"
+#import "ChooseViewController.h"
 
 @implementation NavigationController
 
@@ -215,4 +218,24 @@
         return rootViewController;
     }
 }
+
++ (void)logoutUser:(User *) user fromViewController:(UIViewController *) viewController {
+    LocalToken *localToken = [DeviceTokenManager getDeviceToken];
+    DeviceTokenManager *manager = [[DeviceTokenManager alloc] init];
+    [manager deleteDeviceToken:localToken.deviceId user:user successHandler:^(id response) {
+        localToken.isSaved = 0;
+        [CoreDataManager saveContext];
+        [[self class] logoutFromViewController:viewController];
+    } failureHandler:^(id response) {
+        NSLog(@"Response %@", response);
+    }];
+}
+
++ (void)logoutFromViewController:(UIViewController *)viewController {
+    ChooseViewController *chooseViewController = (ChooseViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ChooseViewController"];
+    [UserManager deleteUser];
+    [viewController presentViewController:chooseViewController animated:YES completion:nil];
+}
+
+
 @end

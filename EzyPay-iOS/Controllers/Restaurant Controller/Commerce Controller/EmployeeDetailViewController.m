@@ -12,7 +12,7 @@
 #import "NavigationController.h"
 
 
-@interface EmployeeDetailViewController ()
+@interface EmployeeDetailViewController ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *txtName;
 @property (weak, nonatomic) IBOutlet UITextField *txtLastName;
@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"employeeTitle", nil);
-    self.btnSave.layer.cornerRadius = 20.f;
+    [self setupView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,8 +35,35 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setupView {
+    self.txtName.placeholder = NSLocalizedString(@"namePlaceholder", nil);
+    self.txtLastName.placeholder = NSLocalizedString(@"lastNamePlaceholder", nil);
+    self.txtEmail.placeholder = NSLocalizedString(@"userNamePlaceholder", nil);
+    self.txtPassword.placeholder = NSLocalizedString(@"passwordPlaceholder", nil);
+    [self.btnSave setTitle:NSLocalizedString(@"saveAction", nil) forState:UIControlStateNormal];
+    [self setTextFieldDelegate];
+    self.btnSave.layer.cornerRadius = 20.f;
+}
+
+
+- (void)setTextFieldDelegate {
+    self.txtName.delegate = self;
+    self.txtLastName.delegate = self;
+    self.txtEmail.delegate = self;
+    self.txtPassword.delegate = self;
+}
+
+#pragma mark textfield delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 #pragma mark - Actions
 - (IBAction)saveEmployee:(id)sender {
+    if(![self isDataValidated]) {
+        return;
+    }
     User *employee = [CoreDataManager createEntityWithName:@"User"];
     employee.name = self.txtName.text;
     employee.lastName = self.txtLastName.text;
@@ -50,6 +77,49 @@
     } failureHandler:^(id response) {
         NSLog(@"Error in register employee request %@", response);
     }];
+}
+
+#pragma mark - validate Data
+- (BOOL)isDataValidated {
+    if(![self areFieldsFilled]) {
+        [self displayAlertWithMessage:NSLocalizedString(@"emptyFieldsErrorMessage", nil)];
+        return false;
+    } else if (![self isUserNameValidated]) {
+        [self displayAlertWithMessage:NSLocalizedString(@"errorUserNameInvalid", nil)];
+        return false;
+    } else if (![self isPasswordValidated]) {
+        [self displayAlertWithMessage:NSLocalizedString(@"errorPasswordInvalid", nil)];
+        return false;
+    }
+    
+    return YES;
+}
+
+- (BOOL)areFieldsFilled {
+    return [self.txtName hasText] && [self.txtLastName hasText]
+    && [self.txtEmail hasText] && [self.txtPassword hasText];
+}
+
+
+- (BOOL)isUserNameValidated {
+    return self.txtEmail.text.length > 4;
+}
+
+- (BOOL)isPasswordValidated {
+    return self.txtPassword.text.length > 4;
+}
+
+- (void)displayAlertWithMessage:(NSString *)message {
+    UIAlertController *alert =
+    [UIAlertController alertControllerWithTitle:NSLocalizedString(@"errorTitle", nil)
+                                        message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil];
+    
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end

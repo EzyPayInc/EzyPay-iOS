@@ -20,6 +20,7 @@
 #import "DeviceTokenManager.h"
 #import "ChooseViewController.h"
 #import "BankAccountViewController.h"
+#import "NavigationController.h"
 
 @interface SettingsTableViewController ()<SettingsCellDelegate, ProfileImageViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -211,7 +212,7 @@
     UIAlertAction *logOutAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"logOutAction", nil)
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction * _Nonnull action) {
-        [self logOutAction];
+        [NavigationController logoutUser:self.user fromViewController:self];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"cancelAction", nil)
                                                            style:UIAlertActionStyleCancel
@@ -227,20 +228,6 @@
     self.isEditableMode = YES;
     [self addEditButtons];
     [self.tableView reloadData];
-}
-
-- (void)logOutAction {
-    LocalToken *localToken = [DeviceTokenManager getDeviceToken];
-    DeviceTokenManager *manager = [[DeviceTokenManager alloc] init];
-    [manager deleteDeviceToken:localToken.deviceId user:self.user successHandler:^(id response) {
-        localToken.isSaved = 0;
-        [CoreDataManager saveContext];
-        ChooseViewController *viewController = (ChooseViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ChooseViewController"];
-        [UserManager deleteUser];
-        [self presentViewController:viewController animated:YES completion:nil];
-    } failureHandler:^(id response) {
-        NSLog(@"Response %@", response);
-    }];
 }
 
 - (void)addEditButtons {

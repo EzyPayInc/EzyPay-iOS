@@ -13,6 +13,7 @@
 #import "CoreDataManager.h"
 #import "NSString+String.h"
 #import "NavigationController.h"
+#import "LoginViewController.h"
 
 @interface SignInUserViewController ()<UITextFieldDelegate>
 
@@ -40,6 +41,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (void)setupView {
     self.txtUserName.placeholder = NSLocalizedString(@"namePlaceholder", nil);
     self.txtLastname.placeholder = NSLocalizedString(@"lastNamePlaceholder", nil);
@@ -51,6 +53,7 @@
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     self.btnNext.layer.cornerRadius = 20.f;
 }
+
 
 - (void)setTextFieldDelegate {
     self.txtUserName.delegate = self;

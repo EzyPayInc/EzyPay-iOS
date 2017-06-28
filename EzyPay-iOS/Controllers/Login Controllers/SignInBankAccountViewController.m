@@ -37,7 +37,7 @@
 }
 
 - (void)setupView {
-    self.navigationItem.title = NSLocalizedString(@"bankInformation", nil);
+    self.navigationItem.title = NSLocalizedString(@"bankInformationTitle", nil);
     self.txtBankAccount.placeholder = NSLocalizedString(@"accountNumberPlaceholder", nil);
     self.txtUserId.placeholder = NSLocalizedString(@"userIdentificarionPlaceholder", nil);
     [self.btnSave setTitle:NSLocalizedString(@"signInTitle", nil) forState:UIControlStateNormal];

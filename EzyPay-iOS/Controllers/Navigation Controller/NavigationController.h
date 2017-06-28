@@ -27,5 +27,7 @@ typedef enum {
                        withUser:(User *) user;
 - (UITabBarController *)setupTabBarController:(NavigationTypes) navigationType withUser:(User *)user;
 - (UIViewController*)topViewController;
++ (void)logoutUser:(User *) user fromViewController:(UIViewController *) viewController;
++ (void)logoutFromViewController:(UIViewController *)viewController;
 
 @end

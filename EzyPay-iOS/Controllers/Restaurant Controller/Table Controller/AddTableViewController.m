@@ -13,6 +13,8 @@
 @interface AddTableViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *txtTableNumber;
+@property (weak, nonatomic) IBOutlet UILabel *tableNumebrAction;
+@property (weak, nonatomic) IBOutlet UIButton *btnAddTable;
 
 @end
 
@@ -20,6 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = NSLocalizedString(@"addTableTitle", nil);
+    [self setupView];
     // Do any additional setup after loading the view.
 }
 
@@ -28,8 +32,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setupView {
+    self.tableNumebrAction.text = NSLocalizedString(@"tableNumberLabel", nil);
+    [self.btnAddTable setTitle:NSLocalizedString(@"addTableAction", nil) forState:UIControlStateNormal];
+    self.btnAddTable.layer.cornerRadius = 20.f;
+}
+
 #pragma mark - Actions
 - (IBAction)addTableAction:(id)sender {
+    if(![self.txtTableNumber hasText]) {
+        [self displayAlertWithMessage:NSLocalizedString(@"emptyFieldsErrorMessage", nil)];
+        return;
+    }
     int64_t tableNumber = [self.txtTableNumber.text integerValue];
     Table *table = [CoreDataManager createEntityWithName:@"Table"];
     table.restaurant = self.user;
@@ -41,6 +55,20 @@
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }
+
+- (void)displayAlertWithMessage:(NSString *)message {
+    UIAlertController *alert =
+    [UIAlertController alertControllerWithTitle:NSLocalizedString(@"errorTitle", nil)
+                                        message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil];
+    
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 
 
 @end

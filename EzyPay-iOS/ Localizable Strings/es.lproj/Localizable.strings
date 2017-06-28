@@ -18,7 +18,9 @@ contactsTitle = "Contactos";
 splitTitle = "Dividir la Cuenta";
 cardsTitle = "Mis Tarjetas";
 cardInfoTitle = "Información de la Tarjeta";
-bankInformationTittle = "Información Bancaria";
+bankInformationTitle = "Información Bancaria";
+addTableTitle = "Agregar Mesa";
+paymentTitle = "Pago";
 
 
 /*actions*/
@@ -46,14 +48,23 @@ quickAction = "Rápido";
 uploadLogoAction = "Subir un Logo";
 addNewEmployee = "Agregar un nuevo Empleado";
 saveAction = "Guardar";
+addTableAction = "Agregar Mesa";
+addCardAction = "Agregar Tarjeta";
 
 
 /*label errors*/
 errorFieldRequired = "Este campo es requerido";
-errorEmailInvalid = "Este correo es invalido";
+errorEmailInvalid = "El correo es inválido";
+errorUserNameInvalid = "Username muy corto";
 errorPasswordInvalid = "La contraseña es muy corta";
-invalidCredentials = "Error, Nombre de usuario o contraseña. Por favor intenta de nuevo.";
-emptyFieldsErrorMessage = "Please fill the data required";
+invalidCredentials = "Error, Nombre de usuario o contraseña inválidos. Por favor intenta de nuevo.";
+emptyFieldsErrorMessage = "Por favor ingrese los datos requeridos";
+invalidCardNumberError = "Ingrese un número de tarjeta válido";
+invalidCvvError = "Ingrese un código de tarjeta válido";
+invalidExpirationDateError = "Ingrese una fecha de vencimiento válida";
+imageRequiredMessage = "El ícono es requerido";
+sessionExpiredMessage = "La sesión ha expirado";
+communicationErrorMessage = "Error de Comunicación. Por favor verifique su conexión a internet";
 
 /*labels*/
 forgotPasswordLabel = "¿Olvidó su contraseña?";
@@ -76,10 +87,13 @@ sendAction = "Enviar";
 tablesInfoLabel = "Si pones 0, el menú de mesas no aprecerá";
 accountNumberLabel = "Número de Cuenta";
 userIdentificarionLabel = "Cédula";
+tableNumberLabel = "Número de Mesa";
+tipLabel = "Propina";
 
 /*Placeholders*/
 emailPlaceholder = "Email";
 passwordPlaceholder = "Contraseña";
+userNamePlaceholder = "Username";
 namePlaceholder = "Nombre";
 lastNamePlaceholder = "Apellidos";
 phoneNumberPlaceholder = "Teléfono";

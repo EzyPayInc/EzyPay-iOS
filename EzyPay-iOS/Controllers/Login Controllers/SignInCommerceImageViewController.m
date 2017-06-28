@@ -73,6 +73,9 @@
 
 #pragma mark actions
 - (IBAction)nextAction:(id)sender {
+    if(![self validateImage]) {
+        return;
+    }
     SignInBankAccountViewController *viewController = (SignInBankAccountViewController *)
     [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInBankAccountViewController"];
     self.user.userType = [self.tablesQuantity.text integerValue] > 0 ? RestaurantNavigation : CommerceNavigation;
@@ -80,6 +83,7 @@
     viewController.commerceLogo = self.imageSelected;
     viewController.tables = [self.tablesQuantity.text integerValue];
     [self.navigationController pushViewController:viewController animated:true];
+        
 }
 
 
@@ -105,6 +109,28 @@
     self.profileCommerceImage.image = image;
     self.imageSelected = image;
     [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - validate data 
+- (BOOL)validateImage {
+    if(self.imageSelected == nil) {
+        [self displayAlertWithMessage:NSLocalizedString(@"imageRequiredMessage", nil)];
+        return  NO;
+    }
+    return YES;
+}
+
+- (void)displayAlertWithMessage:(NSString *)message {
+    UIAlertController *alert =
+    [UIAlertController alertControllerWithTitle:NSLocalizedString(@"errorTitle", nil)
+                                        message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil];
+    
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end

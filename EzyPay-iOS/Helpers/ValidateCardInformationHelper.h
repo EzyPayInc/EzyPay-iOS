@@ -10,10 +10,19 @@
 
 @interface ValidateCardInformationHelper : NSObject
 
-+ (BOOL)validateExpirationDate:(UITextField *)textField string:(NSString *)string;
 + (BOOL)validateCvvValue:(UITextField *)textField string:(NSString *)string;
 + (BOOL)validateCardNumberValue:(UITextField *)textField
   shouldChangeCharactersInRange:(NSRange)range
                          string:(NSString *)string;
++ (NSString *)setCardNumberFormat:(NSMutableString *)cardNumber;
++ (BOOL)validateExpirationDate:(UITextField *)textField
+ shouldChangeCharactersInRange:(NSRange)range
+                        string:(NSString *)string;
++ (void)creditCardExpiryFormatter:(UITextField *)textField;
++ (NSString *)formatCreditCardExpiry:(NSString *)input;
++ (BOOL)validateCardNumber:(NSString *)cardNumber
+                       cvv:(NSString *)cvv
+            expirationDate:(NSString *)expirationDate
+            viewController:(UIViewController *)viewController;
 
 @end

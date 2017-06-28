@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = NSLocalizedString(@"bankInformationTittle", nil);
+    self.navigationItem.title = NSLocalizedString(@"bankInformationTitle", nil);
     [self setupView];
     [self getCommerceBankAccount];
 }

@@ -61,7 +61,10 @@
 
 #pragma mark - actions
 - (void)addCancelButton {
-    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(cancelAction)];
+    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"cancelAction", nil)
+                                                                      style:UIBarButtonItemStyleDone
+                                                                     target:self
+                                                                     action:@selector(cancelAction)];
     self.navigationItem.leftBarButtonItem = leftBarButton;
 }
 

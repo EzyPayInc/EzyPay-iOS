@@ -102,17 +102,7 @@
 }
 
 - (void)logOutAction {
-    LocalToken *localToken = [DeviceTokenManager getDeviceToken];
-    DeviceTokenManager *manager = [[DeviceTokenManager alloc] init];
-    [manager deleteDeviceToken:localToken.deviceId user:self.user successHandler:^(id response) {
-        localToken.isSaved = 0;
-        [CoreDataManager saveContext];
-        ChooseViewController *viewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ChooseViewController"];
-        [UserManager deleteUser];
-        [self presentViewController:viewController animated:YES completion:nil];
-    } failureHandler:^(id response) {
-        NSLog(@"Response %@", response);
-    }];
+    [NavigationController logoutUser:self.user fromViewController:self];
 }
 
 @end

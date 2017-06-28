@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnUser;
 @property (weak, nonatomic) IBOutlet UIButton *btnCommerce;
 
+@property (weak, nonatomic) IBOutlet UILabel *orLabel;
+
 @end
 
 @implementation ChooseViewController
@@ -23,6 +25,7 @@
     [super viewDidLoad];
     self.btnUser.layer.cornerRadius = 20.f;
     self.btnCommerce.layer.cornerRadius = 20.f;
+    self.orLabel.text = NSLocalizedString(@"orLabel", nil);
     [self.btnUser setTitle:NSLocalizedString(@"userAction", nil)
                   forState:UIControlStateNormal];
     [self.btnCommerce setTitle:NSLocalizedString(@"commerceAction", nil)
@@ -49,14 +52,15 @@
 - (void)navigateToSignIn
 {
     LoginViewController *viewController = (LoginViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    [self.navigationController pushViewController:viewController animated:true];
+    UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (void)navigateToSignInCommerce
 {
     LogInCommerceViewController *viewController =
     (LogInCommerceViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LogInCommerceViewController"];
-    [self.navigationController pushViewController:viewController animated:true];
+    [self.navigationController presentViewController:viewController animated:true completion:nil];
 }
 
 @end

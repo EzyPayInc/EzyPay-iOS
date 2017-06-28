@@ -11,8 +11,13 @@
 #import "UserManager.h"
 #import "CardManager.h"
 #import "CardIO.h"
+#import "ValidateCardInformationHelper.h"
 
 @interface CardDetailViewController ()<UITextFieldDelegate, CardIOPaymentViewControllerDelegate>
+
+@property (weak, nonatomic) IBOutlet UILabel *cardNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *expDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cvvLabel;
 
 @property (weak, nonatomic) IBOutlet UITextField *txtCardNumber;
 @property (weak, nonatomic) IBOutlet UITextField *txtExpirationDate;
@@ -29,6 +34,7 @@
     [self setupView];
     [self roundedViews];
     self.user = [UserManager getUser];
+    [self.txtExpirationDate addTarget:self action:@selector(creditCardExpiryFormatter:) forControlEvents:UIControlEventEditingChanged];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,6 +62,10 @@
 
 - (void)setupViewWithInteractionEnabled:(BOOL)userInteractionEnabled {
     [self populateFields];
+    self.cardNumberLabel.text = NSLocalizedString(@"cardNumberPlaceholder", nil);
+    self.expDateLabel.text = NSLocalizedString(@"expirationDatePlaceholder", nil);
+    self.cvvLabel.text = NSLocalizedString(@"cvvPlaceholder", nil);
+    [self.btnAction setTitle:NSLocalizedString(@"saveAction", nil) forState:UIControlStateNormal];
     self.txtCvv.userInteractionEnabled = userInteractionEnabled;
     self.txtCardNumber.userInteractionEnabled = userInteractionEnabled;
     self.txtExpirationDate.userInteractionEnabled = userInteractionEnabled;
@@ -100,7 +110,7 @@
 - (void)populateFields {
     if(self.card) {
         self.txtExpirationDate.text = [NSString stringWithFormat:@"%hd/%hd", self.card.month, self.card.year];
-        self.txtCardNumber.text = self.card.number;
+        self.txtCardNumber.text = [ValidateCardInformationHelper setCardNumberFormat:[NSMutableString stringWithString:self.card.number]];
         self.txtCvv.text = [NSString stringWithFormat:@"%hd", self.card.cvv];
     }
 }
@@ -120,7 +130,10 @@
 }
 
 - (IBAction)submitAction:(id)sender {
-    if([self isCardNumberValid] && [self isCvvValid] && [self isDateValid]) {
+    if([ValidateCardInformationHelper validateCardNumber:self.txtCardNumber.text
+                                                     cvv:self.txtCvv.text
+                                          expirationDate:self.txtExpirationDate.text
+                                          viewController:self]) {
         Card *card = [CoreDataManager createEntityWithName:@"Card"];
         card.id = self.card.id;
         card.user = self.user;
@@ -166,79 +179,25 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if ([string isEqualToString:@""]) {
+        return YES;
+    }
     if([textField isEqual:self.txtExpirationDate]){
-        return [self expirationDateFormat:textField string:string];
+        return [ValidateCardInformationHelper validateExpirationDate:textField
+                                       shouldChangeCharactersInRange:range
+                                                              string:string];
     } else if ([textField isEqual:self.txtCvv]) {
-        return [self cvvFormtat:textField string:string];
+        return [ValidateCardInformationHelper validateCvvValue:textField string:string];
     } else if ([textField isEqual:self.txtCardNumber]){
-        return [self cardNumberFormat:textField string:string];
+        return [ValidateCardInformationHelper validateCardNumberValue:textField
+                                        shouldChangeCharactersInRange:range
+                                                               string:string];
     }
     return YES;
 }
 
-- (BOOL)expirationDateFormat:(UITextField *)textField string:(NSString *)string {
-    NSString *expirationDate = [textField.text stringByAppendingString:string];
-    if(expirationDate.length == 2 && string.length > 0) {
-        textField.text = [expirationDate stringByAppendingString:@"/"];
-        return NO;
-    }
-
-    if(expirationDate.length > 5) {
-        return NO;
-    }
-    if(expirationDate.length == 1) {
-        NSInteger dateToNumber = [expirationDate integerValue];
-        if(dateToNumber > 1) {
-            self.txtExpirationDate.text = [NSString stringWithFormat:@"0%@/",expirationDate];
-            return NO;
-        }
-    }
-    return YES;
-}
-
-- (BOOL)cvvFormtat:(UITextField *)textField string:(NSString *)string {
-    NSString *cvvString = [textField.text stringByAppendingString:string];
-    return cvvString.length > 3? NO : YES;
-}
-
-- (BOOL)cardNumberFormat:(UITextField *)textField string:(NSString *)string {
-    NSString *cardNumber = [textField.text stringByAppendingString:string];
-    if (cardNumber.length < 20){
-        if([cardNumber stringByReplacingOccurrencesOfString:@" " withString:@""].length % 4 == 0 && string.length > 0){
-            textField.text = [cardNumber stringByAppendingString:@" "];
-            return NO;
-        }
-        return YES;
-    }
-    return NO;
-}
-
-- (BOOL)isCardNumberValid {
-    return !(self.txtCardNumber.text.length < 16);
-}
-
-- (BOOL)isCvvValid {
-    return (self.txtCvv.text.length >= 3) && ([self isNumeric:self.txtCvv.text]);
-}
-
-- (BOOL)isDateValid {
-    NSString *expirationDate = self.txtExpirationDate.text;
-    if(expirationDate.length >= 4) {
-        NSArray *array = [expirationDate componentsSeparatedByString:@"/"];
-        if([array count] == 2) {
-            return [self isNumeric:array[0]] && [self isNumeric:array[1]];
-        }
-    }
-    return false;
-}
-
-- (BOOL)isNumeric:(NSString *)string {
-    NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-    NSNumber* number = [numberFormatter numberFromString:string];
-    if (number != nil) {
-        return YES;
-    }
-    return NO;
+- (void)creditCardExpiryFormatter:(id)sender {
+    [ValidateCardInformationHelper creditCardExpiryFormatter:self.txtExpirationDate];
 }
 
 - (void)displayErrorMessage {
@@ -265,12 +224,15 @@
 - (void)userDidProvideCreditCardInfo:(CardIOCreditCardInfo *)info inPaymentViewController:(CardIOPaymentViewController *)paymentViewController {
     [self dismissViewControllerAnimated:YES completion:nil];
     
-    NSString *cardData = [NSString stringWithFormat:@"Received card info. Number: %@, expiry: %02lu/%lu, cvv: %@.", info.cardNumber, (unsigned long)info.expiryMonth, (unsigned long)info.expiryYear, info.cvv];
-    NSLog(@"Card Data : %@", cardData);
+    self.txtCardNumber.text = [ValidateCardInformationHelper setCardNumberFormat:[NSMutableString stringWithFormat:@"%@", info.cardNumber]];
+    NSString *year = [[NSString stringWithFormat:@"%lu", (unsigned long)info.expiryYear]
+                      substringWithRange:NSMakeRange(2, 2)];
+    self.txtExpirationDate.text = [NSString stringWithFormat:@"%02lu/%@",
+                                   (unsigned long)info.expiryMonth, year];
+    self.txtCvv.text = info.cvv;
 }
 
 - (void)userDidCancelPaymentViewController:(CardIOPaymentViewController *)paymentViewController {
-    NSLog(@"User cancelled scan");
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

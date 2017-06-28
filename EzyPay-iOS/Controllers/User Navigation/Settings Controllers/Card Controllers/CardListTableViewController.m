@@ -25,7 +25,7 @@ static NSString *const CARD_STARTS = @"**** ";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Payment";
+    self.navigationItem.title = NSLocalizedString(@"paymentTitle", nil);
     self.user = [UserManager getUser];
 
 }
@@ -45,7 +45,7 @@ static NSString *const CARD_STARTS = @"**** ";
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return self.cards.count > 0 ? @"Cards" : @"";
+    return self.cards.count > 0 ? NSLocalizedString(@"cardsLabel", nil) : @"";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -59,11 +59,11 @@ static NSString *const CARD_STARTS = @"**** ";
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200)];
     UIButton* btnAddCard = [[UIButton alloc] initWithFrame:
-                            CGRectMake(0, 100, 150, 50)];
+                            CGRectMake(0, 100, 250, 50)];
     btnAddCard.center = CGPointMake(CGRectGetMidX(self.view.bounds), btnAddCard.center.y);
     btnAddCard.layer.cornerRadius = 20.f;
     btnAddCard.backgroundColor = [UIColor ezypayGreenColor];
-    [btnAddCard setTitle:@"Add Card" forState:UIControlStateNormal];
+    [btnAddCard setTitle:NSLocalizedString(@"addCardAction", nil) forState:UIControlStateNormal];
     [btnAddCard setImage:[UIImage imageNamed:@"ic_add_card"] forState:UIControlStateNormal];
     [btnAddCard addTarget:self action:@selector(goToDetailCard) forControlEvents:UIControlEventTouchDown];
     [view  addSubview:btnAddCard];
@@ -88,6 +88,24 @@ static NSString *const CARD_STARTS = @"**** ";
     [self.navigationController pushViewController:cardDetailViewController animated:true];
     
 }
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+
+-(BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
+
 
 #pragma mark - actions
 - (void)getCardsFromServer {

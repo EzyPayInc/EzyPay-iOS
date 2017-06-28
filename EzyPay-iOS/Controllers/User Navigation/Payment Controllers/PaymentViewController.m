@@ -16,6 +16,7 @@
 
 @interface PaymentViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 @property (weak, nonatomic) IBOutlet UIButton *btnCancel;
 @property (weak, nonatomic) IBOutlet UIButton *btnPayment;
 @property (weak, nonatomic) IBOutlet UIView *tipView;
@@ -53,7 +54,10 @@
 - (void)setupView {
     self.btnCancel.layer.cornerRadius = 20.f;
     self.btnPayment.layer.cornerRadius = 20.f;
+    [self.btnCancel setTitle:NSLocalizedString(@"cancelUpperAction", nil) forState:UIControlStateNormal];
+    [self.btnPayment setTitle:NSLocalizedString(@"payAction", nil) forState:UIControlStateNormal];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tipLabel.text = NSLocalizedString(@"tipLabel", nil);
 }
 
 - (void)keyboardDidShow:(NSNotification *)notification

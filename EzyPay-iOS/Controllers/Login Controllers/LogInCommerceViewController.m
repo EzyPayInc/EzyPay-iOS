@@ -13,7 +13,7 @@
 #import "CoreDataManager.h"
 #import "DeviceTokenManager.h"
 
-@interface LogInCommerceViewController ()
+@interface LogInCommerceViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet BottomBorderTextField *txtEmail;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
@@ -40,6 +40,8 @@
 - (void)setupView {
     self.txtEmail.placeholder = NSLocalizedString(@"emailPlaceholder", nil);
     self.txtPassword.placeholder = NSLocalizedString(@"passwordPlaceholder", nil);
+    self.txtEmail.delegate = self;
+    self.txtPassword.delegate = self;
     [self.btnSignIn setTitle:NSLocalizedString(@"loginAction", nil) forState:UIControlStateNormal];
     self.forgotPassLabel.text = NSLocalizedString(@"forgotPasswordLabel", nil);
     self.orLabel.text = NSLocalizedString(@"orLabel", nil);
@@ -49,21 +51,31 @@
     self.btnSignUp.layer.cornerRadius = 20.f;
 }
 
+#pragma mark - Textfield delegate
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 #pragma - mark actions
 - (IBAction)signInAction:(id)sender {
     [self.view endEditing:YES];
-    NSString *email = self.txtEmail.text;
-    NSString *password = self.txtPassword.text;
+    if([self areFieldsFilled]) {
+        NSString *email = self.txtEmail.text;
+        NSString *password = self.txtPassword.text;
     
-    UserManager *manager = [[UserManager alloc] init];
-    [manager login:email password:password successHandler:^(id response) {
-        NSDictionary *accessToken = [response valueForKey:@"access_token"];
-        int64_t id = (long)[[accessToken valueForKey:@"userId"] integerValue];
-        NSString *token = [accessToken valueForKey:@"value"];
-        [self getUserFromServer:id token:token];
-    } failureHandler:^(id response) {
-        NSLog(@"%@", response);
-    }];
+        UserManager *manager = [[UserManager alloc] init];
+        [manager login:email password:password successHandler:^(id response) {
+            NSDictionary *accessToken = [response valueForKey:@"access_token"];
+            int64_t id = (long)[[accessToken valueForKey:@"userId"] integerValue];
+            NSString *token = [accessToken valueForKey:@"value"];
+            [self getUserFromServer:id token:token];
+        } failureHandler:^(id response) {
+            NSLog(@"%@", response);
+        }];
+    } else {
+        [self displayAlertWithMessage:NSLocalizedString(@"emptyFieldsErrorMessage", nil)];
+    }
 }
 
 - (IBAction)signUpAction:(id)sender {
@@ -126,6 +138,24 @@
             NSLog(@"%@", response);
         }];
     }
+}
+
+#pragma mark - validate data
+- (BOOL)areFieldsFilled {
+    return [self.txtEmail hasText] && [self.txtPassword hasText];
+}
+
+- (void)displayAlertWithMessage:(NSString *)message {
+    UIAlertController *alert =
+    [UIAlertController alertControllerWithTitle:NSLocalizedString(@"errorTitle", nil)
+                                        message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil];
+    
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end

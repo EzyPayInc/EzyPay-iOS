@@ -87,7 +87,7 @@
     self.totalLabel.text = NSLocalizedString(@"totalLabel", nil);
     [self.btnSendNotifications setTitle:NSLocalizedString(@"splitAction", nil) forState:UIControlStateNormal];
     [self.btnCancel setTitle:NSLocalizedString(@"cancelAction", nil) forState:UIControlStateNormal];
-    [self.btnChange setTitle:NSLocalizedString(@"cancelAction", nil) forState:UIControlStateNormal];
+    [self.btnChange setTitle:NSLocalizedString(@"changeAction", nil) forState:UIControlStateNormal];
 }
 
 - (void)setupGestures {
