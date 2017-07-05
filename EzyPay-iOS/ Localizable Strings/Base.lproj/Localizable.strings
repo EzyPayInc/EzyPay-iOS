@@ -23,6 +23,7 @@ errorTitle = "Error";
 bankInformationTitle = "Bank Information";
 addTableTitle = "Add Table";
 paymentTitle = "Payment";
+deleteTitle = "Delete";
 
 
 /*actions*/
@@ -50,6 +51,8 @@ addNewEmployee = "Add a new Employee";
 saveAction = "Save";
 addTableAction = "Add Table";
 addCardAction = "Add Card";
+yesAction = "Yes";
+noAction = "No";
 
 
 /*label errors*/
@@ -89,6 +92,7 @@ totalCostLabel = "Total cost";
 tablesInfoLabel = "If you put 0, the table menu will not appear";
 tableNumberLabel = "Table Number";
 tipLabel = "Tip";
+deleteConfirmationMessage = "Are you sure you want to delete this card";
 
 /*Placeholders*/
 emailPlaceholder = "Email";

@@ -21,6 +21,8 @@
     user.lastName = [userDictionary objectForKey:@"lastName"];
     user.phoneNumber = [userDictionary objectForKey:@"phoneNumber"];
     user.userType = [[userDictionary objectForKey:@"userType"] integerValue];
+    user.customerId = [[userDictionary objectForKey:@"customerId"] integerValue];
+    user.avatar = [userDictionary objectForKey:@"avatar"];
     return user;
 }
 
@@ -47,6 +49,7 @@
         user.lastName = [userDictionary objectForKey:@"lastName"];
         user.phoneNumber = [userDictionary objectForKey:@"phoneNumber"];
         user.userType = [[userDictionary objectForKey:@"userType"] integerValue];
+        user.customerId = [[userDictionary objectForKey:@"userType"] integerValue];
         [users addObject:user];
     }
     return users;

@@ -102,13 +102,14 @@
 + (BOOL)validateCardNumber:(NSString *)cardNumber
                        cvv:(NSString *)cvv
             expirationDate:(NSString *)expirationDate
+                  viewType:(CardDetailViewType) viewType
             viewController:(UIViewController *)viewController {
     if([cardNumber isEmpty] || [cvv isEmpty] || [expirationDate isEmpty]) {
         [self displayAlertWithMessage:NSLocalizedString(@"emptyFieldsErrorMessage", nil) viewController:viewController];
         return NO;
     }
     return [[self class] validateExpirationDate:expirationDate viewController:viewController] &&
-    [[self class] validateCardNumber:cardNumber viewController:viewController] &&
+    [[self class] validateCardNumber:cardNumber viewType:viewType viewController:viewController] &&
     [[self class] validateCvv:cvv viewController:viewController];
 }
 
@@ -120,8 +121,10 @@
     return NO;
 }
 
-+ (BOOL)validateCardNumber:(NSString *)cardNumber viewController:(UIViewController *)viewController {
-    if(cardNumber.length == 19) {
++ (BOOL)validateCardNumber:(NSString *)cardNumber
+                  viewType:(CardDetailViewType)viewType
+            viewController:(UIViewController *)viewController {
+    if(cardNumber.length == 19 || viewType == EditCard) {
         return YES;
     }
     [self displayAlertWithMessage:NSLocalizedString(@"invalidCardNumberError", nil) viewController:viewController];
@@ -167,5 +170,10 @@
     
     [alert addAction:okAction];
     [viewController presentViewController:alert animated:YES completion:nil];
+}
+
++ (NSString *)getDateFormated:(NSString *)expirationDate {
+    NSArray *components = [expirationDate componentsSeparatedByString:@"/"];
+    return [NSString stringWithFormat:@"%@/20%@",components[0], components[1]];
 }
 @end

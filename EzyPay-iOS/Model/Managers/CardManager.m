@@ -17,15 +17,14 @@
     NSMutableArray *cards = [NSMutableArray array];
     [CoreDataManager deleteDataFromEntity:@"Card"];
     for (NSDictionary *cardDictionary in arrayCards) {
-        if(![[cardDictionary valueForKey:@"month"] isKindOfClass:[NSNull class]]) {
         Card *card = [CoreDataManager createEntityWithName:@"Card"];
         card.id = [[cardDictionary objectForKey:@"id"] integerValue];
-        card.number = [cardDictionary objectForKey:@"number"];
-        card.cvv = [[cardDictionary objectForKey:@"cvv"] integerValue];
-        card.month = [[cardDictionary objectForKey:@"month"] integerValue];
-        card.year = [[cardDictionary objectForKey:@"year"] integerValue];
+        card.cardNumber = [cardDictionary objectForKey:@"cardNumber"];
+        card.ccv = [[cardDictionary objectForKey:@"ccv"] integerValue];
+        card.expirationDate = [cardDictionary objectForKey:@"expirationDate"];
+        card.serverId =  [[cardDictionary objectForKey:@"serverId"] integerValue];
+        card.token = [cardDictionary objectForKey:@"token"];
         [cards addObject:card];
-        }
     }
     if(cards.count > 0){
         [CoreDataManager saveContext];
@@ -34,9 +33,9 @@
 }
 
 #pragma mark - Web service methods
-- (void)registerCard:(Card *)card token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler{
+- (void)registerCard:(Card *)card user:(User *)user successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
     CardServiceClient *serviceClient = [[CardServiceClient alloc] init];
-    [serviceClient registerCard:card token:token successHandler:successHandler failureHandler:failureHandler];
+    [serviceClient registerCard:card user:user successHandler:successHandler failureHandler:failureHandler];
 }
 
 - (void)getCardsByUserFromServer:(int64_t) userId token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
@@ -44,9 +43,23 @@
     [serviceClient getCardsByUserFromServer:userId token:token successHandler:successHandler failureHandler:failureHandler];
 }
 
-- (void)updateCardInServer:(Card *)card token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
+- (void)updateCard:(Card *)card
+              user:(User *)user
+    successHandler:(ConnectionSuccessHandler) successHandler
+    failureHandler: (ConnectionErrorHandler) failureHandler {
     CardServiceClient *serviceClient = [[CardServiceClient alloc] init];
-    [serviceClient updateCard:card token:token successHandler:successHandler failureHandler:failureHandler];
+    [serviceClient updateCard:card user:user successHandler:successHandler failureHandler:failureHandler];
+}
+
+- (void)deleteCard:(int64_t)serverId
+              user:(User *)user
+    successHandler:(ConnectionSuccessHandler) successHandler
+    failureHandler:(ConnectionErrorHandler) failureHandler {
+    CardServiceClient *serviceClient = [[CardServiceClient alloc] init];
+    [serviceClient deleteCard:serverId
+                         user:user
+               successHandler:successHandler
+               failureHandler:failureHandler];
 }
 
 @end

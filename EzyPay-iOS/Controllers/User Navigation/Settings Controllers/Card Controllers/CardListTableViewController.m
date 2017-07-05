@@ -73,9 +73,9 @@ static NSString *const CARD_STARTS = @"**** ";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cardCell" forIndexPath:indexPath];
     Card *card = [self.cards objectAtIndex:indexPath.row];
-    NSString *lastCharacters = [card.number substringFromIndex:MAX((int)[card.number length]-4, 0)];
+    NSString *lastCharacters = [card.cardNumber substringFromIndex:MAX((int)[card.cardNumber length]-4, 0)];
     cell.textLabel.text = [CARD_STARTS stringByAppendingString:lastCharacters];
-    cell.imageView.image = [self creditCardIcon:card.number];
+    cell.imageView.image = [self creditCardIcon:card.cardNumber];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
@@ -102,7 +102,8 @@ static NSString *const CARD_STARTS = @"**** ";
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        Card *card = [self.cards objectAtIndex:indexPath.row];
+        [self validateDeleteAction:card];
     }
 }
 
@@ -133,6 +134,34 @@ static NSString *const CARD_STARTS = @"**** ";
         return [UIImage imageNamed:@"ic_master_card"];
     }
     return [UIImage imageNamed:@"ic_credit_card"];
+}
+
+- (void)validateDeleteAction:(Card *)card {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"deleteTitle", nil)
+                                                                   message:NSLocalizedString(@"deleteConfirmationMessage", nil)
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *yesAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"yesAction", nil)
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * action) {
+                                                         [self deleteAction:card];
+                                                     }];
+    UIAlertAction *noAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"noAction", nil)
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:nil];
+    [alert addAction:yesAction];
+    [alert addAction:noAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)deleteAction:(Card *)card {
+    CardManager *manager = [[CardManager alloc] init];
+    [manager deleteCard:card.serverId
+                   user:self.user successHandler:^(id response) {
+                       [self getCardsFromServer];
+                   }
+         failureHandler:^(id response) {
+             NSLog(@"Error deleting card");
+         }];
 }
 
 @end

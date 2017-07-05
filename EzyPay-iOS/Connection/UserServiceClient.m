@@ -89,7 +89,7 @@ static NSString *const USER_URL = @"user/";
 // HTTP method to upload file to web server
 - (void)uploadUserImage:(UIImage *)image User:(User *)user successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler  {
     NSData *imageData = UIImageJPEGRepresentation(image, 0.9);
-    NSString *filename = @"userProfile";
+    NSString *filename = @"image";
 
      NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@uploadImage/%lld",
                                         BASE_URL, USER_URL, user.id]];
@@ -104,7 +104,7 @@ static NSString *const USER_URL = @"user/";
     [request setValue:contentType forHTTPHeaderField: @"Content-Type"];
     NSMutableData *body = [NSMutableData data];
     [body appendData:[[NSString stringWithFormat:@"--%@%@", boundary, kNewLine] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"%@", @"uploaded_file", filename, kNewLine] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"%@", @"image", filename, kNewLine] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[[NSString stringWithFormat:@"Content-Type: image/jpg"] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[[NSString stringWithFormat:@"%@%@", kNewLine, kNewLine] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:imageData];

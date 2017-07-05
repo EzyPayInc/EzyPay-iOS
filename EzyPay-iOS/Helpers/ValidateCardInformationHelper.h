@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CardDetailViewController.h"
 
 @interface ValidateCardInformationHelper : NSObject
 
@@ -23,6 +24,8 @@
 + (BOOL)validateCardNumber:(NSString *)cardNumber
                        cvv:(NSString *)cvv
             expirationDate:(NSString *)expirationDate
+                  viewType:(CardDetailViewType) viewType
             viewController:(UIViewController *)viewController;
++ (NSString *)getDateFormated:(NSString *)expirationDate;
 
 @end

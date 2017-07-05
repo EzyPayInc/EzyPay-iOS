@@ -16,6 +16,7 @@
 #import "DeviceTokenManager.h"
 #import "ValidateCardInformationHelper.h"
 #import <CardIO.h>
+#import "CardDetailViewController.h"
 
 @interface SignInPaymentInformationControllerViewController ()<UITextFieldDelegate, CardIOPaymentViewControllerDelegate>
 
@@ -69,6 +70,7 @@
     if([ValidateCardInformationHelper validateCardNumber:self.txtCardNumber.text
                                                      cvv:self.txtCvv.text
                                           expirationDate:self.txtExpirationDate.text
+                                                viewType:AddCard
                                           viewController:self]) {
         [self saveUser];
     }
@@ -79,9 +81,10 @@
     [manager registerUser:self.user
                    tables: self.tables
            successHandler:^(id response) {
-        int64_t userId = (long)[[response valueForKey:@"userId"] integerValue];
-        self.user.id = userId;
-        [self login];
+               int64_t userId = (long)[[response valueForKey:@"userId"] integerValue];
+               self.user.id = userId;
+               self.user.customerId = [[response valueForKey:@"customerId"] integerValue];
+               [self login];
     } failureHandler:^(id response) {
         NSLog(@"Error: %@", response);
     }];
@@ -102,14 +105,12 @@
 
 - (void)saveCard {
     Card *card = [CoreDataManager createEntityWithName:@"Card"];
-    card.number = [self.txtCardNumber.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-    card.cvv = [self.txtCvv.text integerValue];
-    NSString *expirationDate = self.txtExpirationDate.text;
-    card.month = [[[expirationDate componentsSeparatedByString:@"/"] objectAtIndex:0] integerValue];
-    card.year = [[[expirationDate componentsSeparatedByString:@"/"] objectAtIndex:1] integerValue];
+    card.cardNumber = self.txtCardNumber.text;
+    card.ccv = [self.txtCvv.text integerValue];
+    card.expirationDate = [ValidateCardInformationHelper getDateFormated:self.txtExpirationDate.text];
     card.user = self.user;
     CardManager *manager = [[CardManager alloc] init];
-    [manager registerCard:card token:self.user.token successHandler:^(id response) {
+    [manager registerCard:card user:self.user successHandler:^(id response) {
         [self.user addCardsObject:card];
         [CoreDataManager saveContext];
         NavigationController *navigationController = [NavigationController sharedInstance];

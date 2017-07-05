@@ -21,6 +21,7 @@ cardInfoTitle = "Información de la Tarjeta";
 bankInformationTitle = "Información Bancaria";
 addTableTitle = "Agregar Mesa";
 paymentTitle = "Pago";
+deleteTitle = "Eliminar";
 
 
 /*actions*/
@@ -50,6 +51,8 @@ addNewEmployee = "Agregar un nuevo Empleado";
 saveAction = "Guardar";
 addTableAction = "Agregar Mesa";
 addCardAction = "Agregar Tarjeta";
+yesAction = "Si";
+noAction = "No";
 
 
 /*label errors*/
@@ -89,6 +92,7 @@ accountNumberLabel = "Número de Cuenta";
 userIdentificarionLabel = "Cédula";
 tableNumberLabel = "Número de Mesa";
 tipLabel = "Propina";
+deleteConfirmationMessage = "¿Estas seguro que deseas eliminar esta tarjeta de crédito?";
 
 /*Placeholders*/
 emailPlaceholder = "Email";

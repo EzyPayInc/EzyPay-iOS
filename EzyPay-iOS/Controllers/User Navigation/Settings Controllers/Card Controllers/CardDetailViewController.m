@@ -67,7 +67,7 @@
     self.cvvLabel.text = NSLocalizedString(@"cvvPlaceholder", nil);
     [self.btnAction setTitle:NSLocalizedString(@"saveAction", nil) forState:UIControlStateNormal];
     self.txtCvv.userInteractionEnabled = userInteractionEnabled;
-    self.txtCardNumber.userInteractionEnabled = userInteractionEnabled;
+    self.txtCardNumber.userInteractionEnabled = self.viewType == AddCard;
     self.txtExpirationDate.userInteractionEnabled = userInteractionEnabled;
     self.btnAction.hidden = !userInteractionEnabled;
     if(!userInteractionEnabled) {
@@ -93,14 +93,16 @@
 
 - (void)addScanAction {
     
-    UIImageView *cameraIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ic_micro_camera"]];
-    cameraIcon.contentMode = UIViewContentModeScaleAspectFit;
-    self.txtCardNumber.rightViewMode = UITextFieldViewModeAlways;
-    self.txtCardNumber.rightView = cameraIcon;
-    self.txtCardNumber.rightView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *scanGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+    if(self.viewType == AddCard) {
+        UIImageView *cameraIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ic_micro_camera"]];
+        cameraIcon.contentMode = UIViewContentModeScaleAspectFit;
+        self.txtCardNumber.rightViewMode = UITextFieldViewModeAlways;
+        self.txtCardNumber.rightView = cameraIcon;
+        self.txtCardNumber.rightView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *scanGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                   action:@selector(scanCardAction)];
-    [self.txtCardNumber.rightView addGestureRecognizer:scanGesture];
+        [self.txtCardNumber.rightView addGestureRecognizer:scanGesture];
+    }
 }
 
 - (void)roundedViews {
@@ -109,9 +111,12 @@
 
 - (void)populateFields {
     if(self.card) {
-        self.txtExpirationDate.text = [NSString stringWithFormat:@"%hd/%hd", self.card.month, self.card.year];
-        self.txtCardNumber.text = [ValidateCardInformationHelper setCardNumberFormat:[NSMutableString stringWithString:self.card.number]];
-        self.txtCvv.text = [NSString stringWithFormat:@"%hd", self.card.cvv];
+        NSArray *dateComponents = [self.card.expirationDate componentsSeparatedByString:@"/"];
+        NSString *year = [dateComponents[1] substringWithRange:NSMakeRange(2, 2)];
+        self.txtExpirationDate.text = [NSString stringWithFormat:@"%@/%@",
+                                       dateComponents[0], year];
+        self.txtCardNumber.text = self.card.cardNumber;
+        self.txtCvv.text = [NSString stringWithFormat:@"%hd", self.card.ccv];
     }
 }
 
@@ -133,15 +138,16 @@
     if([ValidateCardInformationHelper validateCardNumber:self.txtCardNumber.text
                                                      cvv:self.txtCvv.text
                                           expirationDate:self.txtExpirationDate.text
+                                                viewType:self.viewType
                                           viewController:self]) {
         Card *card = [CoreDataManager createEntityWithName:@"Card"];
         card.id = self.card.id;
         card.user = self.user;
-        card.number = [self.txtCardNumber.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-        card.cvv = [self.txtCvv.text integerValue];
-        NSString *expirationDate = self.txtExpirationDate.text;
-        card.month = [[[expirationDate componentsSeparatedByString:@"/"] objectAtIndex:0] integerValue];
-        card.year = [[[expirationDate componentsSeparatedByString:@"/"] objectAtIndex:1] integerValue];
+        card.cardNumber = self.txtCardNumber.text;
+        card.ccv = [self.txtCvv.text integerValue];
+        card.serverId = self.card.serverId;
+        card.token = self.card.token;
+        card.expirationDate = [ValidateCardInformationHelper getDateFormated:self.txtExpirationDate.text];
         switch (self.viewType) {
             case AddCard:
                 [self registerCard:card];
@@ -160,7 +166,7 @@
 
 - (void)registerCard:(Card *)card {
     CardManager *manager = [[CardManager alloc] init];
-    [manager registerCard:card token:self.user.token successHandler:^(id response) {
+    [manager registerCard:card user:self.user successHandler:^(id response) {
         [self.navigationController popViewControllerAnimated:true];
     } failureHandler:^(id response) {
         NSLog(@"Connection Failed");
@@ -169,7 +175,7 @@
 
 - (void)updateCard:(Card *)card {
     CardManager *manager = [[CardManager alloc] init];
-    [manager updateCardInServer:card token:self.user.token successHandler:^(id response) {
+    [manager updateCard:card user:self.user successHandler:^(id response) {
         self.viewType = ViewCard;
         self.card = card;
         [self setupView];
