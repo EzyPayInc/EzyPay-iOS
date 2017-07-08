@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,18 +21,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ugwo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emm-WB-oK6">
-                                <rect key="frame" x="0.5" y="292" width="375" height="84"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="70"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ugwo_white_icon" translatesAutoresizingMaskIntoConstraints="NO" id="06c-gg-CEA">
+                                <rect key="frame" x="37" y="283" width="300" height="100"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.59215686274509804" green="0.80784313725490198" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="emm-WB-oK6" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="Pa8-nd-YWQ"/>
-                            <constraint firstItem="emm-WB-oK6" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="SZf-3i-A2J"/>
-                            <constraint firstItem="emm-WB-oK6" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="cD1-pc-0bD"/>
+                            <constraint firstItem="06c-gg-CEA" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="D79-wb-jmN"/>
+                            <constraint firstItem="06c-gg-CEA" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.8" id="ZJp-hm-0mE"/>
+                            <constraint firstItem="06c-gg-CEA" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Zc7-jx-jOj"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -40,4 +38,7 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ugwo_white_icon" width="150" height="100"/>
+    </resources>
 </document>

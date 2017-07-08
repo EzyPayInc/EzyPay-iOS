@@ -75,9 +75,8 @@
     self.txtEmail.delegate = self;
     self.txtPassword.delegate = self;
     [self.btnLogIn setTitle:NSLocalizedString(@"loginAction", nil) forState:UIControlStateNormal];
-    self.lblSignUp.text = NSLocalizedString(@"signUpHereLabel", nil);
     self.orLabel.text = NSLocalizedString(@"orLabel", nil);
-    self.forgotLabel.text = NSLocalizedString(@"forgotPasswordLabel", nil);
+    [self setUnderlineText];
     
     /*Facebook setup*/
     self.facebookLoginButton = [[FBSDKLoginButton alloc] init];
@@ -93,6 +92,21 @@
     [GIDSignIn sharedInstance].delegate = self;
     [GIDSignIn sharedInstance].uiDelegate = self;
 
+}
+
+- (void)setUnderlineText {
+    NSMutableAttributedString *forgotPassword = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"forgotPasswordLabel", nil)];
+    [forgotPassword addAttribute:NSUnderlineStyleAttributeName
+                            value:[NSNumber numberWithInt:1]
+                            range:(NSRange){0,[forgotPassword length]}];
+    NSMutableAttributedString *noAccount = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"noAccountLabel", nil)];
+    NSMutableAttributedString *signUpHere = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"signUpHereLabel", nil)];
+    [signUpHere addAttribute:NSUnderlineStyleAttributeName
+                           value:[NSNumber numberWithInt:1]
+                           range:(NSRange){0,[signUpHere length]}];
+    [noAccount appendAttributedString:signUpHere];
+    self.forgotLabel.attributedText = forgotPassword;
+    self.lblSignUp.attributedText = noAccount;
 }
 
 #pragma mark textfield delegate

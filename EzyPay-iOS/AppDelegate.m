@@ -30,6 +30,7 @@
     [NSThread sleepForTimeInterval:2.0];
     [self setupNavigationBar];
     [self setupTabBar];
+    [self setFont];
     User *user= [UserManager getUser];
     if(user && user.token) {
         NavigationController *navigationController = [NavigationController sharedInstance];
@@ -126,6 +127,11 @@
                                                  NSForegroundColorAttributeName: [UIColor grayBackgroundViewColor]
                                                  };
     [[UITabBarItem appearance] setTitleTextAttributes:attributesForSelectedState forState: UIControlStateSelected];
+}
+
+- (void)setFont {
+    [[UILabel appearance] setFont:[UIFont fontWithName:@"HelveticaNeue" size:17.0]];
+    [[UIButton appearance].titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:17.0]];
 }
 
 - (void)registerToken:(NSString *)deviceToken {

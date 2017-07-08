@@ -36,5 +36,11 @@
     [self.btnGoHome setTitle:NSLocalizedString(@"goHomeAction", nil) forState:UIControlStateNormal];
 }
 
+- (IBAction)goHomeScreen:(id)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+}
+
+
 
 @end

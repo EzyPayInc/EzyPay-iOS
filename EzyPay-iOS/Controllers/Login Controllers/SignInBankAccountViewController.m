@@ -64,7 +64,7 @@
     [manager registerUser:self.user
                    tables: self.tables
            successHandler:^(id response) {
-               int64_t userId = (long)[[response valueForKey:@"userId"] integerValue];
+               int64_t userId = (long)[[response valueForKey:@"id"] integerValue];
                self.user.id = userId;
                [self login];
            } failureHandler:^(id response) {

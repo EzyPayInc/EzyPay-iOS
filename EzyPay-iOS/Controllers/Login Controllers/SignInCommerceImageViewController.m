@@ -57,8 +57,10 @@
 - (void)setGestures {
     UITapGestureRecognizer *labelGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(uploadPhotoAction)];
     UITapGestureRecognizer *imageGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(uploadPhotoAction)];
+    UITapGestureRecognizer *generalGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyBoard)];
     [self.profileCommerceImage addGestureRecognizer:imageGesture];
     [self.uploadLabel addGestureRecognizer:labelGesture];
+    [self.view addGestureRecognizer:generalGesture];
     [self.profileCommerceImage setMultipleTouchEnabled:YES];
     self.profileCommerceImage.userInteractionEnabled = YES;
     self.uploadLabel.userInteractionEnabled = YES;
@@ -86,6 +88,10 @@
         
 }
 
+
+- (void)hideKeyBoard {
+    [self.view endEditing:YES];
+}
 
 
 - (void)uploadPhotoAction {

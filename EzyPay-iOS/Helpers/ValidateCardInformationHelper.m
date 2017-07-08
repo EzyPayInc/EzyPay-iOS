@@ -114,7 +114,7 @@
 }
 
 + (BOOL)validateCvv:(NSString *)cvv viewController:(UIViewController *)viewController{
-    if(cvv.length == 3) {
+    if(cvv.length == 3 || cvv.length == 4) {
         return YES;
     }
     [self displayAlertWithMessage:NSLocalizedString(@"invalidCvvError", nil) viewController:viewController];

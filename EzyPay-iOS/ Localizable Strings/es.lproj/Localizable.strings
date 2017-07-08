@@ -72,7 +72,8 @@ communicationErrorMessage = "Error de Comunicación. Por favor verifique su cone
 /*labels*/
 forgotPasswordLabel = "¿Olvidó su contraseña?";
 orLabel = "ó";
-signUpHereLabel = "¿No tiene una cuenta? Regístrate acá";
+noAccountLabel = "¿No tiene una cuenta? ";
+signUpHereLabel = "Regístrate acá";
 tableLabel = "Mesa";
 currentlySignedInLabel = "Usuario Logueado";
 changeEmployeeLabel = "cambiar de empleado";

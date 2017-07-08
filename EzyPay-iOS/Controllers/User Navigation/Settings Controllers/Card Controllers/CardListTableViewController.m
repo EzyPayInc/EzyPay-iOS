@@ -59,13 +59,14 @@ static NSString *const CARD_STARTS = @"**** ";
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200)];
     UIButton* btnAddCard = [[UIButton alloc] initWithFrame:
-                            CGRectMake(0, 100, 250, 50)];
+                            CGRectMake(0, 100, 200, 50)];
     btnAddCard.center = CGPointMake(CGRectGetMidX(self.view.bounds), btnAddCard.center.y);
     btnAddCard.layer.cornerRadius = 20.f;
     btnAddCard.backgroundColor = [UIColor ezypayGreenColor];
     [btnAddCard setTitle:NSLocalizedString(@"addCardAction", nil) forState:UIControlStateNormal];
     [btnAddCard setImage:[UIImage imageNamed:@"ic_add_card"] forState:UIControlStateNormal];
     [btnAddCard addTarget:self action:@selector(goToDetailCard) forControlEvents:UIControlEventTouchDown];
+    btnAddCard.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17.0];
     [view  addSubview:btnAddCard];
     return view;
 }

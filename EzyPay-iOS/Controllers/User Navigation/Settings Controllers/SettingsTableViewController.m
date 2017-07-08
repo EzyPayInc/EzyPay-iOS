@@ -46,8 +46,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.user.userType != UserNavigation ? 2 : 1;
 }
@@ -67,7 +65,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return section == 0 ? 0 : 20.f;
+    if (section == 0) {
+        return CGFLOAT_MIN;
+    }
+    return tableView.sectionHeaderHeight;
+
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {

@@ -49,7 +49,7 @@
         user.lastName = [userDictionary objectForKey:@"lastName"];
         user.phoneNumber = [userDictionary objectForKey:@"phoneNumber"];
         user.userType = [[userDictionary objectForKey:@"userType"] integerValue];
-        user.customerId = [[userDictionary objectForKey:@"userType"] integerValue];
+        user.customerId = [[userDictionary objectForKey:@"customerId"] integerValue];
         [users addObject:user];
     }
     return users;
