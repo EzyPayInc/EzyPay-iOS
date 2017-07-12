@@ -60,7 +60,8 @@
 {
     LogInCommerceViewController *viewController =
     (LogInCommerceViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LogInCommerceViewController"];
-    [self.navigationController presentViewController:viewController animated:true completion:nil];
+    UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    [self presentViewController:navigationController animated:YES completion:nil];;
 }
 
 @end

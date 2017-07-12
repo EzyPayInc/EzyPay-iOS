@@ -29,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupView];
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
     // Do any additional setup after loading the view.
 }
 
@@ -100,9 +101,7 @@
 
 - (IBAction)signUpAction:(id)sender {
     UIViewController *viewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInCommerceViewController"];
-    UINavigationController *navigationController =
-    [[UINavigationController alloc] initWithRootViewController:viewController];
-    [self presentViewController:navigationController animated:YES completion:nil];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (void) getUserFromServer:(int64_t ) userId token:(NSString *)token {

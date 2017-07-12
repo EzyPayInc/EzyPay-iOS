@@ -14,7 +14,7 @@
         <scene sceneID="zrJ-Tb-lEo">
             <objects>
                 <navigationController storyboardIdentifier="SignInNavigationViewController" id="lX2-XU-WVx" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wPc-E7-pG7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wPc-E7-pG7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -476,7 +476,7 @@
         <scene sceneID="VAJ-de-XgV">
             <objects>
                 <navigationController storyboardIdentifier="NavPaymentController" id="gl0-JL-8Bb" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7ZN-fY-Q1p">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7ZN-fY-Q1p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1497,7 +1497,6 @@
                                 </state>
                                 <connections>
                                     <action selector="userAction:" destination="hJf-AK-8Uh" eventType="touchUpInside" id="IU0-nD-Shu"/>
-                                    <segue destination="xn0-yw-e3t" kind="show" identifier="showUserLogin" id="eps-Eg-hpk"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ugp-vU-eNA">
@@ -1515,7 +1514,6 @@
                                 </state>
                                 <connections>
                                     <action selector="commerceAction:" destination="hJf-AK-8Uh" eventType="touchUpInside" id="oaA-bA-ONU"/>
-                                    <segue destination="ECM-aB-uFt" kind="show" identifier="showCommerceLogin" id="4Wr-Fl-GVc"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1538,6 +1536,8 @@
                         <outlet property="btnCommerce" destination="yg6-bg-DRG" id="l2e-xM-X2t"/>
                         <outlet property="btnUser" destination="D5H-iF-oqS" id="6H4-tu-rw2"/>
                         <outlet property="orLabel" destination="ugp-vU-eNA" id="pd3-Ij-WdU"/>
+                        <segue destination="xn0-yw-e3t" kind="show" identifier="showUserLogin" id="nnF-rZ-kpD"/>
+                        <segue destination="ECM-aB-uFt" kind="show" identifier="showCommerceLogin" id="mUr-HV-n68"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m0e-fx-cxM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1725,7 +1725,7 @@
         <scene sceneID="KXX-hM-o85">
             <objects>
                 <navigationController storyboardIdentifier="NavSettingsController" id="YTL-d0-WOv" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OJI-WJ-gTY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OJI-WJ-gTY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2037,7 +2037,7 @@
         <scene sceneID="Tnl-3X-gIe">
             <objects>
                 <collectionViewController storyboardIdentifier="TableCollectionViewController" id="goD-X0-Skl" customClass="TableCollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="diU-rC-QvO">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="diU-rC-QvO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2355,7 +2355,7 @@
         <scene sceneID="4hQ-0D-RtA">
             <objects>
                 <navigationController storyboardIdentifier="NavCommerceController" id="0dl-ju-FiX" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lw2-B4-WCb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Lw2-B4-WCb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2538,7 +2538,7 @@
         <scene sceneID="4Mg-eR-pG6">
             <objects>
                 <navigationController storyboardIdentifier="NavHistoryCommerceController" id="W3U-4y-trr" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="r2L-8D-pQV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="r2L-8D-pQV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2554,7 +2554,7 @@
         <scene sceneID="Ain-zJ-W07">
             <objects>
                 <navigationController storyboardIdentifier="TablesNavigationController" id="24R-PE-tWU" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oV9-i0-LNB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="oV9-i0-LNB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2695,7 +2695,7 @@
         <scene sceneID="gZZ-BX-hHN">
             <objects>
                 <navigationController storyboardIdentifier="cardNavigationViewController" id="sFJ-J7-HAt" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OlK-CN-xS6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OlK-CN-xS6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2711,7 +2711,7 @@
         <scene sceneID="epW-x6-LWp">
             <objects>
                 <navigationController storyboardIdentifier="NavHistoryController" id="9dM-e2-skS" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nKe-5Q-Y5g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nKe-5Q-Y5g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2736,7 +2736,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vpK-st-3Wc">
-                                <rect key="frame" x="20" y="94" width="374" height="190"/>
+                                <rect key="frame" x="20" y="50" width="374" height="190"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bzF-Vq-sKS">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
@@ -2807,7 +2807,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34W-xW-HLt">
-                                <rect key="frame" x="124" y="304" width="166" height="50"/>
+                                <rect key="frame" x="124" y="260" width="166" height="50"/>
                                 <color key="backgroundColor" red="0.72941176470588232" green="0.82352941176470584" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="fzi-Vd-hwR"/>
@@ -2860,7 +2860,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Hms-av-W86">
-                                <rect key="frame" x="20" y="94" width="374" height="90"/>
+                                <rect key="frame" x="20" y="50" width="374" height="90"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Z3n-b7-T4k">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
@@ -2908,7 +2908,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J9U-cI-QxF">
-                                <rect key="frame" x="124" y="204" width="166" height="50"/>
+                                <rect key="frame" x="124" y="160" width="166" height="50"/>
                                 <color key="backgroundColor" red="0.72941176470588232" green="0.82352941176470584" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="x08-lF-XLz"/>

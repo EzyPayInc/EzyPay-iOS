@@ -47,6 +47,7 @@
     self.txtPassword.delegate = self;
     self.txtEmail.delegate = self;
     self.btnLogIn.layer.cornerRadius = 20;
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
 
     [self setupView];
     
@@ -126,8 +127,8 @@
 
 
 - (void)signUpTapLabel:(UITapGestureRecognizer*)sender {
-    UINavigationController *navigationController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInNavigationViewController"];
-    [self presentViewController:navigationController animated:YES completion:nil];
+    SignInUserViewController *viewController =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInUserViewController"];
+    [self.navigationController pushViewController:viewController animated:YES];
 
 }
 
