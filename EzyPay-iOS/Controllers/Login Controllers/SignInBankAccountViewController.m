@@ -46,6 +46,17 @@
     self.txtUserId.delegate = self;
     
     self.btnSave.layer.cornerRadius = 20.f;
+    [self setupGestures];
+}
+
+- (void)setupGestures {
+    UITapGestureRecognizer *generalTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                           action:@selector(hideKeyboard)];
+    [self.view addGestureRecognizer:generalTapRecognizer];
+}
+
+- (void)hideKeyboard {
+    [self.view endEditing:YES];
 }
 
 #pragma mark - Textfield delegate

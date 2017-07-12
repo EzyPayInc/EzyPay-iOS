@@ -50,6 +50,7 @@
     [self setTextFieldDelegate];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     self.btnNext.layer.cornerRadius = 20.f;
+    [self setupGestures];
 }
 
 - (void)setTextFieldDelegate {
@@ -57,6 +58,16 @@
     self.txtPhoneNumber.delegate = self;
     self.txtEmail.delegate = self;
     self.txtPassword.delegate = self;
+}
+
+- (void)setupGestures {
+    UITapGestureRecognizer *generalTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                           action:@selector(hideKeyboard)];
+    [self.view addGestureRecognizer:generalTapRecognizer];
+}
+
+- (void)hideKeyboard {
+    [self.view endEditing:YES];
 }
 
 - (void)saveUser {

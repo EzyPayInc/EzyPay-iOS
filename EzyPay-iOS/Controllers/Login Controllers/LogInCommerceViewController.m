@@ -49,6 +49,26 @@
     
     self.btnSignIn.layer.cornerRadius = 20.f;
     self.btnSignUp.layer.cornerRadius = 20.f;
+    [self setupGestures];
+    [self setUnderlineText];
+}
+
+- (void)setUnderlineText {
+    NSMutableAttributedString *forgotPassword = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"forgotPasswordLabel", nil)];
+    [forgotPassword addAttribute:NSUnderlineStyleAttributeName
+                           value:[NSNumber numberWithInt:1]
+                           range:(NSRange){0,[forgotPassword length]}];
+    self.forgotPassLabel.attributedText = forgotPassword;
+}
+
+- (void)setupGestures {
+    UITapGestureRecognizer *generalTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                           action:@selector(hideKeyboard)];
+    [self.view addGestureRecognizer:generalTapRecognizer];
+}
+
+- (void)hideKeyboard {
+    [self.view endEditing:YES];
 }
 
 #pragma mark - Textfield delegate

@@ -125,6 +125,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView
     userCellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"settingsCell"];
+    cell.detailLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17];
     NSInteger row = indexPath.row == 1 ? 1 : (indexPath.row/ 2) + 1 ;
     switch (row) {
         case NameCell:
@@ -158,6 +159,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
  commerceCellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"settingsCell"];
+    cell.detailLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17];
     NSInteger row = indexPath.row == 1 ? 1 : (indexPath.row/ 2) + 1 ;
     if (row == 1) {
         cell.detailLabel.text = NSLocalizedString(@"namePlaceholder", nil);

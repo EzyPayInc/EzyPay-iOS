@@ -51,6 +51,7 @@
     self.txtCvv.placeholder = NSLocalizedString(@"cvvPlaceholder", nil);
     [self.btnSingUp setTitle:NSLocalizedString(@"signUpAction", nil) forState:UIControlStateNormal];
     [self addScanAction];
+    [self setupGestures];
 }
 
 - (void)addScanAction {
@@ -63,6 +64,16 @@
     UITapGestureRecognizer *scanGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                   action:@selector(scanCardAction)];
     [self.txtCardNumber.rightView addGestureRecognizer:scanGesture];
+}
+
+- (void)setupGestures {
+    UITapGestureRecognizer *generalTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                           action:@selector(hideKeyboard)];
+    [self.view addGestureRecognizer:generalTapRecognizer];
+}
+
+- (void)hideKeyboard {
+    [self.view endEditing:YES];
 }
 
 

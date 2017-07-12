@@ -36,6 +36,17 @@
     self.tableNumebrAction.text = NSLocalizedString(@"tableNumberLabel", nil);
     [self.btnAddTable setTitle:NSLocalizedString(@"addTableAction", nil) forState:UIControlStateNormal];
     self.btnAddTable.layer.cornerRadius = 20.f;
+    [self setupGestures];
+}
+
+- (void)setupGestures {
+    UITapGestureRecognizer *generalTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                           action:@selector(hideKeyboard)];
+    [self.view addGestureRecognizer:generalTapRecognizer];
+}
+
+- (void)hideKeyboard {
+    [self.view endEditing:YES];
 }
 
 #pragma mark - Actions

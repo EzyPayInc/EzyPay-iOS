@@ -43,6 +43,7 @@
     [self.btnSave setTitle:NSLocalizedString(@"saveAction", nil) forState:UIControlStateNormal];
     [self setTextFieldDelegate];
     self.btnSave.layer.cornerRadius = 20.f;
+    [self setupGestures];
 }
 
 
@@ -51,6 +52,16 @@
     self.txtLastName.delegate = self;
     self.txtEmail.delegate = self;
     self.txtPassword.delegate = self;
+}
+
+- (void)setupGestures {
+    UITapGestureRecognizer *generalTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                           action:@selector(hideKeyboard)];
+    [self.view addGestureRecognizer:generalTapRecognizer];
+}
+
+- (void)hideKeyboard {
+    [self.view endEditing:YES];
 }
 
 #pragma mark textfield delegate

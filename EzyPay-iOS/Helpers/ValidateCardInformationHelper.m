@@ -14,7 +14,7 @@
 #pragma mark - Cvv validation
 + (BOOL)validateCvvValue:(UITextField *)textField string:(NSString *)string {
     NSString *cvvString = [textField.text stringByAppendingString:string];
-    return cvvString.length <= 3;
+    return cvvString.length <= 4;
 }
 
 #pragma mark - Card number  formatting and validation

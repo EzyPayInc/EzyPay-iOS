@@ -47,10 +47,7 @@
     self.txtPassword.delegate = self;
     self.txtEmail.delegate = self;
     self.btnLogIn.layer.cornerRadius = 20;
-    UITapGestureRecognizer *signUpTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                          action:@selector(signUpTapLabel:)];
-    [self.lblSignUp setUserInteractionEnabled:YES];
-    [self.lblSignUp addGestureRecognizer:signUpTapRecognizer];
+
     [self setupView];
     
 }
@@ -77,6 +74,7 @@
     [self.btnLogIn setTitle:NSLocalizedString(@"loginAction", nil) forState:UIControlStateNormal];
     self.orLabel.text = NSLocalizedString(@"orLabel", nil);
     [self setUnderlineText];
+    [self setupGestures];
     
     /*Facebook setup*/
     self.facebookLoginButton = [[FBSDKLoginButton alloc] init];
@@ -107,6 +105,17 @@
     [noAccount appendAttributedString:signUpHere];
     self.forgotLabel.attributedText = forgotPassword;
     self.lblSignUp.attributedText = noAccount;
+}
+
+- (void)setupGestures {
+    UITapGestureRecognizer *signUpTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                          action:@selector(signUpTapLabel:)];
+    [self.lblSignUp setUserInteractionEnabled:YES];
+    [self.lblSignUp addGestureRecognizer:signUpTapRecognizer];
+    
+    UITapGestureRecognizer *generalTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                          action:@selector(hideKeyboard)];
+    [self.view addGestureRecognizer:generalTapRecognizer];
 }
 
 #pragma mark textfield delegate
@@ -181,6 +190,10 @@
     } failureHandler:^(id response) {
         NSLog(@"Error getting user");
     }];
+}
+
+- (void)hideKeyboard {
+    [self.view endEditing:YES];
 }
 
 

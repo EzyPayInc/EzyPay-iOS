@@ -41,6 +41,7 @@
     self.txtBankAccount.placeholder = NSLocalizedString(@"accountNumberPlaceholder", nil);
     [self.btnSave setTitle:NSLocalizedString(@"saveAction", nil) forState:UIControlStateNormal];
     [self setupViewMode];
+    [self setupGestures];
 }
 
 - (void)setupViewMode {
@@ -53,6 +54,16 @@
     } else {
         self.navigationItem.rightBarButtonItem = nil;
     }
+}
+
+- (void)setupGestures {
+    UITapGestureRecognizer *generalTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                           action:@selector(hideKeyboard)];
+    [self.view addGestureRecognizer:generalTapRecognizer];
+}
+
+- (void)hideKeyboard {
+    [self.view endEditing:YES];
 }
 
 - (void)addNavigationBarButton {

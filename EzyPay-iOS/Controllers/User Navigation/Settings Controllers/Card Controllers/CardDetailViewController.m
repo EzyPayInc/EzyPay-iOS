@@ -35,6 +35,7 @@
     [self roundedViews];
     self.user = [UserManager getUser];
     [self.txtExpirationDate addTarget:self action:@selector(creditCardExpiryFormatter:) forControlEvents:UIControlEventEditingChanged];
+    [self setupGestures];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,6 +45,9 @@
 
 #pragma mark -Actions
 - (void)setupView {
+    self.cardNumberLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17];
+    self.expDateLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17];
+    self.cvvLabel.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17];
     switch (self.viewType) {
         case ViewCard:
             [self setupViewWithInteractionEnabled:NO];
@@ -103,6 +107,16 @@
                                                                                   action:@selector(scanCardAction)];
         [self.txtCardNumber.rightView addGestureRecognizer:scanGesture];
     }
+}
+
+- (void)setupGestures {
+    UITapGestureRecognizer *generalTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                           action:@selector(hideKeyboard)];
+    [self.view addGestureRecognizer:generalTapRecognizer];
+}
+
+- (void)hideKeyboard {
+    [self.view endEditing:YES];
 }
 
 - (void)roundedViews {
