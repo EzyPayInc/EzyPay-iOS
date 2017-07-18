@@ -70,7 +70,7 @@
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    [self getImage:cell fromId:user.id];
+    [self getImage:cell fromAvatar:user.avatar];
     return cell;
 }
 
@@ -184,9 +184,9 @@
     }];
 }
 
-- (void)getImage: (ContactTableViewCell *)cell fromId:(int64_t )id {
+- (void)getImage: (ContactTableViewCell *)cell fromAvatar:(NSString *)avatar {
     UserManager *manager = [[UserManager alloc] init];
-    [manager downloadImage:id
+    [manager downloadImage:avatar
                toImageView:cell.userProfileImage
               defaultImage:@"profileImage"];
 }

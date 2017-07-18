@@ -2,6 +2,8 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16B2659" minimumToolsVersion="Xcode 8.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="BankAccount" representedClassName="BankAccount" syncable="YES" codeGenerationType="class">
         <attribute name="accountNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bank" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userAccount" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userIdentification" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="bankAccount" inverseEntity="User" syncable="YES"/>
     </entity>
@@ -21,6 +23,7 @@
         <relationship name="payment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Payment" inverseName="currency" inverseEntity="Payment" syncable="YES"/>
     </entity>
     <entity name="Friend" representedClassName="Friend" syncable="YES" codeGenerationType="class">
+        <attribute name="avatar" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="cost" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastname" optional="YES" attributeType="String" syncable="YES"/>
@@ -72,10 +75,10 @@
         <relationship name="tables" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Table" inverseName="restaurant" inverseEntity="Table" syncable="YES"/>
     </entity>
     <elements>
-        <element name="BankAccount" positionX="-153" positionY="-90" width="128" height="90"/>
+        <element name="BankAccount" positionX="-153" positionY="-90" width="128" height="120"/>
         <element name="Card" positionX="61" positionY="-117" width="128" height="150"/>
         <element name="Currency" positionX="-153" positionY="-90" width="128" height="105"/>
-        <element name="Friend" positionX="34" positionY="81" width="128" height="135"/>
+        <element name="Friend" positionX="34" positionY="81" width="128" height="150"/>
         <element name="LocalToken" positionX="-153" positionY="-90" width="128" height="120"/>
         <element name="Payment" positionX="-306" positionY="261" width="128" height="195"/>
         <element name="Table" positionX="-63" positionY="-243" width="128" height="105"/>

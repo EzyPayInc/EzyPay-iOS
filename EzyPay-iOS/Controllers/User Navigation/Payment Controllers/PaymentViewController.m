@@ -123,7 +123,7 @@
         cell.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", self.user.name, self.user.lastName];
         cell.quantityLabel.text = [self quantityWithCurrencyCode:self.payment.userCost];
         cell.activityIndicator.hidden = YES;
-        [self getImage:cell fromUser:self.user.id];
+        [self getImage:cell fromAvatar:self.user.avatar];
     } else {
         Friend *friend = [[self.payment.friends allObjects] objectAtIndex:indexPath.row];
         cell.backgroundColor = [UIColor lightGreenColor];
@@ -138,7 +138,7 @@
         cell.activityIndicator.hidden = friend.state != 0;
         cell.indicatorImageView.hidden = friend.state == 0;
         cell.indicatorImageView.image = [UIImage imageNamed:@"ic_check"];
-        [self getImage:cell fromUser:friend.id];
+        [self getImage:cell fromAvatar:friend.avatar];
     }
     return  cell;
 }
@@ -149,9 +149,9 @@
 }
 
 
-- (void)getImage:(PaymentTableViewCell *)cell fromUser:(int64_t)userId {
+- (void)getImage:(PaymentTableViewCell *)cell fromAvatar:(NSString *)avatar {
     UserManager *manager = [[UserManager alloc] init];
-    [manager downloadImage:userId toImageView:cell.profileImageView defaultImage:@"profileImage"];
+    [manager downloadImage:avatar toImageView:cell.profileImageView defaultImage:@"profileImage"];
 }
 
 - (NSString *)quantityWithCurrencyCode:(CGFloat) value {

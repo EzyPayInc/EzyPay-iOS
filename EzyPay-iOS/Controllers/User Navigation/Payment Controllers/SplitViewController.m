@@ -178,7 +178,7 @@
         cell.quantityLabel.text = [self quantityWithCurrencyCode:self.payment.userCost];
         cell.totalPayment = self.payment.cost;
         cell.delegate = self;
-        [self getImage:cell fromId:self.user.id];
+        [self getImage:cell fromAvatar:self.user.avatar];
     } else {
         Friend *friend = [[self.payment.friends allObjects]objectAtIndex:indexPath.row];
         cell.backgroundColor = [UIColor lightGreenColor];
@@ -189,15 +189,15 @@
         cell.totalPayment = self.payment.cost;
         cell.paymentFriend = friend;
         cell.delegate = self;
-        [self getImage:cell fromId:friend.id];
+        [self getImage:cell fromAvatar:friend.avatar];
     }
     return cell;
 }
 
 #pragma mark - Actions
-- (void)getImage: (SplitTableViewCell *)cell fromId:(int64_t )id {
+- (void)getImage: (SplitTableViewCell *)cell fromAvatar:(NSString * )avatar {
     UserManager *manager = [[UserManager alloc] init];
-    [manager downloadImage:id
+    [manager downloadImage:avatar
                toImageView:cell.profileImageView
               defaultImage:@"profileImage"];
 }

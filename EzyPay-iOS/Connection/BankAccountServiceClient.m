@@ -37,7 +37,8 @@ static NSString *const BANK_ACCOUNT_URL = @"bankAccount/";
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
-    NSString *body = [NSString stringWithFormat:@"userIdentification=%@&accountNumber=%@&userId=%lld",bankAccount.userIdentification, bankAccount.accountNumber, bankAccount.user.id];
+    NSString *body = [NSString stringWithFormat:@"userIdentification=%@&accountNumber=%@&userId=%lld&userAccount=%@&bank=%@",
+                      bankAccount.userIdentification, bankAccount.accountNumber, bankAccount.user.id, bankAccount.userAccount, bankAccount.bank];
     request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
     request.HTTPMethod = @"POST";
     [request addValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"Authorization"];

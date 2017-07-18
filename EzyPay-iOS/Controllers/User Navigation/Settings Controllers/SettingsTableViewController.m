@@ -249,7 +249,6 @@
     [manager updateUser:self.user successHandler:^(id response) {
         self.isEditableMode = NO;
         [CoreDataManager saveContext];
-        [self.tableView reloadData];
         [self addNavigationBarButtons];
         [self updateImage];
     } failureHandler:^(id response) {
@@ -261,9 +260,12 @@
     if(self.profileImageView.image != nil){
         UserManager *manager = [[UserManager alloc] init];
         [manager uploadUserImage: self.profileImageView.image User:self.user successHandler:^(id response) {
-            [self getImage];
+            self.user.avatar = [response objectForKey:@"avatar"];
+            [CoreDataManager saveContext];
+            [self.tableView reloadData];
         } failureHandler:^(id response) {
             NSLog(@"%@", response);
+            [self.tableView reloadData];
         }];
     }
     

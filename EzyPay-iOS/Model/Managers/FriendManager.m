@@ -23,6 +23,7 @@
         friend.name = user.name;
         friend.lastname = user.lastName;
         friend.cost = 0;
+        friend.avatar = user.avatar;
         [friends addObject:friend];
     }
     return friends;
@@ -37,6 +38,7 @@
         friend.lastname = [dictionary objectForKey:@"lastname"];
         friend.cost = [[dictionary objectForKey:@"cost"] floatValue];
         friend.state = [[dictionary objectForKey:@"state"] integerValue];
+        friend.avatar = [dictionary objectForKey:@"avatar"];
         [friends addObject:friend];
     }
     return friends;

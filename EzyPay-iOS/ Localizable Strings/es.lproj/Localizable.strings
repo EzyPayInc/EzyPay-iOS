@@ -109,4 +109,6 @@ totalCostPlaceholder = "Total";
 tablesQuantityPlaceholder = "¿Cuántas mesas?";
 accountNumberPlaceholder = "Número de Cuenta";
 userIdentificarionPlaceholder = "Cédula";
+commerceAccountNamePlaceholder = "Propietrio de la Cuenta";
+commerceBankNamePlaceholder = "Banco";
 

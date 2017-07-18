@@ -74,9 +74,9 @@
 
 #pragma mark - actions
 - (void)getImage {
-    int64_t id = self.user.userType == EmployeeNavigation ? self.user.boss.id : self.user.id;
+    NSString *avatar = self.user.userType == EmployeeNavigation ? self.user.boss.avatar : self.user.avatar;
     UserManager *manager = [[UserManager alloc] init];
-    [manager downloadImage:id
+    [manager downloadImage:avatar
                toImageView:self.commerceImageView
               defaultImage:@"restaurant"];
 }

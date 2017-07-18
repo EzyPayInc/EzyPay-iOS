@@ -12,6 +12,7 @@
 
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
+    self.borderStyle = UITextBorderStyleNone;
     CALayer *border = [CALayer layer];
     CGFloat borderWidth = 0.5;
     border.borderColor = [UIColor grayColor].CGColor;

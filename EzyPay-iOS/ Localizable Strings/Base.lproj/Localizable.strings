@@ -109,3 +109,5 @@ totalCostPlaceholder = "Total";
 tablesQuantityPlaceholder = "How many Tables?";
 accountNumberPlaceholder = "Account Number";
 userIdentificarionPlaceholder = "Identification";
+commerceAccountNamePlaceholder = "Account Name";
+commerceBankNamePlaceholder = "Bank";

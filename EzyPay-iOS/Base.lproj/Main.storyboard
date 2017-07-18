@@ -14,7 +14,7 @@
         <scene sceneID="zrJ-Tb-lEo">
             <objects>
                 <navigationController storyboardIdentifier="SignInNavigationViewController" id="lX2-XU-WVx" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wPc-E7-pG7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wPc-E7-pG7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -332,7 +332,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Au8-B4-tWa" userLabel="txtUserId" customClass="BottomBorderTextField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Au8-B4-tWa" userLabel="txtUserId" customClass="BottomBorderTextField">
                                 <rect key="frame" x="20" y="40" width="374" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="WJ0-UE-ff8"/>
@@ -341,17 +341,35 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GcT-17-Cfp" userLabel="txtBankAccount" customClass="BottomBorderTextField">
-                                <rect key="frame" x="20" y="100" width="374" height="50"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GcT-17-Cfp" userLabel="txtBankAccount" customClass="BottomBorderTextField">
+                                <rect key="frame" x="20" y="100" width="374" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Faz-r0-bDE"/>
+                                    <constraint firstAttribute="height" constant="40" id="Faz-r0-bDE"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tkh-Rc-U02" userLabel="txtUserName" customClass="BottomBorderTextField">
+                                <rect key="frame" x="20" y="160" width="374" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Is7-Hz-di6"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NAq-5Q-4g0" userLabel="txtBank" customClass="BottomBorderTextField">
+                                <rect key="frame" x="20" y="220" width="374" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="RXF-wG-AAt"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BTP-XL-dOb" userLabel="btnSave">
-                                <rect key="frame" x="104" y="170" width="207" height="50"/>
+                                <rect key="frame" x="103.66666666666669" y="280" width="207" height="50"/>
                                 <color key="backgroundColor" red="0.72941176470588232" green="0.82352941176470584" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="GfW-5A-Duc"/>
@@ -367,20 +385,28 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="Au8-B4-tWa" secondAttribute="trailing" id="18X-4x-yLn"/>
+                            <constraint firstItem="BTP-XL-dOb" firstAttribute="top" secondItem="NAq-5Q-4g0" secondAttribute="bottom" constant="20" id="1hn-39-f7G"/>
+                            <constraint firstItem="tkh-Rc-U02" firstAttribute="leading" secondItem="hsg-tc-0cy" secondAttribute="leadingMargin" id="2Uj-ZL-3WF"/>
                             <constraint firstItem="GcT-17-Cfp" firstAttribute="top" secondItem="Au8-B4-tWa" secondAttribute="bottom" constant="20" id="2j7-Qj-HEl"/>
+                            <constraint firstItem="NAq-5Q-4g0" firstAttribute="top" secondItem="tkh-Rc-U02" secondAttribute="bottom" constant="20" id="6fW-cv-nP7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="GcT-17-Cfp" secondAttribute="trailing" id="6le-YB-gN5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tkh-Rc-U02" secondAttribute="trailing" id="RKB-oW-sWv"/>
                             <constraint firstItem="BTP-XL-dOb" firstAttribute="width" secondItem="hsg-tc-0cy" secondAttribute="width" multiplier="0.5" id="VhJ-vf-tYx"/>
+                            <constraint firstItem="tkh-Rc-U02" firstAttribute="top" secondItem="GcT-17-Cfp" secondAttribute="bottom" constant="20" id="g1s-fJ-3zM"/>
                             <constraint firstItem="BTP-XL-dOb" firstAttribute="centerX" secondItem="hsg-tc-0cy" secondAttribute="centerX" id="hxd-bd-wqN"/>
+                            <constraint firstItem="NAq-5Q-4g0" firstAttribute="leading" secondItem="hsg-tc-0cy" secondAttribute="leadingMargin" id="i56-Yp-HM4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NAq-5Q-4g0" secondAttribute="trailing" id="lLM-s1-Kca"/>
                             <constraint firstItem="GcT-17-Cfp" firstAttribute="leading" secondItem="hsg-tc-0cy" secondAttribute="leadingMargin" id="mrc-zR-FlT"/>
                             <constraint firstItem="Au8-B4-tWa" firstAttribute="leading" secondItem="hsg-tc-0cy" secondAttribute="leadingMargin" id="mwh-7T-lvy"/>
-                            <constraint firstItem="BTP-XL-dOb" firstAttribute="top" secondItem="GcT-17-Cfp" secondAttribute="bottom" constant="20" id="rFo-hz-Eaj"/>
                             <constraint firstItem="Au8-B4-tWa" firstAttribute="top" secondItem="xMk-Kd-709" secondAttribute="bottom" constant="20" id="s6S-GT-eQz"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="btnSave" destination="BTP-XL-dOb" id="YpT-6D-ZrD"/>
+                        <outlet property="txtBank" destination="NAq-5Q-4g0" id="4kC-SP-nIe"/>
                         <outlet property="txtBankAccount" destination="GcT-17-Cfp" id="i7d-kS-4Lr"/>
                         <outlet property="txtUserId" destination="Au8-B4-tWa" id="Vib-aJ-QCd"/>
+                        <outlet property="txtUsername" destination="tkh-Rc-U02" id="1W7-yX-xEM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7gO-Vn-kQO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -476,7 +502,7 @@
         <scene sceneID="VAJ-de-XgV">
             <objects>
                 <navigationController storyboardIdentifier="NavPaymentController" id="gl0-JL-8Bb" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7ZN-fY-Q1p">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7ZN-fY-Q1p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1421,25 +1447,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eeI-zi-ikM" userLabel="txtUserId" customClass="BottomBorderTextField">
-                                <rect key="frame" x="20" y="84" width="374" height="50"/>
+                                <rect key="frame" x="20" y="84" width="374" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="m1C-5j-wtz"/>
+                                    <constraint firstAttribute="height" constant="40" id="m1C-5j-wtz"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bM3-Pi-3FV" userLabel="txtBankAccount" customClass="BottomBorderTextField">
-                                <rect key="frame" x="20" y="154" width="374" height="50"/>
+                                <rect key="frame" x="20" y="144" width="374" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="82t-eU-FxC"/>
+                                    <constraint firstAttribute="height" constant="40" id="82t-eU-FxC"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wqE-az-N73" userLabel="txtUserAccount" customClass="BottomBorderTextField">
+                                <rect key="frame" x="20" y="204" width="374" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="b6W-bo-sAj"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t3p-vc-MsS" userLabel="txtBank" customClass="BottomBorderTextField">
+                                <rect key="frame" x="20" y="264" width="374" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="aBA-rV-Ile"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4G-jn-iJ9" userLabel="btnSave">
-                                <rect key="frame" x="104" y="224" width="207" height="50"/>
+                                <rect key="frame" x="103.66666666666669" y="324" width="207" height="50"/>
                                 <color key="backgroundColor" red="0.72941176470000002" green="0.82352941180000006" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="OMX-JF-5Xa"/>
@@ -1455,20 +1499,28 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="wqE-az-N73" secondAttribute="trailing" id="AuK-Z8-uMx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="t3p-vc-MsS" secondAttribute="trailing" id="G6c-F3-Eac"/>
+                            <constraint firstItem="wqE-az-N73" firstAttribute="leading" secondItem="eNg-f3-I4c" secondAttribute="leadingMargin" id="GBn-BU-YMD"/>
                             <constraint firstItem="eeI-zi-ikM" firstAttribute="leading" secondItem="eNg-f3-I4c" secondAttribute="leadingMargin" id="I4f-WU-WKJ"/>
                             <constraint firstItem="bM3-Pi-3FV" firstAttribute="leading" secondItem="eNg-f3-I4c" secondAttribute="leadingMargin" id="JPr-3v-FXK"/>
+                            <constraint firstItem="t3p-vc-MsS" firstAttribute="top" secondItem="wqE-az-N73" secondAttribute="bottom" constant="20" id="KXf-1w-Qwz"/>
+                            <constraint firstItem="r4G-jn-iJ9" firstAttribute="top" secondItem="t3p-vc-MsS" secondAttribute="bottom" constant="20" id="QFV-d9-SXx"/>
                             <constraint firstItem="eeI-zi-ikM" firstAttribute="trailing" secondItem="eNg-f3-I4c" secondAttribute="trailingMargin" id="Wxy-QP-EaM"/>
                             <constraint firstItem="r4G-jn-iJ9" firstAttribute="width" secondItem="eNg-f3-I4c" secondAttribute="width" multiplier="0.5" id="YFV-rh-Nh7"/>
+                            <constraint firstItem="t3p-vc-MsS" firstAttribute="leading" secondItem="eNg-f3-I4c" secondAttribute="leadingMargin" id="YVd-OJ-57e"/>
                             <constraint firstItem="eeI-zi-ikM" firstAttribute="top" secondItem="dwV-W8-fRB" secondAttribute="bottom" constant="20" id="Yas-WR-9Sm"/>
                             <constraint firstItem="r4G-jn-iJ9" firstAttribute="centerX" secondItem="eNg-f3-I4c" secondAttribute="centerX" id="bWB-dv-xrc"/>
-                            <constraint firstItem="r4G-jn-iJ9" firstAttribute="top" secondItem="bM3-Pi-3FV" secondAttribute="bottom" constant="20" id="cC0-8P-YEH"/>
                             <constraint firstItem="bM3-Pi-3FV" firstAttribute="top" secondItem="eeI-zi-ikM" secondAttribute="bottom" constant="20" id="cL3-eA-gU2"/>
+                            <constraint firstItem="wqE-az-N73" firstAttribute="top" secondItem="bM3-Pi-3FV" secondAttribute="bottom" constant="20" id="lhM-3N-kz6"/>
                             <constraint firstItem="bM3-Pi-3FV" firstAttribute="trailing" secondItem="eNg-f3-I4c" secondAttribute="trailingMargin" id="vNA-uf-tpR"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="btnSave" destination="r4G-jn-iJ9" id="Dby-FJ-ahd"/>
+                        <outlet property="txtBank" destination="t3p-vc-MsS" id="flt-2Z-Wbh"/>
                         <outlet property="txtBankAccount" destination="bM3-Pi-3FV" id="qhA-WC-yUO"/>
+                        <outlet property="txtUserAccount" destination="wqE-az-N73" id="yeh-Kj-XUQ"/>
                         <outlet property="txtUserId" destination="eeI-zi-ikM" id="Gt7-Sf-PIK"/>
                     </connections>
                 </viewController>
@@ -1563,7 +1615,7 @@
                                 <rect key="frame" x="21" y="247" width="372" height="58"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KRt-Q4-Qiu" userLabel="txtPassword">
                                 <rect key="frame" x="21" y="320" width="372" height="59"/>
@@ -1725,7 +1777,7 @@
         <scene sceneID="KXX-hM-o85">
             <objects>
                 <navigationController storyboardIdentifier="NavSettingsController" id="YTL-d0-WOv" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OJI-WJ-gTY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OJI-WJ-gTY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2037,7 +2089,7 @@
         <scene sceneID="Tnl-3X-gIe">
             <objects>
                 <collectionViewController storyboardIdentifier="TableCollectionViewController" id="goD-X0-Skl" customClass="TableCollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="diU-rC-QvO">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="diU-rC-QvO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2355,7 +2407,7 @@
         <scene sceneID="4hQ-0D-RtA">
             <objects>
                 <navigationController storyboardIdentifier="NavCommerceController" id="0dl-ju-FiX" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Lw2-B4-WCb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lw2-B4-WCb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2538,7 +2590,7 @@
         <scene sceneID="4Mg-eR-pG6">
             <objects>
                 <navigationController storyboardIdentifier="NavHistoryCommerceController" id="W3U-4y-trr" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="r2L-8D-pQV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="r2L-8D-pQV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2554,7 +2606,7 @@
         <scene sceneID="Ain-zJ-W07">
             <objects>
                 <navigationController storyboardIdentifier="TablesNavigationController" id="24R-PE-tWU" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="oV9-i0-LNB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oV9-i0-LNB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2695,7 +2747,7 @@
         <scene sceneID="gZZ-BX-hHN">
             <objects>
                 <navigationController storyboardIdentifier="cardNavigationViewController" id="sFJ-J7-HAt" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OlK-CN-xS6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OlK-CN-xS6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2711,7 +2763,7 @@
         <scene sceneID="epW-x6-LWp">
             <objects>
                 <navigationController storyboardIdentifier="NavHistoryController" id="9dM-e2-skS" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nKe-5Q-Y5g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nKe-5Q-Y5g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

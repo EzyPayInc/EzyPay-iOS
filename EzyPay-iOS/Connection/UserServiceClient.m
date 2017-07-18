@@ -117,11 +117,11 @@ static NSString *const USER_URL = @"user/";
     [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
 }
 
-- (void)downloadImage:(int64_t)idUser
+- (void)downloadImage:(NSString *)avatar
           toImageView:(UIImageView *)imageView
          defaultImage:(NSString *)defaultImage {
     dispatch_async(dispatch_get_global_queue(0,0), ^{
-        NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"%@%@%lld",BASE_URL, @"user/downloadImage/", idUser]];
+        NSURL *url = [NSURL URLWithString: avatar];
         NSData *data = [[NSData alloc] initWithContentsOfURL:url];
         dispatch_async(dispatch_get_main_queue(), ^{
             if(data == nil) {

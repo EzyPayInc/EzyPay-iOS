@@ -50,6 +50,7 @@
         user.phoneNumber = [userDictionary objectForKey:@"phoneNumber"];
         user.userType = [[userDictionary objectForKey:@"userType"] integerValue];
         user.customerId = [[userDictionary objectForKey:@"customerId"] integerValue];
+        user.avatar = [userDictionary objectForKey:@"avatar"];
         [users addObject:user];
     }
     return users;
@@ -109,9 +110,11 @@
     [service uploadUserImage:image User:user successHandler:successHandler failureHandler:failureHandler];
 }
 
-- (void)downloadImage:(int64_t)idUser toImageView:(UIImageView *)imageView defaultImage:(NSString *)defaultImage {
+- (void)downloadImage:(NSString *)avatar
+          toImageView:(UIImageView *)imageView
+         defaultImage:(NSString *)defaultImage  {
     UserServiceClient *service = [[UserServiceClient alloc] init];
-    [service downloadImage:idUser toImageView:imageView defaultImage:defaultImage];
+    [service downloadImage:avatar toImageView:imageView defaultImage:defaultImage];
 }
 
 - (void)getEmployees:(int64_t)boss token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler:(ConnectionErrorHandler) failureHandler {

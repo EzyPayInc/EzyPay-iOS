@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet BottomBorderTextField *txtUserId;
 
 @property (weak, nonatomic) IBOutlet BottomBorderTextField *txtBankAccount;
+@property (weak, nonatomic) IBOutlet BottomBorderTextField *txtUsername;
+@property (weak, nonatomic) IBOutlet UITextField *txtBank;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnSave;
 
@@ -40,6 +42,8 @@
     self.navigationItem.title = NSLocalizedString(@"bankInformationTitle", nil);
     self.txtBankAccount.placeholder = NSLocalizedString(@"accountNumberPlaceholder", nil);
     self.txtUserId.placeholder = NSLocalizedString(@"userIdentificarionPlaceholder", nil);
+    self.txtUsername.placeholder = NSLocalizedString(@"commerceAccountNamePlaceholder", nil);
+    self.txtBank.placeholder = NSLocalizedString(@"commerceBankNamePlaceholder", nil);
     [self.btnSave setTitle:NSLocalizedString(@"signInTitle", nil) forState:UIControlStateNormal];
     
     self.txtBankAccount.delegate = self;
@@ -112,6 +116,8 @@
     BankAccount *account = [CoreDataManager createEntityWithName:@"BankAccount"];
     account.userIdentification = self.txtUserId.text;
     account.accountNumber = self.txtBankAccount.text;
+    account.userAccount = self.txtUsername.text;
+    account.bank = self.txtBank.text;
     account.user = self.user;
     BankAccountManager *manager = [[BankAccountManager alloc] init];
     [manager registerAccount:account

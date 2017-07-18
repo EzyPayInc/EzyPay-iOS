@@ -115,7 +115,7 @@
 
 - (void)getImage {
     UserManager *manager = [[UserManager alloc] init];
-    [manager downloadImage:self.payment.commerce.id
+    [manager downloadImage:self.payment.commerce.avatar
                toImageView:self.restaurantImageView
               defaultImage:@"restaurant"];
 }

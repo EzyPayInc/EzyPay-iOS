@@ -16,6 +16,8 @@
     BankAccount *bankAccount = [CoreDataManager createEntityWithName:@"BankAccount"];
     bankAccount.accountNumber = [accountDictionary objectForKey:@"accountNumber"];
     bankAccount.userIdentification = [accountDictionary objectForKey:@"userIdentification"];
+    bankAccount.userAccount = [accountDictionary objectForKey:@"userAccount"];
+    bankAccount.bank = [accountDictionary objectForKey:@"bank"];
     return bankAccount;
 }
 
