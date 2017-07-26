@@ -89,7 +89,7 @@
 
 - (void)login {
     UserManager *manager = [[UserManager alloc] init];
-    [manager login:self.user.email password:self.user.password successHandler:^(id response) {
+    [manager login:self.user.email password:self.user.password scope: nil successHandler:^(id response) {
         NSDictionary *accessToken = [response valueForKey:@"access_token"];
         NSString *token = [accessToken valueForKey:@"value"];
         self.user.token = token;

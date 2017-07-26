@@ -39,5 +39,9 @@
                       token:(NSString *)token
              successHandler:(ConnectionSuccessHandler)successHandler
              failureHandler:(ConnectionErrorHandler) failureHandler;
+- (void)performPayment:(Payment *)payment
+                 token:(NSString *)token
+        successHandler:(ConnectionSuccessHandler)successHandler
+        failureHandler:(ConnectionErrorHandler) failureHandler;
 
 @end

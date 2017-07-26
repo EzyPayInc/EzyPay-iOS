@@ -37,7 +37,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     Payment *payment = [PaymentManager getPayment];
-    if (payment.id > 0) {
+    if (payment.id > 0 && payment.isCanceled == 0) {
        [self showCommerceDetail:payment];
     }
 }
@@ -63,8 +63,10 @@
 }
 
 - (void)registerPayment:(NSDictionary *)paymentDictionary {
-    Payment *payment = [PaymentManager paymentFromDictionary:paymentDictionary];
     PaymentManager *manager = [[PaymentManager alloc] init];
+    [PaymentManager deletePayment];
+    Payment *payment = [PaymentManager paymentFromDictionary:paymentDictionary];
+    payment.paymentDate = [NSDate date];
     [manager registerPayment:payment user:self.user successHandler:^(id response) {
         NSLog(@"Response: %@", response);
         payment.id = [[response objectForKey:@"id"] integerValue];

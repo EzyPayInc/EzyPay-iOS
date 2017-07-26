@@ -13,6 +13,8 @@
 #import "UserManager.h"
 #import "Currency+CoreDataClass.h"
 #import "PaymentResultViewController.h"
+#import "PaymentManager.h"
+#import "CoreDataManager.h"
 
 @interface PaymentViewController ()
 
@@ -33,6 +35,7 @@
     self.user = [UserManager getUser];
     [self setupView];
     self.navigationItem.title = NSLocalizedString(@"splitTitle", nil);
+    self.btnPayment.userInteractionEnabled = false;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,6 +45,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self isPaymentReadyToPay];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
 }
@@ -162,12 +166,31 @@
 }
 
 - (void)goToPaymentResultView {
-    PaymentResultViewController *viewController = (PaymentResultViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentResultViewController"];
-    [self.navigationController pushViewController:viewController animated:true];
+    PaymentManager *manager = [[PaymentManager alloc] init];
+    [manager performPayment:self.payment
+                      token:self.user.token
+             successHandler:^(id response) {
+                 self.payment.isCanceled = 1;
+                 [CoreDataManager saveContext];
+                 PaymentResultViewController *viewController = (PaymentResultViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentResultViewController"];
+                 [self.navigationController pushViewController:viewController animated:true];
+             } failureHandler:^(id response) {
+                 NSLog(@"Error performing the pay: %@", response);
+             }];
 }
 
 - (void)reloadData {
+    [self isPaymentReadyToPay];
     [self.tableView reloadData];
+}
+
+- (void)isPaymentReadyToPay {
+    for (Friend *friend in self.payment.friends) {
+        if(friend.state == 0) {
+            return;
+        }
+    }
+    self.btnPayment.userInteractionEnabled = YES;
 }
 
 @end

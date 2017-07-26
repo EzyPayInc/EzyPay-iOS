@@ -10,6 +10,7 @@
 @interface SessionHandler : NSObject
 
 FOUNDATION_EXPORT NSString *const BASE_URL;
+FOUNDATION_EXPORT NSString *const IMAGE_URL;
 FOUNDATION_EXPORT NSString *const CLIENT_ID;
 FOUNDATION_EXPORT NSString *const SECRET_KEY;
 

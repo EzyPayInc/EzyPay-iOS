@@ -92,7 +92,9 @@
             
         } else {
             if(indexPath.row % 2 == 0) {
-                return [tableView dequeueReusableCellWithIdentifier:@"transparentCell"];
+                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"transparentCell"];
+                cell.separatorInset = UIEdgeInsetsMake(0.f, cell.bounds.size.width, 0.f, 0.f);
+                return cell;
             }
             return self.user.userType == UserNavigation ?
             [self tableView:tableView userCellForRowAtIndexPath:indexPath] :

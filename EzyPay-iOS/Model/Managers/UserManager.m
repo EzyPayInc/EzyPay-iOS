@@ -10,6 +10,7 @@
 #import "CoreDataManager.h"
 #import "GeneralServiceClient.h"
 #import "UserServiceClient.h"
+#import "Credentials+CoreDataClass.h"
 
 @implementation UserManager
 
@@ -23,6 +24,18 @@
     user.userType = [[userDictionary objectForKey:@"userType"] integerValue];
     user.customerId = [[userDictionary objectForKey:@"customerId"] integerValue];
     user.avatar = [userDictionary objectForKey:@"avatar"];
+    return user;
+}
+
++ (User *)userFromFacebookLogin:(NSDictionary *)facebookUser {
+    User *user = [CoreDataManager createEntityWithName:@"User"];
+    Credentials *credentials = [CoreDataManager createEntityWithName:@"Credentials"];
+    user.name = [facebookUser objectForKey:@"first_name"];
+    user.lastName = [facebookUser objectForKey:@"last_name"];
+    user.email =  [facebookUser objectForKey:@"email"];
+    credentials.credential = [facebookUser objectForKey:@"id"];
+    credentials.platform = @"Facebook";
+    user.credential = credentials;
     return user;
 }
 
@@ -76,10 +89,37 @@
     return employees;
 }
 
++ (NSMutableDictionary *)userToJson:(User *)user {
+    NSMutableDictionary *userDictionary = [NSMutableDictionary dictionary];
+    int64_t boss = user.boss == nil ? 0 : user.boss.id;
+    
+    [userDictionary setObject:user.name forKey:@"name"];
+    [userDictionary setObject:user.email forKey:@"email"];
+    [userDictionary setObject:user.lastName forKey:@"lastName"];
+    [userDictionary setObject:user.phoneNumber forKey:@"phoneNumber"];
+    [userDictionary setObject:[NSNumber numberWithInteger:user.userType] forKey:@"userType"];
+    [userDictionary setObject:[NSNumber numberWithLongLong:boss] forKey:@"boss"];
+    [userDictionary setObject:user.password forKey:@"password"];
+    
+    if(user.credential) {
+        NSMutableDictionary *credentials = [NSMutableDictionary dictionary];
+        [credentials setObject:user.credential.credential forKey:@"credential"];
+        [credentials setObject:user.credential.platform forKey:@"platform"];
+        [userDictionary setObject:credentials forKey:@"credentials"];
+
+    }
+    
+    return userDictionary;
+}
+
 #pragma mark - Web Services
-- (void)login:(NSString *) email password:(NSString *)password successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
+- (void)login:(NSString *) email
+     password:(NSString *)password
+        scope:(NSString *)scope
+successHandler:(ConnectionSuccessHandler) successHandler
+failureHandler: (ConnectionErrorHandler) failureHandler {
     GeneralServiceClient *service = [[GeneralServiceClient alloc] init];
-    [service login:email password:password successHandler:successHandler failureHandler:failureHandler];
+    [service login:email password:password scope:scope successHandler:successHandler failureHandler:failureHandler];
 }
 
 - (void)registerUser:(User *) user
@@ -120,6 +160,20 @@
 - (void)getEmployees:(int64_t)boss token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler:(ConnectionErrorHandler) failureHandler {
     UserServiceClient *service = [[UserServiceClient alloc] init];
     [service getEmployees:boss token:token successHandler:successHandler failureHandler:failureHandler];
+}
+
+- (void)getUserHistory:(User *)user
+        successHandler:(ConnectionSuccessHandler) successHandler
+        failureHandler:(ConnectionErrorHandler) failureHandler {
+    UserServiceClient *service = [[UserServiceClient alloc] init];
+    [service getUserHistory:user successHandler:successHandler failureHandler:failureHandler];
+}
+
+- (void)getUserHistoryDates:(User *)user
+             successHandler:(ConnectionSuccessHandler) successHandler
+             failureHandler:(ConnectionErrorHandler) failureHandler {
+    UserServiceClient *service = [[UserServiceClient alloc] init];
+    [service getUserHistoryDates:user successHandler:successHandler failureHandler:failureHandler];
 }
 
 

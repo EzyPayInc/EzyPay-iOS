@@ -8,6 +8,7 @@
 
 #import "UserServiceClient.h"
 #import "SessionHandler.h"
+#import "UserManager.h"
 
 @interface UserServiceClient()
 
@@ -40,10 +41,14 @@ static NSString *const USER_URL = @"user/";
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
-    int64_t boss = user.boss == nil ? 0 : user.boss.id;
-    NSString *body = [NSString stringWithFormat:@"name=%@&lastName=%@&phoneNumber=%@&email=%@&password=%@&userType=%hd&boss=%lld&tablesQuantity=%ld", user.name, user.lastName, user.phoneNumber, user.email, user.password, user.userType, boss, (long)tables];
-    request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
+    NSMutableDictionary *userDictionary = [UserManager userToJson:user];
+    if(tables > 0) {
+        [userDictionary setObject:[NSNumber numberWithLongLong:tables] forKey:@"tablesQuantity"];
+    }
+    NSData *body = [NSJSONSerialization dataWithJSONObject:userDictionary options:0 error:nil];
+    request.HTTPBody = body;
     request.HTTPMethod = @"POST";
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request addValue:[NSString stringWithFormat:@"Basic %@",encodedString] forHTTPHeaderField:@"Authorization"];
     [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
 }
@@ -194,6 +199,32 @@ static NSString *const USER_URL = @"user/";
     request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
     request.HTTPMethod = @"POST";
     [request addValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"Authorization"];
+    [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
+}
+
+- (void)getUserHistory:(User *)user
+        successHandler:(ConnectionSuccessHandler) successHandler
+        failureHandler:(ConnectionErrorHandler) failureHandler {
+    NSString *parameters = [NSString stringWithFormat:@"%@history/%lld",USER_URL, user.id];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BASE_URL, parameters]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    request.HTTPMethod = @"GET";
+    [request addValue:[NSString stringWithFormat:@"Bearer %@",user.token] forHTTPHeaderField:@"Authorization"];
+    [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
+}
+
+- (void)getUserHistoryDates:(User *)user
+        successHandler:(ConnectionSuccessHandler) successHandler
+        failureHandler:(ConnectionErrorHandler) failureHandler {
+    NSString *parameters = [NSString stringWithFormat:@"%@history/dates/%lld",USER_URL, user.id];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BASE_URL, parameters]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    request.HTTPMethod = @"GET";
+    [request addValue:[NSString stringWithFormat:@"Bearer %@",user.token] forHTTPHeaderField:@"Authorization"];
     [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
 }
 

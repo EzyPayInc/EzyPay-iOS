@@ -24,4 +24,10 @@
           toImageView:(UIImageView *)imageView
          defaultImage:(NSString *)defaultImage;
 - (void)getEmployees:(int64_t)boss token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler:(ConnectionErrorHandler) failureHandler;
+- (void)getUserHistory:(User *)user
+        successHandler:(ConnectionSuccessHandler) successHandler
+        failureHandler:(ConnectionErrorHandler) failureHandler;
+- (void)getUserHistoryDates:(User *)user
+             successHandler:(ConnectionSuccessHandler) successHandler
+             failureHandler:(ConnectionErrorHandler) failureHandler;
 @end

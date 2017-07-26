@@ -13,6 +13,8 @@
 #import "CoreDataManager.h"
 #import "UIColor+UIColor.h"
 #import "PushNotificationManager.h"
+#import "FriendManager.h"
+#import "PaymentResultViewController.h"
 
 @interface RestaurantDetailViewController ()
 
@@ -67,6 +69,11 @@
                                                                      action:@selector(cancelAction)];
     self.navigationItem.leftBarButtonItem = leftBarButton;
 }
+
+- (IBAction)payAloneAction:(id)sender {
+    [self savePayment];
+}
+
 
 - (void)cancelAction {
     [self deletePayment];
@@ -136,6 +143,34 @@
             failureHandler:^(id response) {
                 NSLog(@"Error deleting a payment : %@", response);
             }];
+}
+
+- (void)savePayment {
+    self.payment.userCost = self.payment.cost;
+    FriendManager *manager = [[FriendManager alloc] init];
+    self.payment.paymentDate = [NSDate date];
+    [manager addFriendsToPayment:self.payment
+                            user:self.user
+                        userCost:self.payment.userCost
+                  successHandler:^(id response) {
+                      [self performPayment];
+                  } failureHandler:^(id response) {
+                      NSLog(@"%@Response: ", response);
+                  }];
+}
+
+- (void)performPayment {
+    PaymentManager *manager = [[PaymentManager alloc] init];
+    [manager performPayment:self.payment
+                      token:self.user.token
+             successHandler:^(id response) {
+                 self.payment.isCanceled = 1;
+                 [CoreDataManager saveContext];
+                 PaymentResultViewController *viewController = (PaymentResultViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentResultViewController"];
+                 [self.navigationController pushViewController:viewController animated:true];
+             } failureHandler:^(id response) {
+                 NSLog(@"Error performing the pay: %@", response);
+             }];
 }
 
 @end

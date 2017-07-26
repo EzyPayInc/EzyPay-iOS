@@ -14,13 +14,19 @@
 
 #pragma mark - Core Data
 + (User *)userFromDictionary:(NSDictionary *)userDictionary;
++ (User *)userFromFacebookLogin:(NSDictionary *)facebookUser;
 + (User *)getUser;
 + (void)deleteUser;
 + (NSArray *)usersFromArray:(NSArray *)usersArray;
 + (NSArray *)employeesFromArray:(NSArray *)employeesArray;
++ (NSMutableDictionary *)userToJson:(User *)user;
 
 #pragma mark - Web Services
-- (void)login:(NSString *) email password:(NSString *)password successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler;
+- (void)login:(NSString *) email
+     password:(NSString *)password
+        scope:(NSString *)scope
+successHandler:(ConnectionSuccessHandler) successHandler
+failureHandler: (ConnectionErrorHandler) failureHandler;
 - (void)registerUser:(User *) user
               tables:(NSInteger )tables
       successHandler:(ConnectionSuccessHandler) successHandler
@@ -33,5 +39,11 @@
           toImageView:(UIImageView *)imageView
          defaultImage:(NSString *)defaultImage;
 - (void)getEmployees:(int64_t)boss token:(NSString *)token successHandler:(ConnectionSuccessHandler) successHandler failureHandler:(ConnectionErrorHandler) failureHandler;
+- (void)getUserHistory:(User *)user
+        successHandler:(ConnectionSuccessHandler) successHandler
+        failureHandler:(ConnectionErrorHandler) failureHandler;
+- (void)getUserHistoryDates:(User *)user
+             successHandler:(ConnectionSuccessHandler) successHandler
+             failureHandler:(ConnectionErrorHandler) failureHandler;
 
 @end

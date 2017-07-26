@@ -12,6 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.restaurantName.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
+    self.payment.font = [UIFont fontWithName:@"Helvetica-Bold" size:15];
     // Initialization code
 }
 

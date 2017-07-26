@@ -29,7 +29,11 @@
 //constants
 static NSString *const AUTH_URL = @"auth/token";
 
-- (void)login:(NSString *) email password:(NSString *)password successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler {
+- (void)login:(NSString *) email
+     password:(NSString *)password
+        scope:(NSString *)scope
+successHandler:(ConnectionSuccessHandler) successHandler
+failureHandler: (ConnectionErrorHandler) failureHandler {
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BASE_URL, AUTH_URL]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
@@ -37,7 +41,13 @@ static NSString *const AUTH_URL = @"auth/token";
                                                        timeoutInterval:60.0];
     NSString *basicAuth = [NSString stringWithFormat:@"%@:%@",CLIENT_ID,SECRET_KEY];
     NSString *encodedString = [self stringByBase64EncodingWithString:basicAuth];
-    NSString *parameters = [NSString stringWithFormat:@"grant_type=password&username=%@&password=%@",email, password];
+    NSString *parameters;
+    if (scope != nil) {
+        parameters = [NSString stringWithFormat:@"grant_type=password&username=%@&password=%@&scope=%@",
+                      email,password, scope];
+    } else {
+        parameters = [NSString stringWithFormat:@"grant_type=password&username=%@&password=%@",email, password];
+    }
     request.HTTPBody = [parameters dataUsingEncoding:NSUTF8StringEncoding];;
     request.HTTPMethod = @"POST";
     [request addValue:[NSString stringWithFormat:@"Basic %@",encodedString] forHTTPHeaderField:@"Authorization"];

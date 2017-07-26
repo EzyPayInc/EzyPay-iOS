@@ -11,6 +11,10 @@
 
 @interface GeneralServiceClient : NSObject
 
-- (void)login:(NSString *) email password:(NSString *)password successHandler:(ConnectionSuccessHandler) successHandler failureHandler: (ConnectionErrorHandler) failureHandler;
+- (void)login:(NSString *) email
+     password:(NSString *)password
+        scope:(NSString *)scope
+successHandler:(ConnectionSuccessHandler) successHandler
+failureHandler: (ConnectionErrorHandler) failureHandler;
 
 @end

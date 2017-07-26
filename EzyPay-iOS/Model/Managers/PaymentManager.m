@@ -131,4 +131,15 @@
                   failureHandler:failureHandler];
 }
 
+- (void)performPayment:(Payment *)payment
+                 token:(NSString *)token
+        successHandler:(ConnectionSuccessHandler)successHandler
+        failureHandler:(ConnectionErrorHandler) failureHandler {
+    PaymentServiceClient *service = [[PaymentServiceClient alloc] init];
+    [service performPayment:payment
+                      token:token
+             successHandler:successHandler
+             failureHandler:failureHandler];
+}
+
 @end

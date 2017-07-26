@@ -9,7 +9,6 @@
 #import "SignInUserViewController.h"
 #import "UserServiceClient.h"
 #import "SignInPaymentInformationControllerViewController.h"
-#import "User+CoreDataClass.h"
 #import "CoreDataManager.h"
 #import "NSString+String.h"
 #import "NavigationController.h"
@@ -33,6 +32,7 @@
     [super viewDidLoad];
     self.navigationItem.title = NSLocalizedString(@"signInTitle", nil);
     [self setupView];
+    self.user = self.user ? self.user : [CoreDataManager createEntityWithName:@"User"];
     
 }
 
@@ -53,6 +53,7 @@
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     self.btnNext.layer.cornerRadius = 20.f;
     [self setupGestures];
+    [self validateFields];
 }
 
 
@@ -62,6 +63,21 @@
     self.txtPhoneNumber.delegate = self;
     self.txtEmail.delegate = self;
     self.txtPassword.delegate = self;
+}
+
+- (void)validateFields {
+    if(self.user) {
+        self.txtUserName.userInteractionEnabled = NO;
+        self.txtLastname.userInteractionEnabled = NO;
+        self.txtPhoneNumber.userInteractionEnabled = YES;
+        self.txtEmail.userInteractionEnabled = NO;
+        
+        self.txtUserName.text = self.user.name;
+        self.txtLastname.text = self.user.lastName;
+        self.txtEmail.text = self.user.email;
+        
+        self.txtPassword.hidden = YES;
+    }
 }
 
 
@@ -77,16 +93,15 @@
 
 - (void)saveUser {
     if([self isDataValidated]) {
-        User *user = [CoreDataManager createEntityWithName:@"User"];
-        user.name = self.txtUserName.text;
-        user.lastName = self.txtLastname.text;
-        user.phoneNumber = self.txtPhoneNumber.text;
-        user.email = self.txtEmail.text;
-        user.userType = UserNavigation;
-        user.password = self.txtPassword.text;
+        self.user.name = self.txtUserName.text;
+        self.user.lastName = self.txtLastname.text;
+        self.user.phoneNumber = self.txtPhoneNumber.text;
+        self.user.email = self.txtEmail.text;
+        self.user.userType = UserNavigation;
+        self.user.password = self.txtPassword.text;
     
         SignInPaymentInformationControllerViewController *viewController = (SignInPaymentInformationControllerViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInPaymentInformationControllerViewController"];
-        viewController.user = user;
+        viewController.user = self.user;
         viewController.tables = 0;
         [self.navigationController pushViewController:viewController animated:true];
     }
@@ -122,7 +137,7 @@
 
 - (BOOL)areFieldsFilled {
     return [self.txtUserName hasText] && [self.txtLastname hasText] && [self.txtPhoneNumber hasText]
-        && [self.txtEmail hasText] && [self.txtPassword hasText];
+        && [self.txtEmail hasText] && ([self.txtPassword hasText] || self.txtPassword.hidden);
 }
 
 
@@ -131,7 +146,7 @@
 }
 
 - (BOOL)isPasswordValidated {
-    return self.txtPassword.text.length > 4;
+    return (self.txtPassword.text.length > 4 || self.txtPassword.hidden);
 }
 
 - (void)displayAlertWithMessage:(NSString *)message {

@@ -139,7 +139,7 @@
         NSString *password = self.txtPassword.text;
     
         UserManager *manager = [[UserManager alloc] init];
-        [manager login:email password:password successHandler:^(id response) {
+        [manager login:email password:password scope:nil successHandler:^(id response) {
             NSDictionary *accessToken = [response valueForKey:@"access_token"];
             int64_t id = (long)[[accessToken valueForKey:@"userId"] integerValue];
             NSString *token = [accessToken valueForKey:@"value"];
@@ -245,7 +245,7 @@
 }
 
 - (void)fetchFacebookProfile {
-    NSDictionary *parameters = @{@"fields": @"email, first_name, last_name,  picture.type(large)"};
+    NSDictionary *parameters = @{@"fields": @"id, email, first_name, last_name,  picture.type(large)"};
     FBSDKGraphRequest *graphRequest = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me"
                                                                         parameters:parameters];
     [graphRequest startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
@@ -253,8 +253,10 @@
             NSLog(@"Error loggin with Facebook %@", error);
             return;
         }
-        NSString *email = result[@"email"];
-        NSLog(@"User Email %@", email);
+        User *userFromFacebook = [UserManager userFromFacebookLogin:result];
+        SignInUserViewController *viewController =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInUserViewController"];
+        viewController.user = userFromFacebook;
+        [self.navigationController pushViewController:viewController animated:YES];
     }];
 }
     

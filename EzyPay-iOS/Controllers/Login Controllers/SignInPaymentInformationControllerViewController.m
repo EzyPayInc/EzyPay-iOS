@@ -17,6 +17,7 @@
 #import "ValidateCardInformationHelper.h"
 #import <CardIO.h>
 #import "CardDetailViewController.h"
+#import "Credentials+CoreDataClass.h"
 
 @interface SignInPaymentInformationControllerViewController ()<UITextFieldDelegate, CardIOPaymentViewControllerDelegate>
 
@@ -103,7 +104,10 @@
 
 - (void)login {
     UserManager *manager = [[UserManager alloc] init];
-    [manager login:self.user.email password:self.user.password successHandler:^(id response) {
+    NSString *scope = self.user.credential ? self.user.credential.platform : nil;
+    NSString *password = (self.user.password && self.user.password.length > 0 ) ?
+        self.user.password : self.user.credential.credential;
+    [manager login:self.user.email password:password scope:scope successHandler:^(id response) {
         NSDictionary *accessToken = [response valueForKey:@"access_token"];
         NSString *token = [accessToken valueForKey:@"value"];
         self.user.token = token;

@@ -9,8 +9,14 @@
 #import "HistoryTableViewController.h"
 #import "HistoryTableViewCell.h"
 #import "UIColor+UIColor.h"
+#import "UserManager.h"
+#import "SessionHandler.h"
 
 @interface HistoryTableViewController ()
+
+@property (nonatomic, strong)NSMutableDictionary *history;
+@property (nonatomic, strong)NSArray *historyDates;
+@property (nonatomic, strong)User *user;
 
 @end
 
@@ -18,22 +24,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.user = [UserManager getUser];
+    self.history = [NSMutableDictionary dictionary];
     self.navigationItem.title = NSLocalizedString(@"historyTitle", nil);
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self getHistoryDates];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return self.historyDates.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return [[self.historyDates[section] objectForKey:@"quantity"] integerValue];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -45,28 +54,99 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    switch (section) {
-        case 0:
-            return @"Martes, Marzo 8, 2017";
-        case 1:
-            return @"Viernes, Marzo 15, 2017";
-        case 2:
-            return @"Domingo, Marzo 30, 2017";
-        default:
-            return @"";
-    }
+    NSString *stringDate = [self.historyDates[section] objectForKey:@"paymentDate"];
+    return [self getDateName:stringDate];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"historyCell"
                                                                  forIndexPath:indexPath];
-    cell.imageViewHistory.image = [UIImage imageNamed:@"restaurant"];
-    cell.restaurantName.text = @"Titos & Blancos";
-    cell.payment.text = @"$4000";
+    NSString *date = [[self.historyDates objectAtIndex:indexPath.section] objectForKey:@"paymentDate"];
+    NSDictionary *historyElement = [[self.history objectForKey: date] objectAtIndex:indexPath.row];
+    CGFloat quantity = [[historyElement objectForKey:@"cost"] floatValue];
+    NSString *currencyCode = [historyElement objectForKey:@"code"];
+    cell.restaurantName.text = [historyElement objectForKey:@"name"];
+    cell.payment.text = [self quantityWithCurrencyCode:quantity currencyCode:currencyCode];
+    [self getImage:cell fromAvatar:[historyElement objectForKey:@"avatar"]];
     return cell;
 }
 
 
+#pragma mark - actions
+- (void)getHistoryDates {
+    UserManager *manager = [[UserManager alloc] init];
+    [manager getUserHistoryDates:self.user
+                  successHandler:^(id response) {
+                      self.historyDates = response;
+                      [self getHistory];
+                  } failureHandler:^(id response) {
+                      NSLog(@"Error: %@", response);
+                  }];
+}
+
+- (void)getHistory {
+    UserManager *manager = [[UserManager alloc] init];
+    [manager getUserHistory:self.user
+             successHandler:^(id response) {
+                 [self getHistoryByDates:response];
+             } failureHandler:^(id response) {
+                 NSLog(@"Error: %@", response);
+             }];
+}
+
+- (void)getHistoryByDates:(NSArray *)historyArray {
+    for (NSDictionary *date in self.historyDates) {
+        NSString *filter = [NSString stringWithFormat:@"paymentDate like[c] '%@'", [date objectForKey:@"paymentDate"]];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:filter];
+        NSArray *historyByDates = [historyArray filteredArrayUsingPredicate:predicate];
+        [self.history setObject:historyByDates forKey:[date objectForKey:@"paymentDate"]];
+    }
+    [self.tableView reloadData];
+}
+
+- (void)getImage: (HistoryTableViewCell *)cell fromAvatar:(NSString * )avatar {
+    NSString *imageUrl = [NSString stringWithFormat:@"%@%@", IMAGE_URL, avatar];
+    UserManager *manager = [[UserManager alloc] init];
+    [manager downloadImage:imageUrl
+               toImageView:cell.imageViewHistory
+              defaultImage:@"profileImage"];
+}
+
+- (NSString *)quantityWithCurrencyCode:(CGFloat) value currencyCode:(NSString *)currencyCode {
+    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:currencyCode];
+    NSString *currencySymbol = [NSString stringWithFormat:@"%@",[locale displayNameForKey:NSLocaleCurrencySymbol value:currencyCode]];
+    return [NSString stringWithFormat:@"%@ %.02f", currencySymbol, value];
+}
+
+- (NSDate *)stringToDate:(NSString *)dateString {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    return [dateFormatter dateFromString:dateString];
+}
+
+- (NSString *)getDateName:(NSString *)dateString {
+    NSDate *date = [self stringToDate:dateString];
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy"];
+    NSString *day = [self getDayName:date];
+    NSString *month = [self getMonthName:date];
+    NSString *year = [dateFormatter stringFromDate:date];
+    return [NSString stringWithFormat:@"%@, %@ %@", day, month, year];
+}
+
+- (NSString *)getMonthName:(NSDate *)date {
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    NSArray *monthNames = [dateFormatter standaloneMonthSymbols];
+    [dateFormatter setDateFormat:@"MM"];
+    NSInteger month = [[dateFormatter stringFromDate:date] integerValue];
+    return [monthNames objectAtIndex:month - 1];
+}
+
+- (NSString *)getDayName:(NSDate *)date {
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEEE"];
+    return [dateFormatter stringFromDate:date];
+}
 
 @end

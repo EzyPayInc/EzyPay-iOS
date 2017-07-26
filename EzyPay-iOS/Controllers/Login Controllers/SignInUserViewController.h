@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User+CoreDataClass.h"
 
 @interface SignInUserViewController : UIViewController
+
+@property (nonatomic, strong) User *user;
 
 @end
