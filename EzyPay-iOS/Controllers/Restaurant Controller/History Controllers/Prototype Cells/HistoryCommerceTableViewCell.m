@@ -12,7 +12,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    self.lblUser.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
+    self.lblEmployee.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
+    self.lblCost.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -86,7 +86,7 @@
         NSString *password = self.txtPassword.text;
     
         UserManager *manager = [[UserManager alloc] init];
-        [manager login:email password:password scope:nil successHandler:^(id response) {
+        [manager login:email password:password scope:nil platformToken:nil successHandler:^(id response) {
             NSDictionary *accessToken = [response valueForKey:@"access_token"];
             int64_t id = (long)[[accessToken valueForKey:@"userId"] integerValue];
             NSString *token = [accessToken valueForKey:@"value"];

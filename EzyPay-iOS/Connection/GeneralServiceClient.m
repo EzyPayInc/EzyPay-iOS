@@ -32,6 +32,7 @@ static NSString *const AUTH_URL = @"auth/token";
 - (void)login:(NSString *) email
      password:(NSString *)password
         scope:(NSString *)scope
+platformToken:(NSString *)platformToken
 successHandler:(ConnectionSuccessHandler) successHandler
 failureHandler: (ConnectionErrorHandler) failureHandler {
     
@@ -45,6 +46,7 @@ failureHandler: (ConnectionErrorHandler) failureHandler {
     if (scope != nil) {
         parameters = [NSString stringWithFormat:@"grant_type=password&username=%@&password=%@&scope=%@",
                       email,password, scope];
+        [request addValue:platformToken forHTTPHeaderField:@"PlatformToken"];
     } else {
         parameters = [NSString stringWithFormat:@"grant_type=password&username=%@&password=%@",email, password];
     }

@@ -30,4 +30,10 @@
 - (void)getUserHistoryDates:(User *)user
              successHandler:(ConnectionSuccessHandler) successHandler
              failureHandler:(ConnectionErrorHandler) failureHandler;
+- (void)getCommerceHistory:(User *)user
+        successHandler:(ConnectionSuccessHandler) successHandler
+        failureHandler:(ConnectionErrorHandler) failureHandler;
+- (void)getCommerceHistoryDates:(User *)user
+             successHandler:(ConnectionSuccessHandler) successHandler
+             failureHandler:(ConnectionErrorHandler) failureHandler;
 @end

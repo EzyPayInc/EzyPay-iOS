@@ -21,6 +21,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Google/SignIn.h>
 #import "NSString+String.h"
+#import "Credentials+CoreDataClass.h"
 
 @interface LoginViewController ()<UITextFieldDelegate, FBSDKLoginButtonDelegate, GIDSignInUIDelegate, GIDSignInDelegate>
     
@@ -139,7 +140,7 @@
         NSString *password = self.txtPassword.text;
     
         UserManager *manager = [[UserManager alloc] init];
-        [manager login:email password:password scope:nil successHandler:^(id response) {
+        [manager login:email password:password scope:nil platformToken:nil successHandler:^(id response) {
             NSDictionary *accessToken = [response valueForKey:@"access_token"];
             int64_t id = (long)[[accessToken valueForKey:@"userId"] integerValue];
             NSString *token = [accessToken valueForKey:@"value"];
@@ -254,6 +255,8 @@
             return;
         }
         User *userFromFacebook = [UserManager userFromFacebookLogin:result];
+        NSString *fbAccessToken = [FBSDKAccessToken currentAccessToken].tokenString;
+        userFromFacebook.credential.platformToken = fbAccessToken;
         SignInUserViewController *viewController =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInUserViewController"];
         viewController.user = userFromFacebook;
         [self.navigationController pushViewController:viewController animated:YES];

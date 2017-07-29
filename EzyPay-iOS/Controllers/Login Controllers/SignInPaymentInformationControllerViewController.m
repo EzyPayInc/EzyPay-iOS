@@ -105,9 +105,10 @@
 - (void)login {
     UserManager *manager = [[UserManager alloc] init];
     NSString *scope = self.user.credential ? self.user.credential.platform : nil;
+    NSString *platformToken = self.user.credential ? self.user.credential.platformToken : nil;
     NSString *password = (self.user.password && self.user.password.length > 0 ) ?
         self.user.password : self.user.credential.credential;
-    [manager login:self.user.email password:password scope:scope successHandler:^(id response) {
+    [manager login:self.user.email password:password scope:scope platformToken:platformToken successHandler:^(id response) {
         NSDictionary *accessToken = [response valueForKey:@"access_token"];
         NSString *token = [accessToken valueForKey:@"value"];
         self.user.token = token;

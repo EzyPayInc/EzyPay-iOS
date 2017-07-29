@@ -25,6 +25,7 @@
 - (void)login:(NSString *) email
      password:(NSString *)password
         scope:(NSString *)scope
+platformToken:(NSString *)platformToken
 successHandler:(ConnectionSuccessHandler) successHandler
 failureHandler: (ConnectionErrorHandler) failureHandler;
 - (void)registerUser:(User *) user
@@ -43,6 +44,12 @@ failureHandler: (ConnectionErrorHandler) failureHandler;
         successHandler:(ConnectionSuccessHandler) successHandler
         failureHandler:(ConnectionErrorHandler) failureHandler;
 - (void)getUserHistoryDates:(User *)user
+             successHandler:(ConnectionSuccessHandler) successHandler
+             failureHandler:(ConnectionErrorHandler) failureHandler;
+- (void)getCommerceHistory:(User *)user
+        successHandler:(ConnectionSuccessHandler) successHandler
+        failureHandler:(ConnectionErrorHandler) failureHandler;
+- (void)getCommerceHistoryDates:(User *)user
              successHandler:(ConnectionSuccessHandler) successHandler
              failureHandler:(ConnectionErrorHandler) failureHandler;
 

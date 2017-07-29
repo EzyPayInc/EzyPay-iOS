@@ -228,4 +228,31 @@ static NSString *const USER_URL = @"user/";
     [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
 }
 
+- (void)getCommerceHistory:(User *)user
+            successHandler:(ConnectionSuccessHandler) successHandler
+            failureHandler:(ConnectionErrorHandler) failureHandler {
+    NSString *parameters = [NSString stringWithFormat:@"%@commerce/history/%lld",USER_URL, user.id];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BASE_URL, parameters]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    request.HTTPMethod = @"GET";
+    [request addValue:[NSString stringWithFormat:@"Bearer %@",user.token] forHTTPHeaderField:@"Authorization"];
+    [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
+}
+
+- (void)getCommerceHistoryDates:(User *)user
+                 successHandler:(ConnectionSuccessHandler) successHandler
+                 failureHandler:(ConnectionErrorHandler) failureHandler {
+    NSString *parameters = [NSString stringWithFormat:@"%@commerce/history/dates/%lld",
+                             USER_URL, user.id];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BASE_URL, parameters]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    request.HTTPMethod = @"GET";
+    [request addValue:[NSString stringWithFormat:@"Bearer %@",user.token] forHTTPHeaderField:@"Authorization"];
+    [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
+}
+
 @end

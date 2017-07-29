@@ -14,6 +14,7 @@
 - (void)login:(NSString *) email
      password:(NSString *)password
         scope:(NSString *)scope
+platformToken:(NSString *)platformToken
 successHandler:(ConnectionSuccessHandler) successHandler
 failureHandler: (ConnectionErrorHandler) failureHandler;
 

@@ -89,7 +89,7 @@
 
 - (void)login {
     UserManager *manager = [[UserManager alloc] init];
-    [manager login:self.user.email password:self.user.password scope: nil successHandler:^(id response) {
+    [manager login:self.user.email password:self.user.password scope: nil platformToken:nil successHandler:^(id response) {
         NSDictionary *accessToken = [response valueForKey:@"access_token"];
         NSString *token = [accessToken valueForKey:@"value"];
         self.user.token = token;
@@ -104,6 +104,8 @@
     if(self.commerceLogo != nil){
         UserManager *manager = [[UserManager alloc] init];
         [manager uploadUserImage: self.commerceLogo User:self.user successHandler:^(id response) {
+            self.user.avatar = [response objectForKey:@"avatar"];
+            [CoreDataManager saveContext]; 
             [self saveBankAccount];
         } failureHandler:^(id response) {
             NSLog(@"%@", response);

@@ -1,4 +1,4 @@
-//
+ //
 //  UserManager.m
 //  EzyPay-iOS
 //
@@ -19,7 +19,7 @@
     User *user = [CoreDataManager createEntityWithName:@"User"];
     user.name = [userDictionary objectForKey:@"name"];
     user.email = [userDictionary objectForKey:@"email"];
-    user.lastName = [userDictionary objectForKey:@"lastName"];
+    user.lastName = [userDictionary valueForKey:@"lastName"];
     user.phoneNumber = [userDictionary objectForKey:@"phoneNumber"];
     user.userType = [[userDictionary objectForKey:@"userType"] integerValue];
     user.customerId = [[userDictionary objectForKey:@"customerId"] integerValue];
@@ -93,19 +93,19 @@
     NSMutableDictionary *userDictionary = [NSMutableDictionary dictionary];
     int64_t boss = user.boss == nil ? 0 : user.boss.id;
     
-    [userDictionary setObject:user.name forKey:@"name"];
-    [userDictionary setObject:user.email forKey:@"email"];
-    [userDictionary setObject:user.lastName forKey:@"lastName"];
-    [userDictionary setObject:user.phoneNumber forKey:@"phoneNumber"];
-    [userDictionary setObject:[NSNumber numberWithInteger:user.userType] forKey:@"userType"];
-    [userDictionary setObject:[NSNumber numberWithLongLong:boss] forKey:@"boss"];
-    [userDictionary setObject:user.password forKey:@"password"];
+    [userDictionary setValue:user.name forKey:@"name"];
+    [userDictionary setValue:user.email forKey:@"email"];
+    [userDictionary setValue:user.lastName forKey:@"lastName"];
+    [userDictionary setValue:user.phoneNumber forKey:@"phoneNumber"];
+    [userDictionary setValue:[NSNumber numberWithInteger:user.userType] forKey:@"userType"];
+    [userDictionary setValue:[NSNumber numberWithLongLong:boss] forKey:@"boss"];
+    [userDictionary setValue:user.password forKey:@"password"];
     
     if(user.credential) {
         NSMutableDictionary *credentials = [NSMutableDictionary dictionary];
-        [credentials setObject:user.credential.credential forKey:@"credential"];
-        [credentials setObject:user.credential.platform forKey:@"platform"];
-        [userDictionary setObject:credentials forKey:@"credentials"];
+        [credentials setValue:user.credential.credential forKey:@"credential"];
+        [credentials setValue:user.credential.platform forKey:@"platform"];
+        [userDictionary setValue:credentials forKey:@"credentials"];
 
     }
     
@@ -116,10 +116,16 @@
 - (void)login:(NSString *) email
      password:(NSString *)password
         scope:(NSString *)scope
+platformToken:(NSString *)platformToken
 successHandler:(ConnectionSuccessHandler) successHandler
 failureHandler: (ConnectionErrorHandler) failureHandler {
     GeneralServiceClient *service = [[GeneralServiceClient alloc] init];
-    [service login:email password:password scope:scope successHandler:successHandler failureHandler:failureHandler];
+    [service login:email
+          password:password
+             scope:scope
+     platformToken:platformToken
+    successHandler:successHandler
+    failureHandler:failureHandler];
 }
 
 - (void)registerUser:(User *) user
@@ -174,6 +180,20 @@ failureHandler: (ConnectionErrorHandler) failureHandler {
              failureHandler:(ConnectionErrorHandler) failureHandler {
     UserServiceClient *service = [[UserServiceClient alloc] init];
     [service getUserHistoryDates:user successHandler:successHandler failureHandler:failureHandler];
+}
+
+- (void)getCommerceHistory:(User *)user
+        successHandler:(ConnectionSuccessHandler) successHandler
+        failureHandler:(ConnectionErrorHandler) failureHandler {
+    UserServiceClient *service = [[UserServiceClient alloc] init];
+    [service getCommerceHistory:user successHandler:successHandler failureHandler:failureHandler];
+}
+
+- (void)getCommerceHistoryDates:(User *)user
+             successHandler:(ConnectionSuccessHandler) successHandler
+             failureHandler:(ConnectionErrorHandler) failureHandler {
+    UserServiceClient *service = [[UserServiceClient alloc] init];
+    [service getCommerceHistoryDates:user successHandler:successHandler failureHandler:failureHandler];
 }
 
 
