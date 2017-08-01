@@ -22,6 +22,7 @@
 #import <Google/SignIn.h>
 #import "NSString+String.h"
 #import "Credentials+CoreDataClass.h"
+#import "LoadingView.h"
 
 @interface LoginViewController ()<UITextFieldDelegate, FBSDKLoginButtonDelegate, GIDSignInUIDelegate, GIDSignInDelegate>
     
@@ -136,16 +137,20 @@
 - (IBAction)loginAction:(id)sender {
     [self.view endEditing:YES];
     if ([self areFieldsFilled]) {
+        [LoadingView loadingViewInView:self.view];
         NSString *email = self.txtEmail.text;
         NSString *password = self.txtPassword.text;
     
         UserManager *manager = [[UserManager alloc] init];
+        LoadingView *loadingView = [[LoadingView alloc] init];
         [manager login:email password:password scope:nil platformToken:nil successHandler:^(id response) {
+            [loadingView removeView];
             NSDictionary *accessToken = [response valueForKey:@"access_token"];
             int64_t id = (long)[[accessToken valueForKey:@"userId"] integerValue];
             NSString *token = [accessToken valueForKey:@"value"];
             [self getUserFromServer:id token:token];
         } failureHandler:^(id response) {
+            [loadingView removeView];
             NSLog(@"%@", response);
         }];
     } else {

@@ -11,6 +11,7 @@
 #import "UIColor+UIColor.h"
 #import "UserManager.h"
 #import "SessionHandler.h"
+#import "LoadingView.h"
 
 @interface HistoryTableViewController ()
 
@@ -75,22 +76,28 @@
 
 #pragma mark - actions
 - (void)getHistoryDates {
+    LoadingView *loadingView = [LoadingView loadingViewInView:self.view];
     UserManager *manager = [[UserManager alloc] init];
     [manager getUserHistoryDates:self.user
                   successHandler:^(id response) {
+                      [loadingView removeView];
                       self.historyDates = response;
                       [self getHistory];
                   } failureHandler:^(id response) {
+                      [loadingView removeView];
                       NSLog(@"Error: %@", response);
                   }];
 }
 
 - (void)getHistory {
+    LoadingView *loadingView = [LoadingView loadingViewInView:self.view];
     UserManager *manager = [[UserManager alloc] init];
     [manager getUserHistory:self.user
              successHandler:^(id response) {
+                 [loadingView removeView];
                  [self getHistoryByDates:response];
              } failureHandler:^(id response) {
+                 [loadingView removeView];
                  NSLog(@"Error: %@", response);
              }];
 }

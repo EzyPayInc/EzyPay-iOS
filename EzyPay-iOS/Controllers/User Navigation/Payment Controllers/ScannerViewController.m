@@ -13,6 +13,7 @@
 #import "UserManager.h"
 #import "CoreDataManager.h"
 #import "NavigationController.h"
+#import "LoadingView.h"
 
 @interface ScannerViewController ()<BarcodeScannerDelegate>
 
@@ -85,10 +86,12 @@
 }
 
 - (void)getActivePayment {
+    LoadingView *loadingView = [LoadingView loadingViewInView:self.view];
     [CoreDataManager deleteDataFromEntity:@"Payment"];
     PaymentManager *manager = [[PaymentManager alloc] init];
     [manager getActivePaymentByUser:self.user
                      successHandler:^(id response) {
+                         [loadingView removeView];
                          if([response count] > 0) {
                              Payment *payment = [PaymentManager paymentFromDictionary:response];
                              [CoreDataManager saveContext];
@@ -96,6 +99,7 @@
                                                        currentViewController:self];
                          }
                      } failureHandler:^(id response) {
+                         [loadingView removeView];
                          NSLog(@"%@", response);
                      }];
 }

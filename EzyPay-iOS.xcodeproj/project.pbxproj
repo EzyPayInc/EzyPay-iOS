@@ -18,6 +18,7 @@
 		80188F7C1E98A6B7008AB708 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80188F7B1E98A6B7008AB708 /* CurrencyManager.m */; };
 		801A747D1EEE483100CEA1C1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 801A747C1EEE483100CEA1C1 /* GoogleService-Info.plist */; };
 		801B252D1DD79B620039FB90 /* CompletionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 801B252C1DD79B620039FB90 /* CompletionHandler.m */; };
+		801BE82D1F30423000ED906D /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 801BE82C1F30423000ED906D /* LoadingView.m */; };
 		801BFA3A1E77A5950098F0DF /* QRPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801BFA391E77A5950098F0DF /* QRPaymentViewController.m */; };
 		801D0C2E1DF13ED50079F9AB /* HistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801D0C2D1DF13ED50079F9AB /* HistoryTableViewController.m */; };
 		801D3C7C1DEE636700C8845D /* ScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801D3C7B1DEE636700C8845D /* ScannerViewController.m */; };
@@ -138,6 +139,8 @@
 		801A747C1EEE483100CEA1C1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		801B252B1DD79B620039FB90 /* CompletionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionHandler.h; sourceTree = "<group>"; };
 		801B252C1DD79B620039FB90 /* CompletionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionHandler.m; sourceTree = "<group>"; };
+		801BE82B1F30423000ED906D /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
+		801BE82C1F30423000ED906D /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		801BFA381E77A5950098F0DF /* QRPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRPaymentViewController.h; sourceTree = "<group>"; };
 		801BFA391E77A5950098F0DF /* QRPaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRPaymentViewController.m; sourceTree = "<group>"; };
 		801D0C2C1DF13ED50079F9AB /* HistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewController.h; sourceTree = "<group>"; };
@@ -514,6 +517,8 @@
 			children = (
 				8048977B1ED55588006CFBBE /* BottomBorderTextField.h */,
 				8048977C1ED55588006CFBBE /* BottomBorderTextField.m */,
+				801BE82B1F30423000ED906D /* LoadingView.h */,
+				801BE82C1F30423000ED906D /* LoadingView.m */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -997,6 +1002,7 @@
 				801D0C2E1DF13ED50079F9AB /* HistoryTableViewController.m in Sources */,
 				80188F761E989B8A008AB708 /* PaymentDetailViewController.m in Sources */,
 				80FDEB361E6D23E500DD4F06 /* ChooseViewController.m in Sources */,
+				801BE82D1F30423000ED906D /* LoadingView.m in Sources */,
 				80F14CED1EF8CB1C00D4AAD9 /* SignInBankAccountViewController.m in Sources */,
 				80F760CB1E6FCB1500178608 /* SignInCommerceViewController.m in Sources */,
 				801DBAFB1EB069CB006527D7 /* SendBillNotificationHandler.m in Sources */,
