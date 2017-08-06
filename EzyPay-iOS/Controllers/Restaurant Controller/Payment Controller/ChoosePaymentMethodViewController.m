@@ -38,6 +38,8 @@
     self.titleLabel.text = NSLocalizedString(@"chooseQRLabel", nil);
     [self.syncButton setTitle:NSLocalizedString(@"syncAction", nil) forState:UIControlStateNormal];
     [self.quickButton setTitle:NSLocalizedString(@"quickAction", nil) forState:UIControlStateNormal];
+    self.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
+
 }
 
 - (IBAction)syncAction:(id)sender {

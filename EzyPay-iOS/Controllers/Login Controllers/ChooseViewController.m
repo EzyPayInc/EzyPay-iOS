@@ -23,13 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.btnUser.layer.cornerRadius = 20.f;
-    self.btnCommerce.layer.cornerRadius = 20.f;
-    self.orLabel.text = NSLocalizedString(@"orLabel", nil);
-    [self.btnUser setTitle:NSLocalizedString(@"userAction", nil)
-                  forState:UIControlStateNormal];
-    [self.btnCommerce setTitle:NSLocalizedString(@"commerceAction", nil)
-                  forState:UIControlStateNormal];
+    [self setupView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -39,6 +33,20 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setupView {
+    self.btnUser.layer.cornerRadius = 30.f;
+    self.btnCommerce.layer.cornerRadius = 30.f;
+    self.orLabel.text = NSLocalizedString(@"orLabel", nil);
+    [self.btnUser setTitle:NSLocalizedString(@"userAction", nil)
+                  forState:UIControlStateNormal];
+    [self.btnCommerce setTitle:NSLocalizedString(@"commerceAction", nil)
+                      forState:UIControlStateNormal];
+    self.orLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20 ];
+    self.btnUser.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
+    self.btnCommerce.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
+    
 }
 
 - (IBAction)userAction:(id)sender {

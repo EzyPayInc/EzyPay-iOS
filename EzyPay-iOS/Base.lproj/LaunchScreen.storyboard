@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ugwo_white_icon" translatesAutoresizingMaskIntoConstraints="NO" id="06c-gg-CEA">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ugwo_white_icon" translatesAutoresizingMaskIntoConstraints="NO" id="06c-gg-CEA">
                                 <rect key="frame" x="37" y="283" width="300" height="100"/>
                             </imageView>
                         </subviews>

@@ -43,6 +43,10 @@
 
 
 - (void)setupView {
+    self.navigationController.navigationBar.topItem.backBarButtonItem =
+        [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"backLabel", nil)
+                                         style:UIBarButtonItemStylePlain
+                                         target:nil action:nil];
     self.txtUserName.placeholder = NSLocalizedString(@"namePlaceholder", nil);
     self.txtLastname.placeholder = NSLocalizedString(@"lastNamePlaceholder", nil);
     self.txtPhoneNumber.placeholder = NSLocalizedString(@"phoneNumberPlaceholder", nil);

@@ -39,6 +39,10 @@
 }
 
 - (void)setupView {
+    self.navigationController.navigationBar.topItem.backBarButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"backLabel", nil)
+                                     style:UIBarButtonItemStylePlain
+                                    target:nil action:nil];
     self.navigationItem.title = NSLocalizedString(@"bankInformationTitle", nil);
     self.txtBankAccount.placeholder = NSLocalizedString(@"accountNumberPlaceholder", nil);
     self.txtUserId.placeholder = NSLocalizedString(@"userIdentificarionPlaceholder", nil);

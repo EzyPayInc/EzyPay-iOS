@@ -38,6 +38,10 @@
 }
 
 - (void)setupView {
+    self.navigationController.navigationBar.topItem.backBarButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"backLabel", nil)
+                                     style:UIBarButtonItemStylePlain
+                                    target:nil action:nil];
     self.tablesQuantity.delegate = self;
     self.tablesQuantity.placeholder = NSLocalizedString(@"tablesQuantityPlaceholder", nil);
     self.infoLabel.text = NSLocalizedString(@"tablesInfoLabel", nil);

@@ -42,6 +42,10 @@
 }
 
 - (void)setupView {
+    self.navigationController.navigationBar.topItem.backBarButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"backLabel", nil)
+                                     style:UIBarButtonItemStylePlain
+                                    target:nil action:nil];
     self.txtName.placeholder = NSLocalizedString(@"namePlaceholder", nil);
     self.txtPhoneNumber.placeholder = NSLocalizedString(@"phoneNumberPlaceholder", nil);
     self.txtEmail.placeholder = NSLocalizedString(@"emailPlaceholder", nil);

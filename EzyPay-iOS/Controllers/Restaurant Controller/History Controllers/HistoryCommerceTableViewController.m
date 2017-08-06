@@ -129,9 +129,10 @@
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy"];
     NSString *day = [self getDayName:date];
+    NSString *dayNumber = [self getDayNumber:date];
     NSString *month = [self getMonthName:date];
     NSString *year = [dateFormatter stringFromDate:date];
-    return [NSString stringWithFormat:@"%@, %@ %@", day, month, year];
+    return [NSString stringWithFormat:@"%@, %@ %@, %@", day, month, dayNumber, year];
 }
 
 - (NSString *)getMonthName:(NSDate *)date {
@@ -146,6 +147,13 @@
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE"];
     return [dateFormatter stringFromDate:date];
+}
+
+- (NSString *)getDayNumber:(NSDate *)date {
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd"];
+    NSString *day = [dateFormatter stringFromDate:date];
+    return NSLocalizedString(day, nil);
 }
 
 

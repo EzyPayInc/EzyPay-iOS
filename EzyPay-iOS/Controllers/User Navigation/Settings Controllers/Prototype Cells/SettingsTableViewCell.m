@@ -24,8 +24,14 @@
 
 
 #pragma mark - UITextFieldDelegate
--(void)textFieldDidChange :(UITextField *)textField {
+- (void)textFieldDidChange :(UITextField *)textField {
     [self.delegate cellTableDidChange:textField inCell:self.cellType];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end

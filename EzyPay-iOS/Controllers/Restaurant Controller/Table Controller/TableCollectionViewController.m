@@ -33,6 +33,7 @@ static NSString * const reuseIdentifier = @"TableCell";
         [self displayRightBarButton];
     }
     self.navigationItem.title = NSLocalizedString(@"tableTitle", nil);
+    [self setupRefreshCollectionView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -43,6 +44,20 @@ static NSString * const reuseIdentifier = @"TableCell";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setupRefreshCollectionView {
+    self.collectionView.refreshControl = [[UIRefreshControl alloc] init];
+    self.collectionView.alwaysBounceVertical = YES;
+    self.collectionView.refreshControl.backgroundColor = [UIColor whiteColor];
+    self.collectionView.refreshControl.tintColor = [UIColor grayColor];
+    [self.collectionView.refreshControl addTarget:self
+                                    action:@selector(refreshAction)
+                          forControlEvents:UIControlEventValueChanged];
+}
+
+- (void)refreshAction {
+    [self getTables];
 }
 
 #pragma mark <UICollectionViewDataSource>
@@ -92,10 +107,12 @@ static NSString * const reuseIdentifier = @"TableCell";
     [manager getTablesByRestaurantFromServer:userId
                                        token:self.user.token
                               successHandler:^(id response) {
+        [self.collectionView.refreshControl endRefreshing];
         self.tables = [TableManager geTablesFromArray:response withUser:self.user];
         [self.collectionView reloadData];
                               } failureHandler:^(id response) {
         NSLog(@"%@", response);
+        [self.collectionView.refreshControl endRefreshing];
     }];
 }
 
