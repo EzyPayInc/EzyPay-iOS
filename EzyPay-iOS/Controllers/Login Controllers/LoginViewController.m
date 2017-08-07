@@ -70,6 +70,8 @@
 }
 
 - (void)setupView {
+    self.orLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
+    self.btnLogIn.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
     self.txtEmail.placeholder = NSLocalizedString(@"emailPlaceholder", nil);
     self.txtPassword.placeholder = NSLocalizedString(@"passwordPlaceholder", nil);
     self.txtEmail.delegate = self;

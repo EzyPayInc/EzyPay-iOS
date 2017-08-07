@@ -61,7 +61,7 @@ static NSString *const CARD_STARTS = @"**** ";
     UIButton* btnAddCard = [[UIButton alloc] initWithFrame:
                             CGRectMake(0, 100, 200, 50)];
     btnAddCard.center = CGPointMake(CGRectGetMidX(self.view.bounds), btnAddCard.center.y);
-    btnAddCard.layer.cornerRadius = 20.f;
+    btnAddCard.layer.cornerRadius = 25.f;
     btnAddCard.backgroundColor = [UIColor ezypayGreenColor];
     [btnAddCard setTitle:NSLocalizedString(@"addCardAction", nil) forState:UIControlStateNormal];
     [btnAddCard setImage:[UIImage imageNamed:@"ic_add_card"] forState:UIControlStateNormal];
@@ -78,6 +78,8 @@ static NSString *const CARD_STARTS = @"**** ";
     cell.textLabel.text = [CARD_STARTS stringByAppendingString:lastCharacters];
     cell.imageView.image = [self creditCardIcon:card.cardNumber];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
+    cell.textLabel.textColor = [UIColor blackEzyPayColor];
     return cell;
 }
 

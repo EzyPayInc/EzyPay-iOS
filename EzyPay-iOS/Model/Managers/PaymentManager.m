@@ -28,6 +28,7 @@
     NSDictionary *commerceData = [paymentDictionary objectForKey:@"Commerce"];
     commerce.id = [[commerceData objectForKey:@"id"] integerValue];
     commerce.name = [commerceData objectForKey:@"name"];
+    commerce.avatar = [commerceData objectForKey:@"avatar"];
     payment.commerce = commerce;
     payment.tableNumber = [[paymentDictionary objectForKey:@"tableNumber"] integerValue];
     payment.cost = [[paymentDictionary objectForKey:@"cost"] floatValue];

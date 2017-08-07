@@ -64,6 +64,7 @@
                                                 action:@selector(logOutAction)];
     [self.changeEmployeeLabel setUserInteractionEnabled:YES];
     [self.changeEmployeeLabel addGestureRecognizer:gestureRecognizer];
+    self.employeeLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:22];
     
 }
 
