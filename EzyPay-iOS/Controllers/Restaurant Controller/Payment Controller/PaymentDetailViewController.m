@@ -14,6 +14,7 @@
 #import "QRPaymentViewController.h"
 #import "PushNotificationManager.h"
 #import "UIColor+UIColor.h"
+#import "LoadingView.h"
 
 @interface PaymentDetailViewController () <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
 
@@ -101,14 +102,17 @@
 
 #pragma mark - Actions
 - (void)getCurrencies {
+    [LoadingView show];
     CurrencyManager *manager = [[CurrencyManager alloc] init];
     [manager getAllCurriencies:self.user.token successHandler:^(id response) {
         self.pickerDataSource = [CurrencyManager currenciesFromArray:response];
         if([self.pickerDataSource count] > 0) {
             self.currentCurrency = [self.pickerDataSource firstObject];
+            [LoadingView dismiss];
             [self.currencyPicker reloadAllComponents];
         }
     } failureHandler:^(id response) {
+        [LoadingView dismiss];
         NSLog(@"Error trying to get currencies");
     }];
 }
@@ -140,6 +144,7 @@
 }
 
 - (void)updatePaymentCurrency {
+    [LoadingView show];
     PaymentManager *manager = [[PaymentManager alloc] init];
     [manager updatePaymentAmount:self.paymentId
                         currencyId:self.currentCurrency.id
@@ -148,6 +153,7 @@
                   successHandler:^(id response) {
                       [self sendBillNotification];
                 } failureHandler:^(id response) {
+                    [LoadingView dismiss];
                     NSLog(@"%@", response);
                 }];
 }
@@ -160,8 +166,10 @@
                         paymentId:self.paymentId
                             token:self.user.token
                    successHandler:^(id response) {
+                       [LoadingView dismiss];
                        NSLog(@"%@", response);
                    } failureHandler:^(id response) {
+                       [LoadingView dismiss];
                        NSLog(@"%@", response);
                    }];
 }

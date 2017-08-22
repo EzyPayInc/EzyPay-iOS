@@ -15,6 +15,7 @@
 #import "PushNotificationManager.h"
 #import "FriendManager.h"
 #import "PaymentResultViewController.h"
+#import "LoadingView.h"
 
 @interface RestaurantDetailViewController ()
 
@@ -84,25 +85,31 @@
 }
 
 - (IBAction)callWaiter:(id)sender {
+    [LoadingView show];
     PushNotificationManager *manager = [[PushNotificationManager alloc] init];
     [manager callWaiterNotification:self.payment token:self.user.token successHandler:^(id response) {
+        [LoadingView dismiss];
         NSLog(@"Success: %@", response);
     } failureHandler:^(id response) {
+        [LoadingView dismiss];
         NSLog(@"Error: %@", response);
     }];
 }
 
 
 - (IBAction)splitPayment:(id)sender {
+    [LoadingView show];
     ContactListTableViewController *tableViewController = (ContactListTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ContactListTableViewController"];
      self.payment.paymentDate = [NSDate date];
      PaymentManager *manager = [[PaymentManager alloc] init];
      [manager updatePayment:self.payment user:self.user successHandler:^(id response) {
+         [LoadingView dismiss];
          [CoreDataManager saveContext];
          tableViewController.payment = self.payment;
      [self.navigationController pushViewController:tableViewController animated:true];
      } failureHandler:^(id response) {
-     NSLog(@"%@", response);
+         [LoadingView dismiss];
+         NSLog(@"%@", response);
      }];
 }
 
@@ -110,11 +117,14 @@
     if(self.payment.cost > 0) {
         self.paymentOptionsView.hidden = NO;
     } else {
+        [LoadingView show];
         PushNotificationManager *manager = [[PushNotificationManager alloc] init];
         [manager billRequestNotification:self.payment
                                    token:self.user.token successHandler:^(id response) {
+                                       [LoadingView dismiss];
                                        NSLog(@"%@", response);
                                    } failureHandler:^(id response) {
+                                       [LoadingView dismiss];
                                        NSLog(@"%@", response);
                                    }];
     }
@@ -133,19 +143,23 @@
 }
 
 - (void)deletePayment {
+    [LoadingView show];
     PaymentManager *manager = [[PaymentManager alloc] init];
     [manager deletePayment:self.payment.id
                      token:self.user.token
             successHandler:^(id response) {
+                [LoadingView dismiss];
                 [PaymentManager deletePayment];
                 [self.navigationController popViewControllerAnimated:YES];
             }
             failureHandler:^(id response) {
+                [LoadingView dismiss];
                 NSLog(@"Error deleting a payment : %@", response);
             }];
 }
 
 - (void)savePayment {
+    [LoadingView show];
     self.payment.userCost = self.payment.cost;
     FriendManager *manager = [[FriendManager alloc] init];
     self.payment.paymentDate = [NSDate date];
@@ -155,6 +169,7 @@
                   successHandler:^(id response) {
                       [self performPayment];
                   } failureHandler:^(id response) {
+                      [LoadingView dismiss];
                       NSLog(@"%@Response: ", response);
                   }];
 }
@@ -164,11 +179,13 @@
     [manager performPayment:self.payment
                       token:self.user.token
              successHandler:^(id response) {
+                 [LoadingView dismiss];
                  self.payment.isCanceled = 1;
                  [CoreDataManager saveContext];
                  PaymentResultViewController *viewController = (PaymentResultViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentResultViewController"];
                  [self.navigationController pushViewController:viewController animated:true];
              } failureHandler:^(id response) {
+                 [LoadingView dismiss];
                  NSLog(@"Error performing the pay: %@", response);
              }];
 }

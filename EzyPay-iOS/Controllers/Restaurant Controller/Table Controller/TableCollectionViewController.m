@@ -16,6 +16,7 @@
 #import "NavigationController.h"
 #import "ChoosePaymentMethodViewController.h"
 #import "UIColor+UIColor.h"
+#import "LoadingView.h"
 
 @interface TableCollectionViewController ()
 @property (nonatomic, strong)NSArray *tables;
@@ -101,6 +102,7 @@ static NSString * const reuseIdentifier = @"TableCell";
 
 #pragma mark Actions
 - (void)getTables {
+    [LoadingView show];
     TableManager *manager = [[TableManager alloc] init];
     int64_t userId = self.user.userType == EmployeeNavigation ?
         self.user.boss.id : self.user.id;
@@ -110,8 +112,10 @@ static NSString * const reuseIdentifier = @"TableCell";
         [self.collectionView.refreshControl endRefreshing];
         self.tables = [TableManager geTablesFromArray:response withUser:self.user];
         [self.collectionView reloadData];
+        [LoadingView dismiss];
                               } failureHandler:^(id response) {
         NSLog(@"%@", response);
+        [LoadingView dismiss];
         [self.collectionView.refreshControl endRefreshing];
     }];
 }

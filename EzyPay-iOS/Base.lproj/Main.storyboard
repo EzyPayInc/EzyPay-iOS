@@ -438,23 +438,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="How many tables?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pCo-Qe-Gq4" userLabel="TxtTablesQuantity" customClass="BottomBorderTextField">
-                                <rect key="frame" x="21" y="361" width="372" height="40"/>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ptq-7m-z3B">
+                                <rect key="frame" x="20" y="361" width="373" height="70"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="fOW-6h-nZW"/>
+                                    <constraint firstAttribute="height" constant="70" id="4Zc-x4-HSJ"/>
                                 </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
+                            </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVk-3v-NWk">
-                                <rect key="frame" x="0.0" y="406" width="414" height="16"/>
+                                <rect key="frame" x="0.0" y="436" width="414" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xnx-Jd-a9f" userLabel="btnNext">
-                                <rect key="frame" x="104" y="437" width="207" height="50"/>
+                                <rect key="frame" x="104" y="467" width="207" height="50"/>
                                 <color key="backgroundColor" red="0.72941176470588232" green="0.82352941176470584" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="iSu-3Q-hwL"/>
@@ -470,17 +467,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="xnx-Jd-a9f" firstAttribute="centerX" secondItem="ETp-kH-4N1" secondAttribute="centerX" id="10N-yh-mzx"/>
+                            <constraint firstItem="ptq-7m-z3B" firstAttribute="width" secondItem="ETp-kH-4N1" secondAttribute="width" multiplier="0.9" id="21D-wt-hEm"/>
+                            <constraint firstItem="KVk-3v-NWk" firstAttribute="top" secondItem="ptq-7m-z3B" secondAttribute="bottom" constant="5" id="2AH-HN-mR7"/>
                             <constraint firstItem="xnx-Jd-a9f" firstAttribute="width" secondItem="ETp-kH-4N1" secondAttribute="width" multiplier="0.5" id="2ko-Hh-iMH"/>
                             <constraint firstItem="zlh-pI-qzh" firstAttribute="centerX" secondItem="mNq-aj-HGK" secondAttribute="centerX" id="Bbm-bb-nVI"/>
                             <constraint firstItem="KVk-3v-NWk" firstAttribute="width" secondItem="ETp-kH-4N1" secondAttribute="width" id="FMj-l2-xhX"/>
+                            <constraint firstItem="ptq-7m-z3B" firstAttribute="top" secondItem="mNq-aj-HGK" secondAttribute="bottom" constant="40" id="IvZ-aR-ogi"/>
                             <constraint firstItem="mNq-aj-HGK" firstAttribute="centerY" secondItem="ETp-kH-4N1" secondAttribute="centerY" multiplier="0.6" id="JDH-xl-TAS"/>
                             <constraint firstItem="zlh-pI-qzh" firstAttribute="width" secondItem="mNq-aj-HGK" secondAttribute="width" id="OvM-dI-Lsy"/>
+                            <constraint firstItem="ptq-7m-z3B" firstAttribute="centerX" secondItem="ETp-kH-4N1" secondAttribute="centerX" id="PYg-Po-C18"/>
                             <constraint firstItem="zlh-pI-qzh" firstAttribute="centerY" secondItem="mNq-aj-HGK" secondAttribute="centerY" id="QKq-Nl-1FU"/>
-                            <constraint firstItem="pCo-Qe-Gq4" firstAttribute="width" secondItem="ETp-kH-4N1" secondAttribute="width" multiplier="0.9" id="aRf-dw-mui"/>
                             <constraint firstItem="mNq-aj-HGK" firstAttribute="centerX" secondItem="ETp-kH-4N1" secondAttribute="centerX" id="b5g-wj-bOv"/>
-                            <constraint firstItem="pCo-Qe-Gq4" firstAttribute="centerX" secondItem="ETp-kH-4N1" secondAttribute="centerX" id="cDT-Oi-pjS"/>
-                            <constraint firstItem="pCo-Qe-Gq4" firstAttribute="top" secondItem="mNq-aj-HGK" secondAttribute="bottom" constant="40" id="dhM-j0-v2O"/>
-                            <constraint firstItem="KVk-3v-NWk" firstAttribute="top" secondItem="pCo-Qe-Gq4" secondAttribute="bottom" constant="5" id="gco-0w-haG"/>
                             <constraint firstItem="xnx-Jd-a9f" firstAttribute="top" secondItem="KVk-3v-NWk" secondAttribute="bottom" constant="15" id="vZg-I6-yxb"/>
                             <constraint firstItem="KVk-3v-NWk" firstAttribute="centerX" secondItem="ETp-kH-4N1" secondAttribute="centerX" id="wbg-8j-ZBB"/>
                         </constraints>
@@ -488,15 +485,15 @@
                     <connections>
                         <outlet property="infoLabel" destination="KVk-3v-NWk" id="p0p-Av-NXk"/>
                         <outlet property="nextButton" destination="xnx-Jd-a9f" id="d2h-gW-2f4"/>
+                        <outlet property="pickerTables" destination="ptq-7m-z3B" id="Iuy-Lz-c4C"/>
                         <outlet property="profileCommerceImage" destination="mNq-aj-HGK" id="2De-TR-2xj"/>
-                        <outlet property="tablesQuantity" destination="pCo-Qe-Gq4" id="Rex-9o-2M9"/>
                         <outlet property="uploadLabel" destination="zlh-pI-qzh" id="EsK-9G-Ku7"/>
                         <segue destination="txg-r9-TFn" kind="show" identifier="showBankAccount" id="voc-xG-Jre"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="drg-YM-iu3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2919.375" y="741.25"/>
+            <point key="canvasLocation" x="2918.840579710145" y="741.03260869565224"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VAJ-de-XgV">

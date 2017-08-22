@@ -35,10 +35,12 @@ PODS:
   - GTMSessionFetcher/Core (1.1.10)
   - GTMSessionFetcher/Full (1.1.10):
     - GTMSessionFetcher/Core (= 1.1.10)
+  - SVProgressHUD (2.1.2)
 
 DEPENDENCIES:
   - CardIO
   - Google/SignIn
+  - SVProgressHUD
 
 SPEC CHECKSUMS:
   CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
@@ -50,7 +52,8 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
+  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
 
-PODFILE CHECKSUM: 18a70b3d8f38b8e716c87a4949d38a10c06f57f4
+PODFILE CHECKSUM: 3a9a7b338cfd9738bb43f8c6839134c02c259ef9
 
 COCOAPODS: 1.2.1

@@ -15,6 +15,7 @@
 #import "Currency+CoreDataClass.h"
 #import "PushNotificationManager.h"
 #import "CoreDataManager.h"
+#import "LoadingView.h"
 
 @interface SplitViewController ()<UITableViewDataSource, UITableViewDelegate, SplitCellDelegate, UIGestureRecognizerDelegate>
 
@@ -235,6 +236,7 @@
 
 #pragma mark - events
 - (IBAction)navigateToPayment:(id)sender {
+    [LoadingView show];
     FriendManager *manager = [[FriendManager alloc] init];
     [manager addFriendsToPayment:self.payment
                             user:self.user
@@ -242,7 +244,8 @@
                   successHandler:^(id response) {
                       [self sendSplitNotifications];
                   } failureHandler:^(id response) {
-        NSLog(@"%@Response: ", response);
+                      [LoadingView dismiss];
+                      NSLog(@"%@Response: ", response);
     }];
    
 }
@@ -251,10 +254,12 @@
     [CoreDataManager saveContext];
     PushNotificationManager *manager = [[PushNotificationManager alloc] init];
     [manager splitRequestNotification:self.user payment:self.payment successHandler:^(id response) {
+        [LoadingView dismiss];
         PaymentViewController *viewController = (PaymentViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentViewController"];
         viewController.payment = self.payment;
         [self.navigationController pushViewController:viewController animated:true];
     } failureHandler:^(id response) {
+        [LoadingView dismiss];
         NSLog(@"Response: %@", response);
     }];
 }

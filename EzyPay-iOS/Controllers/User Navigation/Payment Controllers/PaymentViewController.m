@@ -15,6 +15,7 @@
 #import "PaymentResultViewController.h"
 #import "PaymentManager.h"
 #import "CoreDataManager.h"
+#import "LoadingView.h"
 
 @interface PaymentViewController ()
 
@@ -166,15 +167,18 @@
 }
 
 - (void)goToPaymentResultView {
+    [LoadingView show];
     PaymentManager *manager = [[PaymentManager alloc] init];
     [manager performPayment:self.payment
                       token:self.user.token
              successHandler:^(id response) {
+                 [LoadingView dismiss];
                  self.payment.isCanceled = 1;
                  [CoreDataManager saveContext];
                  PaymentResultViewController *viewController = (PaymentResultViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PaymentResultViewController"];
                  [self.navigationController pushViewController:viewController animated:true];
              } failureHandler:^(id response) {
+                 [LoadingView dismiss];
                  NSLog(@"Error performing the pay: %@", response);
              }];
 }

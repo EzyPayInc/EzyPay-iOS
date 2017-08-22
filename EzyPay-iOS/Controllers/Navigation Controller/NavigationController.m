@@ -16,6 +16,7 @@
 #import "CoreDataManager.h"
 #import "DeviceTokenManager.h"
 #import "ChooseViewController.h"
+#import "LoadingView.h"
 
 @implementation NavigationController
 
@@ -220,13 +221,16 @@
 }
 
 + (void)logoutUser:(User *) user fromViewController:(UIViewController *) viewController {
+    [LoadingView show];
     LocalToken *localToken = [DeviceTokenManager getDeviceToken];
     DeviceTokenManager *manager = [[DeviceTokenManager alloc] init];
     [manager deleteDeviceToken:localToken.deviceId user:user successHandler:^(id response) {
+        [LoadingView dismiss];
         localToken.isSaved = 0;
         [CoreDataManager saveContext];
         [[self class] logoutFromViewController:viewController];
     } failureHandler:^(id response) {
+        [LoadingView dismiss]; 
         NSLog(@"Response %@", response);
     }];
 }

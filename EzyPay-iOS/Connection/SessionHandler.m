@@ -20,8 +20,9 @@
 
 @implementation SessionHandler
 
+NSString *const BASE_URL = @"http://192.168.1.102:8080/";
+//NSString *const BASE_URL = @"https://d4526b6c.ngrok.io/";
 //NSString *const BASE_URL = @"https://ugwo-platform.appspot.com/";
-NSString *const BASE_URL = @"http://192.168.1.100:8080/";
 NSString *const IMAGE_URL = @"https://storage.googleapis.com/ugwo-contact-pictures/";
 NSString *const CLIENT_ID  = @"ceWZ_4G8CjQZy7,8";
 NSString *const SECRET_KEY = @"9F=_wPs^;W]=Hqf!3e^)ZpdR;MUym+";

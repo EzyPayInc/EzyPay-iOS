@@ -9,6 +9,7 @@
 #import "AddTableViewController.h"
 #import "CoreDataManager.h"
 #import "TableManager.h"
+#import "LoadingView.h"
 
 @interface AddTableViewController ()
 
@@ -60,9 +61,12 @@
     table.restaurant = self.user;
     table.tableNumber = tableNumber;
     TableManager *manager = [[TableManager alloc] init];
+    [LoadingView show];
     [manager registerTable:table token:self.user.token successHandler:^(id response) {
+        [LoadingView dismiss];
         [self.navigationController popViewControllerAnimated:YES];
     } failureHandler:^(id response) {
+        [LoadingView dismiss];
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }

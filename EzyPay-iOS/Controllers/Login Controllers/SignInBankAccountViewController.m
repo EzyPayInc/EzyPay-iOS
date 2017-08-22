@@ -12,6 +12,7 @@
 #import "BankAccountManager.h"
 #import "NavigationController.h"
 #import "DeviceTokenManager.h"
+#import "LoadingView.h"
 
 @interface SignInBankAccountViewController () <UITextFieldDelegate>
 
@@ -79,6 +80,7 @@
 }
 
 - (void)saveUser {
+    [LoadingView show];
     UserManager *manager = [[UserManager alloc] init];
     [manager registerUser:self.user
                    tables: self.tables
@@ -87,7 +89,8 @@
                self.user.id = userId;
                [self login];
            } failureHandler:^(id response) {
-               NSLog(@"Error: %@", response);
+               [LoadingView dismiss];
+            NSLog(@"Error: %@", response);
            }];
 }
 
@@ -100,6 +103,7 @@
         self.user.id = [[accessToken valueForKey:@"userId"] integerValue];
         [self saveImage];
     } failureHandler:^(id response) {
+        [LoadingView dismiss];
         NSLog(@"Error: %@", response);
     }];
 }
@@ -112,6 +116,7 @@
             [CoreDataManager saveContext]; 
             [self saveBankAccount];
         } failureHandler:^(id response) {
+            [LoadingView dismiss];
             NSLog(@"%@", response);
         }];
     }
@@ -129,6 +134,7 @@
     [manager registerAccount:account
                        token:self.user.token
               successHandler:^(id response) {
+                  [LoadingView dismiss];
                   self.user.bankAccount = account;
                   [CoreDataManager saveContext];
                   NavigationController *navigationController = [NavigationController sharedInstance];
@@ -138,6 +144,7 @@
                                              withUser:self.user];
         [self registerToken:self.user];
     } failureHandler:^(id response) {
+        [LoadingView dismiss];
         NSLog(@"Error: %@", response);
     }];
 }

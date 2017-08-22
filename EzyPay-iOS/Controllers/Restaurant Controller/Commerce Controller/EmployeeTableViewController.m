@@ -9,6 +9,7 @@
 #import "EmployeeTableViewController.h"
 #import "UIColor+UIColor.h"
 #import "EmployeeDetailViewController.h"
+#import "LoadingView.h"
 
 @interface EmployeeTableViewController ()
 
@@ -60,11 +61,14 @@
 
 
 -(void) getEmployees {
+    [LoadingView show];
     UserManager *manager = [[UserManager alloc] init];
     [manager getEmployees:self.user.id token:self.user.token successHandler:^(id response) {
         self.employees = [UserManager employeesFromArray:response];
         [self.tableView reloadData];
+        [LoadingView dismiss];
     } failureHandler:^(id response) {
+        [LoadingView dismiss];
         NSLog(@"Error in getEmployees Request: %@", response);
     }];
 }

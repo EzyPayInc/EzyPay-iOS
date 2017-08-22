@@ -76,28 +76,26 @@
 
 #pragma mark - actions
 - (void)getHistoryDates {
-    LoadingView *loadingView = [LoadingView loadingViewInView:self.view];
+    [LoadingView show];
     UserManager *manager = [[UserManager alloc] init];
     [manager getUserHistoryDates:self.user
                   successHandler:^(id response) {
-                      [loadingView removeView];
                       self.historyDates = response;
                       [self getHistory];
                   } failureHandler:^(id response) {
-                      [loadingView removeView];
+                      [LoadingView dismiss];
                       NSLog(@"Error: %@", response);
                   }];
 }
 
 - (void)getHistory {
-    LoadingView *loadingView = [LoadingView loadingViewInView:self.view];
     UserManager *manager = [[UserManager alloc] init];
     [manager getUserHistory:self.user
              successHandler:^(id response) {
-                 [loadingView removeView];
+                 [LoadingView dismiss];
                  [self getHistoryByDates:response];
              } failureHandler:^(id response) {
-                 [loadingView removeView];
+                 [LoadingView dismiss];
                  NSLog(@"Error: %@", response);
              }];
 }

@@ -10,6 +10,7 @@
 #import "BottomBorderTextField.h"
 #import "BankAccountManager.h"
 #import "CoreDataManager.h"
+#import "LoadingView.h"
 
 @interface BankAccountViewController ()
 
@@ -87,10 +88,12 @@
 
 #pragma mark - actions
 - (void)getCommerceBankAccount {
+    [LoadingView show];
     BankAccountManager *manager = [[BankAccountManager alloc] init];
     [manager getAccountByUserFromServer:self.user.id
                                   token:self.user.token
                          successHandler:^(id response) {
+                             [LoadingView dismiss];
                              if(response == nil || [response count] == 0) {
                                  self.viewMode = AddBankAccount;
                                  [self setupViewMode];
@@ -103,6 +106,7 @@
                                  self.txtBank.text = self.bankAccount.bank;
                              }
                          } failureHandler:^(id response) {
+                             [LoadingView dismiss];
                              NSLog(@"Error getting Bank Account %@", response);
                          }];
 }
@@ -132,13 +136,16 @@
 }
 
 - (void)saveBankAccount {
+    [LoadingView show];
     BankAccountManager *manager = [[BankAccountManager alloc] init];
     [manager registerAccount:self.bankAccount
                      token:self.user.token
             successHandler:^(id response) {
+                [LoadingView dismiss];
                 self.viewMode = ViewBankAccount;
                 [self setupViewMode];
             } failureHandler:^(id response) {
+                [LoadingView dismiss];
                 NSLog(@"Error updating Bank Account %@", response);
             }
      ];
@@ -146,13 +153,16 @@
 }
 
 - (void)updateBankAccount {
+    [LoadingView show];
     BankAccountManager *manager = [[BankAccountManager alloc] init];
     [manager updateAccount:self.bankAccount
                      token:self.user.token
             successHandler:^(id response) {
+                [LoadingView dismiss];
                 self.viewMode = ViewBankAccount;
                 [self setupViewMode];
             } failureHandler:^(id response) {
+                [LoadingView dismiss];
                 NSLog(@"Error updating Bank Account %@", response);
             }
      ];

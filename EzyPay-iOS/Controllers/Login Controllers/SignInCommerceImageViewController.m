@@ -12,7 +12,7 @@
 #import "SignInBankAccountViewController.h"
 #import "NavigationController.h"
 
-@interface SignInCommerceImageViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
+@interface SignInCommerceImageViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIImageView *profileCommerceImage;
 @property (weak, nonatomic) IBOutlet BottomBorderTextField *tablesQuantity;
@@ -21,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (weak, nonatomic) IBOutlet UILabel *uploadLabel;
 @property (nonatomic, strong) UIImage *imageSelected;
+@property (weak, nonatomic) IBOutlet UIPickerView *pickerTables;
+
+@property (nonatomic, assign) NSInteger tables;
 
 @end
 
@@ -29,6 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupView];
+    self.tables = 0;
     // Do any additional setup after loading the view.
 }
 
@@ -37,7 +41,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [[self.pickerTables.subviews objectAtIndex:1] setHidden:YES];
+    //[[self.pickerTables.subviews objectAtIndex:2] setHidden:YES];
+}
+
 - (void)setupView {
+    self.pickerTables.delegate = self;
+    self.pickerTables.dataSource = self;
     self.navigationController.navigationBar.topItem.backBarButtonItem =
     [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"backLabel", nil)
                                      style:UIBarButtonItemStylePlain
@@ -87,7 +99,7 @@
     self.user.userType = [self.tablesQuantity.text integerValue] > 0 ? RestaurantNavigation : CommerceNavigation;
     viewController.user = self.user;
     viewController.commerceLogo = self.imageSelected;
-    viewController.tables = [self.tablesQuantity.text integerValue];
+    viewController.tables = self.tables;
     [self.navigationController pushViewController:viewController animated:true];
         
 }
@@ -142,5 +154,30 @@
     [alert addAction:okAction];
     [self presentViewController:alert animated:YES completion:nil];
 }
+
+#pragma mark - picker delegate
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+// The number of rows of data
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return 101;
+}
+
+// The data to return for the row and component (column) that's being passed in
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return row == 0 ? NSLocalizedString(@"tablesQuantityPlaceholder", nil) :
+    [NSString stringWithFormat:@"%ld", (long)row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView
+      didSelectRow:(NSInteger)row
+       inComponent:(NSInteger)component {
+    self.tables = row;
+}
+
 
 @end

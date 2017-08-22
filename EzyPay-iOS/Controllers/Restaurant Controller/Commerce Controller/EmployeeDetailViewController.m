@@ -10,6 +10,7 @@
 #import "CoreDataManager.h"
 #import "Connection.h"
 #import "NavigationController.h"
+#import "LoadingView.h"
 
 
 @interface EmployeeDetailViewController ()<UITextFieldDelegate>
@@ -75,6 +76,7 @@
     if(![self isDataValidated]) {
         return;
     }
+    [LoadingView show];
     User *employee = [CoreDataManager createEntityWithName:@"User"];
     employee.name = self.txtName.text;
     employee.lastName = self.txtLastName.text;
@@ -84,8 +86,10 @@
     employee.boss = self.user;
     UserManager *manager = [[UserManager alloc] init];
     [manager registerUser:employee tables:0 successHandler:^(id response) {
+        [LoadingView dismiss];
         [self.navigationController popViewControllerAnimated:true];
     } failureHandler:^(id response) {
+        [LoadingView dismiss];
         NSLog(@"Error in register employee request %@", response);
     }];
 }

@@ -12,6 +12,7 @@
 #import "NavigationController.h"
 #import "CoreDataManager.h"
 #import "DeviceTokenManager.h"
+#import "LoadingView.h"
 
 @interface LogInCommerceViewController () <UITextFieldDelegate>
 
@@ -84,6 +85,7 @@
 - (IBAction)signInAction:(id)sender {
     [self.view endEditing:YES];
     if([self areFieldsFilled]) {
+        [LoadingView show];
         NSString *email = self.txtEmail.text;
         NSString *password = self.txtPassword.text;
     
@@ -94,6 +96,7 @@
             NSString *token = [accessToken valueForKey:@"value"];
             [self getUserFromServer:id token:token];
         } failureHandler:^(id response) {
+            [LoadingView dismiss];
             NSLog(@"%@", response);
         }];
     } else {
@@ -117,6 +120,7 @@
         if (user.userType == EmployeeNavigation) {
             [self getUserCompany:user companyId:companyId];
         } else {
+            [LoadingView dismiss];
             NavigationController *navigationController = [NavigationController sharedInstance];
             [navigationController presentTabBarController:self
                                        withNavigationType:user.userType
@@ -125,6 +129,7 @@
         [self registerToken:user];
         
     } failureHandler:^(id response) {
+        [LoadingView dismiss];
         NSLog(@"%@", response);
     }];
 }
@@ -137,12 +142,14 @@
         company.token = nil;
         user.boss = company;
         [CoreDataManager saveContext];
+        [LoadingView dismiss];
         NavigationController *navigationController = [NavigationController sharedInstance];
         [navigationController presentTabBarController:self
                                    withNavigationType:user.userType
                                              withUser:user];
     } failureHandler:^(id response) {
-        NSLog(@"Error getting user");
+            [LoadingView dismiss];
+            NSLog(@"Error getting user");
     }];
 }
 

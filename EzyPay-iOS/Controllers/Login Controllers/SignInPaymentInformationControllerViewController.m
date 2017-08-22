@@ -94,44 +94,40 @@
 }
 
 - (void)saveUser {
-    LoadingView *loadingView = [LoadingView loadingViewInView:self.view];
+    [LoadingView show];
     UserManager *manager = [[UserManager alloc] init];
     [manager registerUser:self.user
                    tables: self.tables
            successHandler:^(id response) {
-               [loadingView removeView];
                int64_t userId = (long)[[response valueForKey:@"userId"] integerValue];
                self.user.id = userId;
                self.user.customerId = [[response valueForKey:@"customerId"] integerValue];
                [self login];
     } failureHandler:^(id response) {
-        [loadingView removeView];
+        [LoadingView dismiss];
         NSLog(@"Error: %@", response);
     }];
 }
 
 - (void)login {
-    LoadingView *loadingView = [LoadingView loadingViewInView:self.view];
     UserManager *manager = [[UserManager alloc] init];
     NSString *scope = self.user.credential ? self.user.credential.platform : nil;
     NSString *platformToken = self.user.credential ? self.user.credential.platformToken : nil;
     NSString *password = (self.user.password && self.user.password.length > 0 ) ?
         self.user.password : self.user.credential.credential;
     [manager login:self.user.email password:password scope:scope platformToken:platformToken successHandler:^(id response) {
-        [loadingView removeView];
         NSDictionary *accessToken = [response valueForKey:@"access_token"];
         NSString *token = [accessToken valueForKey:@"value"];
         self.user.token = token;
         self.user.id = [[accessToken valueForKey:@"userId"] integerValue];
         [self saveCard];
     } failureHandler:^(id response) {
-        [loadingView removeView];
+        [LoadingView dismiss];
         NSLog(@"Error: %@", response);
     }];
 }
 
 - (void)saveCard {
-    LoadingView *loadingView = [LoadingView loadingViewInView:self.view];
     Card *card = [CoreDataManager createEntityWithName:@"Card"];
     card.cardNumber = self.txtCardNumber.text;
     card.ccv = [self.txtCvv.text integerValue];
@@ -139,7 +135,7 @@
     card.user = self.user;
     CardManager *manager = [[CardManager alloc] init];
     [manager registerCard:card user:self.user successHandler:^(id response) {
-        [loadingView removeView];
+        [LoadingView dismiss];
         [self.user addCardsObject:card];
         [CoreDataManager saveContext];
         NavigationController *navigationController = [NavigationController sharedInstance];
@@ -149,7 +145,7 @@
                                              withUser:self.user];
         [self registerToken:self.user];
     } failureHandler:^(id response) {
-        [loadingView removeView];
+        [LoadingView dismiss];
         NSLog(@"Error: %@", response);
     }];
 }

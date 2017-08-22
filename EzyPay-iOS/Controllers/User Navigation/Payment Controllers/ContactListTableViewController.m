@@ -14,6 +14,7 @@
 #import "ContactTableViewCell.h"
 #import "UIColor+UIColor.h"
 #import "SplitViewController.h"
+#import "LoadingView.h"
 
 @interface ContactListTableViewController () <UISearchBarDelegate>
 
@@ -140,6 +141,7 @@
 }
 
 - (void)getContactsFromPhone {
+    [LoadingView show];
     CNContactStore *store = [[CNContactStore alloc] init];
     NSMutableArray *phoneNumbers =  [NSMutableArray array];
     [store requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
@@ -176,10 +178,12 @@
 - (void)validatePhoneNumbers:(NSArray *)phoneNumbers {
     UserManager *manager = [[UserManager alloc] init];
     [manager validatePhoneNumbers:phoneNumbers token:self.user.token successHandler:^(id response) {
+        [LoadingView dismiss];
         self.contactsArray = [UserManager usersFromArray:response];
         self.inmutableContactsArray = self.contactsArray;
         [self.tableView reloadData];
     } failureHandler:^(id response) {
+        [LoadingView dismiss];
         NSLog(@"%@", response);
     }];
 }

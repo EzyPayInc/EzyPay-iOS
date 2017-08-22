@@ -12,6 +12,7 @@
 #import "CardManager.h"
 #import "CardIO.h"
 #import "ValidateCardInformationHelper.h"
+#import "LoadingView.h"
 
 @interface CardDetailViewController ()<UITextFieldDelegate, CardIOPaymentViewControllerDelegate>
 
@@ -179,21 +180,27 @@
 }
 
 - (void)registerCard:(Card *)card {
+    [LoadingView show];
     CardManager *manager = [[CardManager alloc] init];
     [manager registerCard:card user:self.user successHandler:^(id response) {
+        [LoadingView dismiss];
         [self.navigationController popViewControllerAnimated:true];
     } failureHandler:^(id response) {
+        [LoadingView dismiss];
         NSLog(@"Connection Failed");
     }];
 }
 
 - (void)updateCard:(Card *)card {
+    [LoadingView show];
     CardManager *manager = [[CardManager alloc] init];
     [manager updateCard:card user:self.user successHandler:^(id response) {
+        [LoadingView dismiss];
         self.viewType = ViewCard;
         self.card = card;
         [self setupView];
     } failureHandler:^(id response) {
+        [LoadingView dismiss];
         NSLog(@"Connection Failed");
     }];
 }

@@ -139,20 +139,18 @@
 - (IBAction)loginAction:(id)sender {
     [self.view endEditing:YES];
     if ([self areFieldsFilled]) {
-        [LoadingView loadingViewInView:self.view];
+        [LoadingView show];
         NSString *email = self.txtEmail.text;
         NSString *password = self.txtPassword.text;
     
         UserManager *manager = [[UserManager alloc] init];
-        LoadingView *loadingView = [[LoadingView alloc] init];
         [manager login:email password:password scope:nil platformToken:nil successHandler:^(id response) {
-            [loadingView removeView];
             NSDictionary *accessToken = [response valueForKey:@"access_token"];
             int64_t id = (long)[[accessToken valueForKey:@"userId"] integerValue];
             NSString *token = [accessToken valueForKey:@"value"];
             [self getUserFromServer:id token:token];
         } failureHandler:^(id response) {
-            [loadingView removeView];
+            [LoadingView dismiss];
             NSLog(@"%@", response);
         }];
     } else {
@@ -164,6 +162,7 @@
 - (void) getUserFromServer:(int64_t ) userId token:(NSString *)token {
     UserManager *manager = [[UserManager alloc] init];
     [manager getUserFromServer:userId token:token successHandler:^(id response) {
+        [LoadingView dismiss];
         User *user = [UserManager userFromDictionary:response];
         user.id = userId;
         user.token = token;
@@ -180,6 +179,7 @@
         [self registerToken:user];
         
     } failureHandler:^(id response) {
+        [LoadingView dismiss];
         NSLog(@"%@", response);
     }];
 }

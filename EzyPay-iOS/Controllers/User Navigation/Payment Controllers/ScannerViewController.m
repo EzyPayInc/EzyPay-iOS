@@ -64,6 +64,7 @@
 }
 
 - (void)registerPayment:(NSDictionary *)paymentDictionary {
+    [LoadingView show];
     PaymentManager *manager = [[PaymentManager alloc] init];
     [PaymentManager deletePayment];
     Payment *payment = [PaymentManager paymentFromDictionary:paymentDictionary];
@@ -72,8 +73,10 @@
         NSLog(@"Response: %@", response);
         payment.id = [[response objectForKey:@"id"] integerValue];
         [CoreDataManager saveContext];
+        [LoadingView dismiss];
         [self showCommerceDetail:payment];
     } failureHandler:^(id response) {
+        [LoadingView dismiss];
         NSLog(@"Register payment request failed: %@", response);
     }];
     
@@ -86,12 +89,12 @@
 }
 
 - (void)getActivePayment {
-    LoadingView *loadingView = [LoadingView loadingViewInView:self.view];
+    [LoadingView show];
     [CoreDataManager deleteDataFromEntity:@"Payment"];
     PaymentManager *manager = [[PaymentManager alloc] init];
     [manager getActivePaymentByUser:self.user
                      successHandler:^(id response) {
-                         [loadingView removeView];
+                         [LoadingView dismiss];
                          if([response count] > 0) {
                              Payment *payment = [PaymentManager paymentFromDictionary:response];
                              [CoreDataManager saveContext];
@@ -99,7 +102,7 @@
                                                        currentViewController:self];
                          }
                      } failureHandler:^(id response) {
-                         [loadingView removeView];
+                         [LoadingView dismiss];
                          NSLog(@"%@", response);
                      }];
 }

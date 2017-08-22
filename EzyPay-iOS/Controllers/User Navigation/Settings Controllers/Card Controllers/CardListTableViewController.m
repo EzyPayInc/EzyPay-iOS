@@ -11,6 +11,7 @@
 #import "CardManager.h"
 #import "CardDetailViewController.h"
 #import "UIColor+UIColor.h"
+#import "LoadingView.h"
 
 @interface CardListTableViewController ()
 
@@ -113,11 +114,14 @@ static NSString *const CARD_STARTS = @"**** ";
 
 #pragma mark - actions
 - (void)getCardsFromServer {
+    [LoadingView show];
     CardManager *manager = [[CardManager alloc] init];
     [manager getCardsByUserFromServer:self.user.id token:self.user.token successHandler:^(id response) {
+        [LoadingView dismiss];
         self.cards = [CardManager getCardsFromArray:response];
         [self.tableView reloadData];
     } failureHandler:^(id response) {
+        [LoadingView dismiss];
         NSLog(@"Connection Failed");
     }];
 }

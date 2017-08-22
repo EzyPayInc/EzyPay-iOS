@@ -11,14 +11,17 @@
 #import "NavigationController.h"
 #import "LoginViewController.h"
 #import "LogInCommerceViewController.h"
+#import "LoadingView.h"
 
 @implementation CompletionHandler
 
 - (void)handleResponse:(Connection *) connection{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     if(connection.response.statusCode == 401 || connection.response.statusCode == 403) {
+        [LoadingView dismiss]; 
         [self handleUnauthorizedRequest:connection];
     } else if(connection.error) {
+        [LoadingView dismiss];
         [self handleConnectionError:connection];
     } else if(connection.response.statusCode == 200 || connection.response.statusCode == 500) {
         [self handleCompletionRequest:connection];

@@ -10,6 +10,7 @@
 #import "UIColor+UIColor.h"
 #import "HistoryCommerceTableViewCell.h"
 #import "UserManager.h"
+#import "LoadingView.h"
 
 @interface HistoryCommerceTableViewController ()
 
@@ -81,12 +82,14 @@
 
 #pragma mark - actions
 - (void)getHistoryDates {
+    [LoadingView show];
     UserManager *manager = [[UserManager alloc] init];
     [manager getCommerceHistoryDates:self.user
                   successHandler:^(id response) {
                       self.historyDates = response;
                       [self getHistory];
                   } failureHandler:^(id response) {
+                      [LoadingView dismiss];
                       NSLog(@"Error: %@", response);
                   }];
 }
@@ -95,9 +98,11 @@
     UserManager *manager = [[UserManager alloc] init];
     [manager getCommerceHistory:self.user
              successHandler:^(id response) {
+                 [LoadingView dismiss];
                  [self getHistoryByDates:response];
              } failureHandler:^(id response) {
                  NSLog(@"Error: %@", response);
+                 [LoadingView dismiss];
              }];
 }
 

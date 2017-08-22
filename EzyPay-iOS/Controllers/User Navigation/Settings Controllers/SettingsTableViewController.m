@@ -21,6 +21,7 @@
 #import "ChooseViewController.h"
 #import "BankAccountViewController.h"
 #import "NavigationController.h"
+#import "LoadingView.h"
 
 @interface SettingsTableViewController ()<SettingsCellDelegate, ProfileImageViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -258,6 +259,7 @@
                                        
 - (void)updateUserAction {
     [self.view endEditing:YES];
+    [LoadingView show];
     UserManager *manager = [[UserManager alloc] init];
     [manager updateUser:self.user successHandler:^(id response) {
         self.isEditableMode = NO;
@@ -265,6 +267,7 @@
         [self addNavigationBarButtons];
         [self updateImage];
     } failureHandler:^(id response) {
+        [LoadingView dismiss];
         NSLog(@"Error: %@", response);
     }];
 }
@@ -276,7 +279,9 @@
             self.user.avatar = [response objectForKey:@"avatar"];
             [CoreDataManager saveContext];
             [self.tableView reloadData];
+            [LoadingView dismiss];
         } failureHandler:^(id response) {
+            [LoadingView dismiss];
             NSLog(@"%@", response);
             [self.tableView reloadData];
         }];
