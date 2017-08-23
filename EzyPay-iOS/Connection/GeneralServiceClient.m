@@ -34,7 +34,7 @@ static NSString *const AUTH_URL = @"auth/token";
         scope:(NSString *)scope
 platformToken:(NSString *)platformToken
 successHandler:(ConnectionSuccessHandler) successHandler
-failureHandler: (ConnectionErrorHandler) failureHandler {
+failureHandler:(ConnectionErrorHandler) failureHandler {
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BASE_URL, AUTH_URL]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
@@ -52,6 +52,24 @@ failureHandler: (ConnectionErrorHandler) failureHandler {
     }
     request.HTTPBody = [parameters dataUsingEncoding:NSUTF8StringEncoding];;
     request.HTTPMethod = @"POST";
+    [request addValue:[NSString stringWithFormat:@"Basic %@",encodedString] forHTTPHeaderField:@"Authorization"];
+    [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
+    
+}
+
+- (void)validateCredentialas:(NSDictionary *) user
+              successHandler:(ConnectionSuccessHandler) successHandler
+              failureHandler:(ConnectionErrorHandler) failureHandler {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@auth/credential", BASE_URL]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    NSString *basicAuth = [NSString stringWithFormat:@"%@:%@",CLIENT_ID,SECRET_KEY];
+    NSString *encodedString = [self stringByBase64EncodingWithString:basicAuth];
+    NSData *body = [NSJSONSerialization dataWithJSONObject:user options:0 error:nil];
+    request.HTTPBody = body;
+    request.HTTPMethod = @"POST";
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request addValue:[NSString stringWithFormat:@"Basic %@",encodedString] forHTTPHeaderField:@"Authorization"];
     [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
     

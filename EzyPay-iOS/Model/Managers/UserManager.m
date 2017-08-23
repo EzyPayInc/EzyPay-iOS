@@ -128,6 +128,16 @@ failureHandler: (ConnectionErrorHandler) failureHandler {
     failureHandler:failureHandler];
 }
 
+- (void)validateCredentialas:(NSDictionary *) user
+              successHandler:(ConnectionSuccessHandler) successHandler
+              failureHandler:(ConnectionErrorHandler) failureHandler {
+    GeneralServiceClient *service = [[GeneralServiceClient alloc] init];
+    [service validateCredentialas:user
+                   successHandler:successHandler
+                   failureHandler:failureHandler];
+    
+}
+
 - (void)registerUser:(User *) user
               tables:(NSInteger )tables
       successHandler:(ConnectionSuccessHandler) successHandler

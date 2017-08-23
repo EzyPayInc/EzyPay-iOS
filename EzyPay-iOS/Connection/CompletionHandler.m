@@ -18,7 +18,7 @@
 - (void)handleResponse:(Connection *) connection{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     if(connection.response.statusCode == 401 || connection.response.statusCode == 403) {
-        [LoadingView dismiss]; 
+        [LoadingView dismiss];
         [self handleUnauthorizedRequest:connection];
     } else if(connection.error) {
         [LoadingView dismiss];

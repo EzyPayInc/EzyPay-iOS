@@ -264,10 +264,56 @@
         User *userFromFacebook = [UserManager userFromFacebookLogin:result];
         NSString *fbAccessToken = [FBSDKAccessToken currentAccessToken].tokenString;
         userFromFacebook.credential.platformToken = fbAccessToken;
-        SignInUserViewController *viewController =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInUserViewController"];
-        viewController.user = userFromFacebook;
-        [self.navigationController pushViewController:viewController animated:YES];
+        [self validateCredententialas:userFromFacebook];
     }];
+}
+
+- (void)validateCredententialas:(User *)user {
+    [LoadingView show];
+    NSDictionary *userDictionary = [UserManager userToJson:user];
+    UserManager *manager = [[UserManager alloc] init];
+    [manager validateCredentialas:userDictionary
+                   successHandler:^(id response) {
+                       int64_t userId = (long)[[response valueForKey:@"userId"] integerValue];
+                       NSString *token = [response valueForKey:@"value"];
+                       if(token != nil) {
+                           Credentials *credential = user.credential;
+                           [self handleUserFacebookResponse:credential
+                                                     userId:userId
+                                                      token:token];
+                       } else {
+                           NSLog(@"%@", response);
+                           [LoadingView dismiss];
+                           SignInUserViewController *viewController =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInUserViewController"];
+                           viewController.user = user;
+                           [self.navigationController pushViewController:viewController animated:YES];
+                       }
+                 } failureHandler:^(id response) {
+                     [LoadingView dismiss];
+                     NSLog(@"Error validating user");
+                   }];
+}
+
+- (void)handleUserFacebookResponse:(Credentials *)credential userId:(int64_t)userId token:(NSString *)token {
+    UserManager *manager = [[UserManager alloc] init];
+    [manager getUserFromServer:userId token:token successHandler:^(id response) {
+        [LoadingView dismiss];
+        User *user = [UserManager userFromDictionary:response];
+        user.id = userId;
+        user.token = token;
+        user.credential = credential;
+        [CoreDataManager saveContext];
+        NavigationController *navigationController = [NavigationController sharedInstance];
+        [navigationController presentTabBarController:self
+                                       withNavigationType:user.userType
+                                                 withUser:user];
+        [self registerToken:user];
+        
+    } failureHandler:^(id response) {
+        [LoadingView dismiss];
+        NSLog(@"%@", response);
+    }];
+
 }
     
 
