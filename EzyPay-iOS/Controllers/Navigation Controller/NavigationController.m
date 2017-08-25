@@ -17,6 +17,7 @@
 #import "DeviceTokenManager.h"
 #import "ChooseViewController.h"
 #import "LoadingView.h"
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @implementation NavigationController
 
@@ -229,6 +230,8 @@
         localToken.isSaved = 0;
         [CoreDataManager saveContext];
         [[self class] logoutFromViewController:viewController];
+        FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+        [loginManager logOut];
     } failureHandler:^(id response) {
         [LoadingView dismiss]; 
         NSLog(@"Response %@", response);
