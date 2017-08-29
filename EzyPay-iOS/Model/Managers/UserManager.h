@@ -31,6 +31,8 @@ failureHandler: (ConnectionErrorHandler) failureHandler;
 - (void)validateCredentialas:(NSDictionary *) user
               successHandler:(ConnectionSuccessHandler) successHandler
               failureHandler:(ConnectionErrorHandler) failureHandler;
+- (void)getPhoneCodes:(ConnectionSuccessHandler) successHandler
+       failureHandler:(ConnectionErrorHandler) failureHandler;
 - (void)registerUser:(User *) user
               tables:(NSInteger )tables
       successHandler:(ConnectionSuccessHandler) successHandler

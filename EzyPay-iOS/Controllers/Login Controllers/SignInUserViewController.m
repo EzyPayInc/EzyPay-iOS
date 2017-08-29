@@ -13,16 +13,20 @@
 #import "NSString+String.h"
 #import "NavigationController.h"
 #import "LoginViewController.h"
+#import "BottomBorderTextField.h"
+#import "PhoneCodesTableViewController.h"
 
-@interface SignInUserViewController ()<UITextFieldDelegate>
+@interface SignInUserViewController ()<UITextFieldDelegate, PhoneCodesDelegate>
 
 /*UI fields*/
 @property (weak, nonatomic) IBOutlet UITextField *txtUserName;
 @property (strong, nonatomic) IBOutlet UITextField *txtLastname;
+@property (weak, nonatomic) IBOutlet BottomBorderTextField *txtPhoneCode;
 @property (weak, nonatomic) IBOutlet UITextField *txtPhoneNumber;
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
 @property (weak, nonatomic) IBOutlet UIButton *btnNext;
+
 
 @end
 
@@ -52,6 +56,7 @@
     self.txtPhoneNumber.placeholder = NSLocalizedString(@"phoneNumberPlaceholder", nil);
     self.txtEmail.placeholder = NSLocalizedString(@"emailPlaceholder", nil);
     self.txtPassword.placeholder = NSLocalizedString(@"passwordPlaceholder", nil);
+    self.txtPhoneCode.placeholder = @"+1";
     [self.btnNext setTitle:NSLocalizedString(@"nextAction", nil) forState:UIControlStateNormal];
     [self setTextFieldDelegate];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
@@ -67,6 +72,7 @@
     self.txtPhoneNumber.delegate = self;
     self.txtEmail.delegate = self;
     self.txtPassword.delegate = self;
+    self.txtPhoneCode.delegate = self;
 }
 
 - (void)validateFields {
@@ -99,7 +105,8 @@
     if([self isDataValidated]) {
         self.user.name = self.txtUserName.text;
         self.user.lastName = self.txtLastname.text;
-        self.user.phoneNumber = self.txtPhoneNumber.text;
+        self.user.phoneNumber = [NSString stringWithFormat:@"%@ %@",
+                                 self.txtPhoneCode.text, self.txtPhoneNumber.text];
         self.user.email = self.txtEmail.text;
         self.user.userType = UserNavigation;
         self.user.password = self.txtPassword.text;
@@ -116,6 +123,16 @@
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if([textField isEqual:self.txtPhoneCode]) {
+        PhoneCodesTableViewController *viewController = (PhoneCodesTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PhoneCodesTableViewController"];
+        viewController.delegate = self;
+        [self.navigationController pushViewController:viewController animated:true];
+        return false;
+    }
+    return true;
 }
 
 - (IBAction)saveAction:(id)sender {
@@ -141,7 +158,8 @@
 
 - (BOOL)areFieldsFilled {
     return [self.txtUserName hasText] && [self.txtLastname hasText] && [self.txtPhoneNumber hasText]
-        && [self.txtEmail hasText] && ([self.txtPassword hasText] || self.txtPassword.hidden);
+        && [self.txtEmail hasText] && [self.txtPhoneCode hasText]
+        && ([self.txtPassword hasText] || self.txtPassword.hidden);
 }
 
 
@@ -164,6 +182,10 @@
     
     [alert addAction:okAction];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)didTapOnCode:(NSString *)phoneCode {
+    self.txtPhoneCode.text = phoneCode;
 }
 
 @end
