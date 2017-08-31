@@ -14,7 +14,7 @@
         <scene sceneID="zrJ-Tb-lEo">
             <objects>
                 <navigationController storyboardIdentifier="SignInNavigationViewController" id="lX2-XU-WVx" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wPc-E7-pG7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wPc-E7-pG7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -238,11 +238,20 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mP4-gt-oBT">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="mP4-gt-oBT">
                                         <rect key="frame" x="0.0" y="50" width="374" height="40"/>
                                         <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="+506" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IZO-QI-9E5" userLabel="Txt Phone Code" customClass="BottomBorderTextField">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="iwi-lc-cfW"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KAw-s7-Mcg" customClass="BottomBorderTextField">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
+                                                <rect key="frame" x="105" y="0.0" width="269" height="40"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -312,6 +321,7 @@
                         <outlet property="txtEmail" destination="RNa-Iq-QFt" id="tcm-nY-t8H"/>
                         <outlet property="txtName" destination="Dhr-5G-pmu" id="HPE-Kl-5qg"/>
                         <outlet property="txtPassword" destination="hZ9-8c-aXA" id="sF9-D3-YKg"/>
+                        <outlet property="txtPhoneCode" destination="IZO-QI-9E5" id="1LO-EU-jZW"/>
                         <outlet property="txtPhoneNumber" destination="KAw-s7-Mcg" id="Q0Z-fe-6MJ"/>
                         <segue destination="qVH-ye-jnD" kind="show" identifier="showCommerceProfileData" id="aSL-S1-zc8"/>
                     </connections>
@@ -499,7 +509,7 @@
         <scene sceneID="VAJ-de-XgV">
             <objects>
                 <navigationController storyboardIdentifier="NavPaymentController" id="gl0-JL-8Bb" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7ZN-fY-Q1p">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7ZN-fY-Q1p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1526,7 +1536,72 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ICa-XZ-GhV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1824" y="2539"/>
+            <point key="canvasLocation" x="1720" y="2512"/>
+        </scene>
+        <!--Editable Phone View Controller-->
+        <scene sceneID="6ri-o2-prz">
+            <objects>
+                <viewController storyboardIdentifier="EditablePhoneViewController" id="s76-jV-O7q" customClass="EditablePhoneViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LPL-7E-b7N"/>
+                        <viewControllerLayoutGuide type="bottom" id="YOU-hf-s9p"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="erx-tU-8cS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wM3-Ep-ryA">
+                                <rect key="frame" x="20.666666666666657" y="257.66666666666674" width="372.66666666666663" height="73.333333333333314"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uqb-zE-Dff" userLabel="Txt Phone Code" customClass="BottomBorderTextField">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="73.333333333333314"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="VIL-lJ-Zrd"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yx0-gZ-b2D" userLabel="Txt Phone Number" customClass="BottomBorderTextField">
+                                        <rect key="frame" x="105" y="0.0" width="267.66666666666663" height="73.333333333333314"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1z-tk-5ew">
+                                <rect key="frame" x="41.333333333333343" y="349.66666666666674" width="331.33333333333337" height="73.333333333333314"/>
+                                <color key="backgroundColor" red="0.72941176470588232" green="0.82352941180000006" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitAction:" destination="s76-jV-O7q" eventType="touchUpInside" id="rzq-jP-XvK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="c1z-tk-5ew" firstAttribute="height" secondItem="erx-tU-8cS" secondAttribute="height" multiplier="0.1" id="FbS-LK-yQo"/>
+                            <constraint firstItem="c1z-tk-5ew" firstAttribute="width" secondItem="erx-tU-8cS" secondAttribute="width" multiplier="0.8" id="NHe-si-p16"/>
+                            <constraint firstItem="wM3-Ep-ryA" firstAttribute="centerY" secondItem="erx-tU-8cS" secondAttribute="centerY" multiplier="0.8" id="SN3-oR-Gfp"/>
+                            <constraint firstItem="wM3-Ep-ryA" firstAttribute="height" secondItem="erx-tU-8cS" secondAttribute="height" multiplier="0.1" id="d0T-bM-wwt"/>
+                            <constraint firstItem="wM3-Ep-ryA" firstAttribute="width" secondItem="erx-tU-8cS" secondAttribute="width" multiplier="0.9" id="dxZ-Gj-PDi"/>
+                            <constraint firstItem="wM3-Ep-ryA" firstAttribute="centerX" secondItem="erx-tU-8cS" secondAttribute="centerX" id="nDy-eT-KMF"/>
+                            <constraint firstItem="c1z-tk-5ew" firstAttribute="centerX" secondItem="erx-tU-8cS" secondAttribute="centerX" id="rfc-1m-9qK"/>
+                            <constraint firstItem="c1z-tk-5ew" firstAttribute="centerY" secondItem="erx-tU-8cS" secondAttribute="centerY" multiplier="1.05" id="vKj-PW-AgF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnSubmit" destination="c1z-tk-5ew" id="0Oz-pJ-kNP"/>
+                        <outlet property="txtPhoneCode" destination="uqb-zE-Dff" id="DLK-uw-UJv"/>
+                        <outlet property="txtPhoneNumber" destination="yx0-gZ-b2D" id="OVY-zt-8ac"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hha-RE-52e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2541" y="2516"/>
         </scene>
         <!--Choose View Controller-->
         <scene sceneID="VwH-gJ-HTS">
@@ -1833,7 +1908,7 @@
         <scene sceneID="KXX-hM-o85">
             <objects>
                 <navigationController storyboardIdentifier="NavSettingsController" id="YTL-d0-WOv" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OJI-WJ-gTY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OJI-WJ-gTY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1956,6 +2031,7 @@
                     <connections>
                         <segue destination="aLu-sv-xVA" kind="show" identifier="displayEmployees" id="2q2-w9-Axm"/>
                         <segue destination="4gk-2B-QnF" kind="show" identifier="showBankAccount" id="Qai-mH-Tz9"/>
+                        <segue destination="s76-jV-O7q" kind="show" identifier="showPhoneCode" id="bCJ-Uw-Dqt"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yce-ty-kzL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2146,7 +2222,7 @@
         <scene sceneID="Tnl-3X-gIe">
             <objects>
                 <collectionViewController storyboardIdentifier="TableCollectionViewController" id="goD-X0-Skl" customClass="TableCollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="diU-rC-QvO">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="diU-rC-QvO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2466,7 +2542,7 @@
         <scene sceneID="4hQ-0D-RtA">
             <objects>
                 <navigationController storyboardIdentifier="NavCommerceController" id="0dl-ju-FiX" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lw2-B4-WCb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Lw2-B4-WCb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2649,7 +2725,7 @@
         <scene sceneID="4Mg-eR-pG6">
             <objects>
                 <navigationController storyboardIdentifier="NavHistoryCommerceController" id="W3U-4y-trr" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="r2L-8D-pQV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="r2L-8D-pQV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2665,7 +2741,7 @@
         <scene sceneID="Ain-zJ-W07">
             <objects>
                 <navigationController storyboardIdentifier="TablesNavigationController" id="24R-PE-tWU" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oV9-i0-LNB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="oV9-i0-LNB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2806,7 +2882,7 @@
         <scene sceneID="gZZ-BX-hHN">
             <objects>
                 <navigationController storyboardIdentifier="cardNavigationViewController" id="sFJ-J7-HAt" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OlK-CN-xS6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OlK-CN-xS6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2822,7 +2898,7 @@
         <scene sceneID="epW-x6-LWp">
             <objects>
                 <navigationController storyboardIdentifier="NavHistoryController" id="9dM-e2-skS" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nKe-5Q-Y5g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nKe-5Q-Y5g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

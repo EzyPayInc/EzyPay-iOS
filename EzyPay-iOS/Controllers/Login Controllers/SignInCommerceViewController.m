@@ -14,10 +14,12 @@
 #import "NSString+String.h"
 #import "NavigationController.h"
 #import "BottomBorderTextField.h"
+#import "PhoneCodesTableViewController.h"
 
-@interface SignInCommerceViewController ()<UITextFieldDelegate>
+@interface SignInCommerceViewController ()<UITextFieldDelegate, PhoneCodesDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *txtName;
+@property (weak, nonatomic) IBOutlet BottomBorderTextField *txtPhoneCode;
 @property (weak, nonatomic) IBOutlet UITextField *txtPhoneNumber;
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
@@ -50,6 +52,7 @@
     self.txtPhoneNumber.placeholder = NSLocalizedString(@"phoneNumberPlaceholder", nil);
     self.txtEmail.placeholder = NSLocalizedString(@"emailPlaceholder", nil);
     self.txtPassword.placeholder = NSLocalizedString(@"passwordPlaceholder", nil);
+    self.txtPhoneCode.placeholder = @"+1";
     [self.btnNext setTitle:NSLocalizedString(@"nextAction", nil) forState:UIControlStateNormal];
     [self setTextFieldDelegate];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
@@ -62,6 +65,7 @@
     self.txtPhoneNumber.delegate = self;
     self.txtEmail.delegate = self;
     self.txtPassword.delegate = self;
+    self.txtPhoneCode.delegate = self;
 }
 
 - (void)setupGestures {
@@ -78,7 +82,8 @@
     User *user = [CoreDataManager createEntityWithName:@"User"];
     user.name = self.txtName.text;
     user.lastName = nil;
-    user.phoneNumber = self.txtPhoneNumber.text;
+    user.phoneNumber = [NSString stringWithFormat:@"%@ %@",
+                        self.txtPhoneCode.text, self.txtPhoneNumber.text];
     user.email = self.txtEmail.text;
     user.password = self.txtPassword.text;
     
@@ -91,6 +96,16 @@
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if([textField isEqual:self.txtPhoneCode]) {
+        PhoneCodesTableViewController *viewController = (PhoneCodesTableViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"PhoneCodesTableViewController"];
+        viewController.delegate = self;
+        [self.navigationController pushViewController:viewController animated:true];
+        return false;
+    }
+    return true;
 }
 
 - (IBAction)nextAction:(id)sender {
@@ -117,7 +132,8 @@
 
 - (BOOL)areFieldsFilled {
     return [self.txtName hasText]  && [self.txtPhoneNumber hasText]
-    && [self.txtEmail hasText] && [self.txtPassword hasText];
+    && [self.txtEmail hasText] && [self.txtPassword hasText]
+    && [self.txtPhoneCode hasText];
 }
 
 
@@ -140,6 +156,10 @@
     
     [alert addAction:okAction];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)didTapOnCode:(NSString *)phoneCode {
+    self.txtPhoneCode.text = phoneCode;
 }
 
 @end
