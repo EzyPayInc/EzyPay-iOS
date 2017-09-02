@@ -20,7 +20,7 @@
     if(connection.response.statusCode == 401 || connection.response.statusCode == 403) {
         [LoadingView dismiss];
         [self handleUnauthorizedRequest:connection];
-    } else if(connection.error) {
+    } else if(connection.error || connection.response.statusCode == 404) {
         [LoadingView dismiss];
         [self handleConnectionError:connection];
     } else if(connection.response.statusCode == 200 || connection.response.statusCode == 500) {

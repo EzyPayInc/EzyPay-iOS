@@ -22,8 +22,9 @@
 #import "BankAccountViewController.h"
 #import "NavigationController.h"
 #import "LoadingView.h"
+#import "EditablePhoneViewController.h"
 
-@interface SettingsTableViewController ()<SettingsCellDelegate, ProfileImageViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface SettingsTableViewController ()<SettingsCellDelegate, ProfileImageViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, EditablePhoneDelegate>
 
 @property (nonatomic, strong)User *user;
 
@@ -40,22 +41,11 @@
     self.navigationItem.title = NSLocalizedString(@"settingsTitle", nil);
     self.user = [UserManager getUser];
     [self addNavigationBarButtons];
-    [self setupGestures];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)setupGestures {
-    UITapGestureRecognizer *generalTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                           action:@selector(hideKeyboard)];
-    [self.view addGestureRecognizer:generalTapRecognizer];
-}
-
-- (void)hideKeyboard {
-    [self.view endEditing:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -119,11 +109,18 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.view endEditing:YES];
     if(indexPath.section == 0 && indexPath.row > 0) {
         if(indexPath.row % 2 != 0) {
             SettingsTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-            [cell.txtValue becomeFirstResponder];
+            if(cell.cellType == PhoneNumberCell) {
+                EditablePhoneViewController *viewController = (EditablePhoneViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"EditablePhoneViewController"];
+                viewController.delegate = self;
+                [self.navigationController pushViewController:viewController animated:YES];
+            } else {
+                [cell.txtValue becomeFirstResponder];
+            }
         }
     } else {
         if (indexPath.section == 1) {
@@ -155,6 +152,7 @@
         case PhoneNumberCell:
             cell.detailLabel.text = NSLocalizedString(@"phoneNumberPlaceholder", nil);
             cell.txtValue.text = self.user.phoneNumber;
+            cell.txtValue.userInteractionEnabled = NO;
             cell.cellType = PhoneNumberCell;
             break;
         case EmailCell:
@@ -182,6 +180,7 @@
     } else if(row == 2) {
         cell.detailLabel.text = NSLocalizedString(@"phoneNumberPlaceholder", nil);
         cell.txtValue.text = self.user.phoneNumber;
+        cell.txtValue.userInteractionEnabled = NO;
         cell.cellType = PhoneNumberCell;
     } else if(row == 3) {
         cell.detailLabel.text = NSLocalizedString(@"emailPlaceholder", nil);
@@ -380,6 +379,11 @@
             }
         });
     });
+}
+
+- (void)didSavePhone:(NSString *)phoneNumber {
+    self.user.phoneNumber = phoneNumber;
+    [self.tableView reloadData];
 }
 
 @end

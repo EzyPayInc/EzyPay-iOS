@@ -75,6 +75,20 @@ failureHandler:(ConnectionErrorHandler) failureHandler {
     
 }
 
+- (void)getPhoneCodes:(ConnectionSuccessHandler) successHandler
+       failureHandler:(ConnectionErrorHandler) failureHandler {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@country/getAll", BASE_URL]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    NSString *basicAuth = [NSString stringWithFormat:@"%@:%@",CLIENT_ID,SECRET_KEY];
+    NSString *encodedString = [self stringByBase64EncodingWithString:basicAuth];
+    request.HTTPMethod = @"POST";
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:[NSString stringWithFormat:@"Basic %@",encodedString] forHTTPHeaderField:@"Authorization"];
+    [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
+}
+
 - (NSString *)stringByBase64EncodingWithString:(NSString *)inString
 {
     NSData *data = [NSData dataWithBytes:[inString UTF8String]

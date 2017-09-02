@@ -34,6 +34,7 @@
 		802891671DD66C3800A088EE /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 802891661DD66C3800A088EE /* Connection.m */; };
 		802AE9431DC8194F006008B3 /* SessionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 802AE9421DC8194F006008B3 /* SessionHandler.m */; };
 		802C03AF1DF47C14001370E2 /* NSString+String.m in Sources */ = {isa = PBXBuildFile; fileRef = 802C03AE1DF47C14001370E2 /* NSString+String.m */; };
+		802E9F9F1F57C796005EAAA9 /* EditablePhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 802E9F9E1F57C796005EAAA9 /* EditablePhoneViewController.m */; };
 		8030CB071DC1A54A006C0070 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8030CB061DC1A54A006C0070 /* LoginViewController.m */; };
 		80415C111E8B5CF1005696D3 /* PaymentServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80415C101E8B5CF1005696D3 /* PaymentServiceClient.m */; };
 		80415C141E8B7742005696D3 /* FriendManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80415C131E8B7742005696D3 /* FriendManager.m */; };
@@ -60,6 +61,7 @@
 		809788681E61526C001F30F9 /* TableCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 809788671E61526C001F30F9 /* TableCollectionViewCell.m */; };
 		80B18A231EAB28D800A56A4A /* PushNotificationServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B18A221EAB28D800A56A4A /* PushNotificationServiceClient.m */; };
 		80B18A291EAB2AF000A56A4A /* PushNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B18A281EAB2AF000A56A4A /* PushNotificationManager.m */; };
+		80C531D71F5501B500D2206B /* PhoneCodesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C531D61F5501B500D2206B /* PhoneCodesTableViewController.m */; };
 		80CFE8AB1E1F65D000DE276C /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CFE8AA1E1F65D000DE276C /* SettingsTableViewController.m */; };
 		80E171741E4C1CE400C099F5 /* HistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E171731E4C1CE400C099F5 /* HistoryTableViewCell.m */; };
 		80E688D41E74D88E0002CF76 /* TableServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E688D31E74D88E0002CF76 /* TableServiceClient.m */; };
@@ -167,6 +169,8 @@
 		802AE9421DC8194F006008B3 /* SessionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionHandler.m; sourceTree = "<group>"; };
 		802C03AD1DF47C14001370E2 /* NSString+String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+String.h"; sourceTree = "<group>"; };
 		802C03AE1DF47C14001370E2 /* NSString+String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+String.m"; sourceTree = "<group>"; };
+		802E9F9D1F57C796005EAAA9 /* EditablePhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditablePhoneViewController.h; sourceTree = "<group>"; };
+		802E9F9E1F57C796005EAAA9 /* EditablePhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditablePhoneViewController.m; sourceTree = "<group>"; };
 		802EA17E1EDE6D8100BE5082 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8030CB051DC1A54A006C0070 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		8030CB061DC1A54A006C0070 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -218,6 +222,8 @@
 		80B18A221EAB28D800A56A4A /* PushNotificationServiceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationServiceClient.m; sourceTree = "<group>"; };
 		80B18A271EAB2AF000A56A4A /* PushNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationManager.h; sourceTree = "<group>"; };
 		80B18A281EAB2AF000A56A4A /* PushNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationManager.m; sourceTree = "<group>"; };
+		80C531D51F5501B500D2206B /* PhoneCodesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneCodesTableViewController.h; sourceTree = "<group>"; };
+		80C531D61F5501B500D2206B /* PhoneCodesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneCodesTableViewController.m; sourceTree = "<group>"; };
 		80CFE8A91E1F65D000DE276C /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		80CFE8AA1E1F65D000DE276C /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		80E171721E4C1CE400C099F5 /* HistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewCell.h; sourceTree = "<group>"; };
@@ -356,6 +362,8 @@
 				800AF27A1EEFA4130030A49B /* SignInCommerceImageViewController.m */,
 				80F14CEB1EF8CB1C00D4AAD9 /* SignInBankAccountViewController.h */,
 				80F14CEC1EF8CB1C00D4AAD9 /* SignInBankAccountViewController.m */,
+				80C531D51F5501B500D2206B /* PhoneCodesTableViewController.h */,
+				80C531D61F5501B500D2206B /* PhoneCodesTableViewController.m */,
 			);
 			path = "Login Controllers";
 			sourceTree = "<group>";
@@ -403,6 +411,8 @@
 				80CFE8AA1E1F65D000DE276C /* SettingsTableViewController.m */,
 				80242B331EFBA50D000FC207 /* BankAccountViewController.h */,
 				80242B341EFBA50D000FC207 /* BankAccountViewController.m */,
+				802E9F9D1F57C796005EAAA9 /* EditablePhoneViewController.h */,
+				802E9F9E1F57C796005EAAA9 /* EditablePhoneViewController.m */,
 			);
 			path = "Settings Controllers";
 			sourceTree = "<group>";
@@ -1005,6 +1015,7 @@
 				800513FD1F394C0300300BFB /* LoadingView.m in Sources */,
 				80F14CED1EF8CB1C00D4AAD9 /* SignInBankAccountViewController.m in Sources */,
 				80F760CB1E6FCB1500178608 /* SignInCommerceViewController.m in Sources */,
+				80C531D71F5501B500D2206B /* PhoneCodesTableViewController.m in Sources */,
 				801DBAFB1EB069CB006527D7 /* SendBillNotificationHandler.m in Sources */,
 				80E688D81E74DD250002CF76 /* TableManager.m in Sources */,
 				800829751E15875500D2C5F2 /* CardDetailViewController.m in Sources */,
@@ -1017,6 +1028,7 @@
 				809788681E61526C001F30F9 /* TableCollectionViewCell.m in Sources */,
 				80F36E721E516A7A009A8CE7 /* PaymentTableViewCell.m in Sources */,
 				80430A6B1EE90F1300727111 /* LogInCommerceViewController.m in Sources */,
+				802E9F9F1F57C796005EAAA9 /* EditablePhoneViewController.m in Sources */,
 				8071B4001DD2DF6F001D8761 /* CardServiceClient.m in Sources */,
 				80F602AD1E14B63B0030F7C5 /* CardListTableViewController.m in Sources */,
 				80F88F581E21F15600941E11 /* SplitTableViewCell.m in Sources */,
