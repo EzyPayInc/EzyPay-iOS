@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		80016E4E1E1C943100D4658D /* BarcodeScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80016E4D1E1C943100D4658D /* BarcodeScannerViewController.m */; };
+		80041A931F5BBFB300702AEB /* SettingsPaswwordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80041A921F5BBFB300702AEB /* SettingsPaswwordViewController.m */; };
 		800513FD1F394C0300300BFB /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 800513FC1F394C0300300BFB /* LoadingView.m */; };
 		800829751E15875500D2C5F2 /* CardDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 800829741E15875500D2C5F2 /* CardDetailViewController.m */; };
 		800859911E23312200E3451F /* SettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 800859901E23312200E3451F /* SettingsTableViewCell.m */; };
@@ -121,6 +122,8 @@
 		737E986937DB5082CF66C227 /* libPods-EzyPay-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EzyPay-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80016E4C1E1C943100D4658D /* BarcodeScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarcodeScannerViewController.h; sourceTree = "<group>"; };
 		80016E4D1E1C943100D4658D /* BarcodeScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarcodeScannerViewController.m; sourceTree = "<group>"; };
+		80041A911F5BBFB300702AEB /* SettingsPaswwordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsPaswwordViewController.h; sourceTree = "<group>"; };
+		80041A921F5BBFB300702AEB /* SettingsPaswwordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsPaswwordViewController.m; sourceTree = "<group>"; };
 		800513FB1F394C0300300BFB /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		800513FC1F394C0300300BFB /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		800829731E15875500D2C5F2 /* CardDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardDetailViewController.h; sourceTree = "<group>"; };
@@ -413,6 +416,8 @@
 				80242B341EFBA50D000FC207 /* BankAccountViewController.m */,
 				802E9F9D1F57C796005EAAA9 /* EditablePhoneViewController.h */,
 				802E9F9E1F57C796005EAAA9 /* EditablePhoneViewController.m */,
+				80041A911F5BBFB300702AEB /* SettingsPaswwordViewController.h */,
+				80041A921F5BBFB300702AEB /* SettingsPaswwordViewController.m */,
 			);
 			path = "Settings Controllers";
 			sourceTree = "<group>";
@@ -985,6 +990,7 @@
 				800859911E23312200E3451F /* SettingsTableViewCell.m in Sources */,
 				80178EBB1EC1805700790B88 /* CallWaiterNotificationHandler.m in Sources */,
 				805F36961E94D7330099932A /* ContactTableViewCell.m in Sources */,
+				80041A931F5BBFB300702AEB /* SettingsPaswwordViewController.m in Sources */,
 				80B18A291EAB2AF000A56A4A /* PushNotificationManager.m in Sources */,
 				80EF9FC61EA9BEC200362D18 /* DeviceTokenServiceClient.m in Sources */,
 				805F368B1E949C6D0099932A /* EmployeeDetailViewController.m in Sources */,

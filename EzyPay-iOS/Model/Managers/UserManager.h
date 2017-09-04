@@ -57,5 +57,9 @@ failureHandler: (ConnectionErrorHandler) failureHandler;
 - (void)getCommerceHistoryDates:(User *)user
              successHandler:(ConnectionSuccessHandler) successHandler
              failureHandler:(ConnectionErrorHandler) failureHandler;
+- (void)updatePassword:(NSString *)newPassword
+                  user:(User *)user
+        successHandler:(ConnectionSuccessHandler) successHandler
+        failureHandler:(ConnectionErrorHandler) failureHandler;
 
 @end

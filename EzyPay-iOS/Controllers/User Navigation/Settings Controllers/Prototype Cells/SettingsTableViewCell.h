@@ -12,7 +12,8 @@ typedef enum {
     NameCell = 1,
     LastNameCell = 2,
     PhoneNumberCell = 3,
-    EmailCell = 4
+    EmailCell = 4,
+    PasswordCell = 5
 }SettingsCellTypes;
 
 @class SettingsCell;

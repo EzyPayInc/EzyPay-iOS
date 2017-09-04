@@ -1603,6 +1603,56 @@
             </objects>
             <point key="canvasLocation" x="2541" y="2516"/>
         </scene>
+        <!--Settings Paswword View Controller-->
+        <scene sceneID="SlJ-ec-ECN">
+            <objects>
+                <viewController storyboardIdentifier="SettingsPaswwordViewController" id="EUC-os-lN8" customClass="SettingsPaswwordViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6Z8-oc-arG"/>
+                        <viewControllerLayoutGuide type="bottom" id="t7S-81-EBU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hyG-v9-b7l">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Ra-sM-1c7" customClass="BottomBorderTextField">
+                                <rect key="frame" x="20.333333333333343" y="220.99999999999997" width="372.33333333333337" height="73.333333333333286"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLV-Ab-wPu">
+                                <rect key="frame" x="62" y="331.33333333333331" width="290" height="73.333333333333371"/>
+                                <color key="backgroundColor" red="0.72941176470000002" green="0.82352941180000006" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="changePassword:" destination="EUC-os-lN8" eventType="touchUpInside" id="ToP-1l-9jT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4Ra-sM-1c7" firstAttribute="width" secondItem="hyG-v9-b7l" secondAttribute="width" multiplier="0.9" id="7vK-Rv-yh1"/>
+                            <constraint firstItem="4Ra-sM-1c7" firstAttribute="centerY" secondItem="hyG-v9-b7l" secondAttribute="centerY" multiplier="0.7" id="TMF-QT-iMQ"/>
+                            <constraint firstItem="4Ra-sM-1c7" firstAttribute="centerX" secondItem="hyG-v9-b7l" secondAttribute="centerX" id="YBy-2f-gYp"/>
+                            <constraint firstItem="dLV-Ab-wPu" firstAttribute="centerY" secondItem="hyG-v9-b7l" secondAttribute="centerY" id="mJ0-SP-f7b"/>
+                            <constraint firstItem="4Ra-sM-1c7" firstAttribute="height" secondItem="hyG-v9-b7l" secondAttribute="height" multiplier="0.1" id="nnV-q3-m9q"/>
+                            <constraint firstItem="dLV-Ab-wPu" firstAttribute="width" secondItem="hyG-v9-b7l" secondAttribute="width" multiplier="0.7" id="pKt-V5-fIs"/>
+                            <constraint firstItem="dLV-Ab-wPu" firstAttribute="height" secondItem="hyG-v9-b7l" secondAttribute="height" multiplier="0.1" id="qkF-lP-FoQ"/>
+                            <constraint firstItem="dLV-Ab-wPu" firstAttribute="centerX" secondItem="hyG-v9-b7l" secondAttribute="centerX" id="vs3-d8-o1g"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnSave" destination="dLV-Ab-wPu" id="bkh-qF-Wyc"/>
+                        <outlet property="txtNewPassword" destination="4Ra-sM-1c7" id="tqn-Mo-lzQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rzw-MH-V34" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3270" y="2516"/>
+        </scene>
         <!--Choose View Controller-->
         <scene sceneID="VwH-gJ-HTS">
             <objects>
@@ -2032,6 +2082,7 @@
                         <segue destination="aLu-sv-xVA" kind="show" identifier="displayEmployees" id="2q2-w9-Axm"/>
                         <segue destination="4gk-2B-QnF" kind="show" identifier="showBankAccount" id="Qai-mH-Tz9"/>
                         <segue destination="s76-jV-O7q" kind="show" identifier="showPhoneCode" id="bCJ-Uw-Dqt"/>
+                        <segue destination="EUC-os-lN8" kind="show" identifier="showPasswordEdit" id="1fM-D9-tqr"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yce-ty-kzL" userLabel="First Responder" sceneMemberID="firstResponder"/>

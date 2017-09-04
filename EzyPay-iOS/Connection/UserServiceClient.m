@@ -255,4 +255,19 @@ static NSString *const USER_URL = @"user/";
     [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
 }
 
+- (void)updatePassword:(NSString *)newPassword
+                  user:(User *)user
+        successHandler:(ConnectionSuccessHandler) successHandler
+        failureHandler:(ConnectionErrorHandler) failureHandler {
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@password", BASE_URL, USER_URL]];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                           timeoutInterval:60.0];
+        NSString *body = [NSString stringWithFormat:@"newPassword=%@&email=%@", newPassword, user.email];
+        request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
+        request.HTTPMethod = @"POST";
+        [request addValue:[NSString stringWithFormat:@"Bearer %@",user.token] forHTTPHeaderField:@"Authorization"];
+        [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
+}
+
 @end

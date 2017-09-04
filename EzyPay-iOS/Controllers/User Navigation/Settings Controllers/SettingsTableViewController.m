@@ -23,6 +23,7 @@
 #import "NavigationController.h"
 #import "LoadingView.h"
 #import "EditablePhoneViewController.h"
+#import "SettingsPaswwordViewController.h"
 
 @interface SettingsTableViewController ()<SettingsCellDelegate, ProfileImageViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, EditablePhoneDelegate>
 
@@ -54,7 +55,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if(section == 0) {
-        return self.user.userType == UserNavigation ? 9 : 7;
+        return self.user.userType == UserNavigation ? 11 : 9;
     }
     return 1;
 }
@@ -118,6 +119,11 @@
                 EditablePhoneViewController *viewController = (EditablePhoneViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"EditablePhoneViewController"];
                 viewController.delegate = self;
                 [self.navigationController pushViewController:viewController animated:YES];
+            } else if (cell.cellType == PasswordCell) {
+                SettingsPaswwordViewController *viewController = (SettingsPaswwordViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SettingsPaswwordViewController"];
+                viewController.user = self.user;
+                [self.navigationController pushViewController:viewController animated:YES];
+
             } else {
                 [cell.txtValue becomeFirstResponder];
             }
@@ -160,6 +166,11 @@
             cell.txtValue.text = self.user.email;
             cell.cellType = EmailCell;
             break;
+        case PasswordCell:
+            cell.detailLabel.text = NSLocalizedString(@"passwordLabel", nil);
+            cell.txtValue.text = @".........";
+            cell.txtValue.userInteractionEnabled = NO;
+            cell.cellType = PasswordCell;
         default:
             break;
     }
@@ -186,6 +197,11 @@
         cell.detailLabel.text = NSLocalizedString(@"emailPlaceholder", nil);
         cell.txtValue.text = self.user.email;
         cell.cellType = EmailCell;
+    } else if (row == 4) {
+        cell.detailLabel.text = NSLocalizedString(@"passwordLabel", nil);
+        cell.txtValue.text = @".........";
+        cell.txtValue.userInteractionEnabled = NO;
+        cell.cellType = PasswordCell;
     }
     cell.delegate = self;
     cell.userInteractionEnabled = self.isEditableMode;

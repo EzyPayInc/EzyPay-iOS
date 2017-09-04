@@ -95,6 +95,7 @@ tableNumberLabel = "Table Number";
 tipLabel = "Tip";
 deleteConfirmationMessage = "Are you sure you want to delete this card";
 backLabel = "Back";
+passwordLabel = "Password";
 
 /*Placeholders*/
 emailPlaceholder = "Email";
@@ -112,6 +113,7 @@ accountNumberPlaceholder = "Account Number";
 userIdentificarionPlaceholder = "Id";
 commerceAccountNamePlaceholder = "Account Name";
 commerceBankNamePlaceholder = "Bank";
+newPasswordPlaceholder = "New Password";
 
 /*dates prefix*/
 01 = "1st";

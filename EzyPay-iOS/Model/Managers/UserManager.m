@@ -212,5 +212,16 @@ failureHandler: (ConnectionErrorHandler) failureHandler {
     [service getCommerceHistoryDates:user successHandler:successHandler failureHandler:failureHandler];
 }
 
+- (void)updatePassword:(NSString *)newPassword
+                  user:(User *)user
+        successHandler:(ConnectionSuccessHandler) successHandler
+        failureHandler:(ConnectionErrorHandler) failureHandler {
+    UserServiceClient *service = [[UserServiceClient alloc] init];
+    [service updatePassword:newPassword
+                       user:user
+             successHandler:successHandler
+             failureHandler:failureHandler];
+}
+
 
 @end
