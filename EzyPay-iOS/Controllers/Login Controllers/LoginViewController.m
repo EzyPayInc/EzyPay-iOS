@@ -49,8 +49,7 @@
     self.txtPassword.delegate = self;
     self.txtEmail.delegate = self;
     self.btnLogIn.layer.cornerRadius = 20;
-    [[self navigationController] setNavigationBarHidden:YES animated:YES];
-
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
     [self setupView];
     
 }
