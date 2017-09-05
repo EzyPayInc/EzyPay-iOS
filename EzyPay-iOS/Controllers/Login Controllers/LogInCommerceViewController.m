@@ -13,6 +13,7 @@
 #import "CoreDataManager.h"
 #import "DeviceTokenManager.h"
 #import "LoadingView.h"
+#import "ForgotPasswordViewController.h"
 
 @interface LogInCommerceViewController () <UITextFieldDelegate>
 
@@ -69,10 +70,21 @@
     UITapGestureRecognizer *generalTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                            action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:generalTapRecognizer];
+    
+    UITapGestureRecognizer *passTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                        action:@selector(forgotPasswordTapLabel:)];
+    [self.forgotPassLabel setUserInteractionEnabled:YES];
+    [self.forgotPassLabel addGestureRecognizer:passTapRecognizer];
 }
 
 - (void)hideKeyboard {
     [self.view endEditing:YES];
+}
+
+- (void)forgotPasswordTapLabel:(UITapGestureRecognizer*)sender {
+    ForgotPasswordViewController *viewController =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ForgotPasswordViewController"];
+    [self.navigationController pushViewController:viewController animated:YES];
+    
 }
 
 #pragma mark - Textfield delegate

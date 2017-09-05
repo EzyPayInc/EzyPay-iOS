@@ -240,8 +240,9 @@
 
 + (void)logoutFromViewController:(UIViewController *)viewController {
     ChooseViewController *chooseViewController = (ChooseViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ChooseViewController"];
+    UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:chooseViewController];
     [UserManager deleteUser];
-    [viewController presentViewController:chooseViewController animated:YES completion:nil];
+    [viewController presentViewController:navController animated:YES completion:nil];
 }
 
 

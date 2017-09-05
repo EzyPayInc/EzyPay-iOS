@@ -10,7 +10,10 @@
 #import "BottomBorderTextField.h"
 
 @interface ForgotPasswordViewController ()
+
 @property (weak, nonatomic) IBOutlet BottomBorderTextField *txtEmail;
+@property (weak, nonatomic) IBOutlet UIButton *btnSend;
+
 
 @end
 

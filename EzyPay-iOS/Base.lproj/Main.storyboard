@@ -221,49 +221,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Gad-kP-4e0" userLabel="Container">
-                                <rect key="frame" x="20" y="269.33333333333331" width="374" height="50"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8Q9-dI-vT3">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
-                                        <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AkJ-a3-wIn" customClass="BottomBorderTextField">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="gJc-yJ-kr1"/>
-                                        </constraints>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YYY-CP-vdW">
-                                <rect key="frame" x="82.666666666666686" y="339.33333333333331" width="248.66666666666663" height="40"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9We-8k-rHq" userLabel="txt Email" customClass="BottomBorderTextField">
+                                <rect key="frame" x="21.333333333333343" y="269.33333333333331" width="372.66666666666663" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="3c2-FO-msK"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ttu-Cf-ad0">
+                                <rect key="frame" x="82.666666666666686" y="334.33333333333331" width="248.66666666666663" height="50"/>
                                 <color key="backgroundColor" red="0.72941176470588232" green="0.82352941176470584" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="MIw-iW-5bx"/>
+                                    <constraint firstAttribute="height" constant="50" id="wQm-JK-I3O"/>
                                 </constraints>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="Send Request">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Gad-kP-4e0" firstAttribute="centerY" secondItem="A7R-Pe-gWN" secondAttribute="centerY" multiplier="0.8" id="Dch-WK-qhL"/>
-                            <constraint firstItem="YYY-CP-vdW" firstAttribute="centerX" secondItem="A7R-Pe-gWN" secondAttribute="centerX" id="Ic6-eN-cqb"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Gad-kP-4e0" secondAttribute="trailing" id="LDM-jF-HsY"/>
-                            <constraint firstItem="Gad-kP-4e0" firstAttribute="centerX" secondItem="A7R-Pe-gWN" secondAttribute="centerX" id="O85-ph-9Em"/>
-                            <constraint firstItem="YYY-CP-vdW" firstAttribute="top" secondItem="Gad-kP-4e0" secondAttribute="bottom" constant="20" id="PSa-SI-2K8"/>
-                            <constraint firstItem="Gad-kP-4e0" firstAttribute="leading" secondItem="A7R-Pe-gWN" secondAttribute="leadingMargin" id="cCh-mk-IKW"/>
-                            <constraint firstItem="YYY-CP-vdW" firstAttribute="width" secondItem="A7R-Pe-gWN" secondAttribute="width" multiplier="0.6" id="wiM-xm-U6x"/>
+                            <constraint firstItem="9We-8k-rHq" firstAttribute="centerX" secondItem="A7R-Pe-gWN" secondAttribute="centerX" id="324-zD-MZt"/>
+                            <constraint firstItem="9We-8k-rHq" firstAttribute="centerY" secondItem="A7R-Pe-gWN" secondAttribute="centerY" multiplier="0.8" id="C0x-4H-tB2"/>
+                            <constraint firstItem="Ttu-Cf-ad0" firstAttribute="centerX" secondItem="A7R-Pe-gWN" secondAttribute="centerX" id="HjH-nu-yVF"/>
+                            <constraint firstItem="9We-8k-rHq" firstAttribute="width" secondItem="A7R-Pe-gWN" secondAttribute="width" multiplier="0.9" id="VC1-o1-dmy"/>
+                            <constraint firstItem="Ttu-Cf-ad0" firstAttribute="top" secondItem="9We-8k-rHq" secondAttribute="bottom" constant="15" id="bPW-CI-xUM"/>
+                            <constraint firstItem="Ttu-Cf-ad0" firstAttribute="width" secondItem="A7R-Pe-gWN" secondAttribute="width" multiplier="0.6" id="ilq-qT-lft"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="txtEmail" destination="AkJ-a3-wIn" id="Mkd-lh-3Dg"/>
+                        <outlet property="btnSend" destination="Ttu-Cf-ad0" id="hgI-Zx-6j2"/>
+                        <outlet property="txtEmail" destination="9We-8k-rHq" id="MRI-QV-dt2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ryA-iE-0Ae" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3280,7 +3270,7 @@
         <image name="profileImage" width="84" height="85"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tq2-tb-wkF"/>
+        <segue reference="8iV-3l-izf"/>
         <segue reference="5Rj-is-fV2"/>
     </inferredMetricsTieBreakers>
 </document>
