@@ -23,6 +23,7 @@
 #import "NSString+String.h"
 #import "Credentials+CoreDataClass.h"
 #import "LoadingView.h"
+#import "ForgotPasswordViewController.h"
 
 @interface LoginViewController ()<UITextFieldDelegate, FBSDKLoginButtonDelegate, GIDSignInUIDelegate, GIDSignInDelegate>
     
@@ -117,6 +118,11 @@
     [self.lblSignUp setUserInteractionEnabled:YES];
     [self.lblSignUp addGestureRecognizer:signUpTapRecognizer];
     
+    UITapGestureRecognizer *passTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                          action:@selector(forgotPasswordTapLabel:)];
+    [self.forgotLabel setUserInteractionEnabled:YES];
+    [self.forgotLabel addGestureRecognizer:passTapRecognizer];
+    
     UITapGestureRecognizer *generalTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                           action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:generalTapRecognizer];
@@ -133,6 +139,12 @@
     SignInUserViewController *viewController =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInUserViewController"];
     [self.navigationController pushViewController:viewController animated:YES];
 
+}
+
+- (void)forgotPasswordTapLabel:(UITapGestureRecognizer*)sender {
+    ForgotPasswordViewController *viewController =  [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ForgotPasswordViewController"];
+    [self.navigationController pushViewController:viewController animated:YES];
+    
 }
 
 - (IBAction)loginAction:(id)sender {

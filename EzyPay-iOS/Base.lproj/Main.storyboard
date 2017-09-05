@@ -14,7 +14,7 @@
         <scene sceneID="zrJ-Tb-lEo">
             <objects>
                 <navigationController storyboardIdentifier="SignInNavigationViewController" id="lX2-XU-WVx" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wPc-E7-pG7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wPc-E7-pG7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -202,11 +202,73 @@
                         <outlet property="txtEmail" destination="yrG-m5-cEL" id="1P3-HP-aGh"/>
                         <outlet property="txtPassword" destination="W1t-qb-lTV" id="BH3-6n-5vG"/>
                         <segue destination="LkK-kc-wCj" kind="show" identifier="showUserSignUpController" id="5Rj-is-fV2"/>
+                        <segue destination="u3L-hL-6fn" kind="show" identifier="showForgotUPass" id="Tq2-tb-wkF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UND-Oq-xXU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="999" y="204"/>
+        </scene>
+        <!--Forgot Password View Controller-->
+        <scene sceneID="M1H-hG-Wad">
+            <objects>
+                <viewController storyboardIdentifier="ForgotPasswordViewController" id="u3L-hL-6fn" customClass="ForgotPasswordViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hYy-8m-aDW"/>
+                        <viewControllerLayoutGuide type="bottom" id="2ec-Id-YSk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="A7R-Pe-gWN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Gad-kP-4e0" userLabel="Container">
+                                <rect key="frame" x="20" y="269.33333333333331" width="374" height="50"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8Q9-dI-vT3">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AkJ-a3-wIn" customClass="BottomBorderTextField">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="gJc-yJ-kr1"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YYY-CP-vdW">
+                                <rect key="frame" x="82.666666666666686" y="339.33333333333331" width="248.66666666666663" height="40"/>
+                                <color key="backgroundColor" red="0.72941176470588232" green="0.82352941176470584" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="MIw-iW-5bx"/>
+                                </constraints>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Gad-kP-4e0" firstAttribute="centerY" secondItem="A7R-Pe-gWN" secondAttribute="centerY" multiplier="0.8" id="Dch-WK-qhL"/>
+                            <constraint firstItem="YYY-CP-vdW" firstAttribute="centerX" secondItem="A7R-Pe-gWN" secondAttribute="centerX" id="Ic6-eN-cqb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Gad-kP-4e0" secondAttribute="trailing" id="LDM-jF-HsY"/>
+                            <constraint firstItem="Gad-kP-4e0" firstAttribute="centerX" secondItem="A7R-Pe-gWN" secondAttribute="centerX" id="O85-ph-9Em"/>
+                            <constraint firstItem="YYY-CP-vdW" firstAttribute="top" secondItem="Gad-kP-4e0" secondAttribute="bottom" constant="20" id="PSa-SI-2K8"/>
+                            <constraint firstItem="Gad-kP-4e0" firstAttribute="leading" secondItem="A7R-Pe-gWN" secondAttribute="leadingMargin" id="cCh-mk-IKW"/>
+                            <constraint firstItem="YYY-CP-vdW" firstAttribute="width" secondItem="A7R-Pe-gWN" secondAttribute="width" multiplier="0.6" id="wiM-xm-U6x"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="txtEmail" destination="AkJ-a3-wIn" id="Mkd-lh-3Dg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ryA-iE-0Ae" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1863.7681159420292" y="216.84782608695653"/>
         </scene>
         <!--Sign In Commerce View Controller-->
         <scene sceneID="Qds-Og-0tZ">
@@ -220,7 +282,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7uO-IJ-YCH">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7uO-IJ-YCH" userLabel="Container">
                                 <rect key="frame" x="20" y="50" width="374" height="190"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5sw-R1-4aL">
@@ -328,7 +390,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="27s-K7-v9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2150.7246376811595" y="749.18478260869574"/>
+            <point key="canvasLocation" x="2088" y="919"/>
         </scene>
         <!--Sign In Bank Account View Controller-->
         <scene sceneID="Buf-Vw-3vq">
@@ -509,7 +571,7 @@
         <scene sceneID="VAJ-de-XgV">
             <objects>
                 <navigationController storyboardIdentifier="NavPaymentController" id="gl0-JL-8Bb" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7ZN-fY-Q1p">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7ZN-fY-Q1p">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1657,7 +1719,7 @@
         <scene sceneID="SM6-rc-a11">
             <objects>
                 <navigationController id="m39-Rr-84f" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dXD-xC-Str">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dXD-xC-Str">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1875,6 +1937,7 @@
                         <outlet property="orLabel" destination="zOj-WG-PvL" id="QYy-4p-fqK"/>
                         <outlet property="txtEmail" destination="3CU-2C-BiO" id="ZW1-Gj-wNh"/>
                         <outlet property="txtPassword" destination="KRt-Q4-Qiu" id="Tpo-kr-Lst"/>
+                        <segue destination="u3L-hL-6fn" kind="show" identifier="showForgotCPass" id="8iV-3l-izf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R1W-K0-iwD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1974,7 +2037,7 @@
         <scene sceneID="KXX-hM-o85">
             <objects>
                 <navigationController storyboardIdentifier="NavSettingsController" id="YTL-d0-WOv" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OJI-WJ-gTY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OJI-WJ-gTY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2289,7 +2352,7 @@
         <scene sceneID="Tnl-3X-gIe">
             <objects>
                 <collectionViewController storyboardIdentifier="TableCollectionViewController" id="goD-X0-Skl" customClass="TableCollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="diU-rC-QvO">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="diU-rC-QvO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2609,7 +2672,7 @@
         <scene sceneID="4hQ-0D-RtA">
             <objects>
                 <navigationController storyboardIdentifier="NavCommerceController" id="0dl-ju-FiX" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lw2-B4-WCb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Lw2-B4-WCb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2792,7 +2855,7 @@
         <scene sceneID="4Mg-eR-pG6">
             <objects>
                 <navigationController storyboardIdentifier="NavHistoryCommerceController" id="W3U-4y-trr" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="r2L-8D-pQV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="r2L-8D-pQV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2808,7 +2871,7 @@
         <scene sceneID="Ain-zJ-W07">
             <objects>
                 <navigationController storyboardIdentifier="TablesNavigationController" id="24R-PE-tWU" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oV9-i0-LNB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="oV9-i0-LNB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2949,7 +3012,7 @@
         <scene sceneID="gZZ-BX-hHN">
             <objects>
                 <navigationController storyboardIdentifier="cardNavigationViewController" id="sFJ-J7-HAt" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OlK-CN-xS6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OlK-CN-xS6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2965,7 +3028,7 @@
         <scene sceneID="epW-x6-LWp">
             <objects>
                 <navigationController storyboardIdentifier="NavHistoryController" id="9dM-e2-skS" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nKe-5Q-Y5g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nKe-5Q-Y5g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3217,6 +3280,7 @@
         <image name="profileImage" width="84" height="85"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Uda-IY-oKk"/>
+        <segue reference="Tq2-tb-wkF"/>
+        <segue reference="5Rj-is-fV2"/>
     </inferredMetricsTieBreakers>
 </document>
