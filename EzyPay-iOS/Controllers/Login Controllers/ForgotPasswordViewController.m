@@ -8,6 +8,8 @@
 
 #import "ForgotPasswordViewController.h"
 #import "BottomBorderTextField.h"
+#import "UserManager.h"
+#import "LoadingView.h"
 
 @interface ForgotPasswordViewController ()
 
@@ -29,5 +31,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)sendRequestAction:(id)sender {
+    NSString *email = self.txtEmail.text;
+    [LoadingView show];
+    UserManager *manager = [[UserManager alloc] init];
+    [manager forgotPassword:email
+             successHandler:^(id response) {
+                 [LoadingView dismiss];
+                 [self.navigationController popViewControllerAnimated:YES];
+             } failureHandler:^(id response) {
+                 [LoadingView dismiss];
+                 NSLog(@"Error: %@", response);
+             }];
+}
 
 @end
