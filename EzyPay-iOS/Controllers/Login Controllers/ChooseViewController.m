@@ -24,9 +24,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupView];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
 }
 
@@ -60,16 +57,14 @@
 - (void)navigateToSignIn
 {
     LoginViewController *viewController = (LoginViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    [self presentViewController:navigationController animated:YES completion:nil];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (void)navigateToSignInCommerce
 {
     LogInCommerceViewController *viewController =
     (LogInCommerceViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LogInCommerceViewController"];
-    UINavigationController * navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    [self presentViewController:navigationController animated:YES completion:nil];;
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 @end

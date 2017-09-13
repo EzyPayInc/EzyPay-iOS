@@ -40,6 +40,7 @@
 		80415C111E8B5CF1005696D3 /* PaymentServiceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80415C101E8B5CF1005696D3 /* PaymentServiceClient.m */; };
 		80415C141E8B7742005696D3 /* FriendManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80415C131E8B7742005696D3 /* FriendManager.m */; };
 		80430A6B1EE90F1300727111 /* LogInCommerceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80430A6A1EE90F1300727111 /* LogInCommerceViewController.m */; };
+		8043D0141F5E5461000BAF8E /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8043D0131F5E5461000BAF8E /* ForgotPasswordViewController.m */; };
 		8048977D1ED55588006CFBBE /* BottomBorderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8048977C1ED55588006CFBBE /* BottomBorderTextField.m */; };
 		804AC1151EB78D6A00401B29 /* ResponseSplitRequestNotificationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 804AC1141EB78D6A00401B29 /* ResponseSplitRequestNotificationHandler.m */; };
 		804CEE811DED242C0078BB54 /* EzyPay.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 804CEE7F1DED242C0078BB54 /* EzyPay.xcdatamodeld */; };
@@ -183,6 +184,8 @@
 		80415C131E8B7742005696D3 /* FriendManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendManager.m; sourceTree = "<group>"; };
 		80430A691EE90F1300727111 /* LogInCommerceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInCommerceViewController.h; sourceTree = "<group>"; };
 		80430A6A1EE90F1300727111 /* LogInCommerceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInCommerceViewController.m; sourceTree = "<group>"; };
+		8043D0121F5E5461000BAF8E /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewController.h; sourceTree = "<group>"; };
+		8043D0131F5E5461000BAF8E /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		8048977B1ED55588006CFBBE /* BottomBorderTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomBorderTextField.h; sourceTree = "<group>"; };
 		8048977C1ED55588006CFBBE /* BottomBorderTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomBorderTextField.m; sourceTree = "<group>"; };
 		804AC1131EB78D6A00401B29 /* ResponseSplitRequestNotificationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseSplitRequestNotificationHandler.h; sourceTree = "<group>"; };
@@ -367,6 +370,8 @@
 				80F14CEC1EF8CB1C00D4AAD9 /* SignInBankAccountViewController.m */,
 				80C531D51F5501B500D2206B /* PhoneCodesTableViewController.h */,
 				80C531D61F5501B500D2206B /* PhoneCodesTableViewController.m */,
+				8043D0121F5E5461000BAF8E /* ForgotPasswordViewController.h */,
+				8043D0131F5E5461000BAF8E /* ForgotPasswordViewController.m */,
 			);
 			path = "Login Controllers";
 			sourceTree = "<group>";
@@ -1000,6 +1005,7 @@
 				801FE3131DD40778004318CC /* CoreDataManager.m in Sources */,
 				80016E4E1E1C943100D4658D /* BarcodeScannerViewController.m in Sources */,
 				80FCD2D71E763F9B009FC48D /* AddTableViewController.m in Sources */,
+				8043D0141F5E5461000BAF8E /* ForgotPasswordViewController.m in Sources */,
 				80EFEB981DB8552900D874E2 /* AppDelegate.m in Sources */,
 				805F36901E94C4630099932A /* HistoryCommerceTableViewCell.m in Sources */,
 				804CEEDF1DED54DB0078BB54 /* NavigationController.m in Sources */,

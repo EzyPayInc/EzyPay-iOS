@@ -270,4 +270,20 @@ static NSString *const USER_URL = @"user/";
         [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
 }
 
+- (void)forgotPassword:(NSString *) email
+      successHandler:(ConnectionSuccessHandler) successHandler
+      failureHandler: (ConnectionErrorHandler) failureHandler {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@forgotPassword", BASE_URL, USER_URL]];
+    NSString *basicAuth = [NSString stringWithFormat:@"%@:%@",CLIENT_ID,SECRET_KEY];
+    NSString *encodedString = [self stringByBase64EncodingWithString:basicAuth];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    NSString *body = [NSString stringWithFormat:@"email=%@", email];
+    request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
+    request.HTTPMethod = @"POST";
+    [request addValue:[NSString stringWithFormat:@"Basic %@",encodedString] forHTTPHeaderField:@"Authorization"];
+    [self.sessionHandler sendRequestWithRequest:request successHandeler:successHandler failureHandler:failureHandler];
+}
+
 @end

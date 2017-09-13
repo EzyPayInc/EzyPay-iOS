@@ -223,5 +223,12 @@ failureHandler: (ConnectionErrorHandler) failureHandler {
              failureHandler:failureHandler];
 }
 
+- (void)forgotPassword:(NSString *) email
+        successHandler:(ConnectionSuccessHandler) successHandler
+        failureHandler: (ConnectionErrorHandler) failureHandler {
+    UserServiceClient *service = [[UserServiceClient alloc] init];
+    [service forgotPassword:email successHandler:successHandler failureHandler:failureHandler];
+}
+
 
 @end

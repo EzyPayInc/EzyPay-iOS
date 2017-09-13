@@ -40,4 +40,7 @@
                   user:(User *)user
         successHandler:(ConnectionSuccessHandler) successHandler
         failureHandler:(ConnectionErrorHandler) failureHandler;
+- (void)forgotPassword:(NSString *) email
+        successHandler:(ConnectionSuccessHandler) successHandler
+        failureHandler: (ConnectionErrorHandler) failureHandler;
 @end
