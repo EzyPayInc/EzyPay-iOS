@@ -13,7 +13,6 @@
 #import "DeviceTokenManager.h"
 #import "CoreDataManager.h"
 #import "NotificationHandlerFactory.h"
-#import <Google/SignIn.h>
 
 @interface AppDelegate ()
 
@@ -54,9 +53,6 @@
                                                         sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
                                                                annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
                     ];
-    handled = !handled ? [[GIDSignIn sharedInstance] handleURL:url
-                                          sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
-                                              annotation:options[UIApplicationOpenURLOptionsAnnotationKey]] : YES;
     // Add any custom logic here.
     return handled;
 }

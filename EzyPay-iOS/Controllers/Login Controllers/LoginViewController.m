@@ -19,13 +19,12 @@
 #import "ChooseViewController.h"
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <Google/SignIn.h>
 #import "NSString+String.h"
 #import "Credentials+CoreDataClass.h"
 #import "LoadingView.h"
 #import "ForgotPasswordViewController.h"
 
-@interface LoginViewController ()<UITextFieldDelegate, FBSDKLoginButtonDelegate, GIDSignInUIDelegate, GIDSignInDelegate>
+@interface LoginViewController ()<UITextFieldDelegate, FBSDKLoginButtonDelegate>
     
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
@@ -37,7 +36,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *forgotLabel;
 @property (weak, nonatomic) IBOutlet UIView *googleView;
 @property (nonatomic, strong) FBSDKLoginButton *facebookLoginButton;
-@property (nonatomic, strong)  GIDSignInButton *googleLoginButton;
 
 
 @end
@@ -59,9 +57,6 @@
 {
     self.facebookLoginButton.frame = self.facebookView.frame;
     [self.view addSubview:self.facebookLoginButton];
-    
-    self.googleLoginButton = [[GIDSignInButton alloc] initWithFrame:self.googleView.frame];
-    [self.view addSubview:self.googleLoginButton];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -85,16 +80,6 @@
     self.facebookLoginButton = [[FBSDKLoginButton alloc] init];
     self.facebookLoginButton.delegate = self;
     self.facebookLoginButton.readPermissions = @[@"public_profile", @"email"];
-    
-    /*Google setup*/
-    //configurin google sign in
-    NSError* configureError;
-    [[GGLContext sharedInstance] configureWithError: &configureError];
-    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
-    
-    [GIDSignIn sharedInstance].delegate = self;
-    [GIDSignIn sharedInstance].uiDelegate = self;
-
 }
 
 - (void)setUnderlineText {
@@ -326,23 +311,4 @@
     }];
 
 }
-    
-
-#pragma mark - Google delegate
-- (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error {
-    NSLog(@"User %@", user.profile.name);
-    NSLog(@"User Image %@", [user.profile imageURLWithDimension:200]);
-}
-    
-    
-// Present a view that prompts the user to sign in with Google
-- (void)signIn:(GIDSignIn *)signIn presentViewController:(UIViewController *)viewController {
-    [self presentViewController:viewController animated:YES completion:nil];
-}
-    
-    // Dismiss the "Sign in with Google" view
-- (void)signIn:(GIDSignIn *)signIn dismissViewController:(UIViewController *)viewController {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 @end

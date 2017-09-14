@@ -47,8 +47,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self isPaymentReadyToPay];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+   /* [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];*/
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -63,6 +63,7 @@
     [self.btnPayment setTitle:NSLocalizedString(@"payAction", nil) forState:UIControlStateNormal];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tipLabel.text = NSLocalizedString(@"tipLabel", nil);
+    self.tipView.hidden = YES;
 }
 
 - (void)keyboardDidShow:(NSNotification *)notification

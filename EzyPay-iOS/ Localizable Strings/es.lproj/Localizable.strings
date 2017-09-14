@@ -94,6 +94,7 @@ userIdentificarionLabel = "Cédula";
 tableNumberLabel = "Número de Mesa";
 tipLabel = "Propina";
 backLabel = "Atras";
+passwordLabel = "Password";
 deleteConfirmationMessage = "¿Estas seguro que deseas eliminar esta tarjeta de crédito?";
 
 /*Placeholders*/
