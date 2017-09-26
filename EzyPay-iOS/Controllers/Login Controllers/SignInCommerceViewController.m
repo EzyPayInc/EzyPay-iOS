@@ -15,6 +15,7 @@
 #import "NavigationController.h"
 #import "BottomBorderTextField.h"
 #import "PhoneCodesTableViewController.h"
+#import "LoadingView.h"
 
 @interface SignInCommerceViewController ()<UITextFieldDelegate, PhoneCodesDelegate>
 
@@ -110,7 +111,7 @@
 
 - (IBAction)nextAction:(id)sender {
     if([self isDataValidated]) {
-        [self saveUser];
+        [self validateUserEmail:self.txtEmail.text];
     }
 }
 
@@ -143,6 +144,23 @@
 
 - (BOOL)isPasswordValidated {
     return self.txtPassword.text.length > 4;
+}
+
+- (void)validateUserEmail:(NSString*) email {
+    [LoadingView show];
+    UserManager *manager = [[UserManager alloc] init];
+    [manager validateUserEmail:email
+                successHandler:^(id response) {
+                    [LoadingView dismiss];
+                    if([[response objectForKey:@"user"] integerValue] == 0) {
+                        [self saveUser];
+                    } else {
+                        [self displayAlertWithMessage:NSLocalizedString(@"errorEmailAlreadyAssigned", nil)];
+                    }
+                } failureHandler:^(id response) {
+                    [LoadingView dismiss];
+                    [self displayAlertWithMessage:NSLocalizedString(@"errorEmailErrorRequest", nil)];
+                }];
 }
 
 - (void)displayAlertWithMessage:(NSString *)message {

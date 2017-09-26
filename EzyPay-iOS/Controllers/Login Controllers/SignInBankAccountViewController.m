@@ -90,7 +90,8 @@
                [self login];
            } failureHandler:^(id response) {
                [LoadingView dismiss];
-            NSLog(@"Error: %@", response);
+               [self showServerMessage:NSLocalizedString(@"errorEmailAlreadyAssigned", nil)];
+               NSLog(@"Error: %@", response);
            }];
 }
 
@@ -147,6 +148,14 @@
         [LoadingView dismiss];
         NSLog(@"Error: %@", response);
     }];
+}
+
+- (void)showServerMessage:(NSString *)message {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:message preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - registerToken

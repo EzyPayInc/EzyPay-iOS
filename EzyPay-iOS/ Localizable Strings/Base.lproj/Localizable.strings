@@ -68,6 +68,8 @@ invalidExpirationDateError = "Please enter a valid expiration date";
 imageRequiredMessage = "The icon is required";
 sessionExpiredMessage = "The session has expired";
 communicationErrorMessage = "Communication Error. Please verify your internet connection";
+errorEmailAlreadyAssigned = "Error. This email has already been assigned to another user.";
+errorEmailErrorRequest = "Error validating email. Please try again!";
 
 
 /*labels*/

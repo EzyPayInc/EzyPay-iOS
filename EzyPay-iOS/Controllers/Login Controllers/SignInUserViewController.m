@@ -15,6 +15,7 @@
 #import "LoginViewController.h"
 #import "BottomBorderTextField.h"
 #import "PhoneCodesTableViewController.h"
+#import "LoadingView.h"
 
 @interface SignInUserViewController ()<UITextFieldDelegate, PhoneCodesDelegate>
 
@@ -101,21 +102,25 @@
     [self.view endEditing:YES];
 }
 
-- (void)saveUser {
+- (void)validateUser {
     if([self isDataValidated]) {
-        self.user.name = self.txtUserName.text;
-        self.user.lastName = self.txtLastname.text;
-        self.user.phoneNumber = [NSString stringWithFormat:@"%@ %@",
-                                 self.txtPhoneCode.text, self.txtPhoneNumber.text];
-        self.user.email = self.txtEmail.text;
-        self.user.userType = UserNavigation;
-        self.user.password = self.txtPassword.text;
-    
-        SignInPaymentInformationControllerViewController *viewController = (SignInPaymentInformationControllerViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInPaymentInformationControllerViewController"];
-        viewController.user = self.user;
-        viewController.tables = 0;
-        [self.navigationController pushViewController:viewController animated:true];
+        [self validateUserEmail:self.txtEmail.text];
     }
+}
+
+- (void)saveUser {
+    self.user.name = self.txtUserName.text;
+    self.user.lastName = self.txtLastname.text;
+    self.user.phoneNumber = [NSString stringWithFormat:@"%@ %@",
+                             self.txtPhoneCode.text, self.txtPhoneNumber.text];
+    self.user.email = self.txtEmail.text;
+    self.user.userType = UserNavigation;
+    self.user.password = self.txtPassword.text;
+    
+    SignInPaymentInformationControllerViewController *viewController = (SignInPaymentInformationControllerViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignInPaymentInformationControllerViewController"];
+    viewController.user = self.user;
+    viewController.tables = 0;
+    [self.navigationController pushViewController:viewController animated:true];
 }
 
 
@@ -136,7 +141,7 @@
 }
 
 - (IBAction)saveAction:(id)sender {
-    [self saveUser];
+    [self validateUser];
 }
 
 
@@ -186,6 +191,23 @@
 
 - (void)didTapOnCode:(NSString *)phoneCode {
     self.txtPhoneCode.text = phoneCode;
+}
+
+- (void)validateUserEmail:(NSString*) email {
+    [LoadingView show];
+    UserManager *manager = [[UserManager alloc] init];
+    [manager validateUserEmail:email
+                successHandler:^(id response) {
+                    [LoadingView dismiss];
+                    if([[response objectForKey:@"user"] integerValue] == 0) {
+                        [self saveUser];
+                    } else {
+                       [self displayAlertWithMessage:NSLocalizedString(@"errorEmailAlreadyAssigned", nil)];
+                    }
+                } failureHandler:^(id response) {
+                    [LoadingView dismiss];
+                    [self displayAlertWithMessage:NSLocalizedString(@"errorEmailErrorRequest", nil)];
+                }];
 }
 
 @end

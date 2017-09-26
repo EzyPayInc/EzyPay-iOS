@@ -43,4 +43,7 @@
 - (void)forgotPassword:(NSString *) email
         successHandler:(ConnectionSuccessHandler) successHandler
         failureHandler: (ConnectionErrorHandler) failureHandler;
+- (void)validateUserEmail:(NSString *) email
+           successHandler:(ConnectionSuccessHandler) successHandler
+           failureHandler: (ConnectionErrorHandler) failureHandler;
 @end

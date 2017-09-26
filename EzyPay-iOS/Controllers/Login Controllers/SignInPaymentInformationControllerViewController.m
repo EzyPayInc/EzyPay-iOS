@@ -105,6 +105,7 @@
                [self login];
     } failureHandler:^(id response) {
         [LoadingView dismiss];
+        [self showServerMessage:NSLocalizedString(@"errorEmailAlreadyAssigned", nil)];
         NSLog(@"Error: %@", response);
     }];
 }
@@ -184,7 +185,7 @@
 
 - (void)showServerMessage:(NSString *)message {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:message preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [alert dismissViewControllerAnimated:YES completion:nil];
     }]];
     [self presentViewController:alert animated:YES completion:nil];
