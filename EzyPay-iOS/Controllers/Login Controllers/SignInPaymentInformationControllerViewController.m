@@ -133,6 +133,7 @@
     card.cardNumber = self.txtCardNumber.text;
     card.ccv = [self.txtCvv.text integerValue];
     card.expirationDate = [ValidateCardInformationHelper getDateFormated:self.txtExpirationDate.text];
+    card.isFavorite = 1;
     card.user = self.user;
     CardManager *manager = [[CardManager alloc] init];
     [manager registerCard:card user:self.user successHandler:^(id response) {
