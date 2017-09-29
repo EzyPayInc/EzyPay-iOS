@@ -12,6 +12,7 @@
 #import "CardDetailViewController.h"
 #import "UIColor+UIColor.h"
 #import "LoadingView.h"
+#import "ValidateCardInformationHelper.h"
 
 @interface CardListTableViewController ()
 
@@ -77,7 +78,7 @@ static NSString *const CARD_STARTS = @"**** ";
     Card *card = [self.cards objectAtIndex:indexPath.row];
     NSString *lastCharacters = [card.cardNumber substringFromIndex:MAX((int)[card.cardNumber length]-4, 0)];
     cell.textLabel.text = [CARD_STARTS stringByAppendingString:lastCharacters];
-    cell.imageView.image = [self creditCardIcon:card.cardNumber];
+    cell.imageView.image = [self creditCardIcon:card];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:17];
     cell.textLabel.textColor = [UIColor blackEzyPayColor];
@@ -132,15 +133,8 @@ static NSString *const CARD_STARTS = @"**** ";
     [self.navigationController pushViewController:cardDetailViewController animated:true];
 }
 
-- (UIImage *)creditCardIcon:(NSString *)creditCard {
-    NSInteger iins = [[creditCard substringToIndex:2] integerValue];
-    
-    if(iins > 39 && iins < 50) {
-        return [UIImage imageNamed:@"ic_visa"];
-    } else if (iins > 50 && iins < 56){
-        return [UIImage imageNamed:@"ic_master_card"];
-    }
-    return [UIImage imageNamed:@"ic_credit_card"];
+- (UIImage *)creditCardIcon:(Card *)card {
+    return [ValidateCardInformationHelper getCardImage:card.cardVendor];
 }
 
 - (void)validateDeleteAction:(Card *)card {
@@ -161,14 +155,34 @@ static NSString *const CARD_STARTS = @"**** ";
 }
 
 - (void)deleteAction:(Card *)card {
-    CardManager *manager = [[CardManager alloc] init];
-    [manager deleteCard:card.serverId
-                   user:self.user successHandler:^(id response) {
-                       [self getCardsFromServer];
-                   }
-         failureHandler:^(id response) {
-             NSLog(@"Error deleting card");
-         }];
+    if(!card.isFavorite) {
+        [LoadingView show];
+        CardManager *manager = [[CardManager alloc] init];
+        [manager deleteCard:card.serverId
+                       user:self.user successHandler:^(id response) {
+                           [LoadingView dismiss];
+                           [self getCardsFromServer];
+                       }
+             failureHandler:^(id response) {
+                 [LoadingView dismiss];
+                 NSLog(@"Error deleting card");
+             }];
+    } else {
+        [self displayErrorMessage:NSLocalizedString(@"cardDeleteValidation", nil)];
+        [self.tableView reloadData];
+    }
+}
+
+- (void)displayErrorMessage:(NSString *)message {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:nil];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end

@@ -25,6 +25,7 @@
         card.serverId =  [[cardDictionary objectForKey:@"serverId"] integerValue];
         card.token = [cardDictionary objectForKey:@"token"];
         card.isFavorite = [[cardDictionary objectForKey:@"isFavorite"] integerValue];
+        card.cardVendor = [[cardDictionary objectForKey:@"cardVendor"] integerValue];
         [cards addObject:card];
     }
     if(cards.count > 0){

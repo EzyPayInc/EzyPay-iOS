@@ -35,8 +35,8 @@ static NSString *const CARD_URL = @"card/";
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
     NSString *cardHolderName = [NSString stringWithFormat:@"%@ %@", user.name, user.lastName];
-    NSString *body = [NSString stringWithFormat:@"cardNumber=%@&cardHolderName=%@&customerId=%lld&ccv=%hd&expirationDate=%@&userId=%lld&isFavorite=%hd",
-                      card.cardNumber, cardHolderName, user.customerId, card.ccv, card.expirationDate, card.user.id, card.isFavorite];
+    NSString *body = [NSString stringWithFormat:@"cardNumber=%@&cardHolderName=%@&customerId=%lld&ccv=%hd&expirationDate=%@&userId=%lld&isFavorite=%hd&cardVendor=%hd",
+                      card.cardNumber, cardHolderName, user.customerId, card.ccv, card.expirationDate, card.user.id, card.isFavorite, card.cardVendor];
     request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
     request.HTTPMethod = @"POST";
     [request addValue:[NSString stringWithFormat:@"Bearer %@",user.token] forHTTPHeaderField:@"Authorization"];
@@ -64,8 +64,8 @@ static NSString *const CARD_URL = @"card/";
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
     NSString *body =
-    [NSString stringWithFormat:@"cardNumber=%@&ccv=%hd&expirationDate=%@&userId=%lld&serverId=%lld&customerId=%lld&isFavorite=%hd",
-     card.cardNumber, card.ccv, card.expirationDate, card.user.id, card.serverId, user.customerId, card.isFavorite];
+    [NSString stringWithFormat:@"cardNumber=%@&ccv=%hd&expirationDate=%@&userId=%lld&serverId=%lld&customerId=%lld&isFavorite=%hd&cardVendor=%hd",
+     card.cardNumber, card.ccv, card.expirationDate, card.user.id, card.serverId, user.customerId, card.isFavorite, card.cardVendor];
     request.HTTPBody = [body dataUsingEncoding:NSUTF8StringEncoding];
     request.HTTPMethod = @"PUT";
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];

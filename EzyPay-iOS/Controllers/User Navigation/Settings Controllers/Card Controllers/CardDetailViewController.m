@@ -163,18 +163,26 @@
         card.serverId = self.card.serverId;
         card.token = self.card.token;
         card.expirationDate = [ValidateCardInformationHelper getDateFormated:self.txtExpirationDate.text];
-        switch (self.viewType) {
-            case AddCard:
-                [self registerCard:card];
-                break;
-            case EditCard:
-                [self updateCard:card];
-                break;
-            default:
-                break;
+        if([self validateCardType:card]){
+            CardIOCreditCardInfo *cardIO = [[CardIOCreditCardInfo alloc] init];
+            cardIO.cardNumber = card.cardNumber;
+            card.cardVendor = [ValidateCardInformationHelper getCardType:cardIO.cardType];
+            switch (self.viewType) {
+                case AddCard:
+                    [self registerCard:card];
+                    break;
+                case EditCard:
+                    [self updateCard:card];
+                    break;
+                default:
+                    break;
+            }
+        } else
+        {
+            [self displayErrorMessage:NSLocalizedString(@"cardTypeInvalid", nil)];
         }
     } else {
-        [self displayErrorMessage];
+        [self displayErrorMessage:NSLocalizedString(@"cardInvalidData", nil)];
     }
 
 }
@@ -223,13 +231,19 @@
     return YES;
 }
 
+- (BOOL)validateCardType:(Card *)card {
+    CardIOCreditCardInfo *cardIO = [[CardIOCreditCardInfo alloc] init];
+    cardIO.cardNumber = card.cardNumber;
+    return [ValidateCardInformationHelper getCardType:cardIO.cardType] != Invalid;
+}
+
 - (void)creditCardExpiryFormatter:(id)sender {
     [ValidateCardInformationHelper creditCardExpiryFormatter:self.txtExpirationDate];
 }
 
-- (void)displayErrorMessage {
+- (void)displayErrorMessage:(NSString *)message {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                   message:@"Invalid data."
+                                                                   message:message
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault

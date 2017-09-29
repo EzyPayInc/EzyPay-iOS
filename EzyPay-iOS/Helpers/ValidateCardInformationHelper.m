@@ -176,4 +176,39 @@
     NSArray *components = [expirationDate componentsSeparatedByString:@"/"];
     return [NSString stringWithFormat:@"%@/20%@",components[0], components[1]];
 }
+
++ (CardType)getCardType:(CardIOCreditCardType)cardIOType {
+    switch (cardIOType) {
+        case CardIOCreditCardTypeVisa:
+            return Visa;
+        case CardIOCreditCardTypeMastercard:
+            return MasterCard;
+        case CardIOCreditCardTypeAmex:
+            return Amex;
+        case CardIOCreditCardTypeJCB:
+            return JCB;
+        case CardIOCreditCardTypeDiscover:
+            return Discover;
+        default:
+            return Invalid;
+    }
+}
+
++ (UIImage *)getCardImage:(CardType)cardType
+{
+    switch (cardType) {
+        case Visa:
+            return [CardIOCreditCardInfo logoForCardType:CardIOCreditCardTypeVisa];
+        case MasterCard:
+            return [CardIOCreditCardInfo logoForCardType:CardIOCreditCardTypeMastercard];
+        case Amex:
+            return [CardIOCreditCardInfo logoForCardType:CardIOCreditCardTypeAmex];
+        case JCB:
+            return [CardIOCreditCardInfo logoForCardType:CardIOCreditCardTypeJCB];
+        case Discover:
+            return [CardIOCreditCardInfo logoForCardType:CardIOCreditCardTypeDiscover];
+        default:
+            return [UIImage imageNamed:@"ic_credit_card"];
+    }
+}
 @end

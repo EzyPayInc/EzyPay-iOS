@@ -70,6 +70,9 @@ sessionExpiredMessage = "La sesión ha expirado";
 communicationErrorMessage = "Error de Comunicación. Por favor verifique su conexión a internet";
 errorEmailAlreadyAssigned = "Error. Este correo ya ha sido asigndo a otro usuario.";
 errorEmailErrorRequest = "Error validando el correo. Por favor intentalo de nuevo.";
+cardInvalidData = "Datos de la tarjeta no validos";
+cardTypeInvalid = "Tipo de tarjeta no valido";
+cardDeleteValidation = "No puedes eliminar tu principal tarjeta";
 
 /*labels*/
 forgotPasswordLabel = "¿Olvidó su contraseña?";

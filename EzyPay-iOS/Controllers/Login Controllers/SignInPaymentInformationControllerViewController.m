@@ -94,20 +94,24 @@
 }
 
 - (void)saveUser {
-    [LoadingView show];
-    UserManager *manager = [[UserManager alloc] init];
-    [manager registerUser:self.user
-                   tables: self.tables
-           successHandler:^(id response) {
-               int64_t userId = (long)[[response valueForKey:@"userId"] integerValue];
-               self.user.id = userId;
-               self.user.customerId = [[response valueForKey:@"customerId"] integerValue];
-               [self login];
-    } failureHandler:^(id response) {
-        [LoadingView dismiss];
-        [self showServerMessage:NSLocalizedString(@"errorEmailAlreadyAssigned", nil)];
-        NSLog(@"Error: %@", response);
-    }];
+    if([self validateCardType]){
+        [LoadingView show];
+        UserManager *manager = [[UserManager alloc] init];
+        [manager registerUser:self.user
+                       tables: self.tables
+               successHandler:^(id response) {
+                   int64_t userId = (long)[[response valueForKey:@"userId"] integerValue];
+                   self.user.id = userId;
+                   self.user.customerId = [[response valueForKey:@"customerId"] integerValue];
+                   [self login];
+               } failureHandler:^(id response) {
+                   [LoadingView dismiss];
+                   [self showServerMessage:NSLocalizedString(@"errorEmailAlreadyAssigned", nil)];
+                   NSLog(@"Error: %@", response);
+               }];
+    } else {
+        [self showServerMessage:NSLocalizedString(@"cardTypeInvalid", nil)];
+    }
 }
 
 - (void)login {
@@ -135,6 +139,10 @@
     card.expirationDate = [ValidateCardInformationHelper getDateFormated:self.txtExpirationDate.text];
     card.isFavorite = 1;
     card.user = self.user;
+    CardIOCreditCardInfo *cardIOCard = [[CardIOCreditCardInfo alloc] init];
+    cardIOCard.cardNumber = card.cardNumber;
+    card.cardVendor = [ValidateCardInformationHelper getCardType:cardIOCard.cardType];
+
     CardManager *manager = [[CardManager alloc] init];
     [manager registerCard:card user:self.user successHandler:^(id response) {
         [LoadingView dismiss];
@@ -145,15 +153,21 @@
         [navigationController presentTabBarController:self
                                    withNavigationType:self.user.userType
                                              withUser:self.user];
-        [self registerToken:self.user];
-    } failureHandler:^(id response) {
-        [LoadingView dismiss];
-        NSLog(@"Error: %@", response);
+            [self registerToken:self.user];
+        } failureHandler:^(id response) {
+            [LoadingView dismiss];
+            NSLog(@"Error: %@", response);
     }];
 }
 
 - (void)creditCardExpiryFormatter:(id)sender {
     [ValidateCardInformationHelper creditCardExpiryFormatter:self.txtExpirationDate];
+}
+
+- (BOOL)validateCardType {
+    CardIOCreditCardInfo *cardIOCard = [[CardIOCreditCardInfo alloc] init];
+    cardIOCard.cardNumber = self.txtCardNumber.text;
+    return [ValidateCardInformationHelper getCardType:cardIOCard.cardType] != Invalid;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {

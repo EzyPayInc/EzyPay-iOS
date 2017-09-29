@@ -70,6 +70,9 @@ sessionExpiredMessage = "The session has expired";
 communicationErrorMessage = "Communication Error. Please verify your internet connection";
 errorEmailAlreadyAssigned = "Error. This email has already been assigned to another user.";
 errorEmailErrorRequest = "Error validating email. Please try again!";
+cardInvalidData = "The card data is not valid";
+cardTypeInvalid = "The card type is not valid";
+cardDeleteValidation = "You cannot delete your main credit card";
 
 
 /*labels*/

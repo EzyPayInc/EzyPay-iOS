@@ -9,6 +9,7 @@
     </entity>
     <entity name="Card" representedClassName="Card" syncable="YES" codeGenerationType="class">
         <attribute name="cardNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cardVendor" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="ccv" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="expirationDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -84,7 +85,7 @@
     </entity>
     <elements>
         <element name="BankAccount" positionX="-153" positionY="-90" width="128" height="120"/>
-        <element name="Card" positionX="61" positionY="-117" width="128" height="165"/>
+        <element name="Card" positionX="61" positionY="-117" width="128" height="180"/>
         <element name="Credentials" positionX="-153" positionY="-90" width="128" height="105"/>
         <element name="Currency" positionX="-153" positionY="-90" width="128" height="105"/>
         <element name="Friend" positionX="34" positionY="81" width="128" height="150"/>
